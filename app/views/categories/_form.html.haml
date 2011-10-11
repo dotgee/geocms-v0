@@ -1,0 +1,19 @@
+= simple_form_for(@category, :builder => SimpleBootstrapFormBuilder) do |f|
+  - if @category.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
+      %ul
+        - @category.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :name
+  = f.input :description
+  %div.clearfix
+    - a = nested_set_options(Category, @category){ |i| "#{'-' * i.level} #{i.name}" }
+    = f.input :parent, :collection => a
+  .actions
+    - if f.object.new_record?
+      = link_to 'Annuler', categories_path, :class => 'btn'
+    - else
+      = link_to 'Annuler', @category, :class => 'btn'
+    = f.submit 'Valider', :class => 'btn primary'

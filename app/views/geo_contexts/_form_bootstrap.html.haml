@@ -1,0 +1,25 @@
+= form_for(@geo_context, :builder => BootstrapFormBuilder) do |f|
+  - if @geo_context.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@geo_context.errors.count, "error")} prohibited this geo_context from being saved:"
+      %ul
+        - @geo_context.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.inputs do
+    = f.text_field :name, :class => 'span8'
+    %div.clearfix
+      = f.label :parent
+      .input
+        = f.select :category_id, nested_set_options(Category, @geo_context.category) { |i| "#{'-' * i.level} #{i.name}" }, { :include_blank => true }
+    = f.text_area :description, :class => 'span8'
+    = f.text_field :wmc_name, :class => 'span8'
+    = f.text_field :keywords, :class => 'span8'
+    = f.text_field :tag_list, :class => 'span8'
+    = f.file_field :wmc, :class => 'input-file'
+  .actions
+    = f.submit 'Save', :class => 'btn primary'
+    - if f.object.new_record?
+      = link_to 'Cancel', geo_contexts_path, :class => 'btn'
+    - else
+      = link_to 'Cancel', @geo_context, :class => 'btn'

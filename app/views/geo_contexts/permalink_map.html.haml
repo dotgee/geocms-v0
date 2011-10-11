@@ -1,0 +1,20 @@
+= insert_script("OpenLayers-2.11/OpenLayers.js","ok")
+= insert_script("jquery-1.6.4.min.js","ok")
+= insert_script("jqueryui.js","ok")
+= insert_script("mapInit.js","ok")
+=# insert_script(@geo_context.wmc.url,"ok")
+= insert_geocontext_datas(@geo_context)
+:plain
+  function insertAfter(newElement,targetElement) {
+    var parent = targetElement.parentNode;
+    if(parent.lastchild == targetElement) {
+      parent.appendChild(newElement);
+    } else {
+      parent.insertBefore(newElement, targetElement.nextSibling);
+    }
+  }
+  var this_script = document.getElementById('permalink-diro');
+  var div = document.createElement("div");
+  div.id = "wmc";
+  insertAfter(div,this_script);
+  

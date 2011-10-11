@@ -1,0 +1,18 @@
+.topbar-wrapper
+  .topbar
+    .topbar-inner
+      .container
+        %h3
+          = link_to 'Geocms', root_path
+        %ul.nav
+          %li
+            = link_to 'Geo Contexts', root_path
+          %li
+            = link_to "Couches", layers_path
+          %li
+            = link_to "Cat&eacute;gories".html_safe, categories_path
+        = render :partial => 'shared/navigation'
+%header.subhead
+  .inner
+    .container
+      = yield :header

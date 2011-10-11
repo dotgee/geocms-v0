@@ -1,0 +1,19 @@
+= simple_form_for(@layer, :builder => SimpleBootstrapFormBuilder) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :wms_url, :as => :string, :input_html => {"data-content" => "Its amazing","data-original-title" => "Url wms" , :rel => "popover"}
+    = f.input :name
+    = input_popover("Nome de la couche") do 
+      %p
+        P&eacute;cisez un nom explicite
+    = f.input :description, :as => :text
+    = f.input :origin
+    = f.input :metadata_url, :as => :string
+    - a = nested_set_options(Category, @layer.category){ |i| "#{'-' * i.level} #{i.name}" }
+    = f.input :category, :as => :select, :collection => a
+
+  .actions
+    = link_to "Annuler", layers_path, :class => "btn"
+    = f.button :submit, "Valider", :class => "btn primary"
+

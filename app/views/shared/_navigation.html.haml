@@ -1,0 +1,13 @@
+%ul.nav.secondary-nav
+
+  %li.dropdown
+    - if current_user
+      = link_to('Mon compte', edit_user_registration_path)
+    - else
+      = link_to('Inscription', new_user_registration_path)
+
+  %li.dropdown
+    - if current_user
+      = button_to('D&eacute;connexion'.html_safe, destroy_user_session_path,  :method => :delete, :class => 'active')
+    - else
+      = link_to('Connexion', new_user_session_path)

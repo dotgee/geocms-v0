@@ -1,17 +1,33 @@
 Geocms::Application.routes.draw do
+
+  resources :layers
+
+  resources :categories
+
+  resources :geo_contexts do
+    member do
+      get 'permalink_map'
+    end
+  end
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  match '/auth/failure' => 'devise/sessions#failure'
+
+  devise_scope :user do
+    get "/logout" => "devise/sessions#destroy"
+  end
+
+  devise_for :users
+
   #get \"users\/show\"
 
   resources :users, :only => [ :show, :edit, :update ]
 
   match '/auth/:provider/callback' => 'sessions#create'
 
-  match '/signin' => 'sessions#new', :as => :signin
 
-  match '/signout' => 'sessions#destroy', :as => :signout
-
-  match '/auth/failure' => 'sessions#failure'
-
-  root :to => "home#index"
+  root :to => "geo_contexts#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,26 @@
+- title do 
+  %h1 Liste des cat&eacute;gories
+
+%table
+  %thead
+    %tr
+      %th Nom
+      %th Description
+
+  %tbody
+    - @categories.each do |category|
+      %tr
+        %td
+          .name
+            = link_to category.name, edit_category_path(category)
+          .row-actions
+            = link_to 'Voir', category
+            \|
+            = link_to 'Modifier', edit_category_path(category)
+            \|
+            = link_to 'Supprimer', category, :confirm => 'Are you sure?', :method => :delete
+          %td= category.description
+
+%br
+.actions
+  = link_to 'Nouvelle Category', new_category_path, :class => "btn primary"
