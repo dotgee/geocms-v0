@@ -1,7 +1,7 @@
 #category_chooser
   - Category.roots.includes(:layers).each do |c|
     %h3
-      = link_to c.name, '#',  "data-original-title" => c.description, :class => "twipsy_link right"
+      = link_to c.name, '#',  "data-original-title" => c.description, :class => "twipsy_link left"
     .category_description
       .category_layers
         - c.layers.each_with_index do |l, i|

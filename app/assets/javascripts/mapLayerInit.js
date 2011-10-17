@@ -9,7 +9,7 @@ $(document).ready(function() {
   var window_height = $(window).height();  
   var offset_map = $("#map").offset().top;
   $('#container').viewer({ map: map});
-  $('#category_chooser').resizable({handles : 'e'});
+  $('#category_chooser').resizable({handles : 'w'});
   $("#map").height(window_height - offset_map);
 
   var bounds = new OpenLayers.Bounds(
