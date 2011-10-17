@@ -1,0 +1,25 @@
+#category_chooser
+  - Category.roots.includes(:layers).each do |c|
+    %h3
+      = link_to c.name, '#',  "data-original-title" => c.description, :class => "twipsy_link right"
+    .category_description
+      .category_layers
+        - c.layers.each_with_index do |l, i|
+          .category_layer_container{:class => i == 1 ? "selected_layer" : "", :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title }
+            .row.layer_selection
+              .layer_img
+                = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
+              .layer_info
+                %span
+                  %b.label.notice
+                    Nom :
+                  %span
+                    = l.title
+                .clear
+                %span
+                  %b.label.notice
+                    Description:
+                  %span
+                    = l.description
+              .clear
+              

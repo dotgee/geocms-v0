@@ -1,0 +1,37 @@
+.slider-container
+  -webkit-border-radius: 5px 5px 0px 0px
+  -moz-border-radius: 5px 5px 0px 0px
+  border-radius: 5px 5px 0px 0px
+  position: absolute
+  width: 40px
+  height: 20px
+  top: -20px
+
+.info-slider
+  margin: auto
+  background: url(arrow.png) 0 0 no-repeat
+  margin-top: 1px
+  width: 18px
+  height: 18px
+  &.up
+    background-position:  0 -18px
+  &.down
+    background-position:  0 0
+
+.slider-container, .map-infos
+  background: rgba(0, 0, 0, 0.5)
+
+.map-infos
+  h2,h3,h4
+    color: white
+  color: white
+  text-shadow: 0 1px 0 rgba(64, 64, 64, 1)
+  display: none
+  position: absolute
+  z-index: 1000
+  border: #C6EDF9
+  bottom: 0
+  .container
+    div
+      line-height: 15px
+

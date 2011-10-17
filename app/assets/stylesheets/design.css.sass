@@ -1,5 +1,17 @@
+#container
+  padding: 0px 10px
 a
   outline: 0px
+  &:link, &:visited, &:hover, &:active
+    outline-style: none
+
+a:hover
+  text-decoration: none
+
+a:active
+  top: 1px
+  position: relative
+
 .subhead
   margin: 40px 0px 15px 0px
   background-color: #767D80
@@ -58,17 +70,21 @@ div.tbar
 
 .fg-toolbar
   margin: 0
-  padding: 0.5em
+  margin-bottom: 10px
+  padding: 0.3em
+  padding: 0
 
   .fg-buttonset
-    margin-right: 1.5em
-    padding-left: 1px
+    //margin-right: 1.5em
+    //padding-left: 1px
+    padding: 2px
 
 .fg-toolbar .fg-button
   font-size: 1em
 
 .fg-buttonset
   float: left
+  line-height: 12px
 
 .fg-buttonset .fg-button
   float: left
@@ -88,7 +104,7 @@ a.fg-button
   cursor: pointer
   margin: 0 4px 0 0
   outline: 0 none
-  padding: 0.4em 1em
+  padding: 5px
   position: relative
   text-align: center
   text-decoration: none !important
@@ -99,6 +115,29 @@ a.fg-button
     margin-top: -8px
     position: absolute
     top: 50%
+
+.ui-icon-with-text
+  padding: 5px
+  color: #1C94C4
+  background: #F6F6F6 url(ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x
+  border: 1px solid #CCC
+  margin: 0px 
+  display: block
+  float: left
+  line-height: 16px
+  font-weight: normal
+  .ui-icon
+    background-image: url(blue_icons.png)
+    float: left
+  span
+    font-size: 12px
+    color: #1C94C4
+.ui-widget-header 
+  a.ui-icon-with-text
+    margin-right: 5px
+    .ui-icon
+      background-image: url(blue_icons.png)
+    
 
 .grippie 
   background: #EEEEEE url(grippie.png) no-repeat scroll center 2px
@@ -119,42 +158,6 @@ a.fg-button
   overflow: hidden
   margin-bottom: 0
 
-.slider-container
-  -webkit-border-radius: 5px 5px 0px 0px
-  -moz-border-radius: 5px 5px 0px 0px
-  border-radius: 5px 5px 0px 0px
-  position: absolute
-  width: 40px
-  height: 20px
-  top: -20px
-
-.info-slider
-  margin: auto
-  background: url(arrow.png) 0 0 no-repeat
-  margin-top: 1px
-  width: 18px
-  height: 18px
-  &.up
-    background-position:  0 -18px
-  &.down
-    background-position:  0 0
-
-.slider-container, .map-infos
-  background: rgba(0, 0, 0, 0.5)
-
-.map-infos
-  h2,h3,h4
-    color: white
-  color: white
-  text-shadow: 0 1px 0 rgba(64, 64, 64, 1)
-  display: none
-  position: absolute
-  z-index: 1000
-  border: #C6EDF9
-  bottom: 0
-  .container
-    div
-      line-height: 15px
 
 .close
   opacity: 0.2
@@ -167,14 +170,22 @@ a.fg-button
   &> a
     line-height: 16px
     font-size: 12px
-#layer_dialog
-.layer_selection
-  border: dashed 1px white
-  margin: 5px
-.layer_img
-  img
-    width: 100px
-  float: left
-.layer_info
-  margin-left: 120px
 
+.olControlPanZoomBar
+  right: 0
+.olControlLayerSwitcher
+  right: 0
+  .maximizeDiv, .minimizeDiv
+    right: 0
+  .minimizeDiv
+    top: 10px
+  .layersDiv
+    background: darkBlue
+    color: white
+    padding: 10px
+
+.right_panel, .olControlPanZoomBar
+  float: right
+  height: 200px
+  width: 100px
+  position: relative

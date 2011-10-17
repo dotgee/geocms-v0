@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%p
+  %b Wms url:
+  = @layer.wms_url
+%p
+  %b Nom:
+  = @layer.name
+%p
+  %b Description:
+  = @layer.description
+%p
+  %b Origine:
+  = @layer.origin
+%p
+  %b Metadata url:
+  = @layer.metadata_url
+.actions 
+  = link_to 'Retour', layers_path, :class =>"btn"
+  = link_to 'Modifier', edit_layer_path(@layer), :class => "btn primary"

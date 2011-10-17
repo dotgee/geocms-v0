@@ -1,6 +1,17 @@
 .fg-toolbar.ui-widget-header.ui-corner-all.ui-helper-clearfix
   .fg-buttonset
-    = link_to '#', { :class => 'fg-button ui-state-default fg-button-icon-solo ui-corner-all' } do
-      %span.ui-icon.ui-icon-arrow-4-diag
-      Print
-    = link_to '+', '#', { :class => 'fg-button ui-state-default ui-corner-all', :id => "add_layer_btn" }
+    =# link_to '#', { :class => 'fg-button ui-state-default fg-button-icon-solo ui-corner-all full_screen_btn' } do
+    =# link_to '+', '#', { :class => 'fg-button ui-state-default ui-corner-all add_layer_btn' }
+    =# link_to '?', '#', { :class => "legend"}
+    = link_to  '#', { :class => "ui-corner-all ui-icon-with-text", :id => "layers_list_btn"} do
+      .ui-icon.ui-icon-circle-arrow-s.floating-icon
+      %span
+        Couches disponibles
+    = link_to  '#', { :class => "ui-corner-all ui-icon-with-text full_screen_btn", :id => "full_screen_btn"} do
+      .ui-icon.ui-icon-arrow-4-diag
+      %span
+        Agrandir
+    = link_to  '#', { :class => "ui-corner-all ui-icon-with-text full_screen_btn", :id => "legend_btn"} do
+      .ui-icon.ui-icon-info
+      %span
+        L&eacute;gende

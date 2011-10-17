@@ -1,20 +1,32 @@
-%p#notice= notice
+- title do
+  %h1 
+    - if @layer.category.nil?
+      = Category.root.name
+    - else
+      = @layer.category.self_and_ancestors.map(&:name).join(' » '.html_safe).html_safe
 
-%p
-  %b Wms url:
-  = @layer.wms_url
-%p
-  %b Nom:
-  = @layer.name
-%p
-  %b Description:
-  = @layer.description
-%p
-  %b Origine:
-  = @layer.origin
-%p
-  %b Metadata url:
-  = @layer.metadata_url
-.actions 
-  = link_to 'Retour', layers_path, :class =>"btn"
-  = link_to 'Modifier', edit_layer_path(@layer), :class => "btn primary"
+= render :partial => 'shared/content_toolbar'
+%div
+  = render :partial => "shared/category_chooser_accordion"              
+  #map
+    .map-infos
+      .slider-container
+        .info-slider.up
+      .modal-header
+        %h3
+          = @layer.name
+      .modal-body
+        %b.label.success Description :
+        = @layer.description 
+        .clear
+
+= render :partial => "shared/category_chooser_modal"              
+.actions{:class => "noleftpadding"}
+  = link_to 'Retour', layers_path, :class => "btn"
+  = link_to 'Editer', edit_layer_path(@layer), :class => "btn primary"
+
+:javascript
+  var layerNames = "#{@layer.name}";
+  var layerWmsUrl = "#{@layer.wms_url}";
+  var layerTitle = "#{@layer.title}";
+= javascript_include_tag "mapLayerInit"

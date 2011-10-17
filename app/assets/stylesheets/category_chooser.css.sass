@@ -1,0 +1,63 @@
+@mixin round_corner($rad)
+  -moz-border-radius: $rad
+  -webkit-border-radius: $rad
+  -khtml-border-radius: $rad
+  border-radius: $rad
+
+#layer_dialog
+  display: none
+#category_chooser
+  .ui-resizable-handle.ui-resizable-e
+    right: -15px
+    width: 16px
+    background-image: url(ui-icons_222222_256x240.png)
+    background-position: -32px -224px
+    top: 50%
+    height: 16px
+
+  margin-right: 15px
+  width: 300px
+  float: left
+  z-index: 1000
+  background: white
+  h3
+    font-size: 11px
+    line-height: 1em
+  .layer_selection
+    margin: 5px
+    border: none
+
+  .layer_img
+    float: left
+    img.mini_thumbnail
+      width: 40px
+
+  .layer_info
+    margin-left: 45px
+    font-size: 0.8em
+
+  .ui-accordion .ui-accordion-content
+    padding: 7px 10px
+
+
+.twipsy
+  z-index: 2000
+
+.category_layer_container
+  @include round_corner(4px)
+  border: 1px solid transparent
+  margin-bottom: 3px
+  &:hover
+    border: 1px solid #A9A9A9
+    background: #CCCCCC
+    /* Mozilla: */
+    background: -moz-linear-gradient(top, #CCCCCC, #D9D9D9)
+    /* Chrome, Safari:*/
+    background: -webkit-gradient(linear, left top, left bottom, from(#CCCCCC), to(#D9D9D9))
+    /* MSIE */
+    filter: progid:DXImageTransform.Microsoft.Gradient( StartColorStr='#CCCCCC', EndColorStr='#D9D9D9', GradientType=0)
+
+.selected_layer
+  opacity: 0.5
+  border: 1px solid #A9A9A9
+  

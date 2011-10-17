@@ -4,51 +4,39 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery-1.6.4.min
+//
+//= require jquery
 //= require jqueryui 
 //= require OpenLayers-2.11/OpenLayers
-//= require jtmpl
 //= require bootstrap
 //= require j.textarea
 //= require widgets
+//= require viewer
+//= require layerChooser
+
+var fullscreen = false;
 
 $(document).ready(function(){
   $('#layer_tab').tabs();
-  $('#add_layer_btn').click(function(){
-     
-  });
-$( "#layer_dialog" ).dialog({
-      autoOpen: false,
-      resizable: false,
-      modal: true,
-      width: 600,
-    height: 500,
-      buttons: {
-        "Ajouter couche": function() {
-          alert('ajout de couche');
-          $( this ).dialog( "close" );
-        },
-        "Annuler": function() {
-          $( this ).dialog( "close" );
-        }
-      },
-      close: function() {
-      }
-    });
-
-    $( "#add_layer_btn" )
-      .button()
-      .click(function(e) {
-          e.preventDefault();
-        $( "#layer_dialog" ).dialog( "open" );
-      });
 
   $('textarea').TextAreaResizer();
-  $('.popover').popover2();
-  $('input[rel=popover]').bind('focus', function(e){
-    $(this).popover({offset:10}).popover('show');
-  }).blur(function(e){
-    $(this).popover('hide');
+
+  $('.twipsy_link').each(function(i,el){
+    var link = $(el);
+    var placement;
+    if(link.is('.right')){
+      placement = "right";
+    }else{
+      if(link.is('.left')){
+        placement = "left";
+      }
+
+    }
+    link.twipsy({ 
+                placement: placement,
+                delayIn: 500
+              });
+
   });
-  //$('#layer_dialog').dialog();
 });
+

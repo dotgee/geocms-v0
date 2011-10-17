@@ -1,0 +1,30 @@
+#layer_dialog{:title => "S&eacute;lection de couche".html_safe}
+  - categories = Category.roots
+  #layer_tab
+    %ul.tabs
+      - categories.each_with_index do |c,i|
+        %li{ :class => (i == 0) ? "active" : ""}
+          %a{:href => "##{c.name.to_slug}"}
+            = truncate(c.name, :length => 25)
+    .pill-content
+      - categories.each_with_index do |c,i|
+        %div{:id => c.name.to_slug, :class => (i == 0) ? "active" : ""}
+          = c.name
+          .layers_selection.media-grid
+            - 10.times do
+              .row.layer_selection
+                .layer_img
+                  = link_to  (image_tag 'carte.png', :class => "thumbnail"), '#'
+                .layer_info
+                  .span6
+                    %b.label.notice
+                      Info:
+                    %span
+                      infos sur la couche
+                  .clear
+                  .span6
+                    %b.label.notice
+                      description:
+                    %span
+                      description sur la couche
+                .clear

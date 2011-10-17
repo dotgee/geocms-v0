@@ -7,10 +7,10 @@
           %li= msg
 
   = f.input :name
-  = f.input :description
+  = f.input :description, :as => :text
   %div.clearfix
     - a = nested_set_options(Category, @category){ |i| "#{'-' * i.level} #{i.name}" }
-    = f.input :parent, :collection => a
+    = f.input :parent_id, :collection => a
   .actions
     - if f.object.new_record?
       = link_to 'Annuler', categories_path, :class => 'btn'

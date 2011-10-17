@@ -6,16 +6,17 @@ $.widget("ui.mapinfos", {
     var self = this;
     self._setGoodSize();
     self._bindEvents();
+    self._slideDown(0);
+   },
+   redraw: function(){
+    var self = this; 
+    self._setGoodSize();
    },
    _setGoodSize: function(){
       var self = this; 
       var parentWidth = this.element.parent().width();
-      //this.element.width(parentWidth - 200);
       this.element.width(parentWidth);
-      //this.element.css('left', ((parentWidth - this.element.width()) /2));
       this.element.show();
-
-      //align slider
       self._centerSlider();
    },
     _bindEvents: function(){
@@ -49,10 +50,11 @@ $.widget("ui.mapinfos", {
      var self = this;
      self.element.animate({bottom: 0}, function(){self._setUpSlider()});
    },
-   _slideDown: function(){
+   _slideDown: function(animation_time){
+    var time = !animation_time ? 1000 : "normal";
       var self = this; 
       var new_position = self._getHeaderHeight() - self._getBoxHeight();// + self._btnSlider().height(); 
-      self.element.animate( { bottom: new_position }, function(){self._setDownSlider()});
+      self.element.animate( { bottom: new_position }, time, function(){self._setDownSlider()});
    },
    _getHeaderHeight: function(){
     return this.element.find('.modal-header').first().outerHeight()-1;
@@ -73,39 +75,6 @@ $.widget("ui.mapinfos", {
    _btnSlider: function(){
     var self = this;
     return self.element.find('.info-slider').first(); 
-   },
-   destroy: function() {
-       $.Widget.prototype.destroy.apply(this, arguments); // default destroy
-        // now do other stuff particular to this widget
-   }
- });
-$.widget("ui.popover2", {
-   // default options
-   options: {
-   },
-   _create: function() {
-    var self = this;
-    self.element.twipsy();
-    self._bindEvents();
-
-   },
-    _bindEvents: function(){
-      var self = this;
-      var input = self._myInput();
-      input.focus(function(e){
-        self._position();
-        self.element.twipsy('show');
-        //self.element.fadeIn();
-      }).blur(function(e){
-        self.element.fadeOut();
-      });
-   },
-   _position: function(){
-    var self = this;
-   },
-   _myInput: function(){
-    var self = this;
-    return self.element.prev('.clearfix').find('input').first();
    },
    destroy: function() {
        $.Widget.prototype.destroy.apply(this, arguments); // default destroy
