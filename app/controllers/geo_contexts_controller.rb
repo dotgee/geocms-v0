@@ -1,5 +1,6 @@
 class GeoContextsController < ApplicationController
-  before_filter :set_layout, :only => :show
+  before_filter :set_layout
+
   def permalink_map
     @geo_context = GeoContext.find(params[:id])
     render :layout => false
@@ -91,6 +92,11 @@ class GeoContextsController < ApplicationController
   private
 
   def set_layout
-    #self.class.layout('application.html-fluid')
+    if action_name == "show"
+      self.class.layout('application')
+    else
+      self.class.layout('fluid')
+    end
+
   end
 end

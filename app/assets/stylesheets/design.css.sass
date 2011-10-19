@@ -20,7 +20,7 @@ a:active
     -webkit-box-shadow: inset 0 20px 30px rgba(0,0,0,.3)
     -moz-box-shadow: inset 0 20px 30px rgba(0,0,0,.3)
     padding: 26px 0 18px
-    .container
+    .container, .container-fluid
       h1
         font-size: 40px
         color: white
@@ -71,6 +71,7 @@ div.tbar
 .fg-toolbar
   margin: 0
   margin-bottom: 10px
+  margin-top: -32px
   padding: 0.3em
   padding: 0
 
@@ -83,11 +84,10 @@ div.tbar
   font-size: 1em
 
 .fg-buttonset
-  float: left
   line-height: 12px
 
 .fg-buttonset .fg-button
-  float: left
+  float: right
 
 .fg-buttonset-single .fg-button, .fg-buttonset-multi .fg-button
   margin-right: -1px
@@ -189,3 +189,16 @@ a.fg-button
   height: 200px
   width: 100px
   position: relative
+
+#layers_list_btn
+  float: right
+
+.row-actions
+  visibility: hidden
+
+tr
+  &:hover
+    .row-actions
+      visibility: visible
+
+

@@ -60,7 +60,9 @@ class SimpleBootstrapFormBuilder < SimpleForm::FormBuilder
   def input(attribute_name, options = {}, &block)
     options[:wrapper_html] ||= {}
     options[:wrapper_html].merge! :class => 'clearfix'
-    super
+    options[:input_html] ||= {}
+    options[:input_html].merge! :class => "span8"
+    super attribute_name, options
   end
 
   def text_field2(*args)
@@ -71,6 +73,7 @@ class SimpleBootstrapFormBuilder < SimpleForm::FormBuilder
     define_method helper do |field, *args|
       options = args.detect{ |a| a.is_a?(Hash) } || {}
       options[:class] ||= 'span8'
+
       template.content_tag(:div, super(field, *args), { :class => 'input' })
     end
   end

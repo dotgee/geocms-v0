@@ -6,4 +6,6 @@ class Category < ActiveRecord::Base
 
   has_many :geocontexts, :class_name => 'GeoContext'
   has_many :layers
+  has_many :assigned_categories
+  
 end

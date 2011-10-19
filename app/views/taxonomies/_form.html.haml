@@ -1,0 +1,9 @@
+= simple_form_for(@taxonomy) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.association :root
+
+  .actions
+    = f.button :submit

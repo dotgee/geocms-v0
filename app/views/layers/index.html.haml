@@ -5,7 +5,7 @@
   %tr
     %th Name
     %th Wms url
-    %th Description
+    %th Infos
     %th Origine
     %th Metadata url
 
@@ -21,10 +21,18 @@
           \|
           = link_to 'Supprimer', layer, :confirm => 'Are you sure?', :method => :delete
       %td= truncate(layer.wms_url, :length => 50)
-      %td= layer.description
+      %td
+        %p
+          %b
+            Cat&eacute;gories :
+          = layer.category_list
+        %p
+          %b
+            Informations :
+          = layer.description
       %td= layer.origin
       %td= truncate(layer.metadata_url, :length => 50)
 
 %br
 
-= link_to 'Nouvelle Couche', new_layer_path, :class => 'btn primary large'
+= link_to t(:new_layer), new_layer_path, :class => 'btn primary large'

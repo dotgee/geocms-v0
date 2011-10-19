@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :set_locale
   helper_method :correct_user?
 
   private
+
+    def set_locale
+    end
+
     def correct_user?
       @user = User.find(params[:id])
       unless current_user == @user

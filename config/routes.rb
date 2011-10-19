@@ -1,5 +1,9 @@
 Geocms::Application.routes.draw do
 
+  resources :taxonomies
+
+  resources :taxons
+
   resources :layers
 
   resources :categories

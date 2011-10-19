@@ -1,0 +1,27 @@
+%h1 Listing taxons
+
+%table
+  %tr
+    %th Parent
+    %th Taxonomy
+    %th Name
+    %th Left
+    %th Right
+    %th
+    %th
+    %th
+
+  - @taxons.each do |taxon|
+    %tr
+      %td= taxon.parent_id
+      %td= taxon.taxonomy_id
+      %td= taxon.name
+      %td= taxon.left
+      %td= taxon.right
+      %td= link_to 'Show', taxon
+      %td= link_to 'Edit', edit_taxon_path(taxon)
+      %td= link_to 'Destroy', taxon, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Taxon', new_taxon_path

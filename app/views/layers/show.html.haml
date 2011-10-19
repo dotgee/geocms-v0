@@ -1,10 +1,6 @@
 - title do
   %h1 
-    - if @layer.category.nil?
-      = Category.root.name
-    - else
-      = @layer.category.self_and_ancestors.map(&:name).join(' » '.html_safe).html_safe
-
+    = @layer.category_list
 = render :partial => 'shared/content_toolbar'
 %div
   = render :partial => "shared/category_chooser_accordion"              

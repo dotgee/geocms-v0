@@ -26,4 +26,6 @@ module ApplicationHelper
     options = args.extract_options!
     simple_form_for(object, *(args << options.merge(:builder => SimpleBootstrapFormBuilder)), &block)
   end
+
 end
+

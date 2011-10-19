@@ -5,6 +5,10 @@ OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
 var bzhBounds = new OpenLayers.Bounds(33534.34825,6584909.31255,503163.44995,6897995.38035);
 
 $(document).ready(function() {
+  var bounds = new OpenLayers.Bounds(
+                      145607.334, 6740620.908,
+                      389330.671, 6868799.426
+                      );
   var window_height = $(window).height();  
   var offset_map = $("#map").offset().top;
   $('#container').viewer({ map : map});

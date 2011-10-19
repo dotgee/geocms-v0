@@ -1,6 +1,12 @@
-= @layer.category.name
+=# @layer.category.name
+- content_for :javascripts do
+  = javascript_include_tag 'jquery/jquery.multiselect.min.js'
+  = javascript_include_tag 'jquery/multiselectInit'
+- content_for :stylesheets do 
+  = stylesheet_link_tag 'jquery/jquery.multiselect.css'
+
 = simple_form_for(@layer, :builder => SimpleBootstrapFormBuilder) do |f|
-  = f.error_notification
+  = render :partial => "shared/errors", :locals => { :entity => @layer }
 
   .inputs
     = f.input :wms_url, :as => :string, :input_html => {"data-content" => "Its amazing","data-original-title" => "Url wms" , :rel => "popover"}
@@ -9,8 +15,8 @@
       %p
         P&eacute;cisez un nom explicite
     = f.input :title
-    - a = nested_set_options(Category, @layer.category){ |i| "#{'-' * i.level} #{i.name}" }
-    = f.input :category_id, :as => :select, :collection => nested_set_options(Category, @layer.category) { |i| "#{'-' * i.level} #{i.name}" } #, { :include_blank => true }
+    - a = nested_set_options(Category){ |i| "#{'--' * i.level} #{i.name}" }
+    = f.association :categories, :class => "multiselect", :collection => a
     = f.input :description, :as => :text
     = f.input :origin
     = f.input :metadata_url, :as => :string

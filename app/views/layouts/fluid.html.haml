@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %title Geocms
+    = stylesheet_link_tag    "application"
+    = stylesheet_link_tag '_fluid'
+    = yield :stylesheets
+    = javascript_include_tag "application"
+    = yield :javascripts
+    = csrf_meta_tags
+  %body
+    .topbar
+      .topbar-inner
+        .container-fluid
+          = render :partial => "shared/navigation"
+    #content.container-fluid
+      .sidebar
+        - if content_for? :sidebar
+          = yield :sidebar
+        - else
+          %div
+            Sidebar
+      .content
+        = yield :header
+        = yield

@@ -1,8 +1,9 @@
 class LayersController < ApplicationController
+  before_filter :set_layout
   # GET /layers
   # GET /layers.json
   def index
-    @layers = Layer.all
+    @layers = Layer.includes(:categories).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -79,5 +80,13 @@ class LayersController < ApplicationController
       format.html { redirect_to layers_url }
       format.json { head :ok }
     end
+  end
+
+  def set_layout
+    layout_name = "application"
+    if action_name != "show"
+      layout_name = "fluid"
+    end
+    self.class.layout(layout_name)
   end
 end
