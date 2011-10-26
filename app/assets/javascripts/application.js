@@ -7,12 +7,14 @@
 //
 //= require jquery
 //= require jqueryui 
+//= require rails
 //= require OpenLayers-2.11/OpenLayers
 //= require bootstrap
 //= require j.textarea
 //= require widgets
 //= require viewer
 //= require layerChooser
+//= require widgets/categorySlider
 
 var fullscreen = false;
 

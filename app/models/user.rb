@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :provider, :uid, :name, :email
+  
+  def is_admin?
+    return role == "admin"
+  end
 
   def self.create_with_omniauth(auth)
     create! do |user|

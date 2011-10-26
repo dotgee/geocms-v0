@@ -18,4 +18,8 @@ class Layer < ActiveRecord::Base
     categories.map(&:name).join(', ')
   end
 
+  def uniq_identifier
+    [wms_url.underscore, name.underscore].join('_').gsub(/[^\w]/,"_")
+  end
+
 end

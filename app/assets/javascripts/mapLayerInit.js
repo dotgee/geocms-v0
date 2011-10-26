@@ -72,12 +72,26 @@ $(document).ready(function() {
     map.addLayer(layer);
     var zoom = new OpenLayers.Control.PanZoomBar();
     map.addControls([zoom]);
-    map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
+    //map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
     // $('#container').viewer('resizeChooser');
 
   //}
     map.zoomToMaxExtent();
+    console.log(map.layers);
+    $.each(map.layers, function(i, el){
+      var class_name = '.'+uniq_identifier_from_layer(el);
+      console.log($(class_name));
+      $(class_name).each(function(i,el){
+        $(el).addClass('added_layer');
+        });
+    });
     $('#container').viewer('resizeChooser');
 
 });
 
+function uniq_identifier_from_layer(layer){
+  var name = layer.url+"_" +layer.params.LAYERS 
+  name = $.trim(name).replace(/[^A-Za-z0-9_]/g,'_');
+  console.log(name);
+  return name;
+}

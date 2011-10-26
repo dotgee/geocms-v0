@@ -79,6 +79,7 @@ $.widget("ui.viewer", {
     });
     $(window).resize(function(){
       self.mapinfos.mapinfos('redraw');
+      self.layerChooserAccordion.accordion('resize');
     });
   },
 
@@ -90,6 +91,7 @@ $.widget("ui.viewer", {
   },
   resizeChooser: function(){
     var self = this;
+    self.layerChooserAccordion.accordion('resize');
   },
   _create: function() {
     var self = this;
@@ -101,7 +103,7 @@ $.widget("ui.viewer", {
     self.legendBtn = $('#legend_btn');
     self.layersBtn = self.element.find('.add_layer_btn').first();
     self.layerChooser = $('#layer_dialog').layerChooser({});
-    self.layerChooserAccordion = $('#category_chooser').categorySlider({});//.accordion({active: 100, collapsible: true, fillSpace: true});
+    self.layerChooserAccordion = $('#category_chooser').accordion({active: 100, collapsible: true, fillSpace: true});
     self._bindEvents();
   },
   _map: null,

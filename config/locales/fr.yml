@@ -1,2 +1,7 @@
 fr:
   new_layer: "Nouvelle couche" 
+  views:
+    pagination:
+      previous: "&larr; Pr&eacute;c&eacute;dent"
+      next: "Suivant &rarr;"
+      truncate: "..."

@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+    def page
+      return params[:page] || 1
+    end
+
     def set_locale
     end
 

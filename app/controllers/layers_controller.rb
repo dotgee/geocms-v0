@@ -85,7 +85,7 @@ class LayersController < ApplicationController
   def set_layout
     layout_name = "application"
     if action_name != "show"
-      layout_name = "fluid"
+      layout_name = "fixed"
     end
     self.class.layout(layout_name)
   end

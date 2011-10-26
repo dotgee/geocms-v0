@@ -1,5 +1,6 @@
 class GeoContextsController < ApplicationController
   before_filter :set_layout
+  load_and_authorize_resource
 
   def permalink_map
     @geo_context = GeoContext.find(params[:id])
@@ -11,7 +12,7 @@ class GeoContextsController < ApplicationController
   # GET /geo_contexts.json
 
   def index
-    @geo_contexts = GeoContext.all
+    #@geo_contexts = GeoContext.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -22,7 +23,7 @@ class GeoContextsController < ApplicationController
   # GET /geo_contexts/1
   # GET /geo_contexts/1.json
   def show
-    @geo_context = GeoContext.find(params[:id])
+    #@geo_context = GeoContext.find(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
@@ -33,7 +34,7 @@ class GeoContextsController < ApplicationController
   # GET /geo_contexts/new
   # GET /geo_contexts/new.json
   def new
-    @geo_context = GeoContext.new
+    #@geo_context = GeoContext.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,13 +44,13 @@ class GeoContextsController < ApplicationController
 
   # GET /geo_contexts/1/edit
   def edit
-    @geo_context = GeoContext.find(params[:id])
+    #@geo_context = GeoContext.find(params[:id])
   end
 
   # POST /geo_contexts
   # POST /geo_contexts.json
   def create
-    @geo_context = GeoContext.new(params[:geo_context])
+    #@geo_context = GeoContext.new(params[:geo_context])
 
     respond_to do |format|
       if @geo_context.save
@@ -65,7 +66,7 @@ class GeoContextsController < ApplicationController
   # PUT /geo_contexts/1
   # PUT /geo_contexts/1.json
   def update
-    @geo_context = GeoContext.find(params[:id])
+    #@geo_context = GeoContext.find(params[:id])
 
     respond_to do |format|
       if @geo_context.update_attributes(params[:geo_context])
@@ -95,7 +96,8 @@ class GeoContextsController < ApplicationController
     if action_name == "show"
       self.class.layout('application')
     else
-      self.class.layout('fluid')
+      #self.class.layout('fluid')
+      self.class.layout('fixed')
     end
 
   end

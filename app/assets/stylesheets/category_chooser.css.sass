@@ -8,6 +8,7 @@
   display: none
 
 #category_chooser
+  position: relative
   .ui-resizable-handle.ui-resizable-w
     left: -15px
     width: 16px
@@ -61,4 +62,30 @@
 .selected_layer
   opacity: 0.5
   border: 1px solid #A9A9A9
+
+.selected_icon
+  float: right
+  width: 20px
+  height: 20px
+  background-image: url(select-sprite.png)
+
+.added_layer
+  .selected_icon
+    background-position: 0px 20px
   
+.category_description
+  overflow: scroll
+  z-index: 1010
+  &.sliders
+    width: 250px
+    top: 0
+    position: absolute
+  .ui-widget-header
+    .ui-icon
+      float: left
+    .title-header
+      display: block
+      font-size: 12px
+      line-height: 16px
+      margin-left: 16px
+
