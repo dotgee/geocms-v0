@@ -3,7 +3,79 @@ OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
 // Définitions des bords de la Bretagne
 var bzhBounds = new OpenLayers.Bounds(33534.34825,6584909.31255,503163.44995,6897995.38035);
 
-var map, layer;
+var map, layer, measureControls;
+
+//style pour les mesures
+
+var sketchSymbolizers = {
+    "Point": {
+        pointRadius: 3,
+        graphicName: "square",
+        fillColor: "white",
+        fillOpacity: 1,
+        strokeWidth: 1,
+        strokeOpacity: 1,
+        strokeColor: "#333333"
+    },
+    "Line": {
+        strokeWidth: 2,
+        strokeOpacity: 1,
+        strokeColor: "#666666",
+        strokeDashstyle: "dash"
+    },
+    "Polygon": {
+        strokeWidth: 2,
+        strokeOpacity: 1,
+        strokeColor: "#666666",
+        fillColor: "white",
+        fillOpacity: 0.3
+    }
+};
+var style = new OpenLayers.Style();
+style.addRules([ new OpenLayers.Rule({symbolizer: sketchSymbolizers}) ]);
+
+var styleMap = new OpenLayers.StyleMap({"default": style});
+var renderer = OpenLayers.Layer.Vector.prototype.renderers;
+measureControls = {
+              line: new OpenLayers.Control.Measure(
+                  OpenLayers.Handler.Path, {
+                      persist: true,
+                      handlerOptions: {
+                          layerOptions: {
+                              renderers: renderer,
+                              styleMap: styleMap
+                          }
+                      }
+                  }
+              ),
+              polygon: new OpenLayers.Control.Measure(
+                  OpenLayers.Handler.Polygon, {
+                      persist: true,
+                      handlerOptions: {
+                          layerOptions: {
+                              renderers: renderer,
+                              styleMap: styleMap
+                          }
+                      }
+                  }
+              )
+          };
+          
+function handleMeasurements(event) {
+    var geometry = event.geometry;
+    var units = event.units;
+    var order = event.order;
+    var measure = event.measure;
+    var element = document.getElementById('output_measure');
+    var out = "";
+console.log(event);
+    if(order == 1) {
+        out += "Distance: " + measure.toFixed(3) + " " + units;
+    } else {
+        out += "Surface: " + measure.toFixed(3) + " " + units + "<sup>2</" + "sup>";
+    }
+    element.innerHTML = out;
+}            
 
 $(document).ready(function() {
   var window_height = $(window).height();  
@@ -30,7 +102,11 @@ $(document).ready(function() {
     ],
     units: "m", 
     theme: null,
-    controls: [ ]
+    controls: [ 
+            new OpenLayers.Control.Attribution(),
+            new OpenLayers.Control.ZoomPanel(),
+            new OpenLayers.Control.Navigation()
+    ]
   };
 
   map =  new OpenLayers.Map( 'map', mapOptions ); // format.read(request.responseText, {map: mapOptions});
@@ -65,13 +141,42 @@ $(document).ready(function() {
                                    });
   
     map.addLayer(layer);
-    var zoom = new OpenLayers.Control.PanZoomBar();
-    map.addControls([zoom]);
-    //map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
-    // $('#container').viewer('resizeChooser');
+    var controls = [
+    new OpenLayers.Control.PanZoomBar()
+    
+    ];
+    map.addControls(controls);
+    var control;
+    for(var key in measureControls) {
+      control = measureControls[key];
+      control.events.on({
+        "measure": handleMeasurements,
+        "measurepartial": handleMeasurements
+      });
+      map.addControl(control);
+    }
+    $('#ruler_measure, #square_measure').click(function(e){
+      e.preventDefault();
+       for(key in measureControls) {
+          var control = measureControls[key];
+          if($(this).attr('measure_type') == key ){
+            control.activate();
+          }else{
+            control.deactivate();
+          }
+        }
+    });
 
-  //}
+    $('#hand_control').click(function(e){
+      e.preventDefault();
+       for(key in measureControls) {
+          var control = measureControls[key];
+          control.deactivate();
+        }
+    });
     map.zoomToMaxExtent();
+    
+    //choix des couches
     $.each(map.layers, function(i, layer){
       var class_name = '.'+uniq_identifier_from_layer(layer);
       $(class_name).each(function(i,el){

@@ -11,8 +11,19 @@
       .ui-icon.ui-icon-arrow-4-diag
       %span
         Agrandir
+    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "ruler_measure", :measure_type => "line" } do
+      .ui-icon.ruler
+      %span
+        Distance
+    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "square_measure" , :measure_type => "polygon"} do
+      .ui-icon.square_ruler
+      %span
+        Surface
+    = link_to '#', { :class => "ui-corner-all ui-icon-with-text", :id => "hand_control"} do
+      .ui-icon.hand
     = link_to  '#', { :class => "ui-corner-all ui-icon-with-text full_screen_btn", :id => "legend_btn"} do
       .ui-icon.ui-icon-info
       %span
         L&eacute;gende
+    %span#output_measure
     .ui-helper-clearfix

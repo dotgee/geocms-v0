@@ -20,7 +20,8 @@ $.widget("ui.viewer", {
     self.layerChooserAccordion.find('.category_layer_container').click(function(e){
       e.preventDefault();
       var div = $(this);
-      div.toggleClass('added_layer');
+      var other_divs = $("." + div.attr('layer_class'));
+      other_divs.toggleClass('added_layer');
       var layer = map.getLayer(div.attr('layer_id'));
       if(div.is('.added_layer')){
         if (!layer) {

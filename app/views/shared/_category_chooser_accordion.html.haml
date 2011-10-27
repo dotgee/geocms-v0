@@ -5,7 +5,7 @@
     .category_description
       .category_layers
         - c.layers.each_with_index do |l, i|
-          .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier }
+          .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier, :layer_class => l.uniq_identifier }
             .selected_icon
             .row.layer_selection
               .layer_img
