@@ -16,7 +16,7 @@
 db/*.sqlite3
 /log/*
 tmp/*
-
+test*
 # various artifacts
 **.war
 *.rbc
