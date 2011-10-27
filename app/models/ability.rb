@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.is_admin?
+    if !user.nil? && user.is_admin?
       can :manage, :all
     else
       can :read, GeoContext
