@@ -1,5 +1,6 @@
 $.widget("ui.viewer", {
   options: {
+    accordionPosition: "right",
     mapId: "map",
     map : null,
     fullscreen: false
@@ -19,25 +20,31 @@ $.widget("ui.viewer", {
     self.layerChooserAccordion.find('.category_layer_container').click(function(e){
       e.preventDefault();
       var div = $(this);
-      div.toggleClass('selected_layer');
-      if(div.is('.selected_layer')){
-        //alert('ajout de cette couche sur la carte');
-        var title = div.attr('layer_title');
-        var wms_url = div.attr('wms_url');
-        var layer_name = div.attr('layer_name');
-        var  layer = new OpenLayers.Layer.WMS(title,
-                                   wms_url,
-                                   {
-                                       layers: layer_name,
-                                       transparent: true
-                                   }, {
-                                       opacity: 0.5,
-                                       singleTile: true
-                                   });
-        map.addLayer(layer);
+      div.toggleClass('added_layer');
+      var layer = map.getLayer(div.attr('layer_id'));
+      if(div.is('.added_layer')){
+        if (!layer) {
+          var title = div.attr('layer_title');
+          var wms_url = div.attr('wms_url');
+          var layer_name = div.attr('layer_name');
+          var  layer = new OpenLayers.Layer.WMS(title,
+                                               wms_url,
+                                               { layers: layer_name,
+                                                 transparent: true
+                                               }, 
+                                               { opacity: 0.5,
+                                                 singleTile: true
+                                               });
+          map.addLayer(layer);
+          div.attr('layer_id', layer.id);
+        }else{
+          layer.setVisibility(true);
+        }
       }
       else{
-        alert('couche retir\351e de la carte');
+        if( layer){
+          layer.setVisibility(false);
+        }
       }
 
   });
@@ -101,7 +108,9 @@ $.widget("ui.viewer", {
     self.legendBtn = $('#legend_btn');
     self.layersBtn = self.element.find('.add_layer_btn').first();
     self.layerChooser = $('#layer_dialog').layerChooser({});
-    self.layerChooserAccordion = $('#category_chooser').categorySlider({});//.accordion({active: 100, collapsible: true, fillSpace: true});
+    self.layerChooserAccordion = $('#category_chooser').categorySlider({  
+                                                                          position: self.options.accordionPosition
+                                                                       });//.accordion({active: 100, collapsible: true, fillSpace: true});
     self._bindEvents();
   },
   _map: null,

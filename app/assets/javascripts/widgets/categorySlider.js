@@ -1,12 +1,24 @@
 $.widget("ui.categorySlider", {
   options: {
+    position: "right"
   },
   _create: function() {
     var self = this;
+    self._intializePosition(self.options.position);
     self.element.addClass('ui-widget ui-helper-reset ui-accordion ui-accordion-icons');
-    self.element.find('h3').sliderLink({ panelHeight: self.element.parent().height(), parent: self.element });
+    self.element.find('h3').sliderLink({ 
+                        panelHeight: self.element.parent().height(), 
+                        position: self.options.position,
+                        parent: self.element 
+                        });
     self._bindEvents();
   },
+  _intializePosition: function(left_or_right){
+    var self = this;
+    var css_class = left_or_right +"_positioning";
+    self.element.addClass(css_class);
+  },
+
   _init: function(){
     var self = this; 
   },
@@ -30,12 +42,12 @@ $.widget("ui.sliderPanel", {
   options: {
     height: 100,
     title: "",
-    left: 0
+    position: "left"
   },
   _create: function() {
     var self = this;
     self.element.hide().addClass('sliders ui-helper-reset ui-widget-content ui-corner-all');
-    self.element.css({height: self.options.height, left : -self.element.outerWidth()});
+    self.element.css({height: self.options.height, left : self._leftPositioning()});
     self._addHeader();
     self._bindEvents();
   },
@@ -46,16 +58,35 @@ $.widget("ui.sliderPanel", {
     header.append($('<span class="title-header">'+self.options.title+'</span>'));
     self.element.prepend(header);
   },
+  _leftPositioning: function(){
+    var self = this;
+    var left_place;
+    if (self.options.position != "left"){
+        left_place = (- self.element.outerWidth());
+    }
+    else{
+      left_place = self.element.prev('h3').outerWidth();
+    }
+    return left_place;
+  
+  },
+  _slideDirection: function(){
+    var self = this; 
+    if( self.options.position != "left"){
+      return "right";
+    }
+    return "left";
+  },
   show: function(){
     var self = this; 
     if(!self.element.is(':visible')){
-      self.element.effect('slide', {direction : 'right'})
+      self.element.effect('slide', { direction : self._slideDirection()})
     }
   },
   hide: function(){
     var self = this; 
     if(self.element.is(':visible')){
-      self.element.effect('slide', {direction : 'right', mode:'hide'})
+      self.element.effect('slide', {direction : self._slideDirection(), mode:'hide'})
     }
   
   },
@@ -71,6 +102,7 @@ $.widget("ui.sliderPanel", {
  });
 $.widget("ui.sliderLink", {
   options: {
+    position: "right",
     panelHeight: 200,
     parent: null,
     visiblePanel: false
@@ -79,7 +111,11 @@ $.widget("ui.sliderLink", {
     var self = this;
     self.parent = self.options.parent;
     self.visiblePanel = self.options.visiblePanel;
-    self.panel = self.element.next('.category_description').sliderPanel({height: self.options.panelHeight, title: self.element.text()});
+    self.panel = self.element.next('.category_description').sliderPanel({
+                                                                height: self.options.panelHeight,
+                                                                position: self.options.position,
+                                                                title: self.element.text()
+                                                                });
     self.element.addClass('ui-accordion-header ui-helper-reset ui-state-default ui-corner-all');
     self._addIcon();
     self._bindEvents();

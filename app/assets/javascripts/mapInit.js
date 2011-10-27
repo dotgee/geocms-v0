@@ -26,12 +26,7 @@ $(document).ready(function() {
       ],
     units: "m", 
     theme: null,
-    controls:
-      [
-        new OpenLayers.Control.Attribution(),
-        new OpenLayers.Control.ZoomPanel(),
-        new OpenLayers.Control.Navigation()
-      ]
+    controls: [ ]
   };
 
   var wmc = $("#wmc").attr("href");

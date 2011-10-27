@@ -8,7 +8,7 @@
 = render :partial => 'shared/content_toolbar'
 %div
   = render :partial => "shared/category_chooser_accordion"              
-  = render :partial => "shared/category_chooser_modal"              
+  =# render :partial => "shared/category_chooser_modal"              
   #map
     .map-infos
       .slider-container
@@ -26,7 +26,7 @@
         %b.label.success Mots cl&eacute;s :
         = @geo_context.keywords
 
-= render :partial => "shared/category_chooser_modal"              
+=# render :partial => "shared/category_chooser_modal"              
 .actions{:class => "noleftpadding"}
   = link_to 'Retour', geo_contexts_path, :class => "btn"
   = link_to 'Editer', edit_geo_context_path(@geo_context), :class => "btn primary"

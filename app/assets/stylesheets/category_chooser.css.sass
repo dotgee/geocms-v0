@@ -8,6 +8,13 @@
   display: none
 
 #category_chooser
+  &.right_positioning
+    float: right
+    margin-right: 15px
+  &.left_positioning
+    float: left
+    margin-left: 15px
+
   position: relative
   .ui-resizable-handle.ui-resizable-w
     left: -15px
@@ -17,9 +24,7 @@
     top: 50%
     height: 16px
 
-  margin-left: 15px
-  width: 300px
-  float: right
+  width: 250px
   z-index: 1000
   background: white
   h3

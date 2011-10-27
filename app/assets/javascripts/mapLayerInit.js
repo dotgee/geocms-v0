@@ -8,7 +8,7 @@ var map, layer;
 $(document).ready(function() {
   var window_height = $(window).height();  
   var offset_map = $("#map").offset().top;
-  $('#container').viewer({ map: map});
+  $('#container').viewer({ map: map, accordionPosition: "right"});
   $("#map").height(window_height - offset_map);
 
   var bounds = new OpenLayers.Bounds(
@@ -30,12 +30,7 @@ $(document).ready(function() {
     ],
     units: "m", 
     theme: null,
-    controls:
-      [
-        new OpenLayers.Control.Attribution(),
-        new OpenLayers.Control.ZoomPanel(),
-        new OpenLayers.Control.Navigation()
-      ]
+    controls: [ ]
   };
 
   map =  new OpenLayers.Map( 'map', mapOptions ); // format.read(request.responseText, {map: mapOptions});
@@ -77,12 +72,11 @@ $(document).ready(function() {
 
   //}
     map.zoomToMaxExtent();
-    console.log(map.layers);
-    $.each(map.layers, function(i, el){
-      var class_name = '.'+uniq_identifier_from_layer(el);
-      console.log($(class_name));
+    $.each(map.layers, function(i, layer){
+      var class_name = '.'+uniq_identifier_from_layer(layer);
       $(class_name).each(function(i,el){
-        $(el).addClass('added_layer');
+          $(el).addClass('added_layer');
+          $(el).attr('layer_id', layer.id);
         });
     });
     $('#container').viewer('resizeChooser');
@@ -92,6 +86,5 @@ $(document).ready(function() {
 function uniq_identifier_from_layer(layer){
   var name = layer.url+"_" +layer.params.LAYERS 
   name = $.trim(name).replace(/[^A-Za-z0-9_]/g,'_');
-  console.log(name);
   return name;
 }
