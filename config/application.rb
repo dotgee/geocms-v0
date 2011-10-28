@@ -44,6 +44,7 @@ module Geocms
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.asset_host = "assets%d.geocms.devel.dotgee.fr"
   end
 end
 

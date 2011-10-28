@@ -23,22 +23,5 @@ $(document).ready(function(){
 
   $('textarea').TextAreaResizer();
 
-  $('.twipsy_link').each(function(i,el){
-    var link = $(el);
-    var placement;
-    if(link.is('.right')){
-      placement = "right";
-    }else{
-      if(link.is('.left')){
-        placement = "left";
-      }
-
-    }
-    link.twipsy({ 
-                placement: placement,
-                delayIn: 500
-              });
-
-  });
 });
 

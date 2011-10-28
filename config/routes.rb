@@ -1,5 +1,7 @@
 Geocms::Application.routes.draw do
 
+  get "rss/layers"
+
   resources :taxonomies
 
   resources :taxons
