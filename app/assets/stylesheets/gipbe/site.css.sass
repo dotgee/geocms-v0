@@ -1,0 +1,395 @@
+/* SITE CSS 20040415
+
+div
+  &#allcontent
+    width: 750px
+    margin: 0 auto 0 auto
+  &#header
+    padding-left: 10px
+  &#header-design
+    margin: 0
+    height: 70px
+    float: left
+  &#header h1
+    font-size: 2em
+    margin: 0
+    padding: 0.6em
+    a
+      text-decoration: none
+      color: #000000
+  &#toolbar-top
+    padding: 13px 0 0 8px
+    text-align: right
+    text-align: right
+    ul
+      float: right
+  &#toolbar-bottom
+    margin-top: 8px
+    text-align: center
+    ul
+      padding: 0.5em 0 0.5em 0
+    li.toolbar-item a
+      font-weight: bold
+  &#toolbar-top li.toolbar-item, &#toolbar-bottom li.toolbar-item
+    border-right: 1px solid
+    display: inline
+    margin: 0
+    padding: 0 10px 0 6px
+    white-space: nowrap
+  &#toolbar-top div.search-line, &#toolbar-bottom div.search-line
+    display: inline
+    vertical-align: middle
+  &#toolbar-top div.label, &#toolbar-bottom div.label
+    display: inline
+    text-align: left
+  &#toolbar-top div.search-line form, &#toolbar-bottom div.search-line form
+    display: inline
+  &#toolbar-top div.search-line div.optionblock
+    input, label
+      display: inline
+  &#toolbar-right div.search-full div.optionblock
+    input, label
+      display: inline
+  &#toolbar-top input.searchinput, &#toolbar-bottom input.searchinput
+    height: 1.6em
+    width: 7em
+  &#toolbar-top li.toolbar-item a, &#toolbar-bottom li.toolbar-item a
+    text-decoration: none
+  &#toolbar-top li.first, &#toolbar-bottom li.first
+    display: inline
+  &#toolbar-top li.last, &#toolbar-bottom li.last
+    border-right: none
+    display: inline
+  &#topmenu
+    margin: 0
+    padding: 0
+    /* border-bottom: 1px solid;
+  &.topmenu-line
+    border-bottom: 1px solid
+    /* This line needs to be set to avoid bug in IE
+  &#topmenu-design
+    margin: 0
+    padding: 0
+    text-align: left
+    vertical-align: middle
+  &#topmenu
+    ul
+      margin: 0
+      padding: 0
+    li
+      margin: 0
+      padding: 0
+      border-right: 1px solid
+      float: left
+      display: block
+      div.spacing
+        padding: 0.2em 12px 0.3em 12px
+      a
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+  &#submenu
+    /* margin-top: -1px;
+    padding: 0
+    border-bottom: 1px solid
+    /* This line needs to be set to avoid bug in IE
+  &#submenu-design
+    margin: 0
+    padding: 0
+    text-align: left
+    vertical-align: middle
+    position: relative
+  &#submenu
+    ul
+      padding: 0
+      margin: 0
+    li
+      margin: 0
+      float: left
+      display: block
+      div.spacing
+        padding: 0.2em 12px 0.3em 12px
+      a
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+  &#path-design
+    margin: 0.2em 12px 0.2em 12px
+  &#path p
+    margin: 0
+    a
+      text-decoration: none
+  &#columns
+    height: 100%
+    /* Needs to be set to avoid bug in IE 5.5
+  &#leftmenu ul, &#rightmenu ul
+    margin-left: 6px
+  &#leftmenu
+    float: left
+    width: 13em
+  &#leftmenu-design li
+    &.menu-level-0
+      text-decoration: none
+      border-top: 1px solid
+      padding: 4px 0 2px 10px
+      list-style-type: none
+      a
+        text-align: center
+        font-weight: bold
+        text-decoration: none
+    &.menu-level-1
+      text-decoration: none
+      margin-top: 5px
+      margin-bottom: 5px
+      margin-left: 10px
+      list-style-type: none
+      a
+        text-align: center
+        text-decoration: none
+  &#rightmenu
+    float: right
+    width: 15em
+  &#rightmenu-design
+    padding-right: 10px
+  &#maincontent
+  &.maincontent-bothmenus
+    margin-left: 14em
+    margin-right: 16em
+    height: 100%
+    /* Needs to be set to 1% to avoid bug in IE 5.5
+  &.maincontent-noleftmenu
+    margin-left: 10px
+    margin-right: 16em
+    height: 100%
+    /* Needs to be set to 1% to avoid bug in IE 5.5
+  &.maincontent-norightmenu
+    margin-left: 14em
+    margin-right: 10px
+    height: 100%
+    /* Needs to be set to 1% to avoid bug in IE 5.5
+  &.maincontent-nomenus
+    margin-left: 10px
+    margin-right: 10px
+    height: 100%
+    /* Needs to be set to 1% to avoid bug in IE 5.5
+  &#fix
+    float: left
+    width: 100%
+  &.content-navigator
+    display: block
+    clear: both
+    div
+      display: inline
+      text-align: center
+      &.content-navigator-separator, &.content-navigator-separator-disabled
+        padding-left: 4px
+        padding-right: 4px
+      &.content-navigator-arrow
+        font-size: 150%
+  &.toolbox
+    width: 100%
+    margin-bottom: 8px
+    margin-top: 8px
+  &.toolbox-design
+    padding: 0px
+    h2
+      font-size: 1em
+      margin-top: 0px
+      padding-left: 10px
+      padding-top: 3px
+      padding-bottom: 3px
+    div.toolbox-content
+      padding-left: 10px
+      padding-right: 10px
+      padding-top: 3px
+      padding-bottom: 10px
+    input
+      &.searchtext, &.textinput
+        height: 18px
+        width: 120px
+        border: 1px solid
+    label
+      font-weight: normal
+      margin-bottom: 0
+      padding: 6px 0 0 0
+    form
+      vertical-align: bottom
+    div
+      &.info-text p
+        font-weight: normal
+      &.attribute-link p, &.attribute-link-disabled p
+        font-weight: normal
+        padding: 0 0 0 6px
+        vertical-align: middle
+  &.toollist
+    width: 100%
+    margin: 8px 0 8px 0
+  &.toollist-design
+    padding: 0px
+    border: 1px solid
+    h2
+      font-size: 1em
+      margin-top: 0px
+      padding: 2px 0 3px 10px
+    div.content-view-children
+      padding: 3px 10px 10px 10px
+    h3
+      margin: 0
+      text-decoration: underline
+    div.class-article div
+      &.attribute-short p
+        margin: 0
+      &.attribute-link p
+        margin: 0 0 10px 0
+      &.attribute-link-disabled p
+        font-weight: normal
+        padding: 0 0 0 6px
+        vertical-align: middle
+  &#footer
+    clear: both
+  &#footer-design
+    padding: 10px 0 10px 0
+    text-align: center
+    address
+      font-style: normal
+    a
+      text-decoration: none
+  &#maincontent
+    h1
+      font-size: 1.8em
+      font-weight: bold
+      margin-top: 0.2em
+    h2
+      font-size: 1.4em
+      font-weight: bold
+    h3
+      font-size: 1.1em
+      font-weight: bold
+    h4
+      font-size: 1em
+      font-weight: bold
+  &#maincontent-design h5
+    font-size: 1em
+    font-weight: bold
+
+/* PAGE HEADER
+
+/* TOOLBARS
+
+/* TOP MENU
+
+/* SUB MENU
+
+/* PATH
+
+/* COLUMNS
+
+/* MENUES
+
+/* NAVIGATORS
+
+/* TOOLBOXES
+
+/* TOOL LISTS
+
+/* FOOTER
+
+/* GENERAL ELEMENTS
+
+/* GENERAL TABLE
+
+table th
+  /*background-color: #d9e5f2;
+
+/* SUBMIT BUTTONS
+
+input
+  &.defaultbutton
+    font-weight: bold
+    border: 1px solid
+    margin: 0.5em 0.5em 0 0
+  &.button
+    border: 1px solid
+    margin: 0.5em 0.5em 0 0
+  &.searchbutton, &.shopbutton
+    border: 1px solid
+  &.searchimage
+    width: 18px
+    height: 18px
+    background-image: url(../images/button.gif)
+    background-repeat: no-repeat
+
+/* Diff styles
+
+div
+  &#diffview
+    ul
+      margin: 0 0 0.5em 0
+      padding: 0.25em 0.5em 0.25em 0.5em
+      border-bottom: 1px solid #808080
+      display: block
+    li
+      font-size: 0.85em
+      margin: 0 0.5em 0 0
+      padding: 0
+      display: inline
+      list-style-type: none
+  &.attribute-view-diff
+    padding: 0.25em
+    border: 1px solid #d7d7d2
+    label
+      color: #75756c
+  &.attribute-view-diff-old
+    padding-bottom: 0.25em
+    border-bottom: 1px dashed #bfbfb7
+  &.attribute-view-diff-new
+    padding-top: 0.25em
+
+ins
+  color: #008000
+  text-decoration: none
+  border-bottom: 1px solid #00b000
+
+del
+  color: #d98078
+  text-decoration: line-through
+
+ins:hover, del:hover
+  background-color: #ffffff
+
+ins:hover
+  color: #006000
+  border-bottom: none
+
+del:hover
+  color: #852c25
+  text-decoration: none
+
+div
+  &.blockchanges
+    ins, del
+      color: #000000
+      padding-left: 0.5em
+      text-decoration: none
+      border-bottom: none
+      display: block
+    ins
+      border-left: 0.5em solid #008000
+    del
+      border-left: 0.5em solid #d98078
+  &.previous
+    ins
+      display: none
+    del
+      color: #000000
+      background-color: #ffff00
+      border-bottom: none
+      text-decoration: none
+  &.latest
+    del
+      display: none
+    ins
+      color: #000000
+      background-color: #ffff00
+      border-bottom: none
+      text-decoration: none

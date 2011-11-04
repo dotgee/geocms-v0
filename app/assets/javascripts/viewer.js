@@ -67,6 +67,7 @@ $.widget("ui.viewer", {
     });
     self.fullScreenBtn.click(function(e){
       e.preventDefault();
+      $('#map').height($(window).height()).width($(window).width()); 
       if(self.fullscreenDisplay){
         self._normalLayout();
         $('.topbar').fadeIn();
@@ -112,6 +113,7 @@ $.widget("ui.viewer", {
     self.layerChooserAccordion = $('#category_chooser').categorySlider({  
                                                                           position: self.options.accordionPosition
                                                                        });//.accordion({active: 100, collapsible: true, fillSpace: true});
+                                                                       self.layerChooserAccordion.show();
     self._bindEvents();
   },
   _map: null,

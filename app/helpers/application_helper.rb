@@ -1,5 +1,14 @@
 module ApplicationHelper
 
+  def title
+    return @title if @title
+    return "Bretagne Environnement"
+  end
+
+  def title=(title)
+    @title = title
+  end
+
   def input_popover(title,options = {}, &block)
     arrow_side = options.delete(:arrow_side) || "right"
     capture_haml do
@@ -16,7 +25,7 @@ module ApplicationHelper
       end
     end
   end
-  def title(&block)
+  def title_bootstrap(&block)
     content_for :header do
       yield
     end

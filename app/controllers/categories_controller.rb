@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  layout 'gipbe'
   # GET /categories
   # GET /categories.json
   def index

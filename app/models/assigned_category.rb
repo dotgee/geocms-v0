@@ -1,4 +1,4 @@
 class AssignedCategory < ActiveRecord::Base
   belongs_to :category
-  belongs_to :categorisable, :polymorphic => true
+  belongs_to :layer, :foreign_key => :cateogrisable_id
 end

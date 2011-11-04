@@ -5,7 +5,8 @@ class Category < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [ :parent_id ]
 
   has_many :geocontexts, :class_name => 'GeoContext'
-  has_many :layers
   has_many :assigned_categories
+  has_many :layers, :through => :assigned_categories
+            
   
 end

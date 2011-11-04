@@ -11,11 +11,12 @@
       .ui-icon.ui-icon-arrow-4-diag
       %span
         Agrandir
-    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "ruler_measure", :measure_type => "line" } do
+    - twipsy = {:"data-original-title" => "Double Clic pour valider le trac&eacute;.".html_safe, :rel => "popover" }
+    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "ruler_measure", :measure_type => "line" }.merge(twipsy) do
       .ui-icon.ruler
       %span
         Distance
-    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "square_measure" , :measure_type => "polygon" } do
+    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "square_measure" , :measure_type => "polygon" }.merge(twipsy) do
       .ui-icon.square_ruler
       %span
         Surface

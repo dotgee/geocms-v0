@@ -22,6 +22,7 @@ $(document).ready(function(){
   $('#layer_tab').tabs();
 
   $('textarea').TextAreaResizer();
+  $('a[rel=popover]').twipsy({});
 
 });
 
