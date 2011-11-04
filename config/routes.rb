@@ -19,7 +19,7 @@ Geocms::Application.routes.draw do
     end
   end
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   match '/auth/failure' => 'devise/sessions#failure'
 
