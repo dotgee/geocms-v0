@@ -1,5 +1,8 @@
 Geocms::Application.routes.draw do
 
+  get "capabilities/index"
+  get "capabilities/generate_layers"
+
   get "rss/layers"
 
   resources :taxonomies
