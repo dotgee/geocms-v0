@@ -17,15 +17,15 @@ if HOST_OS =~ /linux/i
 end
 gem "haml", ">= 3.1.2"
 gem "haml-rails", ">= 0.3.4", :group => :development
-gem "compass", "~> 0.12.alpha.0"
-gem 'compass_twitter_bootstrap'
+#gem "compass", "~> 0.12.alpha.0"
+#gem 'compass_twitter_bootstrap'
 gem "devise", ">= 1.4.5"
 gem "rails-footnotes", ">= 3.7.5", :group => :development
 gem "jammit"
 gem "omniauth", ">= 0.3.0.rc3"
 gem "redis"
 gem "settingslogic"
-gem "rails_admin", :path => "vendor/git/rails_admin" # :git => "git://github.com/sferik/rails_admin.git"
+#gem "rails_admin", :path => "vendor/git/rails_admin" # :git => "git://github.com/sferik/rails_admin.git"
 gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'show_for'
 gem 'paperclip', '~> 2.4'
