@@ -1,4 +1,5 @@
 class TaxonomiesController < ApplicationController
+  layout 'fixed'
   # GET /taxonomies
   # GET /taxonomies.json
   def index

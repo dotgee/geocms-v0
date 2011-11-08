@@ -1,7 +1,6 @@
 class Taxonomy < ActiveRecord::Base
   has_many :taxons
   has_one :root, :class_name => "Taxon", :conditions => { :parent_id => nil }
-
   validates :name, :presence => true
   
   after_save :set_name

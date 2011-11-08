@@ -14,7 +14,6 @@ $.widget("ui.viewer", {
     self.layersBtn.click(function(e){
       e.preventDefault();
       self.layerChooser.layerChooser('show');
-
     });
 
     self.layerChooserAccordion.find('.category_layer_container').click(function(e){
@@ -30,21 +29,34 @@ $.widget("ui.viewer", {
           var layer_name = div.attr('layer_name');
           var  layer = new OpenLayers.Layer.WMS(title,
                                                wms_url,
-                                               { layers: layer_name,
-                                                 transparent: true
-                                               }, 
-                                               { opacity: 0.5,
-                                                 singleTile: true
+                                               { layers: layer_name },
+                                               { singleTile: true,
+                                                 transparent: true,
+                                                 opacity: 0.5
                                                });
           map.addLayer(layer);
+          
           div.attr('layer_id', layer.id);
         }else{
           layer.setVisibility(true);
         }
+
+        // Generates the legend for the new layer
+        var legende = $("#legende").children().clone();
+        legende.attr("id", "1");
+        legende.find("h5").text(layer_name);
+        legende.find("img").attr("src", "http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer_name);
+        $("#legende").append(legende);
+
       }
       else{
         if( layer){
           layer.setVisibility(false);
+          var f = "#1";
+          console.log(f);
+          var e = $(f);
+          console.log(e);
+          e.remove();
         }
       }
 
@@ -57,13 +69,13 @@ $.widget("ui.viewer", {
         icon.removeClass('ui-icon-circle-arrow-s').addClass('ui-icon-circle-arrow-e');
         self.layerChooserAccordion.hide("slow", function(){ 
           self.mapinfos.mapinfos('redraw');
-          map.updateSize();
        });
       }
       else{
         icon.removeClass('ui-icon-circle-arrow-e').addClass('ui-icon-circle-arrow-s');
         self.layerChooserAccordion.show("slow");
       }
+      map.updateSize();
     });
     self.fullScreenBtn.click(function(e){
       e.preventDefault();

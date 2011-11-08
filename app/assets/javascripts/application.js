@@ -23,6 +23,6 @@ $(document).ready(function(){
 
   $('textarea').TextAreaResizer();
   $('a[rel=popover]').twipsy({});
-
+  $('.category_layer_container').twipsy({placement: "left"});
 });
 

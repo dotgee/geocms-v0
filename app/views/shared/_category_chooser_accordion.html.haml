@@ -1,26 +1,32 @@
 #category_chooser
-  - Category.roots.includes(:layers).each do |c|
-    %h3
-      = link_to c.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
-    .category_description
-      .category_layers
-        - c.layers.each_with_index do |l, i|
-          .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier, :layer_class => l.uniq_identifier }
-            .selected_icon
-            .row.layer_selection
-              .layer_img
-                = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
-              .layer_info
-                %span
-                  %b.label.notice
-                    Nom :
+  %h2
+    Informations
+    %div{:id => "legende"}
+      %div{:id => @layer.id}
+        %h5
+          #{@layer.name}
+        %img(src="http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=#{@layer.name}")
+  %h2 Filtres
+  %h2 
+    Th&egrave;mes
+    
+    - Taxon.find(22).children.each do |c|
+      %h3
+        = link_to c.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
+      .category_description
+        .category_layers
+          - c.layers.each_with_index do |l, i|
+            .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier, :layer_class => l.uniq_identifier, :"data-original-title" => l.description }
+              .selected_icon
+              .row.layer_selection
+                .layer_img
+                  = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
+                .layer_info
                   %span
-                    = l.title
+                    %b.label.notice
+                      Nom :
+                    %span
+                      = l.title
+                  .clear
                 .clear
-                %span
-                  %b.label.notice
-                    Description:
-                  %span
-                    = l.description
-              .clear
-              
+                

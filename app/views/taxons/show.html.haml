@@ -1,21 +1,22 @@
-%p#notice= notice
+.breadcrumb
+  %p#notice= notice
 
-%p
-  %b Parent:
-  = @taxon.parent_id
-%p
-  %b Taxonomy:
-  = @taxon.taxonomy_id
-%p
-  %b Name:
-  = @taxon.name
-%p
-  %b Left:
-  = @taxon.left
-%p
-  %b Right:
-  = @taxon.right
-
-= link_to 'Edit', edit_taxon_path(@taxon)
-\|
-= link_to 'Back', taxons_path
+  %p
+    %b Parent:
+    = @taxon.parent_id
+  %p
+    %b Taxonomy:
+    = @taxon.taxonomy_id
+  %p
+    %b Name:
+    = @taxon.name
+  %p
+    %b Left:
+    = @taxon.left
+  %p
+    %b Right:
+    = @taxon.right
+  .actions
+    = link_to 'Edit', edit_taxon_path(@taxon), :class => "btn primary"
+    \|
+    = link_to 'Back', taxons_path, :class => "btn"

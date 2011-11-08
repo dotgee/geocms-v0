@@ -18,7 +18,7 @@ end
 gem "haml", ">= 3.1.2"
 gem "haml-rails", ">= 0.3.4", :group => :development
 #gem "compass", "~> 0.12.alpha.0"
-#gem 'compass_twitter_bootstrap'
+gem 'compass_twitter_bootstrap'
 gem "devise", ">= 1.4.5"
 gem "rails-footnotes", ">= 3.7.5", :group => :development
 gem "jammit"

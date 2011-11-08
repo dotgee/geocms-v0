@@ -81,6 +81,8 @@ $.widget("ui.sliderPanel", {
     var self = this; 
     if(!self.element.is(':visible')){
       self.element.effect('slide', { direction : self._slideDirection()})
+      //console.log("yep");
+      //map.updateSize();
     }
   },
   hide: function(){

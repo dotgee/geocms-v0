@@ -111,24 +111,20 @@ $(document).ready(function() {
 
   map =  new OpenLayers.Map( 'map', mapOptions ); // format.read(request.responseText, {map: mapOptions});
   var fond_carto = new OpenLayers.Layer.WMS(
-    "Fond Cartographique","http://osm.geobretagne.fr/service/wms",
+    "Fond Cartographique","http://geo.devel.dotgee.fr/geoserver/wms",
     {
-      layers: 'osm:bing',
+      layers: 'region-bretagne_region_2154',
       format: 'image/png'
     },
     {
-      transitionEffect: 'resize'
-    },
-    {
-      displayInLayerSwitcher:false
-    },
-    {
-        tileSize: new OpenLayers.Size(256,256)
-    },{
+      transitionEffect: 'resize',
+      singleTile: true,
+      opacity: 0.5,
+      displayInLayerSwitcher:false,
       isBaseLayer: true
     }
   );
-  // map.addLayer(fond_carto);
+  map.addLayer(fond_carto);
 
   layer = new OpenLayers.Layer.WMS(layerTitle,
                                    layerWmsUrl,
@@ -175,7 +171,6 @@ $(document).ready(function() {
         }
     });
     map.zoomToMaxExtent();
-    
     //choix des couches
     $.each(map.layers, function(i, layer){
       var class_name = '.'+uniq_identifier_from_layer(layer);

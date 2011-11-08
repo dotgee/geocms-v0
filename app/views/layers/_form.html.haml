@@ -15,11 +15,11 @@
       %p
         P&eacute;cisez un nom explicite
     = f.input :title
-    - a = nested_set_options(Category){ |i| "#{'--' * i.level} #{i.name}" }
-    = f.association :categories, :class => "multiselect", :collection => a
+    = f.association :taxons, :class => "multiselect"
     = f.input :description, :as => :text
     = f.input :origin
     = f.input :metadata_url, :as => :string
+    = f.input :tag_list
 
   .actions
     = f.button :submit, "Valider", :class => "btn primary"

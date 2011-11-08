@@ -1,7 +1,8 @@
-// Place all the styles related to the viewer controller here.
-// They will automatically be included in application.css.
-// You can use Sass here: http://sass-lang.com/
-
+.ui-corner-all
+  border-radius: 0px
+  -moz-border-radius: 0px
+  -webkit-border-radius: 0px
+  
 .olControlPanZoomBar
   right: 0
 
@@ -22,19 +23,14 @@
 #ruler_measure
   .ui-icon
     background-image: url(ruler.png)
-    margin-right: 3px
 
 #square_measure 
   .ui-icon
     background-image: url(ruler_square.png)
-    margin-right: 3px
 
 #hand_control
   .ui-icon
-    background-image: url(icon_pan.png)
-    width: 20px
-    height: 18px
-  padding: 4px
+    background: url(icon_pan.png) no-repeat center center
 
 #output_measure 
   line-height: 16px

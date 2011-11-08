@@ -4,8 +4,8 @@
 %table
   %thead
     %tr
-      %th Nom
-      %th Description
+      %th.title Nom
+      %th.value Description
 
   %tbody
     - @categories.each do |category|
@@ -19,7 +19,8 @@
             = link_to 'Modifier', edit_category_path(category)
             \|
             = link_to 'Supprimer', category, :confirm => 'Are you sure?', :method => :delete
-          %td= category.description
+        %td
+          = category.description
 
 %br
 .actions
