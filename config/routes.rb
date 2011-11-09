@@ -36,7 +36,7 @@ Geocms::Application.routes.draw do
   match '/auth/:provider/callback' => 'sessions#create'
 
 
-  root :to => "geo_contexts#index"
+  root :to => "layers#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
