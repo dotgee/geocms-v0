@@ -1,4 +1,6 @@
 class Taxon < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
   acts_as_nested_set :dependent => :destroy
 
   belongs_to :taxonomy
