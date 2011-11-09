@@ -1,0 +1,7 @@
+.menuHeaderBottom
+  %ul
+    - Taxon.find('themes').children.each do |theme|
+      %li
+        %span.square
+        =link_to theme.name, '#'
+  .breaker

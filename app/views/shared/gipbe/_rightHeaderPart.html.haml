@@ -1,0 +1,46 @@
+.col-left
+
+  %ul.functions.chosen_thematic
+    %li
+      %span
+        = link_to image_tag('gipbe/picto_home.jpg', :alt => "Retours &agrave; l'accueil"), '#', :title => "Retours &agrave; l'accueil".html_safe
+    %li
+      %span
+        = link_to image_tag('gipbe/picto_sitemap.jpg', :alt => "Plan du site"), '#', :title => "Plan du site"
+    %li
+      %span
+        = link_to image_tag('gipbe/logotwit.gif', :alt => 'twitter'), '#', :title => "Twitter"
+    %li
+      %span
+        = link_to image_tag('gipbe/picto_share.jpg', :alt => 'Partager cette page'), '#', :title => "Partager cette page"
+    %li
+      %span
+        = link_to image_tag('gipbe/picto_link.jpg', :alt => "Faire un lien vers cette page"), '#', :title => "Faire un lien vers cette page"
+
+      #make-link.bg{ :style => "display: none"}
+        %p.title
+          = link_to "Faire un lien vers cette page :", "#", :title => "Fermer"
+        #make-link-content
+          = text_area_tag "http://www.bretagne-environnement.sdv.fr/"
+          %p
+            CRTL + C pour copier
+    %li
+      %span
+        = link_to image_tag('gipbe/picto_print.jpg', :alt => "Imprimer"), '#', :title => "Imprimer"
+    %li
+      %span
+        = link_to image_tag('gipbe/picto_help.jpg', :alt => "Aide"), '#', :title => "Aide"
+  .breaker
+  .search
+    %form#search.niceform
+      = search_field_tag 'Search', nil, :class => "search-field"
+      = submit_tag 'Ok', :class => "submit"
+    %ul.links
+      %li
+        %a.advancedsearch{ :href => '#'}
+          Recherche Avanc&eacute;e
+      %li
+        %a.keywords{:href => "#"}
+          Mots Cl&eacute;s
+.membres
+  = image_tag "gipbe/logo_members.jpg"

@@ -2,20 +2,24 @@
 %html
   %head
     %title Geocms
-    =# stylesheet_link_tag    "application"
+    = stylesheet_link_tag    "application"
     = stylesheet_link_tag    "gipbe"
+    = stylesheet_link_tag  controller_name
+
     = yield :stylesheets
     = javascript_include_tag "application"
     = yield :javascripts
     = csrf_meta_tags
   %body
-    #autreSites
+    #topLinks
+      = render :partial => "shared/gipbe/top_links"
     #global
       = render :partial => "shared/gipbe/header"
-      #menuheaderBas
-      #contenu.thematique_choisie
+      .breaker
+      #content.chosen_thematic
         = yield
       #footer
+        = render :partial => "shared/gipbe/footer"
 
     =# render :partial => "shared/header"
     

@@ -3,17 +3,11 @@
     %span
       = title
     %a{ :href => root_path, :title => "Accueil"}
-      = image_tag "gipbe/www.bretagne-environnement.org.jpg"
+      = image_tag "gipbe/logo-bretagne-envirronnement.jpg"
   .header-right
-    .col-left
-      %ul.functions.themaatique_choisie
-      .breaker
-      .search
-        %ul.links
-          %li
-            %a.advancedsearch{ :href => '#'}
-              Recherche Avanc&eacute;e
-          %li
-            %a.keywords{:href => "#"}
-              Mots Cl&eacute;s
-      .membres
+    = render :partial => "shared/gipbe/rightHeaderPart"
+
+  .breaker
+  = render :partial => "shared/gipbe/headerMenu"
+
+= render :partial => "shared/gipbe/headerMenuBottom"
