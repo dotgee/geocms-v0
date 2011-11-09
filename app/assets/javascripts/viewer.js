@@ -27,36 +27,37 @@ $.widget("ui.viewer", {
           var title = div.attr('layer_title');
           var wms_url = div.attr('wms_url');
           var layer_name = div.attr('layer_name');
-          var  layer = new OpenLayers.Layer.WMS(title,
+          layer = new OpenLayers.Layer.WMS(title,
                                                wms_url,
-                                               { layers: layer_name },
-                                               { singleTile: true,
-                                                 transparent: true,
-                                                 opacity: 0.5
+                                               { layers: layer_name,
+                                                 transparent: true
+                                               },
+                                               {
+                                                 opacity: 0.8,
+                                                 singleTile: true,
+                                                 uniqueID: layer_name.substring(layer_name.indexOf(":")+1)
                                                });
           map.addLayer(layer);
+
+          // Generates the legend for the new layer
+          var legende = $("#legende div:first-child").clone();
+          legende.attr("id", layer.uniqueID+"_legende");
+          legende.find("p").text(layer_name);
+          legende.find("img").attr("src", "http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer_name);
+          $("#legende").append(legende);
           
           div.attr('layer_id', layer.id);
         }else{
           layer.setVisibility(true);
+          $("#"+layer.uniqueID+"_legende").show(300);
         }
-
-        // Generates the legend for the new layer
-        var legende = $("#legende").children().clone();
-        legende.attr("id", "1");
-        legende.find("h5").text(layer_name);
-        legende.find("img").attr("src", "http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer_name);
-        $("#legende").append(legende);
-
+        $("#"+layer.uniqueID).show(300);
       }
       else{
-        if( layer){
+        if(layer){
           layer.setVisibility(false);
-          var f = "#1";
-          console.log(f);
-          var e = $(f);
-          console.log(e);
-          e.remove();
+          $("#"+layer.uniqueID+"_legende").hide(300);
+          $("#"+layer.uniqueID).hide(300);
         }
       }
 

@@ -80,7 +80,7 @@ console.log(event);
 $(document).ready(function() {
   var window_height = $(window).height();  
   var offset_map = $("#map").offset().top;
-  $('#container').viewer({ map: map, accordionPosition: "right"});
+  $('#content').viewer({ map: map, accordionPosition: "right"});
   $("#map").height(window_height - offset_map);
 
   var bounds = new OpenLayers.Bounds(
@@ -119,6 +119,7 @@ $(document).ready(function() {
     {
       transitionEffect: 'resize',
       singleTile: true,
+      transparent: true,
       opacity: 0.5,
       displayInLayerSwitcher:false,
       isBaseLayer: true
@@ -132,12 +133,11 @@ $(document).ready(function() {
                                        layers: layerNames,
                                        transparent: true
                                    }, {
-                                       opacity: 0.5,
+                                       opacity: 0.8,
                                        singleTile: true
                                    });
   
-    map.addLayer(layer);
-    var controls = [
+    map.addLayer(layer); var controls = [
     new OpenLayers.Control.PanZoomBar()
     
     ];
