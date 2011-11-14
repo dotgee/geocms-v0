@@ -1,9 +1,3 @@
-var map;
-// increase reload attempts 
-OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
-// Définitions des bords de la Bretagne
-var bzhBounds = new OpenLayers.Bounds(33534.34825,6584909.31255,503163.44995,6897995.38035);
-
 $(document).ready(function() {
   var bounds = new OpenLayers.Bounds(
                       145607.334, 6740620.908,

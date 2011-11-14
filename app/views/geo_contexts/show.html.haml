@@ -7,7 +7,9 @@
 
 = render :partial => 'shared/content_toolbar'
 %div
-  = render :partial => "shared/category_chooser_accordion"              
+  #category_chooser
+    = render :partial => "shared/category_chooser_accordion"              
+    = render :partial => "shared/legend", :locals => { :layer => @geo_context }
   =# render :partial => "shared/category_chooser_modal"              
   #map
     .map-infos

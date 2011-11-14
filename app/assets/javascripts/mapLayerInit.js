@@ -1,11 +1,3 @@
-// increase reload attempts 
-OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
-// Définitions des bords de la Bretagne
-var bzhBounds = new OpenLayers.Bounds(33534.34825,6584909.31255,503163.44995,6897995.38035);
-
-var map, layer, measureControls;
-
-//style pour les mesures
 
 var sketchSymbolizers = {
     "Point": {
@@ -134,15 +126,18 @@ $(document).ready(function() {
                                        transparent: true
                                    }, {
                                        opacity: 0.8,
-                                       singleTile: true
+                                       singleTile: true,
+                                       uniqueID: layerNames.replace(":", "_")
                                    });
   
     map.addLayer(layer); var controls = [
     new OpenLayers.Control.PanZoomBar()
     
     ];
+    
     map.addControls(controls);
     var control;
+    $("."+layer.uniqueID).show(300);
     for(var key in measureControls) {
       control = measureControls[key];
       control.events.on({

@@ -35,7 +35,7 @@ $.widget("ui.viewer", {
                                                {
                                                  opacity: 0.8,
                                                  singleTile: true,
-                                                 uniqueID: layer_name.substring(layer_name.indexOf(":")+1)
+                                                 uniqueID: layer_name.replace(":", "_")
                                                });
           map.addLayer(layer);
 
@@ -51,13 +51,13 @@ $.widget("ui.viewer", {
           layer.setVisibility(true);
           $("#"+layer.uniqueID+"_legende").show(300);
         }
-        $("#"+layer.uniqueID).show(300);
+        $("."+layer.uniqueID).show(300);
       }
       else{
         if(layer){
           layer.setVisibility(false);
           $("#"+layer.uniqueID+"_legende").hide(300);
-          $("#"+layer.uniqueID).hide(300);
+          $("."+layer.uniqueID).hide(300);
         }
       }
 

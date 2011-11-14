@@ -1,36 +1,37 @@
-#category_chooser
-  %h2 
-    Th&egrave;mes
-    
-    - Taxon.find('themes').children.each do |c|
-      %h3
-        = link_to c.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
-      .category_description
-        .category_layers
-          - c.layers.each_with_index do |l, i|
-            .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier, :layer_class => l.uniq_identifier, :"data-original-title" => l.description }
-              .selected_icon
-              .row.layer_selection
-                .layer_img
-                  = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
-                .layer_info
+.border-container
+  .border
+    %h2 
+      Th&egrave;mes
+  
+.right-menu
+  - Taxon.find('themes').children.each do |c|
+    %h3
+      = link_to c.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
+    .category_description
+      .category_layers
+        - c.layers.each_with_index do |l, i|
+          .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier, :layer_class => l.uniq_identifier, :"data-original-title" => l.description }
+            .selected_icon
+            .row.layer_selection
+              .layer_img
+                = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
+              .layer_info
+                %span
+                  %b.label.notice
+                    Nom :
                   %span
-                    %b.label.notice
-                      Nom :
-                    %span
-                      = l.title
-                  .clear
-                  %div{:class => "slider", :id => l.name[l.name.index(":")+1, l.name.length]}
+                    = l.title
                 .clear
-  %h2 Filtres
-  %h2
-    Informations
-  %div{:id => "legende"}
-    %div{:id => @layer.id}
-      %p
-        #{@layer.name}
-      %img(src="http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=#{@layer.name}"
-           onerror="this.src='http://www.locaway.com/images/Admin/delete.png'")
+                %div{:class => "slider #{l.name.gsub(':','_')}", :id => l.name.gsub(':','_')}
+              .clear
+.border-container
+  .border
+    %h2 Filtres
+
+.border-container
+  .border
+    %h2
+      Informations
 
 :javascript
   $(".slider").slider({
@@ -41,5 +42,6 @@
         slide: function(event, ui) {
           var layers = map.getLayersBy("uniqueID", this.id);
           layers[0].setOpacity(ui.value/100);
+          $("."+this.id).slider("value", ui.value);
         }
   });
