@@ -1,25 +1,25 @@
-.fg-toolbar.ui-widget-header.ui-corner-all.ui-helper-clearfix
+.fg-toolbar.ui-widget-header.ui-helper-clearfix
   .fg-buttonset
-    =# link_to '#', { :class => 'fg-button ui-state-default fg-button-icon-solo ui-corner-all full_screen_btn' } do
-    =# link_to '+', '#', { :class => 'fg-button ui-state-default ui-corner-all add_layer_btn' }
+    =# link_to '#', { :class => 'fg-button ui-state-default fg-button-icon-solo full_screen_btn' } do
+    =# link_to '+', '#', { :class => 'fg-button ui-state-default add_layer_btn' }
     =# link_to '?', '#', { :class => "legend"}
-    = link_to  '#', { :class => "ui-corner-all ui-icon-with-text", :id => "layers_list_btn"} do
+    = link_to  '#', { :class => "ui-icon-with-text", :id => "layers_list_btn"} do
       .ui-icon.ui-icon-circle-arrow-s.floating-icon
       %span
         Couches disponibles
-    = link_to  '#', { :class => "ui-corner-all ui-icon-with-text full_screen_btn", :id => "full_screen_btn"} do
+    = link_to  '#', { :class => "ui-icon-with-text full_screen_btn", :id => "full_screen_btn"} do
       .ui-icon.ui-icon-arrow-4-diag
       %span
     - twipsy = {:"data-original-title" => "Double Clic pour valider le trac&eacute;.".html_safe, :rel => "popover" }
-    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "ruler_measure", :measure_type => "line" }.merge(twipsy) do
+    = link_to '#', { :class => "ui-icon-with-text measure_control", :id => "ruler_measure", :measure_type => "line" }.merge(twipsy) do
       .ui-icon.ruler
       %span
-    = link_to '#', { :class => "ui-corner-all ui-icon-with-text measure_control", :id => "square_measure" , :measure_type => "polygon" }.merge(twipsy) do
+    = link_to '#', { :class => "ui-icon-with-text measure_control", :id => "square_measure" , :measure_type => "polygon" }.merge(twipsy) do
       .ui-icon.square_ruler
       %span
-    = link_to '#', { :class => "ui-corner-all ui-icon-with-text", :id => "hand_control"} do
+    = link_to '#', { :class => "ui-icon-with-text", :id => "hand_control"} do
       .ui-icon.hand
-    = link_to  '#', { :class => "ui-corner-all ui-icon-with-text full_screen_btn", :id => "legend_btn"} do
+    = link_to  '#', { :class => "ui-icon-with-text full_screen_btn", :id => "legend_btn"} do
       .ui-icon.ui-icon-info
       %span
     %span#output_measure
