@@ -2,12 +2,7 @@
 %html
   %head
     %title Geocms
-    = stylesheet_link_tag    "application"
-    = stylesheet_link_tag    "_fixed"
-    = yield :stylesheets
-    = javascript_include_tag "application"
-    = yield :javascripts
-    = csrf_meta_tags
+    = render :partial => "shared/base_header"
   %body
     = render :partial => "shared/header"
     #container.content.container
