@@ -1,5 +1,8 @@
 Geocms::Application.routes.draw do
 
+  namespace 'admin' do
+    resources 'layers'
+  end
   get "capabilities/index"
   get "capabilities/generate_layers"
 

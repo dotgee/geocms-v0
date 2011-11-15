@@ -71,3 +71,5 @@ db/schema.rb
 lib/templates/
 shapes/
 vendor/git/
+
+app/assets/javascripts/OpenLayers-2.11/img/

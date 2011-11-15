@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  layout 'gipbe'
   before_filter :set_locale
   helper_method :correct_user?
 

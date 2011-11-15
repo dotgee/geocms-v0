@@ -1,5 +1,4 @@
 class TaxonsController < ApplicationController
-  layout 'fluid'
   # GET /taxons
   # GET /taxons.json
   def index

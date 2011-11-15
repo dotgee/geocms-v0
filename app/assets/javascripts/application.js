@@ -9,7 +9,6 @@
 //= require jqueryui 
 //= require rails
 //= require OpenLayers-2.11/OpenLayers
-//= require openLayersEssentials
 //= require bootstrap
 //= require j.textarea
 //= require widgets

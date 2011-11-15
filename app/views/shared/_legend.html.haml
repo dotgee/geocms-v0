@@ -1,7 +1,7 @@
 %div{:id => "legende"}
   %div{:id => layer.id}
     %p
-      = layer.name
+      = layer.title
     %img(src="http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=#{layer.name}"
          onerror="this.src='#{image_path 'error.png'}'")
 

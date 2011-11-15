@@ -39,10 +39,11 @@ $.widget("ui.viewer", {
                                                });
           map.addLayer(layer);
 
+console.log(layer);
           // Generates the legend for the new layer
           var legende = $("#legende div:first-child").clone();
           legende.attr("id", layer.uniqueID+"_legende");
-          legende.find("p").text(layer_name);
+          legende.find("p").text(layer.name);
           legende.find("img").attr("src", "http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer_name);
           $("#legende").append(legende);
           

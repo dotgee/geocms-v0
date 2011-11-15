@@ -1,9 +1,5 @@
 =# @layer.category.name
-- content_for :javascripts do
-  = javascript_include_tag 'jquery/jquery.multiselect.min.js'
-  = javascript_include_tag 'jquery/multiselectInit'
-- content_for :stylesheets do 
-  = stylesheet_link_tag 'jquery/jquery.multiselect.css'
+= multiselect_files
 
 = simple_form_for(@layer, :builder => SimpleBootstrapFormBuilder) do |f|
   = render :partial => "shared/errors", :locals => { :entity => @layer }
@@ -15,7 +11,7 @@
       %p
         P&eacute;cisez un nom explicite
     = f.input :title
-    = f.association :taxons, :class => "multiselect"
+    = f.association :taxons, :class => "multiselect", :label => "Cat&eacute;gories"
     = f.input :description, :as => :text
     = f.input :origin
     = f.input :metadata_url, :as => :string

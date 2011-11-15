@@ -1,0 +1,15 @@
+= multiselect_files
+= simple_form_for( @layer, :builder => SimpleBootstrapFormBuilder) do |f|
+  .breadcrumb
+    h2 Geoserver
+    = f.input :wms_url, :as => :string
+  .breadcrumb
+    h2 Geonetwork
+    = f.input :metadata_url, :as => :string
+  .breadcrumb
+    h2 Informations
+    = f.input :title
+    = f.input :name
+    = f.input :description
+    = f.association :taxons, :label => "Cat&eacute;gories",  :class => "multiselect"
+

@@ -1,25 +1,25 @@
 - title do
   %h1 Listing Geo Contexts
 
-%table
+= paginate @geo_contexts
+
+%table.listing
   %thead
     %tr
       %th Name
       %th Wmc name
-      %th Keywords
+      %th Keywords &amp; desription
 
   %tbody
     - @geo_contexts.each do |geo_context|
       %tr
         %td
-          .name
+          %h3.name
             = link_to geo_context.name, geo_context
           %p
             = geo_context.category.name if geo_context.category
           %p
             = geo_context.tags.map(&:name).join(', ')
-          %p
-            = geo_context.keywords
           .row-actions
             = link_to 'Voir', geo_context
             \|
@@ -29,8 +29,11 @@
         %td= geo_context.wmc_name
         %td
           %p
+            = geo_context.keywords
+          %br
+          %p
             = truncate(geo_context.description, :length => 35)
 
 %br
-
-= link_to 'Nouveau Geo context »', new_geo_context_path, :class => 'btn primary large'
+.actions
+  = link_to t(:new_geo_context) , new_geo_context_path, :class => 'btn primary large'

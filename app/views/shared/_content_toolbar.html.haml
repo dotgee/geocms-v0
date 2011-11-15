@@ -19,8 +19,15 @@
       %span
     = link_to '#', { :class => "ui-icon-with-text", :id => "hand_control"} do
       .ui-icon.hand
-    = link_to  '#', { :class => "ui-icon-with-text full_screen_btn", :id => "legend_btn"} do
+      %span
+    = link_to '#', { :class => "ui-icon-with-text", :id => "btn-features"} do
       .ui-icon.ui-icon-info
       %span
-    %span#output_measure
+    - twipsy = {:"data-original-title" => "Revenir &agrave; la position initiale".html_safe, :rel => "popover" }
+    = link_to  '#', { :class => "ui-icon-with-text full_screen_btn", :id => "position_btn"}.merge(twipsy) do
+      .ui-icon.ui-icon-pin-s
+      %span
+    %span#output_measure.infos
+    %span#projection.infos
+    %span#coords.infos
     .ui-helper-clearfix

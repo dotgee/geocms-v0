@@ -12,7 +12,7 @@ class GeoContextsController < ApplicationController
   # GET /geo_contexts.json
 
   def index
-    #@geo_contexts = GeoContext.all
+    @geo_contexts = GeoContext.page(page)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -93,12 +93,6 @@ class GeoContextsController < ApplicationController
   private
 
   def set_layout
-    if action_name == "show"
-      self.class.layout('application')
-    else
-      #self.class.layout('fluid')
-      self.class.layout('fixed')
-    end
-
+    self.class.layout('application') if action_name == "show"
   end
 end

@@ -1,4 +1,18 @@
 module ApplicationHelper
+  def multiselect_files
+    content_for :javascripts do
+      javascript_include_tag 'jquery/jquery.multiselect.min.js', 'jquery/multiselectInit'
+    end
+    content_for :stylesheets do
+      stylesheet_link_tag 'jquery/jquery.multiselect.css'
+    end
+  end
+
+  def map_js
+    content_for :javascripts do
+      javascript_include_tag "openLayersEssentials"
+    end
+  end
 
   def title
     return @title if @title

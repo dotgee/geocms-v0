@@ -1,0 +1,16 @@
+.no_visualisor
+  = paginate @layers
+  p = link_to t(:new_layer), new_admin_layer_path, :class => 'btn primary'
+  br
+
+  table
+    tr
+      th 
+        'Name
+    - @layers.each do |layer|
+      tr
+        td
+          .name
+            = layer.name
+          .row-actions
+  = paginate @layers
