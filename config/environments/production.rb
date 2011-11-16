@@ -49,6 +49,7 @@ Geocms::Application.configure do
                                   jquery/multiselectInit.js 
                                   jquery/jquery.multiselect.css
                                   mapLayerInit.js
+                                  *.js
                                   *.css
                                   )
 
