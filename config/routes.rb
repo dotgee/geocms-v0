@@ -1,7 +1,12 @@
 Geocms::Application.routes.draw do
 
   namespace 'admin' do
-    resources 'layers'
+    resources 'layers' do
+      collection do
+        post 'from_geonetwork'
+        post 'from_geoserver'
+      end
+    end
   end
   get "capabilities/index"
   get "capabilities/generate_layers"

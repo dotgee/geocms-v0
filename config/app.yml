@@ -1,0 +1,9 @@
+development:
+  theme_id: 22
+  filter_id: 23
+
+test:
+
+production:
+  theme_id: 22
+  filter_id: 23

@@ -11,7 +11,8 @@
       %p
         P&eacute;cisez un nom explicite
     = f.input :title
-    = f.association :taxons, :class => "multiselect", :label => "Cat&eacute;gories"
+    = f.association :themes, :class => "multiselect", :label => "Cat&eacute;gories"
+    = f.association :filters, :class => "multiselect", :label => "Filtres"
     = f.input :description, :as => :text
     = f.input :origin
     = f.input :metadata_url, :as => :string

@@ -165,10 +165,13 @@ a.fg-button
   position: relative
 
 .tabs > li 
+  margin: -1px 0px 0px 0px
+  text-align: center
   width: 150px
   &> a
-    line-height: 16px
-    font-size: 12px
+    padding: 4px
+    line-height: 18px
+    font-size: 16px
 
 #layers_list_btn
   float: right
@@ -185,3 +188,11 @@ table
   &.listing
     margin: 0px 10px
   
+#wait
+  display: none
+  position: fixed
+  opacity: 0.5
+  z-index: 500
+.hidden
+  display: none
+.error-message

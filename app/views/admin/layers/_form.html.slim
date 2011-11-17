@@ -1,15 +1,35 @@
 = multiselect_files
+- content_for :javascripts do
+  = javascript_include_tag 'admin/layers'
 = simple_form_for( @layer, :builder => SimpleBootstrapFormBuilder) do |f|
-  .breadcrumb
-    h2 Geoserver
-    = f.input :wms_url, :as => :string
-  .breadcrumb
-    h2 Geonetwork
-    = f.input :metadata_url, :as => :string
+  ul.tabs
+    li.active = link_to 'Geonetwork', '#geonetwork_tab'
+    li = link_to 'Geoserver', '#geoserver_tab'
+  .pill-content
+    #geonetwork_tab.breadcrumb.active
+      h2 Geonetwork
+      = f.input :metadata_url, \
+                :as => :string, \
+                :hint => "Exemple : http://geobretagne.fr/geonetwork?uuid=72a49d00-5398-11e0-9b62-0000c0a8230b"
+      .input
+        = link_to 'R&eacute;cup&eacute;rer les informations'.html_safe, \
+          '#', \
+          :class => 'btn primary', :id => "geonetwork_check"
+    #geoserver_tab.breadcrumb
+      h2 Geoserver
+      = f.input :wms_url, :as => :string, :hint => "Exemple : http://geobretagne.fr/geoserver/wms"
+      = f.input :name, :hint => "Exemple : administratif:scott_region_2154"
+      .input
+        = link_to 'R&eacute;cup&eacute;rer les informations'.html_safe, \
+                '#', \
+                :class => 'btn primary', \
+                :id => 'geoserver_check'
   .breadcrumb
     h2 Informations
     = f.input :title
-    = f.input :name
     = f.input :description
-    = f.association :taxons, :label => "Cat&eacute;gories",  :class => "multiselect"
+    = f.association :themes, :class => "multiselect", :label => "Cat&eacute;gories"
+    = f.association :filters, :class => "multiselect", :label => "Filtres"
+    .input
+      = f.submit 'Valider', :class => 'btn primary'
 

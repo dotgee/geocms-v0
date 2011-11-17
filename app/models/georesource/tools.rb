@@ -1,5 +1,11 @@
 module Georesource
   module Tools
+    def from_params(params, key ="uuid")
+      new_params = CGI::parse(params)
+      id = new_params.detect{|k,v| k == key }
+      id.last.first unless id.nil?
+    end
+
     def to_params(h)
       params = ''
       stack = []

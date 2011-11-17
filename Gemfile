@@ -42,3 +42,4 @@ gem 'cancan'
 gem 'kaminari'
 
 gem 'comfortable_mexican_sofa' #cms engine
+gem 'slim' 

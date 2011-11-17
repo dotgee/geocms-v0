@@ -6,7 +6,8 @@ class Layer < ActiveRecord::Base
   before_validation :set_title_if_empty
 
   has_many :assigned_layer_taxons
-  has_many :taxons, :through => :assigned_layer_taxons
+  has_many :themes, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.theme_id }
+  has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
 
 
   def set_title_if_empty

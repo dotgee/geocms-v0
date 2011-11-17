@@ -8,7 +8,7 @@ SimpleForm.setup do |config|
   # config.hint_tag = :span
 
   # CSS class to add to all hint tags.
-  # config.hint_class = :hint
+  config.hint_class = :"help-block input"
 
   # CSS class used on errors.
   # config.error_class = :error
