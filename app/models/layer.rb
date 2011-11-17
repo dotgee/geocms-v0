@@ -17,7 +17,7 @@ class Layer < ActiveRecord::Base
   end
 
   def category_list
-    taxons.map(&:name).join(', ')
+    themes.map(&:name).join(', ')
   end
 
   def uniq_identifier
