@@ -8,8 +8,13 @@ Geocms::Application.routes.draw do
       end
     end
   end
-  get "capabilities/index"
-  get "capabilities/generate_layers"
+  resources :capabilities do
+    collection do
+      match "index"
+      post "import"
+      get "generate_layers"
+    end
+  end
 
   get "rss/layers"
 

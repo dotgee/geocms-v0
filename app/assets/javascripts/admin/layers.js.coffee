@@ -12,7 +12,8 @@ $(document).ready () ->
       success: (data) ->
         if is_error(data)
           return false;
-
+        update_inputs(data);
+        true
     });
   );
 
@@ -27,14 +28,19 @@ $(document).ready () ->
       success: (data) ->
         if is_error(data)
           return false;
-        
-        $.each(data, (i,el) ->
-          $('#layer_'+i).val(el);
-        )
-        success_div("Informations renseign&eacute;es").insertAfter($('.pill-content').first()).fadeIn();
+        update_inputs(data);
         true
     });
   )
+  
+  update_inputs = (data) ->
+    $.each(data, (i,el) ->
+      input = $('#layer_'+i);
+      input.val(el) if input
+    )
+    success_div("Informations renseign&eacute;es").insertAfter($('.pill-content').first()).fadeIn();
+    true
+
 
   is_error = (data) ->
     if data.error
