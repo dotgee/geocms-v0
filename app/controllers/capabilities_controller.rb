@@ -3,13 +3,17 @@ class CapabilitiesController < ApplicationController
   #DEFAULT_GEOSERVER = "http://geo.devel.dotgee.fr/geoserver/wms"
   def index
     if request.get?
-
-      layers =  WMS::Client.new(DEFAULT_GEOSERVER).layers
     else
-      layers =  WMS::Client.new(DEFAULT_GEOSERVER).layers
-      render :json => layers
+      @layers =  WMS::Client.new(params[:server][:url]).layers
     end
   end
+
+  def import
+    url = params[:import][:server_url]
+    layers_name = params[:import][:layer_name]
+    @layers =  WMS::Client.new(url).layers.select{|l| layers_name.include?(l.name)}
+  end
+
 
   def generate_layers
     
@@ -26,7 +30,10 @@ class CapabilitiesController < ApplicationController
       new_layer.save
     end
     render :json => layers
+  end
+  
+  private
+  def create_layer_from_geoserver(layer_infos, server_url)
 
   end
-
 end
