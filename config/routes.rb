@@ -2,18 +2,19 @@ Geocms::Application.routes.draw do
   
   match '/gc/:key' => "geo_contexts#permalink", :as => :gc_permalink
   namespace 'admin' do
+    resources :geo_contexts
     resources 'layers' do
       collection do
         post 'from_geonetwork'
         post 'from_geoserver'
       end
     end
-  end
-  resources :capabilities do
-    collection do
-      match "index"
-      post "import"
-      get "generate_layers"
+    resources :capabilities do
+      collection do
+        match "index"
+        post "import"
+        get "generate_layers"
+      end
     end
   end
 
