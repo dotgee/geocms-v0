@@ -1,7 +1,7 @@
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
 //OpenLayers.ImgPath = "http://js.mapbox.com/theme/dark/"; 
-OpenLayers.ImgPath = "/assets/open_layers/";
-OpenLayers.ProxyHost = "http://geocms.gipbe.dotgee.fr/proxy.php?url=";
+OpenLayers.ImgPath = "/assets/openlayers/";
+OpenLayers.ProxyHost = "http://geocms.devel.dotgee.fr/proxy.php?url=";
 //var bzhBounds = new OpenLayers.Bounds(33534.34825,6584909.31255,503163.44995,6897995.38035);
 var map, layer, measureControls, mapOptions;
 

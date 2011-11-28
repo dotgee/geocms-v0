@@ -1,5 +1,6 @@
 Geocms::Application.routes.draw do
-
+  
+  match '/gc/:key' => "geo_contexts#permalink", :as => :gc_permalink
   namespace 'admin' do
     resources 'layers' do
       collection do
@@ -22,13 +23,21 @@ Geocms::Application.routes.draw do
 
   resources :taxons
 
-  resources :layers
+  resources :layers do
+    collection do
+      get 'print'
+    end
+  end
 
   resources :categories
 
   resources :geo_contexts do
     member do
       get 'permalink_map'
+    end
+    collection do 
+      get 'wmc'
+      post 'post'
     end
   end
 
@@ -49,7 +58,7 @@ Geocms::Application.routes.draw do
   match '/auth/:provider/callback' => 'sessions#create'
 
 
-  root :to => "layers#index"
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

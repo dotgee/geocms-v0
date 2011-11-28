@@ -38,6 +38,17 @@ function addSharedControlers() {
     map.zoomToMaxExtent();  
   });
   
+  /* Retour a la position initiale */
+
+  $('#print_btn').click(function(e){
+    e.preventDefault();
+    console.log(map);
+    var format = new OpenLayers.Format.WMC();
+    console.log(format.write(map));
+
+    $('<iframe src="/print/layers"/>').dialog();
+  });
+
   /* Affichage des coordonees */
 
   map.events.register("mousemove", map, function(e) {
@@ -66,6 +77,7 @@ function addSharedControlers() {
             });  
   
   getFeatures.events.register("featureselected", this, function(e) {
+      console.log(getFeatures);
       select.addFeatures([e.feature]);
   });
   getFeatures.events.register("featureunselected", this, function(e) {
@@ -97,7 +109,7 @@ function addSharedControlers() {
 
   // Activation des commandes au click bouton
   map.addControls([featureInfos, getFeatures]);
-  getFeatures.activate();
+
   $("#btn-features").click(function(e){
     if(featureInfos.active) {
       featureInfos.deactivate();
@@ -109,5 +121,25 @@ function addSharedControlers() {
       $(".olMap").css("cursor", "crosshair");
     }
   });
+
+  // Affichage des sliders
+  $(".slider").slider({
+        value: 80,
+        orientation: "horizontal",
+        range: "min",
+        animate: true,
+        slide: function(event, ui) {
+          var layers = map.getLayersBy("uniqueID", this.id);
+          layers[0].setOpacity(ui.value/100);
+          $("."+this.id).slider("value", ui.value);
+        }
+  });
+
+  // Accordeon maison pour les sous categories
+  $('.right-menu h3').click(function() {
+      $(".childrens:visible").not($(this).next()).hide("slow");
+      $(this).next().slideToggle('slow');
+      return false;
+    }).next().hide();
 
 };

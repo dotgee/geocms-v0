@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  map =  new OpenLayers.Map( 'map', mapOptions ); // format.read(request.responseText, {map: mapOptions});
+  map =  new OpenLayers.Map( 'map', mapOptions );
   var fond_carto = new OpenLayers.Layer.WMS(
     "Fond Cartographique","http://geo.devel.dotgee.fr/geoserver/wms",
     {
@@ -34,6 +34,7 @@ $(document).ready(function() {
 
     addSharedControlers();
     map.zoomToMaxExtent();
+
     //choix des couches
     $.each(map.layers, function(i, layer){
       var class_name = '.'+layer.uniqueID;
@@ -45,9 +46,3 @@ $(document).ready(function() {
     $('#container').viewer('resizeChooser');
 
 });
-/*
-function uniq_identifier_from_layer(layer){
-  var name = layer.url+"_" +layer.params.LAYERS 
-  name = $.trim(name).replace(/[^A-Za-z0-9_]/g,'_');
-  return name;
-}*/

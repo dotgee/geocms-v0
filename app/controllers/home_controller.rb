@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @geo_context = GeoContext.find_by_id(AppConfig.home_context_id) || GeoContext.last
+    render :template => "geo_contexts/show"
   end
 end
