@@ -22,6 +22,12 @@ class LayersController < ApplicationController
     end
   end
 
+  # GET /layers/print
+  def print
+    @wmc = params[:wmc]
+    render :layout => 'print_layout'
+  end
+
   # GET /layers/new
   # GET /layers/new.json
   def new

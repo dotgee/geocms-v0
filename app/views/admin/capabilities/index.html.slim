@@ -1,6 +1,7 @@
 - content_for :javascripts do
   = javascript_include_tag "jquery/jquery.tablesorter.min.js"
   = javascript_include_tag :capabilities
+h1 Capabilities
 .no_visualisor
   .breadcrumb
     = simple_form_for( :server, :builder => SimpleBootstrapFormBuilder) do |f|
@@ -14,7 +15,7 @@
         p Aucune couche disponible
     - else
       - @layers.sort_by!{|l| l.title.downcase}
-      = simple_form_for(:import, :url => import_capabilities_path, :builder => SimpleBootstrapFormBuilder) do |f|
+      = simple_form_for(:import, :url => import_admin_capabilities_path, :builder => SimpleBootstrapFormBuilder) do |f|
         = f.input "server_url", :as => :hidden, :input_html => { :value => params[:server][:url] }
         table.zebra-striped.sortable
           thead

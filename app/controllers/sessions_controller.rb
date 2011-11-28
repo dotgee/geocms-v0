@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     user = User.where(:provider => auth['provider'], 
                       :uid => auth['uid']).first || User.create_with_omniauth(auth)
     session[:user_id] = user.id
+    cookies[:auth] = { :value => @user_session.user.single_access_token, :expires => 336.days.from_now }
     redirect_to root_url, :notice => 'Signed in!'
   end
 

@@ -5,7 +5,7 @@
     = stylesheet_link_tag    "application"
     = stylesheet_link_tag    "gipbe"
     = stylesheet_link_tag  controller_name
-
+    = stylesheet_link_tag 'admin/admin'
     = yield :stylesheets
     = javascript_include_tag "application"
     = yield :javascripts
@@ -17,6 +17,8 @@
     #global.project-header
       = render :partial => "shared/gipbe/header"
       .breaker
+      -# if current_user
+      =# render :partial => "shared/admin_menu"
       #content.chosen_thematic
         = yield
       #footer

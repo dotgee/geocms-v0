@@ -316,3 +316,90 @@ div#make-link-content
       float: right
     p
       line-height: 18px
+
+
+// STYLE POUR LE MENU DE DROITE ET LEGENDE
+
+.fg-toolbar
+  margin: 0
+
+#category_chooser 
+  padding: 10px 10px 10px 16px
+  h2
+    background: none #0080cc
+    line-height: 20px
+    margin-bottom: 10px
+    color: #fff
+    padding: 0 15px
+  h3
+    -moz-border-radius: 0
+    -webkit-border-radius: 0
+    -khtml-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+    background: none 
+    color: #000
+    border: 0 none
+    margin: 0 0 6px -16px
+    &:hover
+      background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 0 0 #0080cc
+
+    .border-container
+      height: 23px
+    a
+      color: #000
+      display: block
+      height: 18px
+      line-height: 18px
+      padding: 0 0 0 18px
+      &:hover 
+        background: transparent
+        text-decoration: none
+        color: #fff
+    .selected
+      background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 0 0 #0080cc
+
+  .right-menu
+    margin-bottom: 10px
+    .childrens
+      h4
+        -moz-border-radius: 0
+        -webkit-border-radius: 0
+        -o-border-radius: 0
+        -khtml-border-radius: 0
+        border-radius: 0
+        background: none transparent
+        border: 0 none
+        line-height: 1.1em
+        height: 15px
+        a
+          font-size: 0.8em
+          padding: 0 0 0 1.8em
+          &:hover
+            text-decoration: underline
+
+  .category_description
+    -moz-border-radius: 0
+    -webkit-border-radius: 0
+    -khtml-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+    border: 1px solid #999
+    background: none #fff
+    overflow: auto
+
+  .ui-widget-header
+    border: 0 none
+    background: none #0080cc
+    position: relative
+    .ui-icon
+      cursor: pointer
+      position: absolute
+      top: 5px
+      right: 10px
+    .title-header
+      padding: 5px
+      color: #fff
+
+  .ui-icon
+    display: none

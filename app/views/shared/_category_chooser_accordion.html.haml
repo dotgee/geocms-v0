@@ -4,9 +4,7 @@
 .right-menu
   - Taxon.find('themes').children.each do |t|
     %h3
-      .border-container
-        .border
-          = link_to t.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
+      = link_to t.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
     .childrens
       - t.children.each do |c|
         %h4

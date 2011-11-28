@@ -14,4 +14,8 @@ class GeoContext < ActiveRecord::Base
     return nil unless File.exists?(wmc.path)
     return File.read(wmc.path)
   end
+
+  def title 
+    name
+  end
 end

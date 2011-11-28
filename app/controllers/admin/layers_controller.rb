@@ -1,4 +1,4 @@
-class Admin::LayersController < ApplicationController
+class Admin::LayersController < CmsAdmin::BaseController
   before_filter :authenticate_user!
 
   def from_geoserver

@@ -1,8 +1,4 @@
-- title do
-  %h1 
-    = @layer.category_list
 = render :partial => 'shared/content_toolbar'
-
 = map_js
 
 = content_for :javascripts do
@@ -14,10 +10,8 @@
   = javascript_include_tag "sharedControlers"
 
 #category_chooser
-  %h2
-    L&eacute;gende
-  = render :partial => "shared/legend", :locals => { :layer => @layer }
   = render :partial => "shared/category_chooser_accordion"              
+  = render :partial => "shared/legend", :locals => { :layer => @layer }
 #map
   .map-infos
     .slider-container

@@ -1,0 +1,11 @@
+#map
+= content_for :javascripts do
+  // @todo retrouver l'inclusion de openLayersEssentials
+  = javascript_include_tag "openLayersEssentials"
+  :javascript
+    $(document).ready(function(){
+      $.get("/geo_contexts/wmc?key=#{@wmc}",
+            function(data){
+              map = format.read(data, {map: mapOptions});
+            });
+    });

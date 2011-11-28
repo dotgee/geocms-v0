@@ -1,32 +1,25 @@
-- title do
-  %h1 
-    - if @geo_context.category.nil?
-      = Category.root.name
-    - else
-      = @geo_context.category.self_and_ancestors.map(&:name).join(' » '.html_safe).html_safe
 = map_js
 = render :partial => 'shared/content_toolbar'
-%div
-  #category_chooser
-    = render :partial => "shared/category_chooser_accordion"              
-    = render :partial => "shared/legend", :locals => { :layer => @geo_context }
-  =# render :partial => "shared/category_chooser_modal"              
-  #map
-    .map-infos
-      .slider-container
-        .info-slider.up
-      .modal-header
-        %h3
-          = @geo_context.name
-      .modal-body
-        %b.label.success Description :
-        = @geo_context.description 
-        .clear
-        %b.label.success WMC :
-        = link_to @geo_context.wmc_name, @geo_context.wmc.url, :only_path => false, :id => "wmc"
-        .clear
-        %b.label.success Mots cl&eacute;s :
-        = @geo_context.keywords
+#category_chooser
+  = render :partial => "shared/category_chooser_accordion"              
+  =# render :partial => "shared/legend", :locals => { :layer => @geo_context }
+=# render :partial => "shared/category_chooser_modal"              
+#map
+  .map-infos
+    .slider-container
+      .info-slider.up
+    .modal-header
+      %h3
+        = @geo_context.name
+    .modal-body
+      %b.label.success Description :
+      = @geo_context.description 
+      .clear
+      %b.label.success WMC :
+      = link_to @geo_context.wmc_name, @geo_context.wmc.url, :only_path => false, :id => "wmc"
+      .clear
+      %b.label.success Mots cl&eacute;s :
+      = @geo_context.keywords
 
 =# render :partial => "shared/category_chooser_modal"              
 = javascript_include_tag "mapInit"

@@ -42,11 +42,26 @@ function addSharedControlers() {
 
   $('#print_btn').click(function(e){
     e.preventDefault();
-    console.log(map);
-    var format = new OpenLayers.Format.WMC();
-    console.log(format.write(map));
+    $.ajax({
+      url: "/geo_contexts/post",
+      data: "wmc="+format.write(map),
+      type: "POST",
+      success: function(data){
+            window.location = "/layers/print?wmc="+data;
+      }
+    });
+  });
 
-    $('<iframe src="/print/layers"/>').dialog();
+  $('#mapfishapp_btn').click(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: "/geo_contexts/post",
+      data: "wmc="+format.write(map),
+      type: "POST",
+      success: function(data){
+            window.location = "http://geobretagne.fr/mapfishapp/?wmc=http://geocms.devel.dotgee.fr/gc/"+data;
+      }
+    });
   });
 
   /* Affichage des coordonees */
