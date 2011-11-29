@@ -39,7 +39,6 @@ $.widget("ui.viewer", {
                                                });
           map.addLayer(layer);
 
-console.log(layer);
           // Generates the legend for the new layer
           var legende = $("#legende div:first-child").clone();
           legende.attr("id", layer.uniqueID+"_legende");

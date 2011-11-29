@@ -6,7 +6,7 @@ $.widget("ui.categorySlider", {
     var self = this;
     self._intializePosition(self.options.position);
     self.element.addClass('ui-widget ui-helper-reset ui-accordion ui-accordion-icons');
-    self.element.find('h3').sliderLink({ 
+    self.element.find('.childrens h4').sliderLink({ 
                         panelHeight: self.element.parent().height(), 
                         position: self.options.position,
                         parent: self.element 
@@ -29,7 +29,7 @@ $.widget("ui.categorySlider", {
   },
   willShow: function(sliderLink){
     var self = this;
-    self.element.find('h3').not(sliderLink).each(function(i,el){
+    self.element.find('.childrens h4').not(sliderLink).each(function(i,el){
       $(el).sliderLink('closePanel'); 
     });
   },
@@ -65,7 +65,7 @@ $.widget("ui.sliderPanel", {
         left_place = (- self.element.outerWidth());
     }
     else{
-      left_place = self.element.prev('h3').outerWidth();
+      left_place = self.element.prev('.childrens h4').outerWidth();
     }
     return left_place;
   
@@ -95,7 +95,7 @@ $.widget("ui.sliderPanel", {
   _bindEvents: function(){
     var self = this;
     self.element.find('.ui-icon-circle-close').click(function(e){
-      $(self.element.prev('h3')).sliderLink('closePanel');
+      $(self.element.prev('.childrens h4')).sliderLink('closePanel');
     });
   },
   destroy: function() {

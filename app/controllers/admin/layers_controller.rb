@@ -2,8 +2,16 @@ class Admin::LayersController < ApplicationController
   before_filter :authenticate_user!
 
   def from_geoserver
-    render :json => {"ok" => "parfait"}
+    url = params[:wms_url]
+    name = params[:name]
+    layer = WMS::Client.new(url).layers.select{|l| name == l.name}.first
+    unless layer.nil?
+      render :json =>  layer 
+    else
+      render :json => {"error" => "Aucune carte trouv&eacute;e"}
+    end
   end
+
   def from_geonetwork
     begin
       client =  Csw::Client.from_geonetwork_url(params[:url])

@@ -5,9 +5,24 @@ class Layer < ActiveRecord::Base
 
   before_validation :set_title_if_empty
 
-  has_many :assigned_layer_taxons
-  has_many :themes, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.theme_id }
+  has_many :assigned_layer_taxons, :dependent => :destroy
+  has_many :themes, :source => :taxon, :through => :assigned_layer_taxons
   has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
+
+  searchable do 
+    text :description
+    text :title
+    integer :theme_ids, :multiple => true
+    text :tag_text, :more_like_this => true do
+      tags.compact.map(&:name).join(' ')
+    end
+    text :themes_name do
+      themes.map(&:name)
+    end
+    text :filters_name do
+      filters.map(&:name)
+    end
+  end
 
 
   def set_title_if_empty

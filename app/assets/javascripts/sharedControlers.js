@@ -38,6 +38,37 @@ function addSharedControlers() {
     map.zoomToMaxExtent();  
   });
   
+  /* Retour a la position initiale */
+
+  $('#print_btn').click(function(e){
+    e.preventDefault();
+    try {
+      wmc = format.write(map);
+    } catch(e) {
+      alert("Impossible de creer le WMC");
+    }
+    $.ajax({
+      url: "/geo_contexts/post",
+      data: "wmc="+format.write(map),
+      type: "POST",
+      success: function(data){
+            window.location = "/layers/print?wmc="+data;
+      }
+    });
+  });
+
+  $('#mapfishapp_btn').click(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: "/geo_contexts/post",
+      data: "wmc="+format.write(map),
+      type: "POST",
+      success: function(data){
+            window.location = "http://geobretagne.fr/mapfishapp/?wmc=http://geocms.devel.dotgee.fr/gc/"+data;
+      }
+    });
+  });
+
   /* Affichage des coordonees */
 
   map.events.register("mousemove", map, function(e) {
@@ -50,6 +81,20 @@ function addSharedControlers() {
 
   $("#projection").text(map.getProjection());
 
+  // Ajout de la legende initiale
+  var data = {'layers' : map.layers,
+              'url' : 'http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER='}
+      directive = {
+        'div' : {
+          'layer<-layers' : {
+            '@id' : 'layer.name',
+            'p'    : 'layer.name',
+            'img@src' : '#{url}#{layer.name}'
+          }
+        }
+      }
+  $("#legende").render(data, directive); 
+
   /* GetFeaturesInfo */
 
   // Highlight de la carte
@@ -58,7 +103,7 @@ function addSharedControlers() {
           });
   map.addLayer(select);
   getFeatures = new OpenLayers.Control.GetFeature({
-                protocol: OpenLayers.Protocol.WFS.fromWMSLayer(layer),
+                protocol: OpenLayers.Protocol.WFS.fromWMSLayer(map.layers[0]),
                 box: false,
                 hover: false,
                 multipleKey: "shiftKey",
@@ -75,7 +120,7 @@ function addSharedControlers() {
   // Affichage de la popup
   var popup = null;
   var featureInfos = new OpenLayers.Control.WMSGetFeatureInfo({
-    url: layer.url, 
+    url: map.layers[0].url, 
     queryVisible: true,
     eventListeners: {
       getfeatureinfo: function(event) {
@@ -97,7 +142,7 @@ function addSharedControlers() {
 
   // Activation des commandes au click bouton
   map.addControls([featureInfos, getFeatures]);
-  getFeatures.activate();
+
   $("#btn-features").click(function(e){
     if(featureInfos.active) {
       featureInfos.deactivate();
@@ -109,5 +154,25 @@ function addSharedControlers() {
       $(".olMap").css("cursor", "crosshair");
     }
   });
+
+  // Affichage des sliders
+  $(".slider").slider({
+        value: 80,
+        orientation: "horizontal",
+        range: "min",
+        animate: true,
+        slide: function(event, ui) {
+          var layers = map.getLayersBy("uniqueID", this.id);
+          layers[0].setOpacity(ui.value/100);
+          $("."+this.id).slider("value", ui.value);
+        }
+  });
+
+  // Accordeon maison pour les sous categories
+  $('.right-menu h3').click(function() {
+      $(".childrens:visible").not($(this).next()).hide("slow");
+      $(this).next().slideToggle('slow');
+      return false;
+    }).next().hide();
 
 };

@@ -1,9 +1,11 @@
 development:
   theme_id: 22
   filter_id: 23
+  home_context_id: 84
 
 test:
 
 production:
-  theme_id: 1
   filter_id: 20
+  theme_id: "themes"
+  home_context_id: 84

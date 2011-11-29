@@ -61,7 +61,7 @@ class SimpleBootstrapFormBuilder < SimpleForm::FormBuilder
     options[:wrapper_html] ||= {}
     options[:wrapper_html].merge! :class => 'clearfix'
     options[:input_html] ||= {}
-    options[:input_html].merge! :class => "span8"
+    options[:input_html].reverse_merge! :class => "span8"
     super attribute_name, options
   end
 

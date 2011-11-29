@@ -1,5 +1,11 @@
 module Georesource
   module Tools
+    DEFAULT_GEOSERVER_URL = "http://geo.gipbe.dotgee.fr/geoserver"
+    USER_CREDENTIAL = "atanguy:changeme"
+    def publish_layers(worskpace)
+
+    end 
+
     def from_params(params, key ="uuid")
       new_params = CGI::parse(params)
       id = new_params.detect{|k,v| k == key }

@@ -1,0 +1,18 @@
+#map
+= content_for :javascripts do
+  // @todo retrouver l'inclusion de openLayersEssentials
+  = javascript_include_tag "openLayersEssentials"
+  :javascript
+    $(document).ready(function(){
+      $.get("/gc/#{@wmc}",
+            function(data){
+              try {
+                map = format.read(data, {map: mapOptions});
+                console.log(format);
+                console.log(map);
+                console.log(data);
+              } catch(e) {
+                alert(e);
+              }
+            });
+    });

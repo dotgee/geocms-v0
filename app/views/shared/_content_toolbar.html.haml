@@ -24,10 +24,19 @@
       .ui-icon.ui-icon-info
       %span
     - twipsy = {:"data-original-title" => "Revenir &agrave; la position initiale".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text full_screen_btn", :id => "position_btn"}.merge(twipsy) do
+    = link_to  '#', { :class => "ui-icon-with-text", :id => "position_btn"}.merge(twipsy) do
       .ui-icon.ui-icon-pin-s
+      %span
+    - twipsy = {:"data-original-title" => "Imprimer la carte".html_safe, :rel => "popover" }
+    = link_to  '#', { :class => "ui-icon-with-text", :id => "print_btn"}.merge(twipsy) do
+      .ui-icon.ui-icon-print
+      %span
+    - twipsy = {:"data-original-title" => "Voir sur mapfishapp".html_safe, :rel => "popover" }
+    = link_to  '#', { :class => "ui-icon-with-text", :id => "mapfishapp_btn"}.merge(twipsy) do
+      .ui-icon.ui-icon-wrench
       %span
     %span#output_measure.infos
     %span#projection.infos
     %span#coords.infos
+    %input#saved{:type => "hidden"}
     .ui-helper-clearfix

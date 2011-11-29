@@ -48,6 +48,7 @@ module Csw
 
     def parse_response(response)
       doc = Nokogiri::XML(response)
+      puts response
       doc.remove_namespaces!
       doc
 
@@ -63,6 +64,11 @@ module Csw
         attributes["name"] = wms.attr('name') if wms 
         attributes["wms_url"] = wms.text if wms 
         attributes["source"] = record.xpath('./source').map{|el| el.text}.first
+        begin
+        attributes["tag_list"] = record.xpath('./subject').map(&:text).select{|k| !k.blank?}.join(', ')
+        rescue => e
+          puts e.inspect
+        end
       end
       return attributes.select{|k,v| !v.blank?}
 

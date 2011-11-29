@@ -10,10 +10,11 @@ $(document).ready(function() {
     map.addControls([zoom]);
     map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
     map.zoomTo(9);
-    //map.addControl(new OpenLayers.Control.PanZoomBar());
     $('#container').viewer('resizeChooser');
+    map.layers.forEach(function(y) {
+      y.uniqueID = y.name.replace(":", "_");
+    });
     addSharedControlers();
-
   }
 
   function onFailure(request){

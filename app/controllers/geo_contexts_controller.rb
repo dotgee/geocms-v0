@@ -2,6 +2,22 @@ class GeoContextsController < ApplicationController
   before_filter :set_layout
   load_and_authorize_resource
 
+  def permalink
+    @wmc = REDIS.get(params[:key])
+    render :xml => @wmc
+  end
+
+  def post
+    if(session[:wmc] == nil)
+      uuid = UUID.new
+      id = uuid.generate
+    else
+      id = session[:wmc]
+    end
+    REDIS.set(id, params[:wmc])
+    render :text => id
+  end  
+
   def permalink_map
     @geo_context = GeoContext.find(params[:id])
     render :layout => false

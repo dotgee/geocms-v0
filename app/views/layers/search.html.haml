@@ -1,0 +1,14 @@
+.no_visualisor
+  .breadcrumb
+    = render :partial => "search_form"
+  = paginate @results
+  %h4
+    %span.count= pluralize(@results.total, 'result')
+    %span.pages Page #{@results.hits.current_page} of #{@results.hits.total_pages} 
+  %table
+    %tr
+      %th Name
+      %th{ :colspan => 2 }
+        Infos
+    - @results.each_hit_with_result do |hit, layer|
+      = render :partial => "layer_row", :locals => { :layer => layer }

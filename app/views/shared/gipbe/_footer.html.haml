@@ -4,21 +4,16 @@
 
   %ul.footerMenuTop
     %li.first
-      = link_to "Plan du site", "#"
-    %li
       = link_to "Infos L&eacute;gales".html_safe, "#"
     %li
-      = link_to "Contactez-nous", "#"
+      = link_to "Contact", "#"
     %li
-      = link_to "Trouver l'information", "#"
-    %li
-      = link_to "Nos flux RSS", "#"
-    %li
-      = link_to "Se connecter", "#"
+      = link_to "Flux RSS", "#"
 
-  %ul.footerMenuBottom
-    %li.first
-      = link_to "Conf&eacute;rence".html_safe, "#"
+  - if false
+    %ul.footerMenuBottom
+      %li.first
+        = link_to "Conf&eacute;rence".html_safe, "#"
   .credits
     .rte
       .object-right
