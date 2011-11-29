@@ -5,5 +5,5 @@ development:
 test:
 
 production:
-  theme_id: 22
-  filter_id: 23
+  theme_id: 1
+  filter_id: 20
