@@ -36,6 +36,10 @@
             b
               'Informations :
             = truncate( layer.description, :length => 150)
+          p
+            b
+              'Mots cl&eacute;s :
+            = layer.tag_list
   br
   .actions
     = link_to t(:new_layer), new_layer_path, :class => 'btn primary large'

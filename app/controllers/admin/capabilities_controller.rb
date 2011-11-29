@@ -1,6 +1,8 @@
 module Admin
-  class CapabilitiesController < CmsAdmin::BaseController
+  class CapabilitiesController < ApplicationController
+    before_filter :authenticate_user!
     DEFAULT_GEOSERVER = "http://geobretagne.fr/geoserver/wms"
+
     #DEFAULT_GEOSERVER = "http://geo.devel.dotgee.fr/geoserver/wms"
     def index
       if request.get?
@@ -17,25 +19,26 @@ module Admin
 
 
     def generate_layers
-      
-      layers =  WMS::Client.new(DEFAULT_GEOSERVER).layers
+      geo_server = params[:geo_server_url] || DEFAULT_GEOSERVER
+      layers =  WMS::Client.new(geo_server).layers
       layers.map do  |layer|
-        conditions = { :wms_url => DEFAULT_GEOSERVER,
-                       :name => layer.name }
-         new_layer = Layer.where( conditions).first
-         new_layer = Layer.new({
-            :title => layer.title,
-            :description => layer.title,
-            :metadata_url => layer.metadata_url
-          }.merge(conditions)) if new_layer.nil?
-        new_layer.save
+        create_layer_from_geoserver(layer, geo_server)
       end
       render :json => layers
     end
     
     private
     def create_layer_from_geoserver(layer_infos, server_url)
-
+        conditions = { :wms_url => server_url,
+                       :name => layer_infos.name }
+         new_layer = Layer.where( conditions).first
+         new_layer = Layer.new({
+            :title => layer_infos.title,
+            :description => layer_infos.title,
+            :tag_list => layer_infos.tag_list,
+            :metadata_url => layer_infos.metadata_url
+          }.merge(conditions)) if new_layer.nil?
+        new_layer.save
     end
   end
 end

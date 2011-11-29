@@ -26,7 +26,6 @@ gem "devise", ">= 1.4.5"
 gem "rails-footnotes", ">= 3.7.5", :group => :development
 gem "jammit"
 gem "omniauth", ">= 0.3.0.rc3"
-gem "redis"
 gem "settingslogic"
 #gem "rails_admin", :path => "vendor/git/rails_admin" # :git => "git://github.com/sferik/rails_admin.git"
 gem 'acts-as-taggable-on', '~>2.1.0'
@@ -41,5 +40,14 @@ gem 'nestful'
 gem 'cancan'
 gem 'kaminari'
 
-gem 'comfortable_mexican_sofa' #cms engine
+#gem 'comfortable_mexican_sofa' #cms engine
 gem 'slim' 
+
+gem 'redis', "~> 2.2.0"
+gem "uuid", "~> 2.3.4"
+gem 'activeadmin'
+gem "meta_search",    '>= 1.1.0.pre'
+#recherche solR
+gem "sunspot"
+gem "sunspot_solr"
+gem "sunspot_rails"

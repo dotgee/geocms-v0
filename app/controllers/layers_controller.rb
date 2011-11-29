@@ -3,7 +3,7 @@ class LayersController < ApplicationController
   # GET /layers
   # GET /layers.json
   def index
-    @layers = Layer.page(page).order("created_at desc")
+    @layers = Layer.includes([:themes, :taggings]).page(page).order("created_at desc")
 
     respond_to do |format|
       format.html # index.html.erb

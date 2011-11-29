@@ -6,6 +6,7 @@ development:
 test:
 
 production:
-  theme_id: 22
+  theme_id: "themes"
   filter_id: 23
   home_context_id: 84
+

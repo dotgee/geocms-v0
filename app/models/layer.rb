@@ -9,6 +9,16 @@ class Layer < ActiveRecord::Base
   has_many :themes, :source => :taxon, :through => :assigned_layer_taxons
   has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
 
+  searchable do 
+    text :description, :title
+    text :themes_name do
+      themes.map(&:name)
+    end
+    text :filters_name do
+      filters.map(&:name)
+    end
+  end
+
 
   def set_title_if_empty
     if title.blank?

@@ -48,7 +48,7 @@ module WMS
   end
 
   class Layer
-    attr_accessor :title, :name, :wms_url, :metadata_url, :legend, :description
+    attr_accessor :title, :name, :wms_url, :metadata_url, :legend, :description, :tag_list
     class << self
       def new_default(options = {})
       
@@ -61,6 +61,7 @@ module WMS
         description = xml.xpath('./xmlns:Abstract').text
         metadata_url = xml.xpath('./xmlns:MetadataURL/xmlns:OnlineResource').first
         legend = xml.xpath('.//xmlns:LegendURL').first
+        layer.tag_list = xml.xpath('./xmlns:KeywordList/xmlns:Keyword').map(&:text).select{|t| !t.blank? }.join(', ')
         layer.title = title
         layer.name = name 
         layer.metadata_url = metadata_url.nil? ? nil : metadata_url.attr('href')

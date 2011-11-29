@@ -30,6 +30,7 @@
     = f.input :description
     = f.association :themes, :class => "multiselect", :label => "Cat&eacute;gories"
     = f.association :filters, :class => "multiselect", :label => "Filtres"
+    = f.input :tag_list
     .input
       = f.submit 'Valider', :class => 'btn primary'
 
