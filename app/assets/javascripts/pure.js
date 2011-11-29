@@ -69,12 +69,12 @@ $p.core = function(sel, ctxt, plugins){
 
 	// error utility
 	function error(e){
-		alert(e);
-		if(typeof console !== 'undefined'){
-			console.log(e);
-			debugger;
-		}
-		throw('pure error: ' + e);
+		//alert(e);
+		//if(typeof console !== 'undefined'){
+		//	console.log(e);
+		//	debugger;
+		//}
+		//throw('pure error: ' + e);
 	}
 	
 	//return a new instance of plugins
