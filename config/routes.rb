@@ -27,6 +27,7 @@ Geocms::Application.routes.draw do
   resources :layers do
     collection do
       get 'print'
+      match "search"
     end
   end
 

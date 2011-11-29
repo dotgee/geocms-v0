@@ -1,1 +1,1 @@
-Sunspot.config.solr.url = 'http://localhost:9818/gipbe-dev'
+Sunspot.config.solr.url = 'http://localhost:8180/solr-geocms-dev'

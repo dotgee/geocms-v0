@@ -4,8 +4,15 @@
   = javascript_include_tag "openLayersEssentials"
   :javascript
     $(document).ready(function(){
-      $.get("/geo_contexts/wmc?key=#{@wmc}",
+      $.get("/gc/#{@wmc}",
             function(data){
-              map = format.read(data, {map: mapOptions});
+              try {
+                map = format.read(data, {map: mapOptions});
+                console.log(format);
+                console.log(map);
+                console.log(data);
+              } catch(e) {
+                alert(e);
+              }
             });
     });

@@ -10,7 +10,12 @@ class Layer < ActiveRecord::Base
   has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
 
   searchable do 
-    text :description, :title
+    text :description
+    text :title
+    integer :theme_ids, :multiple => true
+    text :tag_text, :more_like_this => true do
+      tags.compact.map(&:name).join(' ')
+    end
     text :themes_name do
       themes.map(&:name)
     end

@@ -39,6 +39,7 @@ gem 'simple_form'
 gem 'nestful'
 gem 'cancan'
 gem 'kaminari'
+gem 'sunspot_with_kaminari'
 
 #gem 'comfortable_mexican_sofa' #cms engine
 gem 'slim' 

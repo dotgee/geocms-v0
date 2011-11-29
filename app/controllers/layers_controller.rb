@@ -1,10 +1,22 @@
 class LayersController < ApplicationController
   before_filter :set_layout
+  before_filter :build_query, :only => :search
+
+  def search
+    @results = Sunspot.search Layer do
+      paginate :page => page, :per_page => 2
+      keywords params[:search][:q] do 
+        highlight :title, :description
+      end
+      with(:theme_ids).all_of params[:theme_ids].map(&:to_i) if params[:theme_ids]
+      facet :theme_ids
+    end
+  end
   # GET /layers
   # GET /layers.json
   def index
-    @layers = Layer.includes([:themes, :taggings]).page(page).order("created_at desc")
 
+    @layers = Layer.includes([:themes, :taggings]).page(page).order("created_at desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @layers }
@@ -92,5 +104,15 @@ class LayersController < ApplicationController
     layout_name = "application"
     layout_name = "gipbe"
     self.class.layout(layout_name)
+  end
+
+  def build_query
+    unless params[:search].blank? || params[:search][:q].blank?
+      
+
+    else
+      @layers = Layer.includes([:themes, :taggings]).page(page).order("created_at desc")
+      return render :action => :index
+    end
   end
 end

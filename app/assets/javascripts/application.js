@@ -16,6 +16,7 @@
 //= require viewer
 //= require layerChooser
 //= require widgets/categorySlider
+//= require pure
 
 var fullscreen = false;
 
@@ -31,8 +32,35 @@ $(document).ready(function(){
     var parent = $(this).parent();
     parent.slideUp( function(){ parent.remove(); });
   });
+  $('.hidable_label').hide_label();
 });
 
+  $.fn.hide_label = function(){
+    var self = $(this);
+    var input = self.next('.input').find('input').first();
+    console.log(input);
+    if ($.trim(input.val()) == '') { 
+      self.css('visibility','').show();
+    }else{
+      self.css('visibility','hidden').hide();
+    }
+    self.click(function(e){ 
+                input.focus();
+    });
+    input.focus(function() { 
+                  self.css('visibility','hidden').hide();
+           }).change(function(){
+               $(this).val($.trim($(this).val()));
+                if ($(this).val() == '') {
+                  self.css('visibility','').show();
+                }
+           }).blur(function() { 
+                $(this).val($.trim($(this).val())); 
+                if ($(this).val() == '') { 
+                  self.css('visibility','').show();
+                } 
+              });
+  }
 $.fn.spin = function(opts) {
   this.each(function() {
     var $this = $(this), data = $this.data();

@@ -42,6 +42,11 @@ function addSharedControlers() {
 
   $('#print_btn').click(function(e){
     e.preventDefault();
+    try {
+      wmc = format.write(map);
+    } catch(e) {
+      alert("Impossible de creer le WMC");
+    }
     $.ajax({
       url: "/geo_contexts/post",
       data: "wmc="+format.write(map),
@@ -76,6 +81,20 @@ function addSharedControlers() {
 
   $("#projection").text(map.getProjection());
 
+  // Ajout de la legende initiale
+  var data = {'layers' : map.layers,
+              'url' : 'http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER='}
+      directive = {
+        'div' : {
+          'layer<-layers' : {
+            '@id' : 'layer.name',
+            'p'    : 'layer.name',
+            'img@src' : '#{url}#{layer.name}'
+          }
+        }
+      }
+  $("#legende").render(data, directive); 
+
   /* GetFeaturesInfo */
 
   // Highlight de la carte
@@ -84,7 +103,7 @@ function addSharedControlers() {
           });
   map.addLayer(select);
   getFeatures = new OpenLayers.Control.GetFeature({
-                protocol: OpenLayers.Protocol.WFS.fromWMSLayer(layer),
+                protocol: OpenLayers.Protocol.WFS.fromWMSLayer(map.layers[0]),
                 box: false,
                 hover: false,
                 multipleKey: "shiftKey",
@@ -92,7 +111,6 @@ function addSharedControlers() {
             });  
   
   getFeatures.events.register("featureselected", this, function(e) {
-      console.log(getFeatures);
       select.addFeatures([e.feature]);
   });
   getFeatures.events.register("featureunselected", this, function(e) {
@@ -102,7 +120,7 @@ function addSharedControlers() {
   // Affichage de la popup
   var popup = null;
   var featureInfos = new OpenLayers.Control.WMSGetFeatureInfo({
-    url: layer.url, 
+    url: map.layers[0].url, 
     queryVisible: true,
     eventListeners: {
       getfeatureinfo: function(event) {

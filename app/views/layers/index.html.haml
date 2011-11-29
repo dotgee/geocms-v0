@@ -1,45 +1,14 @@
-- title do 
-  %h1 Liste des couches
-
 .no_visualisor
-  = paginate @layers
-  %table
+  .breadcrumb
+    = render :partial => "search_form"
+  .row
+    .pull-right
+      = paginate @layers
+
+  %table.zebra-striped
     %tr
       %th Name
-      %th Infos
-      %th Origine
+      %th{:colspan => 2} Infos
 
     - @layers.each do |layer|
-      %tr
-        %td
-          .name
-            = layer.name
-          .row-actions
-            = link_to 'Voir', layer
-            \|
-            = link_to 'Modifier', edit_layer_path(layer)
-            \|
-            = link_to 'Supprimer', layer, :confirm => 'Are you sure?', :method => :delete
-        %td
-          %div
-            %b
-              WMS URL :
-            = truncate(layer.wms_url, :length => 50)
-          %div
-            %b
-              Metadata url :
-            = truncate(layer.metadata_url, :length => 50)
-            
-        %td
-          %p
-            %b
-              Cat&eacute;gories :
-            = layer.category_list
-          %p
-            %b
-              Informations :
-            = truncate( layer.description, :length => 150)
-
-  %br
-  .actions
-    = link_to t(:new_layer), new_layer_path, :class => 'btn primary large'
+      = render :partial => "layer_row", :locals => {:layer => layer }

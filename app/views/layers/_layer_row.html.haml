@@ -1,0 +1,34 @@
+%tr
+  %td
+    .name
+      = layer.name
+    .row-actions
+      = link_to 'Voir', layer
+      \|
+      = link_to 'Modifier', edit_layer_path(layer)
+      \|
+      = link_to 'Supprimer', layer, :confirm => 'Are you sure?', :method => :delete
+  %td
+    %div
+      %b
+        WMS URL :
+      = truncate(layer.wms_url, :length => 50)
+    %div
+      %b
+        Metadata url :
+      = truncate(layer.metadata_url, :length => 50)
+
+  %td
+    %p
+      %b
+        Cat&eacute;gories :
+      = layer.category_list
+    %p
+      %b
+        Informations :
+      = truncate( layer.description, :length => 150)
+    %p
+      %b
+        Mots cl&eacute;s :
+      = layer.tag_list
+
