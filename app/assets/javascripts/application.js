@@ -38,29 +38,33 @@ $(document).ready(function(){
   $.fn.hide_label = function(){
     var self = $(this);
     var input = self.next('.input').find('input').first();
-    console.log(input);
     if ($.trim(input.val()) == '') { 
-      self.css('visibility','').show();
+      self.css('visibility','');
+      self.show();
     }else{
-      self.css('visibility','hidden').hide();
+      self.css('visibility','hidden');
+      self.hide();
     }
     self.click(function(e){ 
                 input.focus();
     });
     input.focus(function() { 
-                  self.css('visibility','hidden').hide();
+                  self.css('visibility','hidden');
+                  self.hide();
            }).change(function(){
                $(this).val($.trim($(this).val()));
                 if ($(this).val() == '') {
-                  self.css('visibility','').show();
+                  self.css('visibility','');
+                  self.show();
                 }
            }).blur(function() { 
                 $(this).val($.trim($(this).val())); 
                 if ($(this).val() == '') { 
-                  self.css('visibility','').show();
+                  self.css('visibility','');
+                  self.show();
                 } 
               });
-  }
+  };
 $.fn.spin = function(opts) {
   this.each(function() {
     var $this = $(this), data = $this.data();
