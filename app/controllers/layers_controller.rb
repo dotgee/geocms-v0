@@ -4,7 +4,7 @@ class LayersController < ApplicationController
 
   def search
     @results = Sunspot.search Layer do
-      paginate :page => page, :per_page => 2
+      paginate :page => page, :per_page => 20
       keywords params[:search][:q] do 
         highlight :title, :description
       end
