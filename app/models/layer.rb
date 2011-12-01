@@ -9,6 +9,13 @@ class Layer < ActiveRecord::Base
   has_many :themes, :source => :taxon, :through => :assigned_layer_taxons
   has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
 
+  scope :recent, lambda { |nb|
+                    {
+                      :order => "created_at desc",
+                      :limit => nb 
+                    }                
+                  }
+
   searchable do 
     text :description
     text :title
@@ -23,8 +30,7 @@ class Layer < ActiveRecord::Base
       filters.map(&:name)
     end
   end
-
-
+  
   def set_title_if_empty
     if title.blank?
       title = name

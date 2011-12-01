@@ -4,6 +4,7 @@
   = f.input :description
   = f.input :wmc_name
   = f.input :keywords
+  = f.association :taxon
   = f.input :wmc
   .actions
     - if f.object.new_record?

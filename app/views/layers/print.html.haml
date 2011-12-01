@@ -1,6 +1,5 @@
 #map
 = content_for :javascripts do
-  // @todo retrouver l'inclusion de openLayersEssentials
   = javascript_include_tag "openLayersEssentials"
   :javascript
     $(document).ready(function(){
@@ -8,9 +7,11 @@
             function(data){
               try {
                 map = format.read(data, {map: mapOptions});
-                console.log(format);
                 console.log(map);
-                console.log(data);
+                map.removeControl(map.controls[0]);
+                map.removeControl(map.controls[0]);
+                map.removeControl(map.controls[0]);
+                console.log(map);
               } catch(e) {
                 alert(e);
               }

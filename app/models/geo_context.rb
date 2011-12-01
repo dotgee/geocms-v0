@@ -5,7 +5,7 @@ class GeoContext < ActiveRecord::Base
   friendly_id :name, :use => :slugged
   has_attached_file :wmc
 
-  belongs_to :category
+  belongs_to :taxon, :foreign_key => :category_id
 
   validates_presence_of :name
 

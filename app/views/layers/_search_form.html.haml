@@ -6,5 +6,7 @@
         = f.input :q, :input_html => { :class => "span6", :value => params[:search].nil? ? "" : params[:search][:q]},
                                          :label_html => { :class => "hidable_label"},
                                          :label => "Recherche"
-      .span3
+      %div
         = f.submit :search, :class => "btn primary"
+      .clear
+  .clear

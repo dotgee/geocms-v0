@@ -23,7 +23,7 @@ gem "haml-rails", ">= 0.3.4", :group => :development
 gem "sass"
 gem "nokogiri"
 gem "devise", ">= 1.4.5"
-gem "rails-footnotes", ">= 3.7.5", :group => :development
+#gem "rails-footnotes", ">= 3.7.5", :group => :development
 gem "jammit"
 gem "omniauth", ">= 0.3.0.rc3"
 gem "settingslogic"
