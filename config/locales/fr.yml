@@ -26,7 +26,6 @@ fr:
       previous: "&larr; Pr&eacute;c&eacute;dent"
       next: "Suivant &rarr;"
       truncate: "..."
-  #active admin 
   active_admin:
     dashboard: Tableau de bord
     dashboard_welcome:

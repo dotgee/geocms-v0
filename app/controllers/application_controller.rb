@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'gipbe'
-  before_filter :set_locale
   helper_method :correct_user?
 
   private
@@ -10,8 +9,6 @@ class ApplicationController < ActionController::Base
       return params[:page] || 1
     end
 
-    def set_locale
-    end
 
     def correct_user?
       @user = User.find(params[:id])
