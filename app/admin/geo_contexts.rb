@@ -1,4 +1,4 @@
-ActiveAdmin.register GeoContext, :as => "Projets" do
+ActiveAdmin.register GeoContext do
   filter :name, :label => "Nom context"
   filter :description
   filter :taxon, :label => "Classement"
