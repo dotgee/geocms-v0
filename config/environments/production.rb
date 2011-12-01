@@ -15,7 +15,7 @@ Geocms::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -50,7 +50,10 @@ Geocms::Application.configure do
                                   jquery/jquery.multiselect.css
                                   mapLayerInit.js
                                   *.js
-                                  *.css
+                                  gipbe.css
+                                  layers.css
+                                  active_admin.css 
+                                  active_admin.js
                                   )
 
   # Disable delivery errors, bad email addresses will be ignored
