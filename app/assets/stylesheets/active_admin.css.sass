@@ -1,9 +1,25 @@
 // Active Admin CSS Styles
 @import "active_admin/mixins"
 @import "active_admin/base"
-
 // To customize the Active Admin interfaces, add your
 // styles here:
+//@import "bootstrap"
+//@import "_bootstrap_hacks"
+
+.grippie
+  background: #EEEEEE image-url("grippie.png") no-repeat scroll center 2px
+  border-color: #DDDDDD
+  border-style: solid
+  border-width: 0pt 1px 1px
+  cursor: s-resize
+  height: 9px
+  overflow: hidden
+
+.resizable-textarea textarea
+  display: block
+  margin-bottom: 0pt
+  height: 120px
+
 .pagination
   ul
     list-style: none

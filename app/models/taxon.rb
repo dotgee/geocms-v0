@@ -8,4 +8,17 @@ class Taxon < ActiveRecord::Base
   has_many :layers, :through => :assigned_layer_taxons
 
   validates :name, :presence => true, :uniqueness => true
+
+  class << self
+    include CollectiveIdea::Acts::NestedSet::Helper
+    def themes_select
+      themes = Taxon.find("themes").descendants
+      nested_set_options(themes) {|i| "#{'-' * (i.level - 1)} #{i.name }"}
+    end
+
+    def filters_select
+      filters = Taxon.find("filtres").descendants
+      nested_set_options(filters) {|i| i.name }
+    end
+  end
 end

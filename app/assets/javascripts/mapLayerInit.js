@@ -8,8 +8,8 @@ $(document).ready(function() {
       format: 'image/png'
     },
     {
-      transitionEffect: 'resize',
       singleTile: true,
+      transitionEffect: 'resize',
       transparent: true,
       opacity: 0.5,
       displayInLayerSwitcher:false,
@@ -22,10 +22,11 @@ $(document).ready(function() {
                                    layerWmsUrl,
                                    {
                                        layers: layerNames,
-                                       transparent: true
+                                       transparent: true,
                                    }, {
                                        opacity: 0.8,
                                        singleTile: true,
+                                       transitionEffect: 'resize',
                                        uniqueID: layerNames.replace(":", "_")
                                    });
   

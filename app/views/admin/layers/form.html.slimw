@@ -1,6 +1,4 @@
 = multiselect_files
-- content_for :javascripts do
-  = javascript_include_tag 'admin/layers'
 = simple_form_for( @layer, :builder => SimpleBootstrapFormBuilder) do |f|
   ul.tabs
     li.active = link_to 'Geonetwork', '#geonetwork_tab'

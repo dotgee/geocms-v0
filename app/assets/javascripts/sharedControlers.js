@@ -122,12 +122,25 @@ function addSharedControlers() {
   var featureInfos = new OpenLayers.Control.WMSGetFeatureInfo({
     url: map.layers[0].url, 
     queryVisible: true,
+    infoFormat: "application/vnd.ogc.gml",
     eventListeners: {
       getfeatureinfo: function(event) {
+           console.log(event);
            if (popup != null) {
               popup.destroy();
            }
-           popup = new OpenLayers.Popup.FramedCloud(
+           if (event.features.length > 0) {
+            event.features.forEach(function(feature) {
+              console.log(feature.data);
+              keys = Object.keys(feature.data);
+              output = "";
+              for(var i=keys.length; i--;) {
+                output += keys[i]+": "+feature.data[keys[i]];
+                output += "<br/>"
+              }
+              dialog = $("<div title='Feature Info'>" + output + "</div>").dialog();
+            });
+           /* popup = new OpenLayers.Popup.FramedCloud(
                         "featuresPopup", 
                         map.getLonLatFromPixel(event.xy),
                         null,
@@ -135,7 +148,9 @@ function addSharedControlers() {
                         null,
                         true
                     );
-          map.addPopup(popup);
+            map.addPopup(popup);*/
+
+          }
         }
       }
     });
@@ -169,10 +184,14 @@ function addSharedControlers() {
   });
 
   // Accordeon maison pour les sous categories
-  $('.right-menu h3').click(function() {
-      $(".childrens:visible").not($(this).next()).hide("slow");
+  $('.right-menu h3').not('.parent').click(function(e) {
+      e.preventDefault();
+      $(".children:visible").not($(this).next()).hide("slow");
       $(this).next().slideToggle('slow');
       return false;
     }).next().hide();
 
+  $('.fg-buttonset a').click(function(){
+    $(this).removeClass("ui-state-hover").addClass("ui-state-hover");
+  });
 };

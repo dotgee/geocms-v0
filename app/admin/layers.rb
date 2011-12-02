@@ -1,4 +1,5 @@
 ActiveAdmin.register Layer do
+  form :partial => "admin/layers/form"
   filter :title
   filter :description
   filter :name

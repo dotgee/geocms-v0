@@ -1,5 +1,12 @@
 fr:
   activerecord:
+    attributes:
+      layer:
+        wms_url: Url WMS
+        name: Nom
+        title: Titre
+        filters: Filtres
+        tag_list: "Mots cl&eacute;s"
     models:
       layer: "Couche"
       geo_context: Projet

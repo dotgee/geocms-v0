@@ -6,7 +6,9 @@ $.widget("ui.categorySlider", {
     var self = this;
     self._intializePosition(self.options.position);
     self.element.addClass('ui-widget ui-helper-reset ui-accordion ui-accordion-icons');
-    self.element.find('.childrens h4').sliderLink({ 
+    var with_children = self.element.find('.parent')
+    //self.element.find('.childrens h4').sliderLink({ 
+    with_children.sliderLink({ 
                         panelHeight: self.element.parent().height(), 
                         position: self.options.position,
                         parent: self.element 
@@ -29,7 +31,7 @@ $.widget("ui.categorySlider", {
   },
   willShow: function(sliderLink){
     var self = this;
-    self.element.find('.childrens h4').not(sliderLink).each(function(i,el){
+    self.element.find('.parent').not(sliderLink).each(function(i,el){
       $(el).sliderLink('closePanel'); 
     });
   },
@@ -65,7 +67,7 @@ $.widget("ui.sliderPanel", {
         left_place = (- self.element.outerWidth());
     }
     else{
-      left_place = self.element.prev('.childrens h4').outerWidth();
+      left_place = self.element.prev('.parent').outerWidth();
     }
     return left_place;
   
@@ -95,7 +97,7 @@ $.widget("ui.sliderPanel", {
   _bindEvents: function(){
     var self = this;
     self.element.find('.ui-icon-circle-close').click(function(e){
-      $(self.element.prev('.childrens h4')).sliderLink('closePanel');
+      $(self.element.prev('.parent')).sliderLink('closePanel');
     });
   },
   destroy: function() {
@@ -113,6 +115,7 @@ $.widget("ui.sliderLink", {
     var self = this;
     self.parent = self.options.parent;
     self.visiblePanel = self.options.visiblePanel;
+    self.element.addClass('ui-sliderLink');
     self.panel = self.element.next('.category_description').sliderPanel({
                                                                 height: self.options.panelHeight,
                                                                 position: self.options.position,
@@ -148,7 +151,7 @@ $.widget("ui.sliderLink", {
         self._hidePanel();
       }else{
         $(self.parent).categorySlider('willShow',self.element);
-        self.element.queue(self._showPanel());
+        self._showPanel();
       }
     });
   },

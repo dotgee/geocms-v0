@@ -3,29 +3,17 @@
   
 .right-menu
   - Taxon.find('themes').children.each do |t|
-    %h3
+    - parent = t.children.any?
+    %h3{:class => parent ? "" : "parent" }
       = link_to t.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
-    .childrens
-      - t.children.each do |c|
-        %h4
-          = link_to c.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
-        .category_description
-          .category_layers
-            - c.layers.each_with_index do |l, i|
-              .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier, :layer_class => l.uniq_identifier, :"data-original-title" => l.description }
-                .selected_icon
-                .row.layer_selection
-                  .layer_img
-                    = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
-                  .layer_info
-                    %span
-                      %b.label.notice
-                        Nom :
-                      %span
-                        = l.title
-                    .clear
-                    %div{:class => "slider #{l.name.gsub(':','_')}", :id => l.name.gsub(':','_')}
-                  .clear
+    - if parent
+      .children
+        - t.children.each do |c|
+          %h4.parent
+            = link_to c.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
+          = render :partial => "shared/layers_list", :locals => { :layers => c.layers }  
+    - else
+      = render :partial => "shared/layers_list", :locals => { :layers => t.layers }  
 
 %h2 Filtres
 %h2 L&eacute;gende

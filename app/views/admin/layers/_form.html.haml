@@ -1,0 +1,12 @@
+= semantic_form_for [:admin, @layer] do |f|
+  = f.inputs :name => "Informations georchestra" do 
+    = f.input :wms_url, :as => :string
+    = f.input :name
+    = f.input :metadata_url, :as => :string
+
+  = f.inputs :name => "Informations couche" do 
+    = f.input :title
+    = f.input :description , :input_html => { :rows => 15}
+    = f.input :themes, :collection => Taxon.themes_select
+    = f.input :filters, :collection => Taxon.filters_select
+    = f.input :tag_list

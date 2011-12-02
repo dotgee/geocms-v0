@@ -1,0 +1,18 @@
+.category_description
+  .category_layers
+    - layers.each_with_index do |l, i|
+      .category_layer_container{ :layer_name => l.name, :wms_url => l.wms_url, :layer_title => l.title, :class => l.uniq_identifier, :layer_class => l.uniq_identifier, :"data-original-title" => l.description }
+        .selected_icon
+        .row.layer_selection
+          .layer_img
+            = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
+          .layer_info
+            %span
+              %b.label.notice
+                Nom :
+              %span
+                = l.title
+            .clear
+            %div{:class => "slider #{l.name.gsub(':','_')}", :id => l.name.gsub(':','_')}
+          .clear
+
