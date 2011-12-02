@@ -8,7 +8,11 @@ class Taxon < ActiveRecord::Base
   has_many :layers, :through => :assigned_layer_taxons
 
   validates :name, :presence => true, :uniqueness => true
-
+  
+  scope :only_themes, lambda {
+         where({:parent_id => Taxon.find('themes').id})
+    }
+  
   class << self
     include CollectiveIdea::Acts::NestedSet::Helper
     def themes_select
