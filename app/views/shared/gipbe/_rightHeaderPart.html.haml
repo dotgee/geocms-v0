@@ -31,7 +31,8 @@
       %span
         = link_to image_tag('gipbe/picto_help.jpg', :alt => "Aide"), '#', :title => "Aide"
   .breaker
-  .search
+  /
+    .search
     %form#search.niceform
       = search_field_tag 'Search', nil, :class => "search-field"
       = submit_tag 'Ok', :class => "submit"
