@@ -20,5 +20,20 @@ class Taxon < ActiveRecord::Base
       filters = Taxon.find("filtres").descendants
       nested_set_options(filters) {|i| i.name }
     end
+
+    def themes
+      Taxon.find("themes").children
+    end
+
+    def filtres
+      Taxon.find("filtres").children
+    end
+  end
+
+  def children_layers_length
+    descendants.includes(:layers).inject(0) do |n,child|
+      n += child.layers.length
+      n
+    end
   end
 end

@@ -324,7 +324,7 @@ div#make-link-content
   margin: 0
 
 #category_chooser 
-  padding: 10px 10px 10px 16px
+  padding: 10px 5px 10px 11px
   h2
     background: none #0080cc
     line-height: 20px
@@ -340,8 +340,8 @@ div#make-link-content
     background: none 
     color: #000
     border: 0 none
-    margin: 0 0 6px -16px
-    &:hover
+    margin: 0 0 6px -11px
+    &:hover, &.selected
       background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 0 0 #0080cc
 
     .border-container
@@ -403,7 +403,12 @@ div#make-link-content
 
   .ui-icon
     display: none
-
+  .pills
+    margin-bottom: 13px
+    a
+      padding: 0 5px
+      line-height: 18px
+      font-size: 11px
 .search_form
   label
     float: left
@@ -417,3 +422,5 @@ div#make-link-content
       display: none
   .input
     margin-left: 0
+.twipsy
+  z-index: 9999

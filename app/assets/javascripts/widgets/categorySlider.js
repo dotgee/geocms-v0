@@ -34,6 +34,9 @@ $.widget("ui.categorySlider", {
     self.element.find('.parent').not(sliderLink).each(function(i,el){
       $(el).sliderLink('closePanel'); 
     });
+    self.element.find('h3.selected, h4.selected').each(function(i,el){
+      $(el).removeClass('selected');
+      });
   },
   destroy: function() {
     $.Widget.prototype.destroy.apply(this, arguments);
@@ -129,12 +132,18 @@ $.widget("ui.sliderLink", {
     var self = this; 
     self._showArrow();
     self.panel.sliderPanel('show');
+    if (self.element.is('h3')){
+      self.element.addClass('selected');
+    }else{
+      self.element.parent().prev('h3').addClass('selected');
+    }
     self.visiblePanel = true;
   },
   _hidePanel: function(){
     var self = this; 
     self._hideArrow();
     self.panel.sliderPanel('hide');
+    self.element.removeClass('selected');
     self.visiblePanel = false;
   },
   _showArrow: function(){

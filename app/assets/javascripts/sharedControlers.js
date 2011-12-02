@@ -187,7 +187,7 @@ function addSharedControlers() {
   $('.right-menu h3').not('.parent').click(function(e) {
       e.preventDefault();
       $(".children:visible").not($(this).next()).hide("slow");
-      $(this).next().slideToggle('slow');
+      $(this).next().slideToggle();
       return false;
     }).next().hide();
 

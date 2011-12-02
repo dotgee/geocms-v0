@@ -1,21 +1,37 @@
+%h2 Filtres
+.filters
+  - Taxon.filtres.each do |f|
+    %span{ :rel => "popover", :"data-original-title" => f.name}
+      = check_box_tag "filter", f.name.downcase
+      = "#{f.name.slice(0).upcase} (#{f.layers.count})"
+%a{ :href => "#" }
+  Supprimmer les filtres
 %h2 
   Th&egrave;mes
   
 .right-menu
-  - Taxon.find('themes').children.each do |t|
+  - Taxon.themes.each do |t|
     - parent = t.children.any?
     %h3{:class => parent ? "" : "parent" }
-      = link_to t.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
+      = link_to '#' do
+        %span
+          = t.name
+        %span.nb_layers
+          = "(#{parent ? t.children_layers_length : t.layers.length})"
+
     - if parent
       .children
-        - t.children.each do |c|
+        - t.descendants.includes(:layers).each do |c|
           %h4.parent
-            = link_to c.name, '#'#,  "data-original-title" => c.description, :class => "twipsy_link left"
+            = link_to '#' do
+              %span
+                = c.name
+              %span.nb_layers
+                = "(#{c.layers.length})"
           = render :partial => "shared/layers_list", :locals => { :layers => c.layers }  
     - else
       = render :partial => "shared/layers_list", :locals => { :layers => t.layers }  
 
-%h2 Filtres
 %h2 L&eacute;gende
 
 #legende

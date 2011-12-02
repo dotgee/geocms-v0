@@ -8,10 +8,7 @@
             = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
           .layer_info
             %span
-              %b.label.notice
-                Nom :
-              %span
-                = l.title
+              = l.title
             .clear
             %div{:class => "slider #{l.name.gsub(':','_')}", :id => l.name.gsub(':','_')}
           .clear

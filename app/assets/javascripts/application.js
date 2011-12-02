@@ -25,6 +25,7 @@ $(document).ready(function(){
 
   $('textarea').TextAreaResizer();
   $('a[rel=popover]').twipsy({});
+  $('span[rel=popover]').twipsy({delayIn: 200});
   $('.category_layer_container').twipsy({placement: "left"});
   $('#wait').spin();
   $('.alert-message .close').live('click', function(e){
