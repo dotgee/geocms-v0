@@ -109,6 +109,6 @@ class GeoContextsController < ApplicationController
   private
 
   def set_layout
-    self.class.layout('application') if action_name == "show"
+    #self.class.layout('application') if action_name == "show"
   end
 end

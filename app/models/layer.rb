@@ -4,6 +4,7 @@ class Layer < ActiveRecord::Base
   validates_format_of :wms_url, :with => URI::regexp(%w(http https))
 
   before_validation :set_title_if_empty
+  belongs_to :geo_server
 
   has_many :assigned_layer_taxons, :dependent => :destroy
   has_many :themes, :source => :taxon, :through => :assigned_layer_taxons
@@ -58,6 +59,15 @@ class Layer < ActiveRecord::Base
     return @csw_url if @csw_url
     @csw_url = metadata_url.split('?').first
     @csw_url
+  end
+
+  def filter_name
+    filters.map(&:name).first
+  end
+
+  def thumbnail_url(options = {})
+    return nil if geo_server.nil?
+    return geo_server.layer_thumbnail_url(self, options)
   end
 
 end

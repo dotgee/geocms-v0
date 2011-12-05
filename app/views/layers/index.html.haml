@@ -5,13 +5,14 @@
     .pull-right
       = paginate @layers
 
-  %table.zebra-striped
+  -#%table.zebra-striped
     %tr
       %th Name
       %th{:colspan => 2} Infos
 
-    - @layers.each do |layer|
-      = render :partial => "layer_row", :locals => {:layer => layer }
+  - @layers.each do |layer|
+    = render :partial => "layer_row", :locals => {:layer => layer }
+  =# @layer.inspect
   .row
     .pull-right
       = paginate @layers

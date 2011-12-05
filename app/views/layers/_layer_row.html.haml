@@ -1,4 +1,47 @@
-%tr
+.layer-container.clearfix
+  %ul.left-part
+    %li.image
+      /%img{:src => layer.thumbnail_url}
+      
+    %li
+      .title
+        = link_to layer.title, layer
+      -#.name
+        = layer.name
+    %li
+      %b
+        WMS URL :
+      = link_to truncate(layer.wms_url, :length => 50), layer.wms_url
+
+    %li
+      %b
+        Metadata url :
+      = link_to truncate(layer.metadata_url, :length => 50), layer.metadata_url
+
+    %li
+      %b
+        Derni&egrave;re modification :
+      = layer.date_modification
+
+  %ul.right-part
+    %li
+      %b
+        Cat&eacute;gories :
+      = layer.category_list
+
+    %li
+      %b
+        Informations :
+      = truncate( layer.description, :length => 150)
+
+    %li
+      %b
+        Mots cl&eacute;s :
+      = layer.tag_list
+
+  
+
+-#%tr
   %td
     .name
       = layer.name
