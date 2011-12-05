@@ -12,7 +12,7 @@ Geocms::Application.routes.draw do
 
   #resources :taxons
 
-  resources :layers do
+  resources :layers, :only => [:show, :index] do
     collection do
       get 'print'
       match "search"
@@ -21,7 +21,7 @@ Geocms::Application.routes.draw do
 
   #resources :categories
 
-  resources :geo_contexts do
+  resources :geo_contexts, :only => [:show, :index]  do
     member do
       get 'permalink_map'
     end

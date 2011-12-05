@@ -12,3 +12,6 @@
 
     - @layers.each do |layer|
       = render :partial => "layer_row", :locals => {:layer => layer }
+  .row
+    .pull-right
+      = paginate @layers

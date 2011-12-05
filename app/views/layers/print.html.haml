@@ -1,19 +1,30 @@
 #map
+
+= content_for :footer do
+  #legende
+    %div.legende_node
+      %p
+      %img(onerror="this.src='#{image_path 'error.png'}'")
+  .breaker
+
 = content_for :javascripts do
   = javascript_include_tag "openLayersEssentials"
+  = javascript_include_tag "sharedControlers"
   :javascript
     $(document).ready(function(){
       $.get("/gc/#{@wmc}",
             function(data){
               try {
                 map = format.read(data, {map: mapOptions});
-                console.log(map);
                 map.removeControl(map.controls[0]);
                 map.removeControl(map.controls[0]);
                 map.removeControl(map.controls[0]);
-                console.log(map);
+                addSharedControlers();
               } catch(e) {
                 alert(e);
               }
             });
     });
+
+= content_for :stylesheets do
+  = stylesheet_link_tag "print", :media => "all"

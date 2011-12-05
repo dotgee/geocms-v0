@@ -9,7 +9,7 @@
 %h2 
   Th&egrave;mes
   
-.right-menu
+.right-menu#layer_listing
   - Taxon.themes.each do |t|
     - parent = t.children.any?
     %h3{:class => parent ? "" : "parent" }
