@@ -52,3 +52,7 @@ gem "meta_search",    '>= 1.1.0.pre'
 gem "sunspot"
 gem "sunspot_solr"
 gem "sunspot_rails"
+
+gem "mustache"
+gem "ckeditor"
+gem "curb"
