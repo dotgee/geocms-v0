@@ -9,6 +9,29 @@ body
   font-size: 69%
   background: image-url("gipbe/bg_geocms-body.jpg") repeat-x #fff
 
+
+
+// CLEARFIX
+
+.clearfix
+  &:after
+    content: "."
+    display: block
+    clear: both
+    visibility: hidden
+    line-height: 0
+    height: 0
+  display: inline-block
+
+html[xmlns] .clearfix
+  display: block
+
+* html .clearfix
+  height: 1%
+
+// END CLEARFIX
+
+
 #global
   width: 98%
   margin: 0 auto 2%
@@ -343,6 +366,7 @@ div#make-link-content
     margin: 0 0 6px -11px
     &:hover, &.selected
       background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 0 0 #0080cc
+      color: #fff
 
     .border-container
       height: 23px
@@ -401,7 +425,8 @@ div#make-link-content
       padding: 5px
       color: #fff
 
-  .ui-icon
+  .ui-icon-circle-close, .ui-icon-triangle-1-e,
+  .ui-icon-triangle-1-w
     display: none
   .pills
     margin-bottom: 13px
@@ -424,3 +449,76 @@ div#make-link-content
     margin-left: 0
 .twipsy
   z-index: 9999
+
+.layer-container
+  border-bottom: 1px solid #ccc
+  margin: 0 0 15px
+  padding: 0 0 15px
+  width: 100%
+  .left-part, .right-part, li
+    float: left
+    width: 48%
+    margin: 0 2% 0 0
+  li
+    margin: 0 2% 2% 0
+    width: 45%
+    min-width: 500px
+  .content
+    margin: 0 0 0 240px
+  .image
+    width: 210px
+    height: 150px
+    background: #ccc
+    border: 1px solid #666
+    float: left
+    margin: 0 10px 10px
+  .title
+    a
+      color: #39F
+      text-transform: uppercase
+      font-weight: bold
+    
+
+.search_form
+  width: 500px
+  .span6, .span2
+    margin: 0
+
+.btn
+  padding: 2px 14px 4px
+
+// STYLE POUR LES PAGES CMS
+
+.cms
+  width: 940px
+  margin: 0 auto
+  padding: 0 20px
+  h1
+    color: #39f
+    font-size: 180%
+    font-weight: normal
+    margin: 2% 0
+  
+  h2
+    color: #000
+    font-size: 160%
+    font-weight: bold
+
+  h5
+    color: #000
+    font-size: 1.1em
+    font-weight: bold
+
+  p
+    font-size: 110%
+    line-height: 16px
+
+  a
+    color: #39f
+
+  ul, ol
+    li
+      color: #000
+
+#removeFilters
+  display: none

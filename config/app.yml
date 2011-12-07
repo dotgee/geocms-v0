@@ -2,6 +2,7 @@ development:
   theme_id: 22
   filter_id: 23
   home_context_id: 84
+  page_help_id: 'aide'
 
 test:
 
@@ -9,3 +10,4 @@ production:
   filter_id: 20
   theme_id: "themes"
   home_context_id: 84
+  page_help_id: 'aide'

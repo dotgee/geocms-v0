@@ -12,6 +12,7 @@ Geocms::Application.routes.draw do
 
   #resources :taxons
 
+  #resources :layers do
   resources :layers, :only => [:show, :index] do
     collection do
       get 'print'
@@ -49,4 +50,5 @@ Geocms::Application.routes.draw do
 
 
   root :to => "home#index"
+  match "/:id(.:format)", :controller => "pages", :action => :show, :as => :page
 end

@@ -16,9 +16,9 @@ $.widget("ui.viewer", {
       self.layerChooser.layerChooser('show');
     });
 
-    self.layerChooserAccordion.find('.category_layer_container').click(function(e){
+    self.layerChooserAccordion.find('.selected_icon').click(function(e){
       e.preventDefault();
-      var div = $(this);
+      var div = $(this).parent();
       var other_divs = $("." + div.attr('layer_class'));
       other_divs.toggleClass('added_layer');
       var layer = map.getLayer(div.attr('layer_id'));
@@ -35,15 +35,29 @@ $.widget("ui.viewer", {
                                                {
                                                  opacity: 0.8,
                                                  singleTile: true,
-                                                 uniqueID: layer_name.replace(":", "_")
+                                                 uniqueID: layer_name.replace(":", "_"),
+                                                 modelID: div.attr("layer_id") 
                                                });
+          layer.events.register("loadstart", layer, function(){
+            $("#progress").show();
+            template_div = $("#template_"+layer.uniqueID);
+            if(template_div.text() == "") {
+              $.get("/layers/"+layer.modelID,
+              function(data) {
+               template_div.text(data.template); 
+              }, "json");
+            }
+          });
+          layer.events.register("loadend", layer, function(){
+            $("#progress").hide();
+          });
           map.addLayer(layer);
 
           // Generates the legend for the new layer
           var legende = $("#legende div:first-child").clone();
           legende.attr("id", layer.uniqueID+"_legende");
           legende.find("p").text(layer.name);
-          legende.find("img").attr("src", "http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer_name);
+          legende.find("img").attr("src", layer.url+"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer.params.LAYERS);
           $("#legende").append(legende);
           
           div.attr('layer_id', layer.id);

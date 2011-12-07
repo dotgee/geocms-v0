@@ -6,6 +6,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :taxonomy
   has_many :assigned_layer_taxons
   has_many :layers, :through => :assigned_layer_taxons
+  has_many :filtered_layers, :class_name => "Layer", :foreign_key => "filter_id"
 
   validates :name, :presence => true, :uniqueness => true
   

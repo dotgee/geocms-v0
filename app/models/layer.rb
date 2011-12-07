@@ -6,9 +6,15 @@ class Layer < ActiveRecord::Base
   before_validation :set_title_if_empty
   belongs_to :geo_server
 
-  has_many :assigned_layer_taxons, :dependent => :destroy
-  has_many :themes, :source => :taxon, :through => :assigned_layer_taxons
-  has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
+  has_many :assigned_layer_taxons, 
+           :dependent => :destroy
+  has_many :themes, 
+            :source => :taxon, 
+            :through => :assigned_layer_taxons,
+            #:conditions =>  "taxons.parent_id = #{AppConfig.theme_id}" ,
+            :uniq => true
+  #has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
+  belongs_to :filter, :class_name => "Taxon", :conditions => { :parent_id => AppConfig.filter_id }
 
   scope :recent, lambda { |nb|
                     {
@@ -27,8 +33,8 @@ class Layer < ActiveRecord::Base
     text :themes_name do
       themes.map(&:name)
     end
-    text :filters_name do
-      filters.map(&:name)
+    text :filter_name do
+      filter_name
     end
   end
   
@@ -62,7 +68,7 @@ class Layer < ActiveRecord::Base
   end
 
   def filter_name
-    filters.map(&:name).first
+    filter.nil? ? "no_filter" : filter.name
   end
 
   def thumbnail_url(options = {})

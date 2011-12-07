@@ -1,5 +1,9 @@
 #map
 
+= content_for :header do
+  = link_to  '#', { :class => "ui-icon-with-text", :id => "realprint_btn"} do
+    .ui-icon.ui-icon-print 
+
 = content_for :footer do
   #legende
     %div.legende_node
@@ -16,9 +20,10 @@
             function(data){
               try {
                 map = format.read(data, {map: mapOptions});
-                map.removeControl(map.controls[0]);
-                map.removeControl(map.controls[0]);
-                map.removeControl(map.controls[0]);
+                map.removeControl(map.controls[1]);
+                map.controls.forEach(function(e) {
+                  e.deactivate();
+                });
                 addSharedControlers();
               } catch(e) {
                 alert(e);

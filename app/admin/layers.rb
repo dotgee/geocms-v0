@@ -27,5 +27,15 @@ ActiveAdmin.register Layer do
     end
     default_actions
   end
-  
+ 
+  # @todo Faire un client WFS pour recuperer ces infos
+  controller do
+    def edit
+      @layer = Layer.find(params[:id]) 
+      c = Curl::Easy.perform("#{@layer.wms_url}?service=wfs&version=1.1.0&request=DescribeFeatureType&typeName=#{@layer.name}")
+      doc = Nokogiri::XML(c.body_str)
+
+    end
+  end
+
 end

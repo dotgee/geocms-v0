@@ -1,3 +1,4 @@
+= javascript_include_tag "/javascripts/ckeditor/ckeditor.js"
 = semantic_form_for [:admin, @layer] do |f|
   = f.inputs :name => "Informations georchestra" do 
     = f.input :wms_url, :as => :string
@@ -7,10 +8,12 @@
 
   = f.inputs :name => "Informations couche" do 
     = f.input :title
-    = f.input :description , :input_html => { :rows => 15}
-    = f.input :themes, :collection => Taxon.themes_select
-    = f.input :filters, :collection => Taxon.filters_select
+    = f.input :description, :input_html => { :cols => 10}
+    = f.input :template, :as => :ckeditor, :input_html => { :cols => 10}
+    = f.input :themes#1, :collection => Taxon.themes_select
+    = f.input :filter
     = f.input :tag_list
 
   = f.buttons do
     = f.submit
+= @test

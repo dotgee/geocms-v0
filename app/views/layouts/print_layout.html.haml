@@ -16,6 +16,7 @@
             = title
           %a{ :href => root_path, :title => "Accueil"}
             = image_tag "gipbe/logo-bretagne-environnement.jpg"
+        = yield :header
       .breaker
       -# if current_user
       =# render :partial => "shared/admin_menu"

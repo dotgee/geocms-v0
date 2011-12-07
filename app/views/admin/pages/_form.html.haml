@@ -1,0 +1,12 @@
+= javascript_include_tag "/javascripts/ckeditor/ckeditor.js"
+= semantic_form_for [:admin, @page] do |f|
+  = f.inputs :name => "Contenu" do
+    = f.input :title
+    = f.input :content, :as => :ckeditor, :input_html => { :cols => 10}
+    = f.input :published
+
+  = f.inputs :name => "R&eacute;f&eacute;rencement" do
+    = f.input :keywords
+    = f.input :description
+  = f.buttons do
+    = f.submit

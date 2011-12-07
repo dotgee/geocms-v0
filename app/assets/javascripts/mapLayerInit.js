@@ -13,7 +13,8 @@ $(document).ready(function() {
       transparent: true,
       opacity: 0.5,
       displayInLayerSwitcher:false,
-      isBaseLayer: true
+      isBaseLayer: true,
+      originalID: 'region-bretagne_region_2154'
     }
   );
   map.addLayer(fond_carto);
@@ -27,7 +28,8 @@ $(document).ready(function() {
                                        opacity: 0.8,
                                        singleTile: true,
                                        transitionEffect: 'resize',
-                                       uniqueID: layerNames.replace(":", "_")
+                                       uniqueID: layerNames.replace(":", "_"),
+                                       modelID: layer_id 
                                    });
   
     map.addLayer(layer);

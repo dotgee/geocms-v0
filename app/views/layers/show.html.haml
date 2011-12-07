@@ -4,6 +4,7 @@
 = content_for :javascripts do
   :javascript
     var layerNames = "#{@layer.name}";
+    var layer_id = "#{@layer.id}";
     var layerWmsUrl = "#{@layer.wms_url}";
     var layerTitle = "#{@layer.title}";
   = javascript_include_tag "mapLayerInit"

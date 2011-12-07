@@ -10,8 +10,9 @@
       %th Name
       %th{:colspan => 2} Infos
 
-  - @layers.each do |layer|
-    = render :partial => "layer_row", :locals => {:layer => layer }
+  %ul.layer-container.clearfix
+    - @layers.each do |layer|
+      = render :partial => "layer_row", :locals => {:layer => layer }
   =# @layer.inspect
   .row
     .pull-right

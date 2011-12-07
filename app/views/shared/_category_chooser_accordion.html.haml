@@ -3,16 +3,17 @@
   - Taxon.filtres.each do |f|
     %span{ :rel => "popover", :"data-original-title" => f.name}
       = check_box_tag "filter", f.name.downcase
-      = "#{f.name.slice(0).upcase} (#{f.layers.count})"
-%a{ :href => "#" }
-  Supprimer les filtres
+      = "#{f.name.slice(0).upcase} (#{f.filtered_layers.count})"
+  .clear
+  %a{ :href => "#", :id => "removeFilters" }
+    Supprimer les filtres
 %h2 
   Th&egrave;mes
   
 .right-menu#layer_listing
   - Taxon.themes.each do |t|
     - parent = t.children.any?
-    %h3{:class => parent ? "" : "parent" }
+    %h3{:class => parent ? "grand_parent" : "parent" }
       = link_to '#' do
         %span
           = t.name
@@ -28,9 +29,9 @@
                 = c.name
               %span.nb_layers
                 = "(#{c.layers.length})"
-          = render :partial => "shared/layers_list", :locals => { :layers => c.layers }  
+          = render :partial => "shared/layers_list", :locals => { :layers => c.layers, :theme => t }  
     - else
-      = render :partial => "shared/layers_list", :locals => { :layers => t.layers }  
+      = render :partial => "shared/layers_list", :locals => { :layers => t.layers, :theme => t }  
 
 %h2 L&eacute;gende
 

@@ -16,13 +16,15 @@
 //= require viewer
 //= require layerChooser
 //= require widgets/categorySlider
+//= require widgets/filter
 //= require pure
+//= require mustache
 
 var fullscreen = false;
 
 $(document).ready(function(){
   $('#layer_tab').tabs();
-
+  $('.filters').filter();
   $('textarea').TextAreaResizer();
   $('a[rel=popover]').twipsy({});
   $('span[rel=popover]').twipsy({delayIn: 200});

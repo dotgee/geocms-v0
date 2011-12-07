@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
         redirect_to root_url, :alert => "Access denied."
       end
     end
+
+    def render_404
+      render :file => "#{Rails.root}/public/404.html", :status => :not_found
+    end
 end

@@ -1,12 +1,6 @@
-.search_form
+.search_form.clearfix
   %h3 Rechercher parmis les couches
-  .clearfix
-    = simple_form_for(:search, :url => search_layers_path, :builder => SimpleBootstrapFormBuilder) do |f|
-      .span7
-        = f.input :q, :input_html => { :class => "span6", :value => params[:search].nil? ? "" : params[:search][:q]},
-                                         :label_html => { :class => "hidable_label"},
-                                         :label => "Recherche"
-      %div
-        = f.submit :search, :class => "btn primary"
-      .clear
-  .clear
+  = simple_form_for(:search, :url => search_layers_path, :builder => SimpleBootstrapFormBuilder) do |f|
+    .span6
+      = f.input :q, :input_html => { :class => "span6", :value => params[:search].nil? ? "" : params[:search][:q]}, :label_html => { :class => "hidable_label"},:label => "Recherche"
+    = f.submit :search, :class => "btn primary span2"

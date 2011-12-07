@@ -57,6 +57,11 @@ function addSharedControlers() {
     });
   });
 
+  $('#realprint_btn').click(function(e){
+    e.preventDefault();
+    print();
+  });
+
   $('#mapfishapp_btn').click(function(e){
     e.preventDefault();
     $.ajax({
@@ -80,16 +85,26 @@ function addSharedControlers() {
   /* Affichage de la projection */
 
   $("#projection").text(map.getProjection());
+  
+  /* Bouton d'aide */
+
+  $("#help_btn").click(function(e){
+    e.preventDefault();
+    $.get("/aide",
+          function(data) {
+            $("<div>"+data.content+"</div>").dialog({width: 500, height: 300, title: "Aide"});
+          }, "json");
+  });
 
   // Ajout de la legende initiale
   var data = {'layers' : map.layers,
-              'url' : 'http://geo.devel.dotgee.fr/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER='}
+              'url' : '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER='}
       directive = {
         'div' : {
           'layer<-layers' : {
             '@id' : 'layer.name',
             'p'    : 'layer.name',
-            'img@src' : '#{url}#{layer.name}'
+            'img@src' : '#{layer.url}#{url}#{layer.params.LAYERS}'
           }
         }
       }
@@ -98,6 +113,7 @@ function addSharedControlers() {
   /* GetFeaturesInfo */
 
   // Highlight de la carte
+  
   select = new OpenLayers.Layer.Vector("Selection", {styleMap: 
                   new OpenLayers.Style(OpenLayers.Feature.Vector.style["select"])
           });
@@ -118,55 +134,50 @@ function addSharedControlers() {
   });
   
   // Affichage de la popup
-  var popup = null;
+  var dialog;
   var featureInfos = new OpenLayers.Control.WMSGetFeatureInfo({
     url: map.layers[0].url, 
     queryVisible: true,
     infoFormat: "application/vnd.ogc.gml",
     eventListeners: {
       getfeatureinfo: function(event) {
-           console.log(event);
-           if (popup != null) {
-              popup.destroy();
+           if (dialog) {
+              dialog.dialog("destroy");
            }
            if (event.features.length > 0) {
             event.features.forEach(function(feature) {
-              console.log(feature.data);
-              keys = Object.keys(feature.data);
-              output = "";
-              for(var i=keys.length; i--;) {
-                output += keys[i]+": "+feature.data[keys[i]];
-                output += "<br/>"
+              template = $("#template_"+event.object.layer.uniqueID).text();
+              output = Mustache.to_html(template,feature.data);
+              if(output != ""){
+                dialog = $("<div title='Feature Info'>" + output + "</div>").dialog();
               }
-              dialog = $("<div title='Feature Info'>" + output + "</div>").dialog();
             });
-           /* popup = new OpenLayers.Popup.FramedCloud(
-                        "featuresPopup", 
-                        map.getLonLatFromPixel(event.xy),
-                        null,
-                        event.text,
-                        null,
-                        true
-                    );
-            map.addPopup(popup);*/
-
+          } else {
+            dialog = $("<div title='Pas de features'>Pas de features &agrave; afficher !</div>").dialog();
           }
         }
       }
     });
-
+   
   // Activation des commandes au click bouton
   map.addControls([featureInfos, getFeatures]);
 
-  $("#btn-features").click(function(e){
+  $(".btn-features").click(function(e){
+    e.preventDefault();
     if(featureInfos.active) {
       featureInfos.deactivate();
       getFeatures.deactivate();
       $(".olMap").css("cursor", "");
     } else {
-      featureInfos.activate();
-      getFeatures.activate();
-      $(".olMap").css("cursor", "crosshair");
+      layer = map.getLayersBy("uniqueID",$(this).attr("layer_id"))[0]; 
+      if(layer) {
+        featureInfos.url = layer.url;
+        featureInfos.layer = layer;
+        featureInfos.activate();
+        getFeatures.protocol = OpenLayers.Protocol.WFS.fromWMSLayer(layer);
+        getFeatures.activate();
+        $(".olMap").css("cursor", "crosshair");
+      }       
     }
   });
 
@@ -191,7 +202,4 @@ function addSharedControlers() {
       return false;
     }).next().hide();
 
-  $('.fg-buttonset a').click(function(){
-    $(this).removeClass("ui-state-hover").addClass("ui-state-hover");
-  });
 };

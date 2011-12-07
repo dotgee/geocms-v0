@@ -3,4 +3,5 @@
 //= require j.textarea
 //= require admin/layers
 $(document).ready(function(){
+  //$('input[multiple=multiple]').multiSelect();
 });

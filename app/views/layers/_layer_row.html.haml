@@ -1,45 +1,37 @@
-.layer-container.clearfix
-  %ul.left-part
-    %li.image
-      /%img{:src => layer.thumbnail_url}
-      
-    %li
-      .title
-        = link_to layer.title, layer
-      -#.name
-        = layer.name
-    %li
+%li.well
+  .image
+    
+  .content
+    .title
+      = link_to layer.title, layer
+    .content_value
       %b
-        WMS URL :
-      = link_to truncate(layer.wms_url, :length => 50), layer.wms_url
-
-    %li
+        Description :
+      = layer.description
+    .content_value
       %b
         Metadata url :
       = link_to truncate(layer.metadata_url, :length => 50), layer.metadata_url
 
-    %li
+    .content_value
       %b
         Derni&egrave;re modification :
       = layer.date_modification
 
-  %ul.right-part
-    %li
+    .content_value
       %b
         Cat&eacute;gories :
       = layer.category_list
-
-    %li
+    .content_value
       %b
         Informations :
       = truncate( layer.description, :length => 150)
-
-    %li
+    .content_value
       %b
         Mots cl&eacute;s :
       = layer.tag_list
 
-  
+
 
 -#%tr
   %td

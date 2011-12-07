@@ -2,7 +2,10 @@ ActiveAdmin.register Taxon do
   controller do
     
   def end_of_association_chain
-    return Taxon.order('lft,rgt asc').only_themes
+    if action_name == "index"
+      return Taxon.order('lft,rgt asc').only_themes
+    end
+    return Taxon
   end
 
   end

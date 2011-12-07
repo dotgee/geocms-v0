@@ -1,20 +1,29 @@
 .category_description
+  .header
+    %span.title-header
+      = theme.name 
+      %span.nbLayers
+        = "(#{ layers.length})"
   .category_layers
     - layers.each_with_index do |l, i|
       .category_layer_container{ :layer_name => l.name, 
                                   :wms_url => l.wms_url, 
+                                  :layer_id => l.id, 
                                   :layer_title => l.title, 
-                                  :class => [l.uniq_identifier, l.filter_name].join(' '), 
+                                  :class => [l.uniq_identifier, l.filter_name.downcase].join(' '), 
                                   :layer_class => l.uniq_identifier, 
                                   :"data-original-title" => l.description }
         .selected_icon
         .row.layer_selection
           .layer_img
-            = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
+            =# link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
+            = link_to '#', { :class => "ui-icon-with-text btn-features", :layer_id => "#{l.name.gsub(':','_')}"} do
+              .ui-icon.ui-icon-info
           .layer_info
             %span
               = l.title
             .clear
             %div{:class => "slider #{l.name.gsub(':','_')}", :id => l.name.gsub(':','_')}
+            %span{:id => "template_#{l.name.gsub(':','_')}", :class => "template"}
           .clear
 

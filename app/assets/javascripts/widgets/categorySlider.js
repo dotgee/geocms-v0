@@ -21,6 +21,7 @@ $.widget("ui.categorySlider", {
     self.element.addClass(css_class);
   },
 
+
   _init: function(){
     var self = this; 
   },
@@ -37,6 +38,63 @@ $.widget("ui.categorySlider", {
     self.element.find('h3.selected, h4.selected').each(function(i,el){
       $(el).removeClass('selected');
       });
+  },
+  showFilteredLayers: function(css_classes){
+    var self = this;
+    self.element.find('.parent').each(function(i,el){
+      $(el).sliderLink('filtered', css_classes);
+    });
+    self._updateParents();
+    self._updateGrandParents();
+  },
+  _updateParents: function(){
+    var self = this;
+    self._parents().each(function(i,el){
+      $(el).sliderLink('updateLayersCount');
+      $(el).sliderLink('hideFilteredLayers');
+    });
+
+  },
+  _updateGrandParents: function(){
+    var self = this;
+    self._grandParents().each(function(i,el){
+      var gp = $(el);
+      var nbLayers = 0;
+      gp.next('.children').first().find('.parent').each(function(i,sliderlink){
+        nbLayers += $(sliderlink).sliderLink('nbLayers');
+      });
+      gp.find('.nb_layers').first().text('('+nbLayers+')');
+      if(nbLayers > 0){
+        gp.slideDown();
+      }else{
+        gp.slideUp();
+      
+      }
+    });
+  },
+  _parents: function(){
+    var self = this;
+    if(!self.layer_parents){
+      self.layer_parents = self.element.find('.parent');
+    }
+    return self.layer_parents;
+  },
+  _grandParents: function(){
+    var self = this;
+    if(!self.layer_grandParents){
+      self.layer_grandParents = self.element.find('.grand_parent');
+    }
+    return self.layer_grandParents;
+  },
+  showAllLayers: function(){
+    var self = this;
+    self.element.find('.parent').each(function(i,el){
+      $(el).sliderLink('unfilter');
+    });
+    self._updateParents();
+    self._updateGrandParents();
+    self.element.find('.parent, .grand_parent').slideDown();
+    
   },
   destroy: function() {
     $.Widget.prototype.destroy.apply(this, arguments);
@@ -56,12 +114,19 @@ $.widget("ui.sliderPanel", {
     self._addHeader();
     self._bindEvents();
   },
+  updateLayersCount: function(){
+    var self = this;
+    self.element.find('.nbLayers').first().text('('+self.nbNotFilteredLayer()+")");
+  },
+  nbNotFilteredLayer: function(){
+    var self = this;
+    return self.element.find('.category_layer_container').not('.filtered_layer').length;
+  },
   _addHeader: function(){
     var self = this;
-    var header = $('<div class="ui-widget-header"></div>');
-    header.append($('<span class="ui-icon ui-icon-circle-close"></span>'));
-    header.append($('<span class="title-header">'+self.options.title+'</span>'));
-    self.element.prepend(header);
+    var header = self.element.find('.header').first().addClass('ui-widget-header');
+    header.prepend($('<span class="ui-icon ui-icon-circle-close"></span>'));
+    //self.element.prepend(header);
   },
   _leftPositioning: function(){
     var self = this;
@@ -86,8 +151,6 @@ $.widget("ui.sliderPanel", {
     var self = this; 
     if(!self.element.is(':visible')){
       self.element.effect('slide', { direction : self._slideDirection()})
-      //console.log("yep");
-      //map.updateSize();
     }
   },
   hide: function(){
@@ -116,17 +179,78 @@ $.widget("ui.sliderLink", {
   },
   _create: function() {
     var self = this;
-    self.parent = self.options.parent;
+    self.category_slider = self.options.parent;
     self.visiblePanel = self.options.visiblePanel;
     self.element.addClass('ui-sliderLink');
     self.panel = self.element.next('.category_description').sliderPanel({
                                                                 height: self.options.panelHeight,
                                                                 position: self.options.position,
-                                                                title: self.element.text()
+                                                                title: self.element.html()
                                                                 });
     self.element.addClass('ui-accordion-header ui-helper-reset ui-state-default ui-corner-all');
     self._addIcon();
     self._bindEvents();
+  },
+  filtered: function(selector){
+    var self = this;
+    self._layerContainers().each(function(i, el){
+      var element = $(el);
+      var will_hide = true;
+      for(var sel in selector){
+        if(element.is(selector[sel])){
+          will_hide = false;
+          element.removeClass('filtered_layer')
+        }
+      }
+      if(will_hide){
+        element.addClass('filtered_layer');
+      }
+    });
+  },
+  unfilter: function(){
+    var self = this;
+    self._layerContainers().each(function(i, el){
+      $(el).removeClass('filtered_layer').show();
+    });
+  },
+  hideFilteredLayers: function(){
+    var self = this;
+    self._description().find('.filtered_layer').hide(); 
+    if(self._layerContainers().length == self._description().find('.filtered_layer').length){
+        self.element.slideUp();
+      }else{
+        self.element.slideDown();
+      }
+  },
+  updateLayersCount: function(){
+    var self = this;
+    var nb = self.element.find(".nb_layers").first();
+    nb.html("("+self.nbLayers()+")");
+    self.panel.sliderPanel('updateLayersCount');
+  },
+  nbLayers: function(){
+    var self = this;
+    return self.panel.sliderPanel('nbNotFilteredLayer');
+  },
+  _layerContainers : function(){
+    var self = this;
+    var cat_desc = self._description();
+    if(!self.layerContainers){
+      if(cat_desc){
+        self.layerContainers =  cat_desc.find('.category_layer_container');
+      }else{
+        self.layerContainers = []; 
+      }
+    }
+    return self.layerContainers;
+  
+  },
+  _description: function(){
+    var self = this;
+    if(!self.description){
+      self.description = self.element.next('.category_description').first();
+    }
+    return self.description
   },
   _showPanel: function(){
     var self = this; 
@@ -159,7 +283,7 @@ $.widget("ui.sliderLink", {
       if(self.visiblePanel){
         self._hidePanel();
       }else{
-        $(self.parent).categorySlider('willShow',self.element);
+        $(self.category_slider).categorySlider('willShow',self.element);
         self._showPanel();
       }
     });
