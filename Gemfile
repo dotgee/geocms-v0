@@ -6,7 +6,6 @@ gem 'mysql2'
 group :assets do
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
-  gem 'sass-rails', "  ~> 3.1.0"
   gem 'compass_twitter_bootstrap'
   gem "compass", "~> 0.12.alpha.0", :group => :development
 end
@@ -21,6 +20,7 @@ end
 gem "haml", ">= 3.1.2"
 gem "haml-rails", ">= 0.3.4", :group => :development
 gem "sass"
+gem 'sass-rails', "  ~> 3.1.0"
 gem "nokogiri"
 gem "devise", ">= 1.4.5"
 #gem "rails-footnotes", ">= 3.7.5", :group => :development
