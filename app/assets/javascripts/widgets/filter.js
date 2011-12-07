@@ -32,6 +32,7 @@ $.widget("ui.filter", {
           $(el).prop('checked', false);
         });
         $(self.options.cible_id).categorySlider('showAllLayers');  
+        $(el).fadeOut();
      }
     });
   },
