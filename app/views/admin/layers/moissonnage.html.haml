@@ -1,0 +1,48 @@
+- content_for :javascripts do
+  = javascript_include_tag "jquery/jquery.tablesorter.min.js"
+  = javascript_include_tag :capabilities
+
+= semantic_form_for :server, :url => list_capabilities_admin_layers_path do |f|
+  = f.inputs "Serveur WMS" do
+    = f.input :url, :hint => "http://geobretagne.fr/geoserver/wms"
+    = f.input :type, :as => :radio, :collection => [ "Geonetwork", "Geoserver"], :checked => "checked"
+  = f.buttons do
+    = f.submit "Rechercher", :class => "primary btn"
+- if @layers
+  - if @layers.empty?
+    .alert-message.info
+      %p Aucune couche disponible
+  - else
+    - @layers.sort_by!{|l| l.title.downcase}
+    =# simple_form_for(:import, :url => import_admin_capabilities_path, :builder => SimpleBootstrapFormBuilder) do |f|
+    = semantic_form_for :import, :url => import_admin_layers_path do |f|
+      = f.input "server_url", :as => :hidden, :input_html => { :value => params[:server][:url] }
+      %table.sortable.index_table
+        %thead
+          %tr
+            %th.nowrap Importer ?
+            %th Titre
+            %th Nom
+            %th Metadata
+        %tbody
+          - @layers.each do |l|
+            - exist =  @existing_layers.include?( l.name)
+            - css_class = cycle('odd', 'even')
+
+            %tr{:class => exist ? "exist #{css_class}" : "#{ css_class } not_exist"}
+              %td.nowrap
+                %div
+                  = check_box_tag "import[layer_name][]", l.name 
+                %div
+                  %span.label{:class => exist ? "success" : "warning"}
+                    - if exist 
+                      Couche d&eacute;j&agrave; import&eacute;e
+                    - else
+                      Non existante sur le serveur
+                  
+                  
+              %td= l.title
+              %td= l.name
+              %td= l.metadata_url
+      .input
+        = f.submit 'importer', :class => 'btn primary'

@@ -1,0 +1,72 @@
+.ui-multiselect
+  padding: 2px 0 2px 4px
+  text-align: left
+  span.ui-icon
+    float: right
+
+.ui-multiselect-single .ui-multiselect-checkboxes
+  input
+    position: absolute !important
+    top: auto !important
+    left: -9999px
+  label
+    padding: 5px !important
+
+.ui-multiselect-header
+  margin-bottom: 3px
+  padding: 3px 0 3px 4px
+  ul
+    font-size: 0.9em
+    li
+      float: left
+      padding: 0 10px 0 0
+  a
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+  span.ui-icon
+    float: left
+  li.ui-multiselect-close
+    float: right
+    text-align: right
+    padding-right: 0
+
+.ui-multiselect-menu
+  display: none
+  padding: 3px
+  position: absolute
+  z-index: 10000
+
+.ui-multiselect-checkboxes
+  position: relative
+  overflow-y: scroll
+  label
+    cursor: default
+    display: block
+    border: 1px solid transparent
+    padding: 3px 1px
+    width: auto
+    float: none
+    text-align: left
+    input
+      position: relative
+      top: 1px
+      float: left
+      margin-right: 5px
+  li
+    clear: both
+    font-size: 0.9em
+    &.ui-multiselect-optgroup-label
+      text-align: center
+      font-weight: bold
+      border-bottom: 1px solid
+      a
+        display: block
+        padding: 3px
+        margin: 1px 0
+        text-decoration: none
+
+/* remove label borders in IE6 because IE6 does not support transparency
+
+* html .ui-multiselect-checkboxes label
+  border: none

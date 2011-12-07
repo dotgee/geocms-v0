@@ -1,17 +1,28 @@
 = javascript_include_tag "/javascripts/ckeditor/ckeditor.js"
 = semantic_form_for [:admin, @layer] do |f|
-  = f.inputs :name => "Informations georchestra" do 
-    = f.input :wms_url, :as => :string
-    = f.input :name
-    = f.input :metadata_url, :as => :string
-    = f.input :geo_server
+  .pill-content
+    = f.inputs :name => "Informations georchestra" do 
+      = f.input :wms_url, :as => :string, :hint => "http://geobretagne.fr/geoserver/wms"
+      = f.input :name
+      %li.searchLi
+        %label
+          &nbsp;
+        %button#geoserver_check.btn.small
+          Rechercher
+      = f.input :metadata_url, :as => :string
+      %li.searchLi
+        %label
+          &nbsp;
+        %button#geonetwork_check.btn.small
+          Rechercher
+      = f.input :geo_server
 
   = f.inputs :name => "Informations couche" do 
     = f.input :title
     = f.input :description, :input_html => { :cols => 10}
     = f.input :template, :as => :ckeditor, :input_html => { :cols => 10}
     = f.input :themes#1, :collection => Taxon.themes_select
-    = f.input :filter
+    = f.input :filter, :include_blank => false
     = f.input :tag_list
 
   = f.buttons do

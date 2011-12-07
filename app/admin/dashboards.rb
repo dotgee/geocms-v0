@@ -14,6 +14,11 @@ ActiveAdmin::Dashboards.build do
          end
        end
      end
+
+     #section "Actions" do
+     #   span link_to "Import de couche", import_admin_layers_path, :class => 'btn primary'
+     #   span link_to "Moissonnage", import_admin_layers_path, :class => 'btn primary'
+     #end
   
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can
