@@ -3,13 +3,10 @@
   %ul.functions.chosen_thematic
     %li
       %span
-        = link_to image_tag('gipbe/picto_home.jpg', :alt => "Retours &agrave; l'accueil"), '#', :title => "Retours &agrave; l'accueil".html_safe
+        = link_to image_tag('gipbe/picto_home.jpg', :alt => "Retours &agrave; l'accueil"), root_path, :title => "Retours &agrave; l'accueil".html_safe
     %li
       %span
-        = link_to image_tag('gipbe/picto_sitemap.jpg', :alt => "Plan du site"), '#', :title => "Plan du site"
-    %li
-      %span
-        = link_to image_tag('gipbe/logotwit.gif', :alt => 'twitter'), '#', :title => "Twitter"
+        = link_to image_tag('gipbe/logotwit.gif', :alt => 'twitter'), 'https://twitter.com/#!/Bzh_Enviro', :title => "Twitter", :target => "_blank"
     %li
       %span
         = link_to image_tag('gipbe/picto_share.jpg', :alt => 'Partager cette page'), '#', :title => "Partager cette page"

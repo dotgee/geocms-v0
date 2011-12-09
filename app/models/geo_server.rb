@@ -12,7 +12,7 @@ class GeoServer < ActiveRecord::Base
 
   def layer_thumbnail_url(layer, options = {})
     thumb_url = "#{url}/wms"
-    layers = [background_default_name, layer.name].join(',')
+    layers = [background_default_name, layer.name].select{|l| !l.blank?}.join(',')
     params = {
       "LAYERS" => layers,
       "FORMAT" => CGI::escape("image/png"),
