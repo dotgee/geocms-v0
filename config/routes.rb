@@ -1,5 +1,5 @@
 Geocms::Application.routes.draw do
-  
+  match "/contact" => "contact#index" , :as => :contact 
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

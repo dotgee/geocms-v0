@@ -7,14 +7,14 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
       options[:class] ||= 'span8'
       
       if @object.errors[field].any?
-        '<div class="clearfix error">'.html_safe +
+        '<div class=" error">'.html_safe +
         (self.label field) +
         '<div class="input">'.html_safe +
         (super field, *args) +
         '<span class="help-inline">'.html_safe + @object.errors[field].join('; ') + '</span>'.html_safe +
         '</div></div>'.html_safe
       else
-        '<div class="clearfix">'.html_safe +
+        '<div class="">'.html_safe +
         (self.label field) +
         '<div class="input">'.html_safe +
         (super field, *args) +
@@ -59,7 +59,7 @@ end
 class SimpleBootstrapFormBuilder < SimpleForm::FormBuilder
   def input(attribute_name, options = {}, &block)
     options[:wrapper_html] ||= {}
-    options[:wrapper_html].merge! :class => 'clearfix'
+    options[:wrapper_html].merge! :class => ''
     options[:input_html] ||= {}
     options[:input_html].reverse_merge! :class => "span8"
     super attribute_name, options

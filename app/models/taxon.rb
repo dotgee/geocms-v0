@@ -11,7 +11,8 @@ class Taxon < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   
   scope :only_themes, lambda {
-         where({:parent_id => Taxon.find('themes').id})
+        
+         where({:parent => Taxon.find('themes').id})
     }
   
   class << self

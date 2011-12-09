@@ -4,11 +4,20 @@ ActiveAdmin.register Taxon do
     
   def end_of_association_chain
     if action_name == "index"
-      return Taxon.order('lft,rgt asc').only_themes
+      #return Taxon.order('lft,rgt asc').only_themes
+      return Taxon.find('themes').descendants
     end
-    return Taxon
+    return super
   end
 
+  end
+
+  form do |f|
+    f.inputs "Classement" do 
+      f.inputs :name
+      f.inputs :parent
+    end
+    f.buttons
   end
 
   index do

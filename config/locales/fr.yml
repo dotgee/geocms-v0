@@ -72,3 +72,4 @@ fr:
     blank_slate:
       content: "Aucun"
       link: Créer
+  send_message: "Envoyer le message"
