@@ -1,0 +1,42 @@
+- if @layers.empty?
+  .alert-message.info
+    %p Aucune couche disponible
+- else
+  - @layers.sort_by!{|l| l.title.downcase}
+  =# simple_form_for(:import, :url => import_admin_capabilities_path, :builder => SimpleBootstrapFormBuilder) do |f|
+  = semantic_form_for :import, :url => import_admin_layers_path do |f|
+    = f.input "server_url", :as => :hidden, :input_html => { :value => params[:server][:url] }
+    = f.input "server_id", :as => :hidden, :input_html => { :value => params[:server][:server_id] }
+    %table.sortable.index_table
+      %thead
+        %tr
+          %th.nowrap 
+            %div
+              Importer ?
+            %div.center
+              = check_box_tag 'check_all'
+          %th Titre
+          %th Nom
+          %th Metadata
+      %tbody
+        - @layers.each do |l|
+          - exist =  @existing_layers.include?( l.name)
+          - css_class = cycle('odd', 'even')
+
+          %tr{:class => exist ? "exist #{css_class}" : "#{ css_class } not_exist"}
+            %td.nowrap
+              %div
+                = check_box_tag "import[layer_name][]", l.name
+              %div
+                %span.label{:class => exist ? "success" : "warning"}
+                  - if exist
+                    Pr&eacute;sente
+                  - else
+                    Non import&eacute;e
+
+
+            %td= l.title
+            %td= l.name
+            %td= l.metadata_url
+    .input
+      = f.submit 'importer', :class => 'btn primary'

@@ -1,4 +1,5 @@
 ActiveAdmin.register Taxon do
+  filter :name
   controller do
     
   def end_of_association_chain

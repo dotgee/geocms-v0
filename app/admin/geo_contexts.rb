@@ -18,7 +18,9 @@ ActiveAdmin.register GeoContext do
       div do
       end
     end
-    column :description
+    column :description do |g|
+      truncate(g.description, :length => 200)
+    end
     default_actions
 
     end

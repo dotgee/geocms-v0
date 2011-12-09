@@ -1,5 +1,6 @@
 class GeoServer < ActiveRecord::Base
-  BZH_BOUNDING_BOX = "-222798.0968333,6704730.534021,757736.1018333,6904689.799979"
+  BZH_BOUNDING_BOX = "107541.6939208,6695593.1199368,429188.7088872,6901055.8519306"#6695593.1199368,120688.86278349,416041.54002451,6901055.8519306"
+  #"33534.34825,6584909.31255,503163.44995,6897995.38035"#"-222798.0968333,6704730.534021,757736.1018333,6904689.799979"
   validates :name, 
             :presence => true
   validates :url,
@@ -22,8 +23,8 @@ class GeoServer < ActiveRecord::Base
       "SRS" => CGI::escape("EPSG:2154"),
       "BBOX" => BZH_BOUNDING_BOX,
       "WIDTH" => "200",
-      "HEIGHT" => "60"
-    }.merge(options).to_a.map{|k,v| "#{k}=#{v}"}.join('&')
+      "HEIGHT" => "140"
+    }.merge!(options).to_a.map{|k,v| "#{k}=#{v}"}.join('&')
 
     return [thumb_url, params].join('?')
     

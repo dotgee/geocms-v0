@@ -1,7 +1,7 @@
 .no_visualisor
   .breadcrumb
     = render :partial => "search_form"
-  .row
+  .paginate-container.clearfix
     .pull-right
       = paginate @layers
 
@@ -14,6 +14,6 @@
     - @layers.each do |layer|
       = render :partial => "layer_row", :locals => {:layer => layer }
   =# @layer.inspect
-  .row
+  .paginate-container.clearfix
     .pull-right
       = paginate @layers
