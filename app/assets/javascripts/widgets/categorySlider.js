@@ -68,7 +68,6 @@ $.widget("ui.categorySlider", {
         gp.slideDown();
       }else{
         gp.slideUp();
-      
       }
     });
   },
@@ -215,7 +214,15 @@ $.widget("ui.sliderLink", {
   },
   hideFilteredLayers: function(){
     var self = this;
-    self._description().find('.filtered_layer').hide(); 
+    self._description().find('.category_layer_container').each(function(i,el){
+        var elt =$(el);
+      if(elt.is('.filtered_layer')){
+        elt.hide();
+      }else{
+        elt.show();
+      }
+    
+    });
     if(self._layerContainers().length == self._description().find('.filtered_layer').length){
         self.element.slideUp();
       }else{
