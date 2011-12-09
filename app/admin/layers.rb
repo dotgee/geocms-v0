@@ -83,16 +83,14 @@ ActiveAdmin.register Layer do
     end
   end
 
+  #index
   filter :title
   filter :description
   filter :name
   filter :wms_url, :label => "Serveur", :as => :select, :collection => proc { Layer.select('distinct wms_url').map(&:wms_url)}
+
   index do
-    column "ID" do |l|
-      div do 
-        link_to l.send(:id), admin_layer_path(l)
-      end
-    end
+    id_column
     column "Titre", :title
     column "Geoserveur", :sortable => :geo_server_id do |g|
       link_to g.geo_server.name, admin_geo_server_path(g) if g.geo_server
