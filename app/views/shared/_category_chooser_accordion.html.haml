@@ -29,7 +29,7 @@
                 = c.name
               %span.nb_layers
                 = "(#{c.layers.length})"
-          = render :partial => "shared/layers_list", :locals => { :layers => c.layers, :theme => t }  
+          = render :partial => "shared/layers_list", :locals => { :layers => c.layers, :theme => c }  
     - else
       = render :partial => "shared/layers_list", :locals => { :layers => t.layers, :theme => t }  
 
