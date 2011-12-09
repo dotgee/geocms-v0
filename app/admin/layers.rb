@@ -13,7 +13,7 @@ ActiveAdmin.register Layer do
 
     end
 
-    def create_layer_from_geoserver(layer_infos, server_url)
+    def create_layer_from_geoserver(layer_infos, server_url, geo_serveur)
         conditions = { :wms_url => server_url,
                        :name => layer_infos.name }
          new_layer = Layer.where( conditions).first
@@ -23,6 +23,7 @@ ActiveAdmin.register Layer do
             :tag_list => layer_infos.tag_list,
             :metadata_url => layer_infos.metadata_url
           }.merge(conditions)) if new_layer.nil?
+        new_layer.geo_server = geo_serveur
         new_layer.save
     end
   end
@@ -31,18 +32,33 @@ ActiveAdmin.register Layer do
   end
 
   collection_action :list_capabilities, :method => :post do 
-    @layers =  WMS::Client.new(params[:server][:url]).layers  
-    @existing_layers = Layer.where(:name => @layers.map(&:name)).select(:name).map(&:name)
+    if params[:server][:type].downcase == "geoserver"
+      @layers =  WMS::Client.new(params[:server][:url]).layers  
+      @existing_layers = Layer.where(:name => @layers.map(&:name)).select(:name).map(&:name)
+    else
+      @search =  Csw::Client.new(params[:server][:url])
+      @search.search
+      @metadatas = @search.metadatas
+       
+      @existing_layers = Layer.where(:name => @metadatas.map(&:layer_name)).select(:name).map(&:name)
+    end
     render :action => :moissonnage
+  end
+
+  collection_action :import_meta, :method => :post do
+    url = params[:import][:server_url]
+    #layers_to_import = params[:import][:layer_name] || []
   end
 
   collection_action :import, :method => :post do
     url = params[:import][:server_url]
+    geo_server = GeoServer.find_by_id(params[:import][:server_id])
     layers_to_import = params[:import][:layer_name] || []
      @layers =  WMS::Client.new(url).layers.select{|l| layers_to_import.include?(l.name)}
      @layers.map do  |layer|
-        #create_layer_from_geoserver(layer, geo_server)
+        create_layer_from_geoserver(layer, url, geo_server)
       end 
+    redirect_to admin_layers_path
   end
 
   collection_action :from_geoserver, :method => :post do
@@ -76,6 +92,9 @@ ActiveAdmin.register Layer do
   index do
     id_column
     column "Titre", :title
+    column "Geoserveur", :sortable => :geo_server_id do |g|
+      link_to g.geo_server.name, admin_geo_server_path(g) if g.geo_server
+    end
     column "Information" do |l|
      div do
       b "Description :"

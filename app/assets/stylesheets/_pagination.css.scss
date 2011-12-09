@@ -8,6 +8,7 @@
   display: inline;
   font-size: 0.9;
   margin-left: 10px;
+  margin: 0;
 
   a { 
     @include light-button; 

@@ -6,43 +6,33 @@
   = f.inputs "Serveur WMS" do
     = f.input :url, :hint => "http://geobretagne.fr/geoserver/wms"
     = f.input :type, :as => :radio, :collection => [ "Geonetwork", "Geoserver"], :checked => "checked"
+    = f.input :server_id, :as => :select, :collection => GeoServer.all, :label => "Serveur Correspondant (optionnel)", :required => false
+    %br
+    .block-message.alert-message
+      %h3
+        Format des urls :
+      %p
+        
+        %span
+          %b
+            Geoserver: 
+          http://geobretagne.fr/geoserver/
+          %b
+            wms
+          
+      %p
+        %span
+          %b
+            Geonetwork:
+          %span
+            http://geobretagne.fr/geonetwork/
+          %b
+            srv/en/csw
+
   = f.buttons do
     = f.submit "Rechercher", :class => "primary btn"
 - if @layers
-  - if @layers.empty?
-    .alert-message.info
-      %p Aucune couche disponible
-  - else
-    - @layers.sort_by!{|l| l.title.downcase}
-    =# simple_form_for(:import, :url => import_admin_capabilities_path, :builder => SimpleBootstrapFormBuilder) do |f|
-    = semantic_form_for :import, :url => import_admin_layers_path do |f|
-      = f.input "server_url", :as => :hidden, :input_html => { :value => params[:server][:url] }
-      %table.sortable.index_table
-        %thead
-          %tr
-            %th.nowrap Importer ?
-            %th Titre
-            %th Nom
-            %th Metadata
-        %tbody
-          - @layers.each do |l|
-            - exist =  @existing_layers.include?( l.name)
-            - css_class = cycle('odd', 'even')
+  = render :partial => "admin/layers/layers_list"
+- elsif @metadatas
+  = render :partial => "admin/layers/metadatas_list"
 
-            %tr{:class => exist ? "exist #{css_class}" : "#{ css_class } not_exist"}
-              %td.nowrap
-                %div
-                  = check_box_tag "import[layer_name][]", l.name 
-                %div
-                  %span.label{:class => exist ? "success" : "warning"}
-                    - if exist 
-                      Couche d&eacute;j&agrave; import&eacute;e
-                    - else
-                      Non existante sur le serveur
-                  
-                  
-              %td= l.title
-              %td= l.name
-              %td= l.metadata_url
-      .input
-        = f.submit 'importer', :class => 'btn primary'

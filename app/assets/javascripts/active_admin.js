@@ -22,4 +22,12 @@ $(document).ready(function(){
     var parent = $(this).parent();
     parent.slideUp( function(){ parent.remove(); });
   });
+  $('#check_all').click(function(e){
+    var others = $(this).parents('table').first().find('input[type=checkbox]');
+    var checked = $(this).is(':checked');
+    others.each(function(i,el){
+      $(el).prop('checked', checked);
+    });
+
+  });
 });
