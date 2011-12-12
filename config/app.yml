@@ -3,6 +3,7 @@ development:
   filter_id: 23
   home_context_id: 84
   page_help_id: 'aide'
+  contact_email: "atanguy@dotgee.fr"
 
 test:
 
@@ -11,3 +12,4 @@ production:
   theme_id: "themes"
   home_context_id: 84
   page_help_id: 'aide'
+  contact_email: "cartographie@bretagne-environnement.org"

@@ -7,6 +7,8 @@ fr:
         title: Titre
         filters: Filtres
         tag_list: "Mots cl&eacute;s"
+      contact:
+        last_name: "Pr&eacute;nom"
     models:
       layer: "Couche"
       geo_context: Projet

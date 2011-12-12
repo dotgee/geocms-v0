@@ -16,14 +16,13 @@
         .selected_icon
         .row.layer_selection
           .layer_img
-            =# link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
-            = link_to '#', { :class => "ui-icon-with-text btn-features", :layer_id => "#{l.name.gsub(':','_')}"} do
-              .ui-icon.ui-icon-info
+            = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'
           .layer_info
             %span
               = l.title
             .clear
             %div{:class => "slider #{l.name.gsub(':','_')}", :id => l.name.gsub(':','_')}
             %span{:id => "template_#{l.name.gsub(':','_')}", :class => "template"}
+              =l.template
           .clear
 

@@ -1,5 +1,10 @@
 Geocms::Application.routes.draw do
-  match "/contact" => "contact#index" , :as => :contact 
+  resources :contact, :path_names => {:index => :contact}, :only => [:index, :mail_sende] do
+    collection do
+      match "mail_sended"
+      match "post_mail"
+    end
+  end
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
