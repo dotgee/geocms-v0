@@ -21,7 +21,7 @@
     = f.input :title
     = f.input :description, :input_html => { :cols => 10}
     = f.input :template, :input_html => { :cols => 10}, :as => :ckeditor
-    - @features.each do |feature|
+    -# @features.each do |feature|
       %span.btn=feature
     = f.input :themes, :collection => Taxon.themes_select
     = f.input :filter, :include_blank => false
