@@ -8,9 +8,7 @@ ActiveAdmin.register Layer do
   controller do
     def edit
       @layer = Layer.find(params[:id]) 
-      #c = Curl::Easy.perform("#{@layer.wms_url}?service=wfs&version=1.1.0&request=DescribeFeatureType&typeName=#{@layer.name}")
-      #doc = Nokogiri::XML(c.body_str)
-
+      @features = WMS::Client.new(@layer.wms_url,{:layer_name => @layer.name}).features_list
     end
 
     def create_layer_from_geoserver(layer_infos, server_url, geo_serveur)
@@ -87,7 +85,7 @@ ActiveAdmin.register Layer do
   filter :title
   filter :description
   filter :name
-  filter :wms_url, :label => "Serveur", :as => :select, :collection => proc { Layer.select('distinct wms_url').map(&:wms_url)}
+  #filter :wms_url, :label => "Serveur", :as => :select, :collection => proc { Layer.select('distinct wms_url').map(&:wms_url)}
 
   index do
     id_column

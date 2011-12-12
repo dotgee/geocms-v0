@@ -1,4 +1,13 @@
 fr:
+  simple_form:
+    labels:
+      contact:
+        last_name: Nom
+        first_name: Pr&eacute;nom
+        message: Message
+
+  formtastic:
+    labels:
   activerecord:
     attributes:
       layer:

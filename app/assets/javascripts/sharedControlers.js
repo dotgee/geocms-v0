@@ -103,6 +103,7 @@ function addSharedControlers() {
         'div' : {
           'layer<-layers' : {
             '@id' : 'layer.name',
+            'a@layer_id' : 'layer.uniqueID',
             'p'    : 'layer.name',
             'img@src' : '#{layer.url}#{url}#{layer.params.LAYERS}'
           }
@@ -144,15 +145,17 @@ function addSharedControlers() {
            if (dialog) {
               dialog.dialog("destroy");
            }
+           output = "";
            if (event.features.length > 0) {
             event.features.forEach(function(feature) {
               template = $("#template_"+event.object.layer.uniqueID).text();
-              output = Mustache.to_html(template,feature.data);
-              if(output != ""){
-                dialog = $("<div title='Feature Info'>" + output + "</div>").dialog();
-              }
+              console.log(feature.data);
+              output += Mustache.to_html(template,feature.data);
             });
-          } else {
+           } 
+           if(output != ""){
+              dialog = $("<div title='Feature Info'>" + output + "</div>").dialog();
+            } else {
             dialog = $("<div title='Pas de features'>Pas de features &agrave; afficher !</div>").dialog();
           }
         }

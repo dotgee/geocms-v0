@@ -3,14 +3,24 @@ require 'nokogiri'
 
 module WMS
   class Client
-    def initialize(url)
+    def initialize(url, options = {})
       @wmsurl = url
+      @layer_name = options.delete(:layer_name)
       @capabilities_doc = nil
+      @features_doc = features_doc
     end
-
 
     def capabilities
       uri = [ @wmsurl, self.class.build_capabilities_query ].join('?')
+      perform(uri)
+    end
+
+    def features
+      uri = [ @wmsurl, self.class.build_features_query(@layer_name) ].join('?')
+      perform(uri)
+    end
+
+    def perform(uri)
       response = open(uri).read
       return parse_response(response)
     end
@@ -25,12 +35,28 @@ module WMS
       @capabilities_doc
     end
 
+    def features_doc
+      return @features_doc if @features_doc
+      @features_doc = features
+      @features_doc
+    end
+
     def layers
       parsed_layers = capabilities_doc.xpath('//xmlns:Layer[@queryable="1"]').inject([]) do |array, l|
         array << Layer.from_xml(l)
         array
       end
       parsed_layers
+    end
+
+    def features_list
+      f = features_doc.remove_namespaces!
+      parsed_features = f.xpath('//sequence/element').inject([]) do |array, l|
+        array << l["name"] 
+        array
+      end
+      parsed_features.delete_at(0)
+      parsed_features
     end
 
     class << self
@@ -44,6 +70,16 @@ module WMS
         
         return to_params(params)
       end
+
+      def build_features_query(layer_name)
+        params = {
+          :request => 'DescribeFeatureType',
+          :service => 'WFS',
+          :typeName => layer_name
+        }
+        return to_params(params)
+      end  
+
     end
   end
 

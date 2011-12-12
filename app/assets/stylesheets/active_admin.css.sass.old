@@ -1,0 +1,58 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins"
+@import "active_admin/base"
+// To customize the Active Admin interfaces, add your
+// styles here:
+//@import "bootstrap"
+//@import "_bootstrap_hacks"
+@import "active_admin_boot"
+@import "jqueryui"
+@import "jquery/jquery.multiselect"
+
+.grippie
+  background: #EEEEEE image-url("grippie.png") no-repeat scroll center 2px
+  border-color: #DDDDDD
+  border-style: solid
+  border-width: 0pt 1px 1px
+  cursor: s-resize
+  height: 9px
+  overflow: hidden
+
+.resizable-textarea textarea
+  display: block
+  margin-bottom: 0pt
+  height: 120px
+
+ul
+  list-style: none
+.pagination
+  ul
+    list-style: none
+    li
+      float: left
+.cke_1
+  float: left
+
+form fieldset > ol > li
+  clear: both
+.searchLi
+  padding: 0
+
+.nowrap
+  white-space: nowrap
+  text-align: center
+
+a.btn
+  text-decoration: none
+form fieldset.buttons li 
+  float: none
+  display: inline
+legend
+  &.label
+    background-color: inherit
+
+.center
+  text-align: center
+
+li.hidden
+  display: none

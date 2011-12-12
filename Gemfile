@@ -46,7 +46,7 @@ gem 'slim'
 
 gem 'redis', "~> 2.2.0"
 gem "uuid", "~> 2.3.4"
-gem 'activeadmin'
+gem 'activeadmin', ">= 0.3.4"
 gem "meta_search",    '>= 1.1.0.pre'
 #recherche solR
 gem "sunspot"
