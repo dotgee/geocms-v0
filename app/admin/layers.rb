@@ -1,16 +1,10 @@
 ActiveAdmin.register Layer do
+
   form :partial => "admin/layers/form"
-  sidebar "Autres actions" do
-    div link_to "Moissonnage", moissonnage_admin_layers_path, :class => "btn primary"
-    hr
-  end
+
+
   # @todo Faire un client WFS pour recuperer ces infos
   controller do
-    def edit
-      @layer = Layer.find(params[:id]) 
-      @features = WMS::Client.new(@layer.wms_url,{:layer_name => @layer.name}).features_list
-    end
-
     def create_layer_from_geoserver(layer_infos, server_url, geo_serveur)
         conditions = { :wms_url => server_url,
                        :name => layer_infos.name }
@@ -24,8 +18,9 @@ ActiveAdmin.register Layer do
         new_layer.geo_server = geo_serveur
         new_layer.save
     end
-  end
 
+  end
+  
   collection_action :moissonnage do
   end
 
@@ -108,5 +103,10 @@ ActiveAdmin.register Layer do
       end
     end
     default_actions
+  end
+
+  sidebar "Autres actions" do
+    #div link_to "Moissonnage", moissonnage_admin_layers_path, :class => "btn primary"
+    hr
   end
 end

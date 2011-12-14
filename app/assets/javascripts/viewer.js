@@ -36,8 +36,29 @@ $.widget("ui.viewer", {
                                                  opacity: 0.8,
                                                  singleTile: true,
                                                  uniqueID: layer_name.replace(":", "_"),
-                                                 modelID: div.attr("layer_id") 
+                                                 modelID: div.attr("model_id") 
                                                });
+
+          map.addLayer(layer);
+          // Generates the legend for the new layer
+          var legende = $("#legende div:first-child").clone();
+          legende.attr("id", layer.uniqueID+"_legende");
+          legende.find("p").text(layer.name);
+          legende.find("img").attr("src", layer.url+"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer.params.LAYERS);
+          $("#legende").append(legende);
+          
+          var selectedNode = $("#selected div:first-child").clone();
+          selectedNode.attr("id", layer.uniqueID+"_selected");
+          selectedNode.find("p").text(layer.name);
+          selectedNode.find("a").attr("layer_id", layer.uniqueID);
+          selectedNode.find("span.slider").attr("id", layer.uniqueID).html("");
+          selectedNode.find("span.template").attr("id", "template_"+layer.uniqueID).text("");
+          selectedNode.find("input").attr("id", "check_"+layer.uniqueID);
+          addSlider(selectedNode.find("span.slider"));
+          $("#selected").append(selectedNode);
+
+          div.attr('layer_id', layer.id);
+
           layer.events.register("loadstart", layer, function(){
             $("#progress").show();
             template_div = $("#template_"+layer.uniqueID);
@@ -51,27 +72,19 @@ $.widget("ui.viewer", {
           layer.events.register("loadend", layer, function(){
             $("#progress").hide();
           });
-          map.addLayer(layer);
 
-          // Generates the legend for the new layer
-          var legende = $("#legende div:first-child").clone();
-          legende.attr("id", layer.uniqueID+"_legende");
-          legende.find("p").text(layer.name);
-          legende.find("img").attr("src", layer.url+"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer.params.LAYERS);
-          $("#legende").append(legende);
-          
-          div.attr('layer_id', layer.id);
         }else{
           layer.setVisibility(true);
           $("#"+layer.uniqueID+"_legende").show(300);
+          $("#"+layer.uniqueID+"_selected").show(300);
         }
-        $("."+layer.uniqueID).show(300);
       }
       else{
         if(layer){
           layer.setVisibility(false);
           $("#"+layer.uniqueID+"_legende").hide(300);
-          $("."+layer.uniqueID).hide(300);
+          console.log($("#"+layer.uniqueID+"_selected"));
+          $("#"+layer.uniqueID+"_selected").hide();
         }
       }
 

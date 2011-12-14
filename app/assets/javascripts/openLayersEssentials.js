@@ -5,6 +5,8 @@ OpenLayers.ProxyHost = "http://geocms.devel.dotgee.fr/proxy.php?url=";
 //var bzhBounds = new OpenLayers.Bounds(33534.34825,6584909.31255,503163.44995,6897995.38035);
 var map, layer, measureControls, mapOptions;
 var format = new OpenLayers.Format.WMC();
+var gg = new OpenLayers.Projection("EPSG:4326");
+var lb = new OpenLayers.Projection("EPSG:2154");
 
 // Mesures 
 var sketchSymbolizers = {

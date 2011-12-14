@@ -14,7 +14,8 @@ $(document).ready(function() {
       opacity: 0.5,
       displayInLayerSwitcher:false,
       isBaseLayer: true,
-      originalID: 'region-bretagne_region_2154'
+      originalID: 'region-bretagne_region_2154',
+      uniqueID: 'region-bretagne_region_2154'
     }
   );
   map.addLayer(fond_carto);

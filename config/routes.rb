@@ -1,11 +1,12 @@
 Geocms::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
   resources :contact, :path_names => {:index => :contact}, :only => [:index, :mail_sende] do
     collection do
       match "mail_sended"
       match "post_mail"
     end
   end
-  ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
@@ -23,6 +24,9 @@ Geocms::Application.routes.draw do
       get 'print'
       match "search"
     end
+    member do
+      get 'getfeatures'
+    end
   end
 
   #resources :categories
@@ -37,7 +41,6 @@ Geocms::Application.routes.draw do
     end
   end
 
-  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   match '/auth/failure' => 'devise/sessions#failure'
 

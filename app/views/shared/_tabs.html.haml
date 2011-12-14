@@ -1,0 +1,12 @@
+%ul.tabs
+  %li.active
+    %a{ :href => "#available" } Disponibles
+  %li
+    %a{ :href => "#selected" } S&eacute;l&eacute;ctionn&eacute;es
+
+.tab-content
+  #available.tab-pane.active
+    = render :partial => "shared/category_chooser_accordion"
+
+  #selected.tab-pane
+    = render :partial => "shared/selected_layers"

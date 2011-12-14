@@ -16,12 +16,9 @@ class Layer < ActiveRecord::Base
   #has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
   belongs_to :filter, :class_name => "Taxon", :conditions => { :parent_id => AppConfig.filter_id }
 
-  scope :recent, lambda { |nb|
-                    {
-                      :order => "created_at desc",
-                      :limit => nb 
-                    }                
-                  }
+  scope :published, :conditions => {:published => true}
+  scope :recent, order('coalesce (modification_date, created_at) desc')
+  scope :recent_published, recent.published
 
   searchable do 
     text :description
@@ -37,7 +34,7 @@ class Layer < ActiveRecord::Base
       filter_name
     end
   end
-  
+
   def set_title_if_empty
     if title.blank?
       title = name

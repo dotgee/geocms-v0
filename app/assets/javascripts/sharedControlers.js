@@ -102,14 +102,27 @@ function addSharedControlers() {
       directive = {
         'div' : {
           'layer<-layers' : {
-            '@id' : 'layer.name',
-            'a@layer_id' : 'layer.uniqueID',
+            '@id' : 'layer.uniqueID',
             'p'    : 'layer.name',
             'img@src' : '#{layer.url}#{url}#{layer.params.LAYERS}'
           }
         }
       }
   $("#legende").render(data, directive); 
+
+  var direct = {
+    'div' : {
+      'layer<-layers' : {
+        '@id'                     : '#{layer.uniqueID}_selected',
+        'p'                       : 'layer.name',
+        'span.template@id'        : 'template_#{layer.uniqueID}',
+        'span.slider@id'          : 'layer.uniqueID',
+        'input@id'                : 'check_#{layer.uniqueID}',
+        'a.btn-features@layer_id' : 'layer.uniqueID'
+      }
+    }
+  }
+  $("div#selected").render(data, direct);
 
   /* GetFeaturesInfo */
 
@@ -149,7 +162,6 @@ function addSharedControlers() {
            if (event.features.length > 0) {
             event.features.forEach(function(feature) {
               template = $("#template_"+event.object.layer.uniqueID).text();
-              console.log(feature.data);
               output += Mustache.to_html(template,feature.data);
             });
            } 
@@ -165,7 +177,7 @@ function addSharedControlers() {
   // Activation des commandes au click bouton
   map.addControls([featureInfos, getFeatures]);
 
-  $(".btn-features").click(function(e){
+  $(".btn-features").live("click", function(e){
     e.preventDefault();
     if(featureInfos.active) {
       featureInfos.deactivate();
@@ -184,18 +196,6 @@ function addSharedControlers() {
     }
   });
 
-  // Affichage des sliders
-  $(".slider").slider({
-        value: 80,
-        orientation: "horizontal",
-        range: "min",
-        animate: true,
-        slide: function(event, ui) {
-          var layers = map.getLayersBy("uniqueID", this.id);
-          layers[0].setOpacity(ui.value/100);
-          $("."+this.id).slider("value", ui.value);
-        }
-  });
 
   // Accordeon maison pour les sous categories
   $('.right-menu h3').not('.parent').click(function(e) {
@@ -205,4 +205,62 @@ function addSharedControlers() {
       return false;
     }).next().hide();
 
-};
+  // Tabs bootstrap
+  $('.tabs').tabs();
+  // Affichage des sliders
+
+  $(".slider").slider({
+      value: 80,
+      orientation: "horizontal",
+      range: "min",
+      animate: true,
+      slide: function(event, ui) {
+        var layers = map.getLayersBy("uniqueID", this.id);
+        layers[0].setOpacity(ui.value/100);
+        $("."+this.id).slider("value", ui.value);
+      }
+  });
+
+  $(".check_layer").live("click", function(e) {
+    var self = $(this);
+    layers = map.getLayersBy("uniqueID", self.attr("id").substring(self.attr("id").indexOf("_")+1));
+    if(self.attr("checked")) {
+      layers[0].setVisibility(true);
+    } else {
+      layers[0].setVisibility(false);
+    }
+  });
+
+  $('#btn-geoname').keypress(function(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if(code == 13) { 
+      var searchUrl = 'http://ws.geonames.org/searchJSON?featureClass=P&maxRows=10';
+      searchUrl += '&name_startsWith=' + $(this).val();
+      $.getJSON(searchUrl, function(data) {
+          var place = data.geonames[0];
+          console.log(place);
+          var lonlat = new OpenLayers.LonLat(place.lng, place.lat);
+          console.log(gg);
+          console.log(lb);
+          console.log(lonlat.transform(gg, lb));
+          map.setCenter(lonlat.transform(gg, lb), 10);
+      });
+    }
+  });
+
+}
+
+function addSlider(element) {
+  element.slider({
+    value: 80,
+    orientation: "horizontal",
+    range: "min",
+    animate: true,
+    slide: function(event, ui) { 
+      var layers = map.getLayersBy("uniqueID", this.id);
+      layers[0].setOpacity(ui.value/100);
+      $("."+this.id).slider("value", ui.value);
+    }
+  });
+  
+}

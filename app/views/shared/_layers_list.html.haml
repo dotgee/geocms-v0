@@ -8,7 +8,7 @@
     - layers.each_with_index do |l, i|
       .category_layer_container{ :layer_name => l.name, 
                                   :wms_url => l.wms_url, 
-                                  :layer_id => l.id, 
+                                  :model_id => l.id, 
                                   :layer_title => l.title, 
                                   :class => [l.uniq_identifier, l.filter_name.downcase].join(' '), 
                                   :layer_class => l.uniq_identifier, 
@@ -21,8 +21,5 @@
             %span
               = l.title
             .clear
-            %div{:class => "slider #{l.name.gsub(':','_')}", :id => l.name.gsub(':','_')}
-            %span{:id => "template_#{l.name.gsub(':','_')}", :class => "template"}
-              =l.template
           .clear
 

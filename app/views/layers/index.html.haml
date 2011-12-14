@@ -11,8 +11,10 @@
       %th{:colspan => 2} Infos
 
   %ul.layer-container.clearfix
-    - @layers.each do |layer|
+    - @layers.each_with_index do |layer, i|
       = render :partial => "layer_row", :locals => {:layer => layer }
+      - if i%2 !=0
+        .clear
   =# @layer.inspect
   .paginate-container.clearfix
     .pull-right

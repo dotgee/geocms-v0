@@ -16,7 +16,7 @@ class LayersController < ApplicationController
   # GET /layers.json
   def index
 
-    @layers = Layer.includes([:themes, :taggings]).page(page).order("created_at desc")
+    @layers = Layer.recent_published.includes([:themes, :taggings]).page(page).per(20)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @layers }
@@ -31,6 +31,14 @@ class LayersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @layer }
+    end
+  end
+
+  def getfeatures
+    @layer = Layer.find(params[:id])
+    @features = WMS::Client.new(@layer.wms_url,{:layer_name => @layer.name}).features_list
+    respond_to do |format|
+      format.json { render json: @features }
     end
   end
 

@@ -18,6 +18,7 @@
 //= require widgets/categorySlider
 //= require widgets/filter
 //= require pure
+//= require proj4js/proj4js
 //= require mustache
 
 var fullscreen = false;

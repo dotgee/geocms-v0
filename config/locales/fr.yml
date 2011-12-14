@@ -8,12 +8,18 @@ fr:
 
   formtastic:
     labels:
+    layer:
+      new:
+        title:
+          "Nouvelle couche"
+      name: "bob"
   activerecord:
     attributes:
       layer:
         wms_url: Url WMS
         name: Nom
         title: Titre
+        published: "Publi&eacute;"
         filters: Filtres
         tag_list: "Mots cl&eacute;s"
       contact:

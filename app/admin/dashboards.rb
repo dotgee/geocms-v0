@@ -9,8 +9,8 @@ ActiveAdmin::Dashboards.build do
   #
      section "Recent Layers" do
        ul do
-         Layer.recent(5).collect do |layer|
-           li link_to(layer.title, admin_layer_path(layer))
+         Layer.recent_published.limit(5).collect do |layer|
+           li link_to(layer.title, layer)
          end
        end
      end
