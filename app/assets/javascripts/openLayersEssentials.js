@@ -85,7 +85,7 @@ $(document).ready(function() {
   var window_height = $(window).height();
   var offset_map = $("#map").offset().top;
   $('#content').viewer({ map: map, accordionPosition: "right"});
-  $("#map").height(window_height - offset_map);
+  $("#map, #tabs").height(window_height - offset_map);
 
   var bounds = new OpenLayers.Bounds(
                     145607.334, 6740620.908,

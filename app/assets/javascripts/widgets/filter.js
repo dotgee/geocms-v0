@@ -13,6 +13,7 @@ $.widget("ui.filter", {
   _bindEvents: function(){
     var self = this;
     self.element.find('input[type=checkbox]').click(function(e){
+      e.stopPropagation();
       var checked = self._checked();
       if(checked.length > 0){
         var css_classes = $.map(checked, function(el){
@@ -32,7 +33,7 @@ $.widget("ui.filter", {
           $(el).prop('checked', false);
         });
         $(self.options.cible_id).categorySlider('showAllLayers');  
-        $(el).fadeOut();
+        self._removeFilterLink().fadeOut();
      }
     });
   },

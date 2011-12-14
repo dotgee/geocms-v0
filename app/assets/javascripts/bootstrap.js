@@ -1,5 +1,5 @@
 /* =========================================================
- * bootstrap-modal.js v1.3.0
+ * bootstrap-modal.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#modal
  * =========================================================
  * Copyright 2011 Twitter, Inc.
@@ -19,6 +19,8 @@
 
 
 !function( $ ){
+
+  "use strict"
 
  /* CSS TRANSITION SUPPORT (https://gist.github.com/373874)
   * ======================================================= */
@@ -53,16 +55,12 @@
   * ============================= */
 
   var Modal = function ( content, options ) {
-    this.settings = $.extend({}, $.fn.modal.defaults)
+    this.settings = $.extend({}, $.fn.modal.defaults, options)
     this.$element = $(content)
       .delegate('.close', 'click.modal', $.proxy(this.hide, this))
 
-    if ( options ) {
-      $.extend( this.settings, options )
-
-      if ( options.show ) {
-        this.show()
-      }
+    if ( this.settings.show ) {
+      this.show()
     }
 
     return this
@@ -81,17 +79,22 @@
 
         escape.call(this)
         backdrop.call(this, function () {
+          var transition = $.support.transition && that.$element.hasClass('fade')
+
           that.$element
             .appendTo(document.body)
             .show()
 
-          if ($.support.transition && that.$element.hasClass('fade')) {
+          if (transition) {
             that.$element[0].offsetWidth // force reflow
           }
 
-          that.$element
-            .addClass('in')
-            .trigger('shown')
+          that.$element.addClass('in')
+
+          transition ?
+            that.$element.one(transitionEnd, function () { that.$element.trigger('shown') }) :
+            that.$element.trigger('shown')
+
         })
 
         return this
@@ -99,6 +102,10 @@
 
     , hide: function (e) {
         e && e.preventDefault()
+
+        if ( !this.isShown ) {
+          return this
+        }
 
         var that = this
         this.isShown = false
@@ -109,17 +116,9 @@
           .trigger('hide')
           .removeClass('in')
 
-        function removeElement () {
-          that.$element
-            .hide()
-            .trigger('hidden')
-
-          backdrop.call(that)
-        }
-
         $.support.transition && this.$element.hasClass('fade') ?
-          this.$element.one(transitionEnd, removeElement) :
-          removeElement()
+          hideWithTransition.call(this) :
+          hideModal.call(this)
 
         return this
       }
@@ -129,6 +128,28 @@
 
  /* MODAL PRIVATE METHODS
   * ===================== */
+
+  function hideWithTransition() {
+    // firefox drops transitionEnd events :{o
+    var that = this
+      , timeout = setTimeout(function () {
+          that.$element.unbind(transitionEnd)
+          hideModal.call(that)
+        }, 500)
+
+    this.$element.one(transitionEnd, function () {
+      clearTimeout(timeout)
+      hideModal.call(that)
+    })
+  }
+
+  function hideModal (that) {
+    this.$element
+      .hide()
+      .trigger('hidden')
+
+    backdrop.call(this)
+  }
 
   function backdrop ( callback ) {
     var that = this
@@ -156,17 +177,18 @@
     } else if ( !this.isShown && this.$backdrop ) {
       this.$backdrop.removeClass('in')
 
-      function removeElement() {
-        that.$backdrop.remove()
-        that.$backdrop = null
-      }
-
       $.support.transition && this.$element.hasClass('fade')?
-        this.$backdrop.one(transitionEnd, removeElement) :
-        removeElement()
+        this.$backdrop.one(transitionEnd, $.proxy(removeBackdrop, this)) :
+        removeBackdrop.call(this)
+
     } else if ( callback ) {
        callback()
     }
+  }
+
+  function removeBackdrop() {
+    this.$backdrop.remove()
+    this.$backdrop = null
   }
 
   function escape() {
@@ -220,7 +242,7 @@
   $.fn.modal.defaults = {
     backdrop: false
   , keyboard: false
-  , show: true
+  , show: false
   }
 
 
@@ -235,8 +257,9 @@
     })
   })
 
-}( window.jQuery || window.ender );/* ==========================================================
- * bootstrap-alerts.js v1.3.0
+}( window.jQuery || window.ender );
+/* ==========================================================
+ * bootstrap-alerts.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#alerts
  * ==========================================================
  * Copyright 2011 Twitter, Inc.
@@ -257,6 +280,8 @@
 
 !function( $ ){
 
+  "use strict"
+
   /* CSS TRANSITION SUPPORT (https://gist.github.com/373874)
    * ======================================================= */
 
@@ -275,11 +300,11 @@
      if ( $.support.transition ) {
        transitionEnd = "TransitionEnd"
        if ( $.browser.webkit ) {
-       	transitionEnd = "webkitTransitionEnd"
+        transitionEnd = "webkitTransitionEnd"
        } else if ( $.browser.mozilla ) {
-       	transitionEnd = "transitionend"
+        transitionEnd = "transitionend"
        } else if ( $.browser.opera ) {
-       	transitionEnd = "oTransitionEnd"
+        transitionEnd = "oTransitionEnd"
        }
      }
 
@@ -288,9 +313,10 @@
  /* ALERT CLASS DEFINITION
   * ====================== */
 
-  var Alert = function ( content, selector ) {
+  var Alert = function ( content, options ) {
+    this.settings = $.extend({}, $.fn.alert.defaults, options)
     this.$element = $(content)
-      .delegate(selector || '.close', 'click', this.close)
+      .delegate(this.settings.selector, 'click', this.close)
   }
 
   Alert.prototype = {
@@ -329,17 +355,23 @@
         return $this.data('alert')[options]()
       }
 
-      $(this).data('alert', new Alert( this ))
+      $(this).data('alert', new Alert( this, options ))
 
     })
   }
 
+  $.fn.alert.defaults = {
+    selector: '.close'
+  }
+
   $(document).ready(function () {
-    new Alert($('body'), '.alert-message[data-alert] .close')
+    new Alert($('body'), {
+      selector: '.alert-message[data-alert] .close'
+    })
   })
 
 }( window.jQuery || window.ender );/* ==========================================================
- * bootstrap-twipsy.js v1.3.0
+ * bootstrap-twipsy.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#twipsy
  * Adapted from the original jQuery.tipsy by Jason Frame
  * ==========================================================
@@ -360,6 +392,8 @@
 
 
 !function( $ ) {
+
+  "use strict"
 
  /* CSS TRANSITION SUPPORT (https://gist.github.com/373874)
   * ======================================================= */
@@ -410,7 +444,7 @@
         , $tip
         , tp
 
-      if (this.getTitle() && this.enabled) {
+      if (this.hasContent() && this.enabled) {
         $tip = this.tip()
         this.setContent()
 
@@ -430,7 +464,8 @@
 
         actualWidth = $tip[0].offsetWidth
         actualHeight = $tip[0].offsetHeight
-        placement = _.maybeCall(this.options.placement, this.$element[0])
+
+        placement = maybeCall(this.options.placement, this, [ $tip[0], this.$element[0] ])
 
         switch (placement) {
           case 'below':
@@ -482,6 +517,10 @@
       }
     }
 
+  , hasContent: function () {
+      return this.getTitle()
+    }
+
   , getTitle: function() {
       var title
         , $e = this.$element
@@ -501,10 +540,7 @@
     }
 
   , tip: function() {
-      if (!this.$tip) {
-        this.$tip = $('<div class="twipsy" />').html('<div class="twipsy-arrow"></div><div class="twipsy-inner"></div>')
-      }
-      return this.$tip
+      return this.$tip = this.$tip || $('<div class="twipsy" />').html(this.options.template)
     }
 
   , validate: function() {
@@ -527,20 +563,19 @@
       this.enabled = !this.enabled
     }
 
+  , toggle: function () {
+      this[this.tip().hasClass('in') ? 'hide' : 'show']()
+    }
+
   }
 
 
  /* TWIPSY PRIVATE METHODS
   * ====================== */
 
-   var _ = {
-
-     maybeCall: function ( thing, ctx ) {
-       return (typeof thing == 'function') ? (thing.call(ctx)) : thing
-     }
-
+   function maybeCall ( thing, ctx, args ) {
+     return typeof thing == 'function' ? thing.apply(ctx, args) : thing
    }
-
 
  /* TWIPSY PLUGIN DEFINITION
   * ======================== */
@@ -638,14 +673,25 @@
   , offset: 0
   , title: 'title'
   , trigger: 'hover'
+  , template: '<div class="twipsy-arrow"></div><div class="twipsy-inner"></div>'
   }
 
+  $.fn.twipsy.rejectAttrOptions = [ 'title' ]
+
   $.fn.twipsy.elementOptions = function(ele, options) {
-    return $.metadata ? $.extend({}, options, $(ele).metadata()) : options
+    var data = $(ele).data()
+      , rejects = $.fn.twipsy.rejectAttrOptions
+      , i = rejects.length
+
+    while (i--) {
+      delete data[rejects[i]]
+    }
+
+    return $.extend({}, options, data)
   }
 
 }( window.jQuery || window.ender );/* ===========================================================
- * bootstrap-popover.js v1.3.0
+ * bootstrap-popover.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#popover
  * ===========================================================
  * Copyright 2011 Twitter, Inc.
@@ -666,6 +712,8 @@
 
 !function( $ ) {
 
+ "use strict"
+
   var Popover = function ( element, options ) {
     this.$element = $(element)
     this.options = options
@@ -685,23 +733,28 @@
       $tip[0].className = 'popover'
     }
 
+  , hasContent: function () {
+      return this.getTitle() || this.getContent()
+    }
+
   , getContent: function () {
       var content
        , $e = this.$element
        , o = this.options
 
       if (typeof this.options.content == 'string') {
-        content = $e.attr(o.content)
+        content = $e.attr(this.options.content)
       } else if (typeof this.options.content == 'function') {
         content = this.options.content.call(this.$element[0])
       }
+
       return content
     }
 
   , tip: function() {
       if (!this.$tip) {
         this.$tip = $('<div class="popover" />')
-          .html('<div class="arrow"></div><div class="inner"><h3 class="title"></h3><div class="content"><p></p></div></div>')
+          .html(this.options.template)
       }
       return this.$tip
     }
@@ -718,10 +771,16 @@
     return this
   }
 
-  $.fn.popover.defaults = $.extend({} , $.fn.twipsy.defaults, { content: 'data-content', placement: 'right'})
+  $.fn.popover.defaults = $.extend({} , $.fn.twipsy.defaults, {
+    placement: 'right'
+  , content: 'data-content'
+  , template: '<div class="arrow"></div><div class="inner"><h3 class="title"></h3><div class="content"><p></p></div></div>'
+  })
+
+  $.fn.twipsy.rejectAttrOptions.push( 'content' )
 
 }( window.jQuery || window.ender );/* ============================================================
- * bootstrap-dropdown.js v1.3.0
+ * bootstrap-dropdown.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#dropdown
  * ============================================================
  * Copyright 2011 Twitter, Inc.
@@ -742,16 +801,7 @@
 
 !function( $ ){
 
-  var d = 'a.menu, .dropdown-toggle'
-
-  function clearMenus() {
-    $(d).parent('li').removeClass('open')
-  }
-
-  $(function () {
-    $('html').bind("click", clearMenus)
-    $('body').dropdown( '[data-dropdown] a.menu, [data-dropdown] .dropdown-toggle' )
-  })
+  "use strict"
 
   /* DROPDOWN PLUGIN DEFINITION
    * ========================== */
@@ -769,8 +819,23 @@
     })
   }
 
-}( window.jQuery || window.ender );/* =============================================================
- * bootstrap-scrollspy.js v1.3.0
+  /* APPLY TO STANDARD DROPDOWN ELEMENTS
+   * =================================== */
+
+  var d = 'a.menu, .dropdown-toggle'
+
+  function clearMenus() {
+    $(d).parent('li').removeClass('open')
+  }
+
+  $(function () {
+    $('html').bind("click", clearMenus)
+    $('body').dropdown( '[data-dropdown] a.menu, [data-dropdown] .dropdown-toggle' )
+  })
+
+}( window.jQuery || window.ender );
+/* =============================================================
+ * bootstrap-scrollspy.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#scrollspy
  * =============================================================
  * Copyright 2011 Twitter, Inc.
@@ -790,6 +855,8 @@
 
 
 !function ( $ ) {
+
+  "use strict"
 
   var $window = $(window)
 
@@ -874,7 +941,7 @@
   })
 
 }( window.jQuery || window.ender );/* ========================================================
- * bootstrap-tabs.js v1.3.0
+ * bootstrap-tabs.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#tabs
  * ========================================================
  * Copyright 2011 Twitter, Inc.
@@ -895,28 +962,46 @@
 
 !function( $ ){
 
+  "use strict"
+
   function activate ( element, container ) {
-    container.find('.active').removeClass('active')
+    container
+      .find('> .active')
+      .removeClass('active')
+      .find('> .dropdown-menu > .active')
+      .removeClass('active')
+
     element.addClass('active')
+
+    if ( element.parent('.dropdown-menu') ) {
+      element.closest('li.dropdown').addClass('active')
+    }
   }
 
   function tab( e ) {
     var $this = $(this)
+      , $ul = $this.closest('ul:not(.dropdown-menu)')
       , href = $this.attr('href')
-      , $ul = $this.closest('ul')
-      , $controlled
+      , previous
+      , $href
 
-    if (/^#\w+/.test(href)) {
+    if ( /^#\w+/.test(href) ) {
       e.preventDefault()
 
-      if ($this.hasClass('active')) {
+      if ( $this.parent('li').hasClass('active') ) {
         return
       }
 
+      previous = $ul.find('.active a').last()[0]
       $href = $(href)
 
       activate($this.parent('li'), $ul)
       activate($href, $href.parent())
+
+      $this.trigger({
+        type: 'change'
+      , relatedTarget: previous
+      })
     }
   }
 

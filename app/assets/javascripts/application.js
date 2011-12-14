@@ -24,6 +24,7 @@
 var fullscreen = false;
 
 $(document).ready(function(){
+  $('#legend_container').legend();
   $('#layer_tab').tabs();
   $('.filters').filter();
   $('textarea').not('.not_resizable').TextAreaResizer();

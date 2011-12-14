@@ -32,10 +32,3 @@
           = render :partial => "shared/layers_list", :locals => { :layers => c.layers, :theme => c }  
     - else
       = render :partial => "shared/layers_list", :locals => { :layers => t.layers, :theme => t }  
-
-%h2 L&eacute;gende
-
-#legende
-  .legende-node
-    %p
-    %img(onerror="this.src='#{image_path 'error.png'}'")

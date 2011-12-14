@@ -9,9 +9,9 @@
 
 #category_chooser
   display: none
+  margin: 0
   &.right_positioning
     float: right
-    margin: -32px 0 0
   &.left_positioning
     float: left
     margin-left: 0px
@@ -94,7 +94,7 @@
   z-index: 1010
   &.sliders
     width: 250px
-    top: 0
+    top: 32px
     position: absolute
   .ui-widget-header
     .ui-icon
@@ -109,3 +109,33 @@
   padding: 5px 0
   border-bottom: 1px #DDD solid
 
+#legend_container
+  position: absolute
+  top: 32px
+  z-index: -1
+  left: 0
+  border: 2px #0080CC solid
+  border-right: none
+  padding: 5px 10px
+  background: white
+  h2.vertical
+    position: absolute
+    top: 25px
+    left: -27px
+    line-height: 15px
+    cursor: pointer
+    width: 27px
+    padding: 0
+    float: left
+    margin: 0
+    a
+      color: white
+      text-decoration: none
+      display: block
+      width: 17px
+      padding: 5px 
+      text-align: center
+      text-transform: uppercase
+  #legende
+    visibility: hidden
+    padding: 0

@@ -1,6 +1,4 @@
-= render :partial => 'shared/content_toolbar'
 = map_js
-
 = content_for :javascripts do
   :javascript
     var layerNames = "#{@layer.name}";
@@ -10,20 +8,24 @@
   = javascript_include_tag "mapLayerInit"
   = javascript_include_tag "sharedControlers"
 
+
 #category_chooser
   = render :partial => "shared/tabs"              
-#map
-  .map-infos
-    .slider-container
-      .info-slider.up
-    .modal-header
-      %h3
-        = @layer.name
-    .modal-body
-      %b.label.success Description :
-      = @layer.description 
-    #features
-      .clear
+#map_container
+  = render :partial => 'shared/content_toolbar'
+  #map
+    .map-infos
+      .slider-container
+        .info-slider.up
+      .modal-header
+        %h3
+          = @layer.name
+      .modal-body
+        %b.label.success Description :
+        = @layer.description 
+      #features
+        .clear
+  .clear
 
 #template{:style => "display: none"}
   = @layer.template

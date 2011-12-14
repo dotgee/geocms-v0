@@ -267,6 +267,7 @@ div#make-link-content
 // Style du contenu
 
 #content
+  overflow: hidden
   background: #fff
 
 //table
@@ -309,7 +310,6 @@ div#make-link-content
     position: relative
     top: 36px
     z-index: 10
-    margin: 36px auto 8px
 
   ul
     li
@@ -348,10 +348,18 @@ div#make-link-content
 // STYLE POUR LE MENU DE DROITE ET LEGENDE
 
 .fg-toolbar
-  margin: 0 236px 0 0 
+  height: 30px
+#map_container
+  margin-right: 220px
+#tabs
+  background: white
 
 #category_chooser 
-  padding: 0px 5px 10px 11px
+  z-index: 3000
+  
+  .tab-content
+    padding: 5px 10px
+  padding: 0px
   h2
     background: none #0080cc
     line-height: 20px

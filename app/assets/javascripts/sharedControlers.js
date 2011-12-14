@@ -206,7 +206,24 @@ function addSharedControlers() {
     }).next().hide();
 
   // Tabs bootstrap
-  $('.tabs').tabs();
+  $('#tabs').tabs();
+  $('#tabs').bind('change', function(e){
+    //pour la légende
+    if(e.target.hash && e.relatedTarget.hash){ //nÃ©cessaire sinon bind les checkboxs
+      var visible = $('#available .category_description.visible');
+      if(visible.length > 0){
+        var new_left;
+        var legend = $('#legend_container');
+        if(e.target.hash == "#selected"){
+          new_left =  -(visible.first().outerWidth());
+        }else{
+          new_left =  visible.first().width();
+        }
+        legend.legend('move', new_left);
+      }
+    }
+  });
+  
   // Affichage des sliders
 
   $(".slider").slider({
