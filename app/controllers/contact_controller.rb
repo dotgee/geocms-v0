@@ -1,10 +1,15 @@
 class ContactController < ApplicationController
   def index
-    if request.post?
+  end
+  def post_mail
       GipbeMailer.contact(params[:contact]).deliver
-      redirect_to mail_sended_contact_path
-    else
-
+      render :action => :mail_sended
+     return
+    begin
+      puts "ok"
+    rescue
+      flash[:notice] = "Erreur de l'envoie veuiller verifier les champs"
+      render :action => :index
     end
   end
 

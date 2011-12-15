@@ -1,10 +1,10 @@
 Geocms::Application.routes.draw do
   ActiveAdmin.routes(self)
 
-  resources :contact, :path_names => {:index => :contact}, :only => [:index, :mail_sende] do
+  resources :contact, :path_names => { :index => :contact }, :via => [:get, :post], :only => [:index, :mail_sende] do
     collection do
       match "mail_sended"
-      match "post_mail"
+      post "post_mail"
     end
   end
 
