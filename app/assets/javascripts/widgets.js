@@ -108,7 +108,6 @@ $.widget("ui.legend", {
     });
   },
   move:function(pixel, animate){
-    console.log('move of '+pixel);
     var self = this;
     var left = self._leftValue() - pixel;
     if(animate){

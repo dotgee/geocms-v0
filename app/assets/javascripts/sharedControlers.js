@@ -255,11 +255,7 @@ function addSharedControlers() {
       searchUrl += '&name_startsWith=' + $(this).val();
       $.getJSON(searchUrl, function(data) {
           var place = data.geonames[0];
-          console.log(place);
           var lonlat = new OpenLayers.LonLat(place.lng, place.lat);
-          console.log(gg);
-          console.log(lb);
-          console.log(lonlat.transform(gg, lb));
           map.setCenter(lonlat.transform(gg, lb), 10);
       });
     }

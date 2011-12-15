@@ -11,7 +11,7 @@ $(document).ready(function() {
     map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
     map.zoomTo(9);
     $('#container').viewer('resizeChooser');
-    map.layers.forEach(function(y) {
+    $.each(map.layers,function(i,y) {
       y.uniqueID = y.name.replace(":", "_");
     });
     addSharedControlers();

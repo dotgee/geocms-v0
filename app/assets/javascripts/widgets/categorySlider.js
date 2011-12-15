@@ -148,7 +148,6 @@ $.widget("ui.sliderPanel", {
   show: function(){
     var self = this; 
     if(!self.element.is(':visible')){
-      console.log('show');
       $('#legend_container').stop(false, true).legend('move', self.element.outerWidth(), true);
       self.element.height($('#map').height()-2); //-2 pour les bordures : pas trés propre
       self.element.effect('slide', { direction : self._slideDirection()})
@@ -159,7 +158,6 @@ $.widget("ui.sliderPanel", {
   hide: function(){
     var self = this; 
     if(self.element.is(':visible')){
-      console.log('hide');
       $('#legend_container').stop(false, true).legend('move', - self.element.outerWidth(), true);
       self.element.effect('slide', {direction : self._slideDirection(), mode:'hide'})
       self.element.removeClass('visible');

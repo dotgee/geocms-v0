@@ -1,14 +1,16 @@
 class GipbeMailer < ActionMailer::Base
-  default from: "from@example.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
   #   en.gipbe_mailer.contact.subject
   #
-  def contact
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def contact(params)
+    @message = params.delete(:message)
+    @full_name = "#{params.delete(:last_name)} #{params.delete(:first_name)}"
+    mail to: AppConfig.contact_email, 
+         from: params.delete(:email) do |format|
+            format.html
+         end
   end
 end
