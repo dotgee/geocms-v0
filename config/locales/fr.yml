@@ -25,7 +25,6 @@ fr:
       contact:
         last_name: "Pr&eacute;nom"
     models:
-      layer: "Couche"
       geo_context: Projet
       admin_user: Administrateur
       taxon: Classement
