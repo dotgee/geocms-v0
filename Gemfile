@@ -54,5 +54,5 @@ gem "sunspot_solr"
 gem "sunspot_rails"
 
 gem "mustache"
-gem "ckeditor", :path => "vendor/git/ckeditor"
+gem "ckeditor", :path => "vendor/git/ckeditor" #git://github.com/pshoukry/ckeditor.git
 gem "curb"
