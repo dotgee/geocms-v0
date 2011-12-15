@@ -83,27 +83,31 @@ $.widget("ui.viewer", {
         if(layer){
           layer.setVisibility(false);
           $("#"+layer.uniqueID+"_legende").hide(300);
-          console.log($("#"+layer.uniqueID+"_selected"));
           $("#"+layer.uniqueID+"_selected").hide();
         }
       }
 
   });
     self.layersListBtn.click(function(e){
-      
       e.preventDefault();
       var icon = self.layersListBtn.find('.ui-icon').first();
-      if(self.layerChooserAccordion.is(":visible")){
-        icon.removeClass('ui-icon-circle-arrow-s').addClass('ui-icon-circle-arrow-e');
-        self.layerChooserAccordion.hide("slow", function(){ 
-          self.mapinfos.mapinfos('redraw');
-       });
+      var chooserWidth = self.layerChooserAccordion.width();
+      if(!self.layerChooserAccordion.is(".hidden")){
+        icon.removeClass('ui-icon-circle-arrow-e').addClass('ui-icon-circle-arrow-w');
+        $('#map_container').animate({marginRight: 0});
+        chooserWidth = -(chooserWidth);
+        self.layerChooserAccordion.addClass('hidden');
       }
       else{
-        icon.removeClass('ui-icon-circle-arrow-e').addClass('ui-icon-circle-arrow-s');
-        self.layerChooserAccordion.show("slow");
+        icon.removeClass('ui-icon-circle-arrow-w').addClass('ui-icon-circle-arrow-e');
+        $('#map_container').animate({marginRight: chooserWidth});
+        chooserWidth = 0;
+        self.layerChooserAccordion.removeClass('hidden');
       }
-      map.updateSize();
+        self.layerChooserAccordion.animate({marginRight: chooserWidth  }, function(){ 
+          self.mapinfos.mapinfos('redraw');
+          map.updateSize();
+       });
     });
     self.fullScreenBtn.click(function(e){
       e.preventDefault();

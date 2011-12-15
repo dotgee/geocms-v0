@@ -60,18 +60,20 @@
   z-index: 2000
 
 .category_layer_container
-  @include round_corner(4px)
   border: 1px solid transparent
-  margin-bottom: 3px
-  &:hover
+  margin-bottom: 1px
+  &:hover, &.added_layer
     border: 1px solid #A9A9A9
-    background: #CCCCCC
+    background: #D9D9D9
     /* Mozilla: */
-    background: -moz-linear-gradient(top, #CCCCCC, #D9D9D9)
+    background: -moz-linear-gradient(top, #FFF, #D9D9D9)
     /* Chrome, Safari:*/
-    background: -webkit-gradient(linear, left top, left bottom, from(#CCCCCC), to(#D9D9D9))
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#D9D9D9))
     /* MSIE */
-    filter: progid:DXImageTransform.Microsoft.Gradient( StartColorStr='#CCCCCC', EndColorStr='#D9D9D9', GradientType=0)
+    filter: progid:DXImageTransform.Microsoft.Gradient( StartColorStr='#FFF', EndColorStr='#D9D9D9', GradientType=0)
+  &.added_layer
+    .selected_icon
+      background-position: -16px -192px
 
 .selected_layer
   opacity: 0.5
@@ -79,16 +81,10 @@
 
 .selected_icon
   float: right
-  width: 20px
-  height: 20px
-  background-image: url(/assets/select-sprite.png)
   margin: 3px
   cursor: pointer
+  background-color: transparent
 
-.added_layer
-  .selected_icon
-    background-position: 0px 20px
-  
 .category_description
   overflow: scroll
   z-index: 1010
