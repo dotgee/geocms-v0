@@ -72,6 +72,7 @@ ActiveAdmin.register Layer do
       rep = { "error" => "Aucune information trouv&eacute;"} if rep.empty?
       render :json => rep
     rescue => e
+      puts e.inspect
       render :json => {"error" => "Une erreur est survenue veuiller v&eacute;rifier le format de l'url."}
     end
   end
@@ -85,8 +86,8 @@ ActiveAdmin.register Layer do
   index do
     id_column
     column "Titre", :title
-    column "Geoserveur", :sortable => :geo_server_id do |g|
-      link_to g.geo_server.name, admin_geo_server_path(g) if g.geo_server
+    column "Source", :sortable => :data_source_id do |g|
+      link_to g.data_source.name, admin_data_source_path(g.data_source) if g.data_source
     end
     column "Information" do |l|
      div do

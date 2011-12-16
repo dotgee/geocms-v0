@@ -13,8 +13,8 @@ ActiveAdmin.register Taxon do
 
   form do |f|
     f.inputs "Classement" do 
-      f.inputs :name
-      f.inputs :parent
+      f.input :name
+      f.input :parent, :collection => Taxon.themes_select
     end
     f.buttons
   end

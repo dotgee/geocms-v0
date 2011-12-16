@@ -14,11 +14,17 @@ class Taxon < ActiveRecord::Base
         
          where({:parent => Taxon.find('themes').id})
     }
-  
+  scope :right_order, :order => "lft asc, rgt asc"
   class << self
     include CollectiveIdea::Acts::NestedSet::Helper
-    def themes_select
-      themes = Taxon.find("themes").descendants
+    include ActionView::Helpers::FormOptionsHelper
+    def all_temes_select(selected = nil)
+      themes = Taxon.roots
+      options_for_select(Taxon.right_order.map{|t| ["#{'-' *t.level}#{t.name}",t.id]})
+      #nested_set_options(themes) {|i| "#{'-' * (i.level - 1)} #{i.name }"}
+    end
+    def themes_select(selected = nil)
+      themes = Taxon.find('themes').descendants
       nested_set_options(themes) {|i| "#{'-' * (i.level - 1)} #{i.name }"}
     end
 

@@ -35,7 +35,6 @@ module Csw
 
     def parse_records(response)
       doc = Nokogiri::XML(response)
-      puts response
       return doc
     end
 
@@ -60,7 +59,6 @@ module Csw
 
     def parse_response(response)
       doc = Nokogiri::XML(response)
-      puts response
       doc.remove_namespaces!
       doc
 
@@ -117,7 +115,6 @@ module Csw
     end
 
     def parse_search(response)
-      puts response
       doc = Nokogiri::XML(response)
       doc.remove_namespaces!
       @metadatas = doc.xpath('//Record').inject([]) do |a, r|
@@ -139,6 +136,7 @@ module Csw
 
     def for_layer
       record = record_doc.xpath('//Record').first
+      meta = Csw::Metadata.from_xml(record)
       attributes = {}
       unless record.nil?
         attributes["description"] = record.xpath('./abstract', ).map(&:text).first
@@ -147,6 +145,7 @@ module Csw
         attributes["name"] = wms.attr('name') if wms 
         attributes["wms_url"] = wms.text if wms 
         attributes["source"] = record.xpath('./source').map{|el| el.text}.first
+        attributes["rights"] = meta.rights
         begin
         attributes["tag_list"] = record.xpath('./subject').map(&:text).select{|k| !k.blank?}.join(', ')
         rescue => e

@@ -4,7 +4,8 @@ class Layer < ActiveRecord::Base
   validates_format_of :wms_url, :with => URI::regexp(%w(http https))
 
   before_validation :set_title_if_empty
-  belongs_to :geo_server
+  #belongs_to :geo_server
+  belongs_to :data_source
 
   has_many :assigned_layer_taxons, 
            :dependent => :destroy
@@ -17,7 +18,7 @@ class Layer < ActiveRecord::Base
   belongs_to :filter, :class_name => "Taxon", :conditions => { :parent_id => AppConfig.filter_id }
 
   scope :published, :conditions => {:published => true}
-  scope :recent, order('coalesce (modification_date, created_at) desc')
+  scope :recent, order('coalesce (modification_date, publication_date, created_at) desc')
   scope :recent_published, recent.published
 
   searchable do 

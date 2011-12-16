@@ -13,7 +13,19 @@ fr:
         title:
           "Nouvelle couche"
       name: "bob"
+
   activerecord:
+    errors:
+      messages:
+        confirmation: "Vous devez confirmer %{attribute}"
+        blank: "Ne peut pas &ecirc;tre vide"
+        too_short: "Trop court" 
+      models:
+        admin_user:
+          attributes:
+            email:
+              taken: "Email d&eacute;j&agrave; utilis&eacute;"
+            password:
     attributes:
       layer:
         wms_url: Url WMS
@@ -24,10 +36,8 @@ fr:
         tag_list: "Mots cl&eacute;s"
       contact:
         last_name: "Pr&eacute;nom"
-    models:
-      geo_context: Projet
-      admin_user: Administrateur
-      taxon: Classement
+      admin_user:
+        password: "Mot de passe"
   time:
     formats:
       long: "%d/%m/%Y %H:%M"
@@ -58,9 +68,10 @@ fr:
     edit: "Modifier"
     delete: "Supprimer"
     delete_confirmation: Etes vous certain de vouloir supprimer?
-    new_model: "Nouveau %{model}"
+    new_model: "Ajouter %{model}"
     edit_model: "Modification %{model}"
     delete_model: "Suppression %{model}"
+    update_model: "Modifier %{model}"
     details: "%{model} Details"
     cancel: "Annuler"
     empty: "Vide"
@@ -89,3 +100,6 @@ fr:
       content: "Aucun"
       link: Créer
   send_message: "Envoyer le message"
+  support:
+    array:
+      two_words_connector: " et "
