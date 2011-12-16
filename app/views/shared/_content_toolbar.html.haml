@@ -1,32 +1,34 @@
 .fg-toolbar.ui-widget-header.ui-helper-clearfix
   .fg-buttonset
-    =# link_to '#', { :class => 'fg-button ui-state-default fg-button-icon-solo full_screen_btn' } do
-    =# link_to '+', '#', { :class => 'fg-button ui-state-default add_layer_btn' }
-    =# link_to '?', '#', { :class => "legend"}
-    = link_to  '#', { :class => "ui-icon-with-text", :id => "layers_list_btn"} do
+    = link_to  '#', { :class => "ui-icon-with-text ", :id => "layers_list_btn"} do
       .ui-icon.ui-icon-circle-arrow-e.floating-icon
       %span
         Liste couches
-    =# link_to  '#', { :class => "ui-icon-with-text full_screen_btn", :id => "full_screen_btn"} do
-    =#  .ui-icon.ui-icon-arrow-4-diag
-    = link_to '#', { :class => "ui-icon-with-text", :id => "hand_control"} do
+    =# link_to  '#', { :class => "ui-icon-with-text selectable full_screen_btn", :id => "full_screen_btn"} do
+    = link_to '#', { :class => "ui-icon-with-text selectable", :id => "hand_control"} do
       .ui-icon.hand
-    - twipsy = {:"data-original-title" => "Double Clic pour valider le trac&eacute;.".html_safe, :rel => "popover" }
-    = link_to '#', { :class => "ui-icon-with-text measure_control", :id => "ruler_measure", :measure_type => "line" }.merge(twipsy) do
+    = link_to '#', { :class => "ui-icon-with-text selectable measure_control",
+                    :rel => "popover",
+                    :"data-original-title" => "Calculer une distance <br />Double Clic pour valider le trac&eacute;.".html_safe,
+                    :id => "ruler_measure", :measure_type => "line" } do
       .ui-icon.ruler
-    = link_to '#', { :class => "ui-icon-with-text measure_control", :id => "square_measure" , :measure_type => "polygon" }.merge(twipsy) do
+    = link_to '#', { :class => "ui-icon-with-text selectable measure_control", 
+                    :rel => "popover",
+                    :"data-original-title" => "Calculer une surface <br />Double Clic pour valider le trac&eacute;.".html_safe,
+                    :id => "square_measure", 
+                    :measure_type => "polygon" } do
       .ui-icon.square_ruler
     - twipsy = {:"data-original-title" => "Revenir &agrave; la position initiale".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text", :id => "position_btn"}.merge(twipsy) do
+    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "position_btn"}.merge(twipsy) do
       .ui-icon.ui-icon-pin-s
     - twipsy = {:"data-original-title" => "Voir la version imprimable".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text", :id => "print_btn"}.merge(twipsy) do
+    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "print_btn"}.merge(twipsy) do
       .ui-icon.ui-icon-print
     - twipsy = {:"data-original-title" => "Passer au mode expert".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text", :id => "mapfishapp_btn"}.merge(twipsy) do
+    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "mapfishapp_btn"}.merge(twipsy) do
       .ui-icon.ui-icon-wrench
     - twipsy = {:"data-original-title" => "Acc&eacute;der &agrave; l'aide".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text", :id => "help_btn"}.merge(twipsy) do
+    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "help_btn"}.merge(twipsy) do
       .ui-icon.ui-icon-help
     %input{ :type => "text", :placeholder => "Aller a...".html_safe, :id => "btn-geoname"}
     %span#output_measure.infos

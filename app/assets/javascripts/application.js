@@ -29,7 +29,7 @@ $(document).ready(function(){
   $('#layer_tab').tabs();
   $('.filters').filter();
   $('textarea').not('.not_resizable').TextAreaResizer();
-  $('a[rel=popover]').twipsy({});
+  $('a[rel=popover]').twipsy({html: true});
   $('span[rel=popover]').twipsy({delayIn: 200});
   $('.category_layer_container').twipsy({placement: "left"});
   $('#wait').spin();

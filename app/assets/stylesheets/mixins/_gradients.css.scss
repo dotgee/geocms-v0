@@ -4,7 +4,7 @@ $secondary-gradient-stop: #dfe1e2;
 @mixin gradient($start, $end){ 
   background: $start; 
   background: -webkit-gradient(linear, left top, left bottom, from($start), to($end)); 
-  background: -moz-linear-gradient(-90deg, $start, $end); 
+  background: -moz-linear-gradient(top, $start, $end); 
   // IE 6 & 7
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
   // IE 8
