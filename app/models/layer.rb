@@ -1,21 +1,21 @@
 class Layer < ActiveRecord::Base
+  BZH_BOUNDING_BOX = "107541.6939208,6695593.1199368,429188.7088872,6901055.8519306"
   acts_as_taggable
   validates_presence_of :wms_url, :name, :title
   validates_format_of :wms_url, :with => URI::regexp(%w(http https))
 
   before_validation :set_title_if_empty
-  #belongs_to :geo_server
   belongs_to :data_source
 
-  has_many :assigned_layer_taxons, 
-           :dependent => :destroy
+  has_many :assigned_layer_taxons
+
   has_many :themes, 
-            :source => :taxon, 
+            :class_name => "Taxon",
+            :source => :taxon,
             :through => :assigned_layer_taxons,
-            #:conditions =>  "taxons.parent_id = #{AppConfig.theme_id}" ,
             :uniq => true
-  #has_many :filters, :source => :taxon, :through => :assigned_layer_taxons, :conditions => { :parent_id => AppConfig.filter_id }
-  belongs_to :filter, :class_name => "Taxon", :conditions => { :parent_id => AppConfig.filter_id }
+
+  belongs_to :filter, :class_name => "Taxon"
 
   scope :published, :conditions => {:published => true}
   scope :recent, order('coalesce (modification_date, publication_date, created_at) desc')
@@ -70,8 +70,21 @@ class Layer < ActiveRecord::Base
   end
 
   def thumbnail_url(options = {})
-    return nil if geo_server.nil?
-    return geo_server.layer_thumbnail_url(self, options)
+       params = {      
+           "LAYERS" => name, 
+           "FORMAT" => CGI::escape("image/png"),
+           "SERVICE" => "WMS", 
+           "VERSION" => "1.1.1",
+           "REQUEST" => "GetMap",
+           "STYLES" => "", 
+           "SRS" => CGI::escape("EPSG:2154"),
+           "BBOX" => BZH_BOUNDING_BOX,
+           "WIDTH" => "200",
+           "HEIGHT" => "140"
+          }.merge(options).to_a.map{|k,v| "#{k}=#{v}"}.join('&') 
+      return [wms_url, params].join('?')
+    #return nil if geo_server.nil?
+    #return geo_server.layer_thumbnail_url(self, options)
   end
 
 end

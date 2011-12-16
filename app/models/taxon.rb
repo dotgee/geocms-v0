@@ -3,9 +3,10 @@ class Taxon < ActiveRecord::Base
   friendly_id :name, :use => :slugged
   acts_as_nested_set :dependent => :destroy
 
-  belongs_to :taxonomy
+  #belongs_to :taxonomy
   has_many :assigned_layer_taxons
-  has_many :layers, :through => :assigned_layer_taxons
+  has_many :layers, :through => :assigned_layer_taxons, :uniq => true
+
   has_many :filtered_layers, :class_name => "Layer", :foreign_key => "filter_id"
 
   validates :name, :presence => true, :uniqueness => true
@@ -15,17 +16,17 @@ class Taxon < ActiveRecord::Base
          where({:parent => Taxon.find('themes').id})
     }
   scope :right_order, :order => "lft asc, rgt asc"
+
   class << self
     include CollectiveIdea::Acts::NestedSet::Helper
     include ActionView::Helpers::FormOptionsHelper
     def all_temes_select(selected = nil)
-      themes = Taxon.roots
       options_for_select(Taxon.right_order.map{|t| ["#{'-' *t.level}#{t.name}",t.id]})
       #nested_set_options(themes) {|i| "#{'-' * (i.level - 1)} #{i.name }"}
     end
+
     def themes_select(selected = nil)
-      themes = Taxon.find('themes').descendants
-      nested_set_options(themes) {|i| "#{'-' * (i.level - 1)} #{i.name }"}
+      options_for_select(themes.map{|t| ["#{'-' *t.level}#{t.name}",t.id]}, selected)
     end
 
     def filters_select
@@ -34,7 +35,7 @@ class Taxon < ActiveRecord::Base
     end
 
     def themes
-      Taxon.find("themes").children
+      Taxon.find("themes").descendants
     end
 
     def filtres

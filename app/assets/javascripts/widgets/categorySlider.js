@@ -124,7 +124,8 @@ $.widget("ui.sliderPanel", {
   _addHeader: function(){
     var self = this;
     var header = self.element.find('.header').first().addClass('ui-widget-header');
-    header.prepend($('<span class="ui-icon ui-icon-circle-close"></span>'));
+    var title_header = header.find('.title-header').first();
+    title_header.append($('<span class="close_panel">fermer</span>'));
   },
   _leftPositioning: function(){
     var self = this;
@@ -166,7 +167,7 @@ $.widget("ui.sliderPanel", {
   },
   _bindEvents: function(){
     var self = this;
-    self.element.find('.ui-icon-circle-close').click(function(e){
+    self.element.find('.close_panel').click(function(e){
       $(self.element.prev('.parent')).sliderLink('closePanel');
     });
   },

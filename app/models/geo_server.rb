@@ -1,5 +1,5 @@
 class GeoServer < ActiveRecord::Base
-  BZH_BOUNDING_BOX = "107541.6939208,6695593.1199368,429188.7088872,6901055.8519306"#6695593.1199368,120688.86278349,416041.54002451,6901055.8519306"
+  BZH_BOUNDING_BOX = "107541.6939208,6695593.1199368,429188.7088872,6901055.8519306"
   #"33534.34825,6584909.31255,503163.44995,6897995.38035"#"-222798.0968333,6704730.534021,757736.1018333,6904689.799979"
   validates :name, 
             :presence => true
@@ -12,7 +12,7 @@ class GeoServer < ActiveRecord::Base
 
   def layer_thumbnail_url(layer, options = {})
     thumb_url = "#{url}/wms"
-    layers = [background_default_name, layer.name].select{|l| !l.blank?}.join(',')
+    layers = [background_default_name, layer.name].join(',')
     params = {
       "LAYERS" => layers,
       "FORMAT" => CGI::escape("image/png"),
@@ -24,7 +24,7 @@ class GeoServer < ActiveRecord::Base
       "BBOX" => BZH_BOUNDING_BOX,
       "WIDTH" => "200",
       "HEIGHT" => "140"
-    }.merge!(options).to_a.map{|k,v| "#{k}=#{v}"}.join('&')
+    }.merge(options).to_a.map{|k,v| "#{k}=#{v}"}.join('&')
 
     return [thumb_url, params].join('?')
     
