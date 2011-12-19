@@ -19,6 +19,7 @@
 //= require widgets/filter
 //= require pure
 //= require proj4js/proj4js
+//= require placeholder.hack
 //= require mustache
 
 var fullscreen = false;

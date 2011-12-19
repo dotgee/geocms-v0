@@ -7,6 +7,10 @@ var map, layer, measureControls, mapOptions;
 var format = new OpenLayers.Format.WMC();
 var gg = new OpenLayers.Projection("EPSG:4326");
 var lb = new OpenLayers.Projection("EPSG:2154");
+var bounds = new OpenLayers.Bounds(
+                  95607.334, 6700620.908,
+                  419330.671, 6908799.426
+            );
 
 // Mesures 
 var sketchSymbolizers = {
@@ -61,7 +65,15 @@ measureControls =
                           }
                       }
                   }
+              ),
+              zoomin: new OpenLayers.Control.ZoomBox(
+                {title:"Zoom in box", out: false}
               )
+              /*,
+              zoomout: new OpenLayers.Control.ZoomBox(
+                {title:"Zoom out box", out: true}
+              )
+              */
  };
           
 function handleMeasurements(event) {
@@ -71,7 +83,6 @@ function handleMeasurements(event) {
     var measure = event.measure;
     var element = document.getElementById('output_measure');
     var out = "";
-  console.log(event);
     if(order == 1) {
         out += "Distance: " + measure.toFixed(3) + " " + units;
     } else {
@@ -80,30 +91,35 @@ function handleMeasurements(event) {
     element.innerHTML = out;
 } 
 
-$(document).ready(function() {
-
+function fixSize() {
   var window_height = $(window).height();
   var offset_map = $("#map").offset().top;
-  $('#content').viewer({ map: map, accordionPosition: "right"});
-  $("#map, #tabs").height(window_height - offset_map);
+  $("#map").height(window_height - offset_map);
+  $('#tabs .content').height( window_height - offset_map - $('#tabs ul').outerHeight()-10);
+  map.updateSize();
+}
 
-  var bounds = new OpenLayers.Bounds(
-                    145607.334, 6740620.908,
-                    389330.671, 6868799.426
-                );
+$(document).ready(function() {
+  
+  $('#content').viewer({ map: map, accordionPosition: "right"});
 
   mapOptions = {
     div: "map",
     allOverlays: true,
     transitionEffect: "resize",
-    maxExtent: bounds,
     projection: "EPSG:2154",
-    // maxResolution: 952.0442851562499,
-    resolutions:  [
-        156543.0339, 78271.51695, 39135.758475, 19567.8792375, 9783.93961875, 4891.969809375, 2445.9849046875, 1222.99245234375, 611.4962261718748,
-        305.7481130859374, 152.87405654296887, 76.43702827148444, 38.21851413574208, 19.10925706787104, 9.55462853393552, 4.77731426696776, 2.38865713348388,
-        1.1943285667420798, 0.5971642833710399, 0.29858214168551994
-    ],
+    maxResolution: 2445.9849046875, 
+    maxExtent: bounds,
+    minResolution: 2.38865713, 
+    //restrictedExtent: bounds,
+    // resolutions:  [
+    //   156543.0339, 78271.51695, 39135.758475, 19567.8792375, 9783.93961875, 4891.969809375, 2445.9849046875, 1222.99245234375, 611.4962261718748,
+    //    305.7481130859374, 152.87405654296887, 76.43702827148444, 38.21851413574208, 19.10925706787104, 9.55462853393552, 4.77731426696776, 2.38865713348388,
+    //    1.1943285667420798, 0.5971642833710399, 0.29858214168551994
+    //],
+    //resolutions:  [
+    //    305.7481130859374, 152.87405654296887, 76.43702827148444, 38.21851413574208, 19.10925706787104, 9.55462853393552, 4.77731426696776, 2.38865713348388
+    //],
     units: "m",
     theme: null,
     controls: [

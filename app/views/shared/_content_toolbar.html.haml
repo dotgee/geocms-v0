@@ -4,33 +4,57 @@
       .ui-icon.ui-icon-circle-arrow-e.floating-icon
       %span
         Liste couches
-    =# link_to  '#', { :class => "ui-icon-with-text selectable full_screen_btn", :id => "full_screen_btn"} do
-    = link_to '#', { :class => "ui-icon-with-text selectable", :id => "hand_control"} do
-      .ui-icon.hand
+    /line measurement
     = link_to '#', { :class => "ui-icon-with-text selectable measure_control",
                     :rel => "popover",
                     :"data-original-title" => "Calculer une distance <br />Double Clic pour valider le trac&eacute;.".html_safe,
                     :id => "ruler_measure", :measure_type => "line" } do
       .ui-icon.ruler
+    /area measurement
     = link_to '#', { :class => "ui-icon-with-text selectable measure_control", 
                     :rel => "popover",
                     :"data-original-title" => "Calculer une surface <br />Double Clic pour valider le trac&eacute;.".html_safe,
                     :id => "square_measure", 
                     :measure_type => "polygon" } do
       .ui-icon.square_ruler
-    - twipsy = {:"data-original-title" => "Revenir &agrave; la position initiale".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "position_btn"}.merge(twipsy) do
-      .ui-icon.ui-icon-pin-s
-    - twipsy = {:"data-original-title" => "Voir la version imprimable".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "print_btn"}.merge(twipsy) do
+    /print
+    = link_to  '#', { :class => "ui-icon-with-text selectable", 
+                       :"data-original-title" => "Voir la version imprimable".html_safe,
+                       :rel => "popover" ,
+                      :id => "print_btn"} do
       .ui-icon.ui-icon-print
-    - twipsy = {:"data-original-title" => "Passer au mode expert".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "mapfishapp_btn"}.merge(twipsy) do
+    /expert mode
+    = link_to  '#', { :class => "ui-icon-with-text selectable",
+                      :"data-original-title" => "Passer au mode expert".html_safe,
+                      :rel => "popover",
+                      :id => "mapfishapp_btn"} do
       .ui-icon.ui-icon-wrench
-    - twipsy = {:"data-original-title" => "Acc&eacute;der &agrave; l'aide".html_safe, :rel => "popover" }
-    = link_to  '#', { :class => "ui-icon-with-text selectable", :id => "help_btn"}.merge(twipsy) do
+    /help
+    = link_to  '#', { :class => "ui-icon-with-text selectable",
+                      :"data-original-title" => "Acc&eacute;der &agrave; l'aide".html_safe,
+                      :rel => "popover",
+                      :id => "help_btn"} do
       .ui-icon.ui-icon-help
-    %input{ :type => "text", :placeholder => "Aller a...".html_safe, :id => "btn-geoname"}
+    /Zoom in
+    = link_to '#', { :class => "ui-icon-with-text selectable measure_control", 
+                    :rel => "popover",
+                    :"data-original-title" => "Zoomer sur le territoire".html_safe,
+                    :id => "zoomin", 
+                    :measure_type => "zoomin" } do
+      .ui-icon.square_ruler
+    /hand control
+    = link_to '#', { :class => "ui-icon-with-text selectable",
+                      :"data-original-title" => "Se d&eacute;placer".html_safe, 
+                      :id => "hand_control"} do
+      .ui-icon.hand
+    /position initiale 
+    = link_to  '#', { :class => "ui-icon-with-text selectable",
+                      :id => "position_btn",
+                      :"data-original-title" => "Revenir &agrave; la position initiale".html_safe, 
+                      :rel => "popover" } do
+      .ui-icon.ui-icon-pin-s
+
+    %input{ :type => "text", :placeholder => "Centrer sur...", :id => "btn-geoname"}
     %span#output_measure.infos
     %span#projection.infos
     %span#coords.infos

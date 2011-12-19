@@ -5,10 +5,10 @@
     %li
       %a{ :href => "#selected" } S&eacute;l&eacute;ctionn&eacute;es
 
-  .tab-content
-    #available.tab-pane.active
+  .tab-content.nano
+    #available.tab-pane.active.content
       = render :partial => "shared/category_chooser_accordion"
 
-    #selected.tab-pane
+    #selected.tab-pane.content
       = render :partial => "shared/selected_layers"
   = render :partial => "shared/legend"

@@ -87,4 +87,10 @@ class Layer < ActiveRecord::Base
     #return geo_server.layer_thumbnail_url(self, options)
   end
 
+  def credit
+    return credits unless credits.blank?
+    return data_source.credits unless data_source.nil?
+    return ""
+  end
+
 end

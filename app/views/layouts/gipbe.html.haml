@@ -9,6 +9,7 @@
     = javascript_include_tag "application"
     = yield :javascripts
     = csrf_meta_tags
+    = auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})
   %body
     #wait
     #topLinks

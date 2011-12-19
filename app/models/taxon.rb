@@ -35,7 +35,7 @@ class Taxon < ActiveRecord::Base
     end
 
     def themes
-      Taxon.find("themes").descendants
+      Taxon.find("themes").children
     end
 
     def filtres

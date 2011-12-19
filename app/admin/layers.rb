@@ -81,7 +81,9 @@ ActiveAdmin.register Layer do
   filter :title
   filter :description
   filter :name
-  #filter :wms_url, :label => "Serveur", :as => :select, :collection => proc { Layer.select('distinct wms_url').map(&:wms_url)}
+  filter :wms_url, :label => "Source de donn&eacute;es",
+                    :as => :select, 
+                    :collection => proc { DataSource.select('distinct name').map(&:name)}
 
   index do
     id_column

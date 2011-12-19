@@ -37,7 +37,7 @@ $(document).ready(function() {
     $("."+layer.uniqueID).show(300);
 
     addSharedControlers();
-    map.zoomToMaxExtent();
+    map.zoomToExtent(bounds);
 
     //choix des couches
     $.each(map.layers, function(i, layer){

@@ -1,4 +1,8 @@
 function addSharedControlers() {
+  
+  $(window).bind("resize pageshow", fixSize);
+  document.body.onload = fixSize; 
+
 
   /* Controles de mesure */
   var control;
@@ -11,7 +15,7 @@ function addSharedControlers() {
     map.addControl(control);
   }
 
-  $('#ruler_measure, #square_measure').click(function(e){
+  $('#zoomin, #ruler_measure, #square_measure').click(function(e){
     e.preventDefault();
      for(key in measureControls) {
         var control = measureControls[key];
@@ -35,7 +39,7 @@ function addSharedControlers() {
 
   $('#position_btn').click(function(e){
     e.preventDefault();
-    map.zoomToMaxExtent();  
+    map.zoomToExtent(bounds);  
   });
   
   /* Retour a la position initiale */
@@ -248,18 +252,43 @@ function addSharedControlers() {
     }
   });
 
-  $('#btn-geoname').keypress(function(e) {
-    var code = (e.keyCode ? e.keyCode : e.which);
-    if(code == 13) { 
-      var searchUrl = 'http://ws.geonames.org/searchJSON?featureClass=P&maxRows=10';
-      searchUrl += '&name_startsWith=' + $(this).val();
-      $.getJSON(searchUrl, function(data) {
-          var place = data.geonames[0];
-          var lonlat = new OpenLayers.LonLat(place.lng, place.lat);
-          map.setCenter(lonlat.transform(gg, lb), 10);
-      });
-    }
-  });
+  $( "#btn-geoname" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+          url: "http://ws.geonames.org/searchJSON",
+          dataType: "jsonp",
+          data: {
+            featureClass: "P",
+            style: "full",
+            maxRows: 10,
+            country: "FR",
+            adminCode1: "A2",
+            name_startsWith: request.term
+          },
+          success: function( data ) {
+            response( $.map( data.geonames, function( item ) {
+              return {
+                label: item.name + (item.adminName2 ? ", " + item.adminName2 : ""),
+                value: item.name,
+                lng: item.lng,
+                lat: item.lat
+              }
+            }));
+          }
+        });
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+        var lonlat = new OpenLayers.LonLat(ui.item.lng, ui.item.lat);
+        map.setCenter(lonlat.transform(gg, lb), 6);
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      }
+    });
 
 }
 
