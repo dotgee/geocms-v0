@@ -1,0 +1,5 @@
+.no_visualisor.cms
+  %h2
+    Tag
+    = @tag.name
+  = render :partial => "layers/layer_list", :locals => { :layers => @layers }

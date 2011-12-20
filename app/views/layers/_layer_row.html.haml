@@ -1,7 +1,7 @@
 %li.well
   .image
     = link_to layer do
-      %img{ :src => layer.thumbnail_url({"WIDTH" => "210", "HEIGHT" => "150" })}
+      %img{ :src => layer.thumbnail_url({"WIDTH" => "150", "HEIGHT" => "100" })}
   .content
     .title
       = link_to layer.title, layer
@@ -17,11 +17,16 @@
     .content_value
       %b
         Cat&eacute;gories :
-      = layer.category_list
+      =# layer.category_list
+      - layer.themes.each do |tax|
+        = link_to tax.name, taxon_path(tax)
+
     .content_value
       %b
         Mots cl&eacute;s :
-      = layer.tag_list
+      - layer.tags.each do |tag|
+        = link_to tag.name, tag_path(tag)
+        =# layer.tag_list
     .content_value
       %b
         Description :

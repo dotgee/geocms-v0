@@ -40,22 +40,9 @@ $.widget("ui.viewer", {
                                                });
 
           map.addLayer(layer);
-          // Generates the legend for the new layer
-          var legende = $("#legende div:first-child").clone();
-          legende.attr("id", layer.uniqueID+"_legende");
-          legende.find("p").text(layer.name);
-          legende.find("img").attr("src", layer.url+"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER="+layer.params.LAYERS);
-          $("#legende").append(legende);
-          
-          var selectedNode = $("#selected div:first-child").clone();
-          selectedNode.attr("id", layer.uniqueID+"_selected");
-          selectedNode.find("p").text(layer.name);
-          selectedNode.find("a").attr("layer_id", layer.uniqueID);
-          selectedNode.find("span.slider").attr("id", layer.uniqueID).html("");
-          selectedNode.find("span.template").attr("id", "template_"+layer.uniqueID).text("");
-          selectedNode.find("input").attr("id", "check_"+layer.uniqueID);
-          addSlider(selectedNode.find("span.slider"));
-          $("#selected").append(selectedNode);
+          addLegende(layer);
+          addSelected(layer);
+          addSlider($("#selected #"+layer.uniqueID));
 
           div.attr('layer_id', layer.id);
 

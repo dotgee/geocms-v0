@@ -1,7 +1,4 @@
 function addSharedControlers() {
-  
-
-
   /* Controles de mesure */
   var control;
   for(var key in measureControls) {
@@ -93,37 +90,10 @@ function addSharedControlers() {
           }, "json");
   });
 
-  // Ajout de la legende initiale
-  var data = {'layers' : map.layers,
-              'url' : '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER='}
-      directive = {
-        'div' : {
-          'layer<-layers' : {
-            '@id' : 'layer.uniqueID',
-            'p'    : 'layer.name',
-            'img@src' : '#{layer.url}#{url}#{layer.params.LAYERS}'
-          }
-        }
-      }
-  $("#legende").render(data, directive); 
+  // Ajout de la legende et des carte selectionnes
+  addLegende(map.layers);
+  addSelected(map.layers);
 
-  var direct = {
-    'div' : {
-      'layer<-layers' : {
-        '@id'                     : '#{layer.uniqueID}_selected',
-        'p'                       : 'layer.name',
-        'span.template@id'        : 'template_#{layer.uniqueID}',
-        'span.slider@id'          : 'layer.uniqueID',
-        'input@id'                : 'check_#{layer.uniqueID}',
-        'a.btn-features@layer_id' : 'layer.uniqueID'
-      }
-    }
-  }
-  $("div#selected").render(data, direct);
-
-  //var view = { layers: map.layers };
-  //var template = "{{#layers}}<div class='selected-node' id='{{.uniqueID}}_selected'>{{.name}}</div>{";
-  //$("#selected").append(Mustache.to_html(template, view));
   /* GetFeaturesInfo */
 
   // Highlight de la carte
@@ -289,6 +259,7 @@ function addSharedControlers() {
 }
 
 function addSlider(element) {
+  console.log(element);
   element.slider({
     value: 80,
     orientation: "horizontal",
@@ -300,5 +271,33 @@ function addSlider(element) {
       $("."+this.id).slider("value", ui.value);
     }
   });
-  
+}
+// Generation de la legende
+function addLegende(layers) {
+
+  var view = { layers: layers, request: '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=' };
+  var template = "{{#layers}}<div class='legende-node' id='{{uniqueID}}_legende'>"+
+                    "<p>{{name}}</p>"+
+                    "<img onerror='this.src=\"/assets/error.png\"' src='{{url}}{{request}}{{params.LAYERS}}' width='20' height='20'/>"+
+                 "</div>{{/layers}}";
+  $("#legende").append(Mustache.to_html(template, view));
+
+}
+
+// Generation des couches selectionnees
+function addSelected(layers) {
+  var view = { layers: layers };
+  var template = "{{#layers}}<div class='selected-node' id='{{uniqueID}}_selected'>"+
+                    "<div class='node-infos'>"+
+                      "<p>{{name}}</p>"+
+                      "<span id='template_{{uniqueID}}'></span>"+
+                    "</div>"+
+                    "<div class='node-controls'>"+
+                      "<a href='#' class='ui-icon-with-text btn-check' id='check_{{uniqueID}}'><span class='ui-icon ui-icon-check'></span></a>"+
+                      "<a href='#' class='ui-icon-with-text btn-features' layer_id='{{uniqueID}}'><span class='ui-icon ui-icon-info'></span></a>"+
+                      "<a href='#' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
+                      "<div class='slider' id='{{uniqueID}}'></div>"+
+                    "</div>"+
+                 "</div>{{/layers}}";
+  $("#selected").append(Mustache.to_html(template, view));  
 }

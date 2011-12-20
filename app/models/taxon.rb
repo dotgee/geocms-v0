@@ -7,8 +7,6 @@ class Taxon < ActiveRecord::Base
   has_many :assigned_layer_taxons
   has_many :layers, :through => :assigned_layer_taxons, :uniq => true
 
-  has_many :filtered_layers, :class_name => "Layer", :foreign_key => "filter_id"
-
   validates :name, :presence => true, :uniqueness => true
   
   scope :only_themes, lambda {
@@ -29,17 +27,9 @@ class Taxon < ActiveRecord::Base
       options_for_select(themes.map{|t| ["#{'-' *t.level}#{t.name}",t.id]}, selected)
     end
 
-    def filters_select
-      filters = Taxon.find("filtres").descendants
-      nested_set_options(filters) {|i| i.name }
-    end
 
     def themes
       Taxon.find("themes").children
-    end
-
-    def filtres
-      Taxon.find("filtres").children
     end
   end
 

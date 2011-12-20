@@ -14,7 +14,7 @@ class TaxonsController < ApplicationController
   # GET /taxons/1.json
   def show
     @taxon = Taxon.find(params[:id])
-
+    @layers = @taxon.layers.page(page).per(25)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @taxon }

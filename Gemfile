@@ -28,7 +28,7 @@ gem "jammit"
 gem "omniauth", ">= 0.3.0.rc3"
 gem "settingslogic"
 #gem "rails_admin", :path => "vendor/git/rails_admin" # :git => "git://github.com/sferik/rails_admin.git"
-gem 'acts-as-taggable-on', '~>2.1.0'
+gem 'acts-as-taggable-on', '~>2.2.0'
 gem 'show_for'
 gem 'paperclip', '~> 2.4'
 gem 'friendly_id', '~> 4.0.0.beta8'

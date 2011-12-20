@@ -3,7 +3,6 @@
     Rechercher parmi les 
     = Layer.published.count
     couches
-  = simple_form_for(:search, :url => search_layers_path, :builder => SimpleBootstrapFormBuilder) do |f|
-    .span6
-      = f.input :q, :input_html => { :class => "span6", :value => params[:search].nil? ? "" : params[:search][:q]}, :label_html => { :class => "hidable_label"},:label => "Recherche"
-    = f.submit :search, :class => "btn primary span2"
+  = semantic_form_for(:search, :url => search_layers_path, :builder => SimpleBootstrapFormBuilder) do |f|
+    = f.input :q, :input_html => { :class => "span6"}, :label_html => { :class => "hidable_label"},:label => params[:search].nil? ? "Rechercher" : params[:search][:q]
+    = f.submit t(:search), :class => "btn primary"

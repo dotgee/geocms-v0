@@ -1,21 +1,10 @@
-.no_visualisor
-  .breadcrumb
-    = render :partial => "search_form"
-  .paginate-container.clearfix
-    .pull-right
-      = paginate @layers
+.no_visualisor.cms
+  = render :partial => "search_form"
+  .clear
+  = paginate @layers
+  .clear
 
-  -#%table.zebra-striped
-    %tr
-      %th Name
-      %th{:colspan => 2} Infos
-
-  %ul.layer-container.clearfix
-    - @layers.each_with_index do |layer, i|
-      = render :partial => "layer_row", :locals => {:layer => layer }
-      - if i%2 !=0
-        .clear
-  =# @layer.inspect
-  .paginate-container.clearfix
-    .pull-right
-      = paginate @layers
+  = render :partial => "layer_list", :locals => { :layers => @layers}
+  .clear
+  = paginate @layers
+  .clear

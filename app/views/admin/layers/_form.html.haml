@@ -28,11 +28,11 @@
     = f.input :publication_date
     = f.input :modification_date
     = f.input :template, :input_html => { :cols => 10}, :as => :ckeditor
-    = f.input :credits
-    = f.input :rights
     %li
       #features.btn.primary{:layer_id => @layer.id} Features disponibles
       %i Features &agrave; placer entre double accolades (ex: {{FEATURE}})
+    = f.input :credits
+    = f.input :rights
 
   = f.buttons do
     = f.submit 

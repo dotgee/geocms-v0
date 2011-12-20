@@ -1,4 +1,6 @@
 Geocms::Application.routes.draw do
+  get "tag/:id", :as => :tag, :controller => :tag, :action => :show
+
   ActiveAdmin.routes(self)
 
   resources :contact, :path_names => { :index => :contact }, :via => [:get, :post], :only => [:index, :mail_sende] do
@@ -16,10 +18,10 @@ Geocms::Application.routes.draw do
 
   #resources :taxonomies
 
-  #resources :taxons
+  resources :taxons, :only => :show
 
   #resources :layers do
-  resources :layers, :only => [:show, :index] do
+  resources :layers, :only => [:show, :index, :search] do
     collection do
       get 'print'
       match "search"

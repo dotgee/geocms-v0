@@ -15,7 +15,7 @@ class Layer < ActiveRecord::Base
             :through => :assigned_layer_taxons,
             :uniq => true
 
-  belongs_to :filter, :class_name => "Taxon"
+  belongs_to :filter
 
   scope :published, :conditions => {:published => true}
   scope :recent, order('coalesce (modification_date, publication_date, created_at) desc')

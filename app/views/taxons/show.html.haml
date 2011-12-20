@@ -1,22 +1,8 @@
-.breadcrumb
-  %p#notice= notice
+.no_visualisor
+  .cms
+    %h2 
+      Th&egrave;me 
+      = @taxon.name
 
-  %p
-    %b Parent:
-    = @taxon.parent_id
-  %p
-    %b Taxonomy:
-    = @taxon.taxonomy_id
-  %p
-    %b Name:
-    = @taxon.name
-  %p
-    %b Left:
-    = @taxon.left
-  %p
-    %b Right:
-    = @taxon.right
-  .actions
-    = link_to 'Edit', edit_taxon_path(@taxon), :class => "btn primary"
-    \|
-    = link_to 'Back', taxons_path, :class => "btn"
+    = paginate @layers
+    = render :partial => "layers/layer_list", :locals => { :layers => @layers }
