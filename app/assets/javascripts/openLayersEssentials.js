@@ -96,11 +96,16 @@ function fixSize() {
   var offset_map = $("#map").offset().top;
   $("#map").height(window_height - offset_map);
   $('#tabs .content').height( window_height - offset_map - $('#tabs ul').outerHeight()-10);
-  map.updateSize();
+  if (window.map && window.map instanceof OpenLayers.Map) {
+    map.updateSize();
+  }
 }
 
 $(document).ready(function() {
-  
+
+  $(window).bind("resize", fixSize);
+  fixSize();
+
   $('#content').viewer({ map: map, accordionPosition: "right"});
 
   mapOptions = {
@@ -108,17 +113,14 @@ $(document).ready(function() {
     allOverlays: true,
     transitionEffect: "resize",
     projection: "EPSG:2154",
-    maxResolution: 2445.9849046875, 
+    maxResolution: 4891.969809375, 
     maxExtent: bounds,
     minResolution: 2.38865713, 
     //restrictedExtent: bounds,
-    // resolutions:  [
+    //resolutions:  [
     //   156543.0339, 78271.51695, 39135.758475, 19567.8792375, 9783.93961875, 4891.969809375, 2445.9849046875, 1222.99245234375, 611.4962261718748,
     //    305.7481130859374, 152.87405654296887, 76.43702827148444, 38.21851413574208, 19.10925706787104, 9.55462853393552, 4.77731426696776, 2.38865713348388,
     //    1.1943285667420798, 0.5971642833710399, 0.29858214168551994
-    //],
-    //resolutions:  [
-    //    305.7481130859374, 152.87405654296887, 76.43702827148444, 38.21851413574208, 19.10925706787104, 9.55462853393552, 4.77731426696776, 2.38865713348388
     //],
     units: "m",
     theme: null,

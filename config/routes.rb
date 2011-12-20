@@ -25,6 +25,7 @@ Geocms::Application.routes.draw do
       match "search"
     end
     member do
+      get 'external'
       get 'getfeatures'
     end
   end

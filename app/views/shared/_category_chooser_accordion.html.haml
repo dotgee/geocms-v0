@@ -1,7 +1,7 @@
 %h2 Filtres
 .filters
   - Taxon.filtres.each do |f|
-    %span{ :rel => "popover", :"data-original-title" => f.name}
+    %span{ :rel => "popover", :"data-original-title" => f.libelle}
       = check_box_tag "filter", f.name.downcase
       = "#{f.name.slice(0).upcase} (#{f.filtered_layers.count})"
   .clear

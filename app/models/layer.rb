@@ -34,6 +34,7 @@ class Layer < ActiveRecord::Base
     text :filter_name do
       filter_name
     end
+    boolean :published
   end
 
   def set_title_if_empty

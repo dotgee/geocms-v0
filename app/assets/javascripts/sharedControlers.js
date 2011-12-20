@@ -1,7 +1,5 @@
 function addSharedControlers() {
   
-  $(window).bind("resize pageshow", fixSize);
-  document.body.onload = fixSize; 
 
 
   /* Controles de mesure */
@@ -15,8 +13,13 @@ function addSharedControlers() {
     map.addControl(control);
   }
 
-  $('#zoomin, #ruler_measure, #square_measure').click(function(e){
+  $('#hand_control, #zoomin, #ruler_measure, #square_measure').click(function(e){
     e.preventDefault();
+    var btn = $(this);
+    $('.measure_control').not(btn).each(function(i,el){
+          $(el).removeClass('control_selected');
+    });
+    btn.addClass('control_selected');
      for(key in measureControls) {
         var control = measureControls[key];
         if($(this).attr('measure_type') == key ){
@@ -27,13 +30,6 @@ function addSharedControlers() {
       }
   });
 
-  $('#hand_control').click(function(e){
-    e.preventDefault();
-     for(key in measureControls) {
-        var control = measureControls[key];
-        control.deactivate();
-      }
-  });
 
   /* Retour a la position initiale */
 
@@ -86,9 +82,6 @@ function addSharedControlers() {
             $("#coords").text("x: "+parseInt(position.lon) + " / y: " + parseInt(position.lat));
   });
   
-  /* Affichage de la projection */
-
-  $("#projection").text(map.getProjection());
   
   /* Bouton d'aide */
 
@@ -128,6 +121,9 @@ function addSharedControlers() {
   }
   $("div#selected").render(data, direct);
 
+  //var view = { layers: map.layers };
+  //var template = "{{#layers}}<div class='selected-node' id='{{.uniqueID}}_selected'>{{.name}}</div>{";
+  //$("#selected").append(Mustache.to_html(template, view));
   /* GetFeaturesInfo */
 
   // Highlight de la carte

@@ -83,11 +83,16 @@ div.tbar
     height: 30px
     .selectable
       @include gradient(#FFFFFF,#D9D9D9)
-      &.selected, &:hover
+      &.control_selected, &:hover
         border: gray 1px solid
         @include gradient(#D9D9D9, #FFFFFF)
 .fg-toolbar .fg-button
   font-size: 1em
+
+.fg-toolbar .pipe
+  float: right
+  margin: 3px
+  color: #1C94C4
 
 .fg-buttonset
   line-height: 12px
@@ -145,6 +150,8 @@ a.fg-button
     margin-left: 5px
     .ui-icon
       background-image: image-url("blue_icons.png")
+    &.first
+      margin-left: 0
     
 
 .grippie 

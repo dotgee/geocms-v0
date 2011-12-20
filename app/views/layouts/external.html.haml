@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag    "application"
+    = stylesheet_link_tag    "gipbe"
+    =# stylesheet_link_tag  controller_name
+    =# yield :stylesheets
+    = javascript_include_tag "application"
+    = yield :javascripts
+    = csrf_meta_tags
+    =# auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})
+  %body
+    #content.chosen_thematic
+      = yield
+    

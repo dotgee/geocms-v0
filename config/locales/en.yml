@@ -1,10 +1,5 @@
-fr:
+en:
   activerecord:
-    models:
-      layer: "Couche"
-      geo_context: Projet
-      admin_user: Administrateur
-      taxon: Classement
   time:
     formats:
       long: "%d/%m/%Y %H:%M"
