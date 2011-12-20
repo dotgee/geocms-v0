@@ -21,7 +21,9 @@ ActiveAdmin.register Layer do
 
   end
   
-  collection_action :moissonnage do
+  member_action :get_javascript do
+    render :layout => false, :template => "layers/get_javascript"
+    
   end
 
   collection_action :list_capabilities, :method => :post do 
@@ -81,9 +83,8 @@ ActiveAdmin.register Layer do
   filter :title
   filter :description
   filter :name
-  filter :wms_url, :label => "Source de donn&eacute;es",
-                    :as => :select, 
-                    :collection => proc { DataSource.select('distinct name').map(&:name)}
+  filter :data_source_id, :label => "Source de donn&eacute;es",
+                    :as => :select
 
   index do
     id_column
@@ -104,12 +105,9 @@ ActiveAdmin.register Layer do
         b "Nom wms"
         l.name
       end
+     div link_to "code", get_javascript_admin_layer_path(l), :class => "modal"
     end
     default_actions
   end
 
-  sidebar "Autres actions" do
-    #div link_to "Moissonnage", moissonnage_admin_layers_path, :class => "btn primary"
-    hr
-  end
 end

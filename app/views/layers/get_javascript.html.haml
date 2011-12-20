@@ -1,0 +1,13 @@
+:escaped
+  <script type="text/javascript">
+    var options = {
+        width: #{params[:width] || 600},
+        height: #{params[:height] || 400},
+        divId: "mapDiv",
+        layerId: #{params[:id]}
+    };
+    </script>
+  <script type="text/javascript" 
+          src="http://#{request.host}/javascripts/outside_map.js">
+  </script>
+  <div id="mapDiv"></div>

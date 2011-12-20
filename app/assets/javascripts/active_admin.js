@@ -50,4 +50,25 @@ $(document).ready(function(){
           $('<div>'+data+'</div>').dialog({title: "Liste des features"}); 
         });
   });
+  $('.modal').click(function(e){
+    e.preventDefault();
+    if($('#modal_export').length == 0){
+      var div = $('<div id="modal_export"><pre></pre></div>');
+      div.appendTo($('body'));
+      $('#modal_export').dialog({
+       title: 'Copier et coller le code dans la page d\351sir\351e', 
+       width: 500,
+        buttons: {
+          Ok: function(){
+            $( this ).dialog( "close" );
+          }
+        }
+      });
+    }
+    var modal = $('#modal_export');
+    modal.find('pre').first().load($(this).attr('href'), function(){
+      modal.dialog('open');
+    
+    });
+  });
 });

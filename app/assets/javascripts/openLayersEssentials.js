@@ -102,9 +102,10 @@ function fixSize() {
 }
 
 $(document).ready(function() {
-
-  $(window).bind("resize", fixSize);
-  fixSize();
+  if(typeof(noresize) =="undefined"){
+    $(window).bind("resize", fixSize);
+    fixSize();
+  }
 
   $('#content').viewer({ map: map, accordionPosition: "right"});
 

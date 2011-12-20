@@ -13,7 +13,9 @@
                                   :class => [l.uniq_identifier, l.filter_name.downcase].join(' '), 
                                   :layer_class => l.uniq_identifier, 
                                   :"data-original-title" => l.description }
-        .selected_icon.ui-icon.ui-icon-circle-plus
+        %a{:href => "#", :class => "ui-icon-with-text selected_icon btn-check"}
+          %span.ui-icon
+        /.selected_icon.ui-icon.ui-icon-circle-plus
         .row.layer_selection
           .layer_img
             = link_to  (image_tag 'carte.png', :class => "mini_thumbnail"), '#'

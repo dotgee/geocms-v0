@@ -4,55 +4,18 @@
       .ui-icon.ui-icon-circle-arrow-e.floating-icon
       %span
         Liste couches
-    /load
-    = link_to  '#', { :class => "ui-icon-with-text selectable", 
-                       :"data-original-title" => "Charger une carte".html_safe,
-                       :rel => "popover" ,
-                      :id => "load_btn"} do
-      .ui-icon.square_ruler
-    /save
-    = link_to  '#', { :class => "ui-icon-with-text selectable", 
-                       :"data-original-title" => "Sauvegarder ma carte".html_safe,
-                       :rel => "popover" ,
-                      :id => "save_btn"} do
-      .ui-icon.ui-icon-disk
-    /print
-    = link_to  '#', { :class => "ui-icon-with-text selectable first", 
-                      :"data-original-title" => "Voir la version imprimable".html_safe,
-                      :rel => "popover" ,
-                      :id => "print_btn"} do
-      .ui-icon.square_ruler
-    %p.pipe 
-      |
-    /help
+    /position initiale 
     = link_to  '#', { :class => "ui-icon-with-text selectable",
-                      :"data-original-title" => "Acc&eacute;der &agrave; l'aide".html_safe,
+                      :id => "position_btn",
+                      :"data-original-title" => "Revenir &agrave; la position initiale".html_safe, 
+                      :rel => "popover" } do
+      .ui-icon
+    /hand control
+    = link_to '#', { :class => "ui-icon-with-text measure_control selectable",
+                      :"data-original-title" => "Se d&eacute;placer".html_safe, 
                       :rel => "popover",
-                      :id => "help_btn"} do
-      .ui-icon.ui-icon-help
-    /expert mode
-    = link_to  '#', { :class => "ui-icon-with-text selectable first",
-                      :"data-original-title" => "Passer au mode expert".html_safe,
-                      :rel => "popover",
-                      :id => "mapfishapp_btn"} do
-      .ui-icon.ui-icon-wrench
-    %p.pipe 
-      |
-    /area measurement
-    = link_to '#', { :class => "ui-icon-with-text selectable measure_control", 
-                    :rel => "popover",
-                    :"data-original-title" => "Mesurer une surface <br />Double cliquer pour valider le trac&eacute;.".html_safe,
-                    :id => "square_measure", 
-                    :measure_type => "polygon" } do
-      .ui-icon.square_ruler
-    /line measurement
-    = link_to '#', { :class => "ui-icon-with-text selectable measure_control first",
-                    :rel => "popover",
-                    :"data-original-title" => "Mesurer une distance <br />Double cliquer pour valider le trac&eacute;.".html_safe,
-                    :id => "ruler_measure", :measure_type => "line" } do
-      .ui-icon.ruler
-    %p.pipe 
-      |
+                      :id => "hand_control"} do
+      .ui-icon.hand
     /Zoom in
     = link_to '#', { :class => "ui-icon-with-text selectable measure_control", 
                     :rel => "popover",
@@ -60,18 +23,55 @@
                     :id => "zoomin", 
                     :measure_type => "zoomin" } do
       .ui-icon.square_ruler
-    /hand control
-    = link_to '#', { :class => "ui-icon-with-text measure_control selectable",
-                      :"data-original-title" => "Se d&eacute;placer".html_safe, 
+    %p.pipe 
+      |
+    /line measurement
+    = link_to '#', { :class => "ui-icon-with-text selectable measure_control first",
+                    :rel => "popover",
+                    :"data-original-title" => "Mesurer une distance. <br />Double cliquer pour valider le trac&eacute;.".html_safe,
+                    :id => "ruler_measure", :measure_type => "line" } do
+      .ui-icon.ruler
+    /area measurement
+    = link_to '#', { :class => "ui-icon-with-text selectable measure_control", 
+                    :rel => "popover",
+                    :"data-original-title" => "Mesurer une surface. <br />Double cliquer pour valider le trac&eacute;.".html_safe,
+                    :id => "square_measure", 
+                    :measure_type => "polygon" } do
+      .ui-icon.square_ruler
+    %p.pipe 
+      |
+    /expert mode
+    = link_to  '#', { :class => "ui-icon-with-text selectable first",
+                      :"data-original-title" => "Fonctionnalit&eacute;s avanc&eacute;es sur GeoBretagne".html_safe,
                       :rel => "popover",
-                      :id => "hand_control"} do
-      .ui-icon.hand
-    /position initiale 
+                      :id => "mapfishapp_btn"} do
+      .ui-icon.square_ruler
+    /help
     = link_to  '#', { :class => "ui-icon-with-text selectable",
-                      :id => "position_btn",
-                      :"data-original-title" => "Revenir &agrave; la position initiale".html_safe, 
-                      :rel => "popover" } do
-      .ui-icon.ui-icon-arrow-4-diag
+                      :"data-original-title" => "Acc&eacute;der &agrave; l'aide".html_safe,
+                      :rel => "popover",
+                      :id => "help_btn"} do
+      .ui-icon
+    %p.pipe 
+      |
+    /print
+    = link_to  '#', { :class => "ui-icon-with-text selectable first", 
+                      :"data-original-title" => "Voir la version imprimable".html_safe,
+                      :rel => "popover" ,
+                      :id => "print_btn"} do
+      .ui-icon.square_ruler
+    /save
+    = link_to  '#', { :class => "ui-icon-with-text selectable", 
+                      :"data-original-title" => "Sauvegarder ma carte en WMC".html_safe,
+                      :rel => "popover" ,
+                      :id => "save_btn"} do
+      .ui-icon
+    /load
+    = link_to  '#', { :class => "ui-icon-with-text selectable", 
+                       :"data-original-title" => "Charger une carte en WMC".html_safe,
+                       :rel => "popover" ,
+                      :id => "load_btn"} do
+      .ui-icon.square_ruler
 
     %input{ :type => "text", :placeholder => "Centrer sur...", :id => "btn-geoname"}
     %span#output_measure.infos

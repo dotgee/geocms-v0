@@ -5,23 +5,22 @@
     var layer_id = "#{@layer.id}";
     var layerWmsUrl = "#{@layer.wms_url}";
     var layerTitle = "#{@layer.title}";
+    var noresize = true;
   = javascript_include_tag "mapLayerInit"
   = javascript_include_tag "sharedControlers"
-
-//#category_chooser
-=# render :partial => "shared/tabs"              
-#map_container
-  = render :partial => 'shared/content_toolbar'
-  #map{:width => "400px", :height => "550px"}
-    .map-infos
-      .slider-container
-        .info-slider.up
-      .modal-header
-        %h3
-          = @layer.name
-      .modal-body
-        %b.label.success Description :
-        = @layer.description 
-      #features
-        .clear
+#map_container{:style => "width:#{params[:width] || 400}px;height:#{params[:height] || 550}; margin:0"}
+  =# render :partial => 'shared/content_toolbar'
+  #map{:style => "width:#{params[:width] || 400}px;height:#{params[:height] || 550}"}
+    - if params[:map_info]
+      .map-infos
+        .slider-container
+          .info-slider.up
+        .modal-header
+          %h3
+            = @layer.name
+        .modal-body
+          %b.label.success Description :
+          = @layer.description 
+        #features
+          .clear
   .clear

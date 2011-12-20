@@ -43,6 +43,42 @@
   .ui-icon
     background-image: image-url("print.png")
 
+#mapfishapp_btn
+  .ui-icon
+    background-image: image-url("geobretagne.png")
+
+#help_btn
+  .ui-icon
+    background-image: image-url("help.png")
+
+#save_btn
+  .ui-icon
+    background-image: image-url("save.png")
+
+#position_btn
+  .ui-icon
+    background-image: image-url("bretagne.png")
+
+.btn-check
+  .ui-icon
+    background-image: image-url("checkbox.png")
+    height: 16px
+    background-position: 0 0
+  &.unchecked
+    .ui-icon
+      background-position: 0 -16px
+  
+.category_layer_container
+  .btn-check
+    float: right
+    margin: 3px
+    .ui-icon
+      background-position: 0 -16px
+  &.added_layer
+    .btn-check
+      .ui-icon
+        background-position: 0 0 
+
 .infos
   line-height: 16px
   padding: 5px
@@ -50,13 +86,13 @@
 
 #coords
   position: absolute
-  right: 4px
-  bottom: 4px
+  right: 0px
+  bottom: 0px
   z-index: 1004
+  background: image-url("dock-bg.png") repeat-x
+  border: #999 solid
+  padding: 4px
+  border-width: 1px 0 0 1px
 
 .olMap
   cursor: image-url("openhand.cur"), move
-
-.fg-buttonset input
-  float: left
-  margin: 0 5px

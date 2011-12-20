@@ -62,14 +62,14 @@ $.widget("ui.viewer", {
 
         }else{
           layer.setVisibility(true);
-          $("#"+layer.uniqueID+"_legende").show(300);
-          $("#"+layer.uniqueID+"_selected").show(300);
+          $("#"+layer.uniqueID+"_legende").show();
+          $("#"+layer.uniqueID+"_selected").show();
         }
       }
       else{
         if(layer){
           layer.setVisibility(false);
-          $("#"+layer.uniqueID+"_legende").hide(300);
+          $("#"+layer.uniqueID+"_legende").hide();
           $("#"+layer.uniqueID+"_selected").hide();
         }
       }

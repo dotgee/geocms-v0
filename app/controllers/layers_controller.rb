@@ -1,9 +1,14 @@
 class LayersController < ApplicationController
   before_filter :set_layout
   before_filter :build_query, :only => :search
+  
+  def get_javascript
+    render :layout => false
+  end
 
   def external
     @layer = Layer.find(params[:id])
+    return render :text => "Not available" unless @layer.published
     render :layout => 'external' 
   end
 

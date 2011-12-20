@@ -29,6 +29,7 @@ Geocms::Application.routes.draw do
     member do
       get 'external'
       get 'getfeatures'
+      get 'get_javascript'
     end
   end
 

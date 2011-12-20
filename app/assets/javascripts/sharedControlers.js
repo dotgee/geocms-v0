@@ -208,14 +208,16 @@ function addSharedControlers() {
       }
   });
 
-  $(".check_layer").live("click", function(e) {
+  $(".node-controls .btn-check").live("click", function(e) {
+    e.preventDefault();
     var self = $(this);
-    layers = map.getLayersBy("uniqueID", self.attr("id").substring(self.attr("id").indexOf("_")+1));
-    if(self.attr("checked")) {
-      layers[0].setVisibility(true);
+    layer = map.getLayersBy("uniqueID", self.attr("id").substring(self.attr("id").indexOf("_")+1))[0];
+    if(layer.getVisibility()) {
+      layer.setVisibility(false);
     } else {
-      layers[0].setVisibility(false);
+      layer.setVisibility(true);
     }
+    self.toggleClass("unchecked");
   });
 
   $( "#btn-geoname" ).autocomplete({
@@ -259,7 +261,6 @@ function addSharedControlers() {
 }
 
 function addSlider(element) {
-  console.log(element);
   element.slider({
     value: 80,
     orientation: "horizontal",
@@ -278,7 +279,7 @@ function addLegende(layers) {
   var view = { layers: layers, request: '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=' };
   var template = "{{#layers}}<div class='legende-node' id='{{uniqueID}}_legende'>"+
                     "<p>{{name}}</p>"+
-                    "<img onerror='this.src=\"/assets/error.png\"' src='{{url}}{{request}}{{params.LAYERS}}' width='20' height='20'/>"+
+                    "<img onerror='this.src=\"/assets/error.png\"' src='{{url}}{{request}}{{params.LAYERS}}'/>"+
                  "</div>{{/layers}}";
   $("#legende").append(Mustache.to_html(template, view));
 
@@ -293,7 +294,7 @@ function addSelected(layers) {
                       "<span id='template_{{uniqueID}}'></span>"+
                     "</div>"+
                     "<div class='node-controls'>"+
-                      "<a href='#' class='ui-icon-with-text btn-check' id='check_{{uniqueID}}'><span class='ui-icon ui-icon-check'></span></a>"+
+                      "<a href='#' class='ui-icon-with-text btn-check' id='check_{{uniqueID}}'><span class='ui-icon'></span></a>"+
                       "<a href='#' class='ui-icon-with-text btn-features' layer_id='{{uniqueID}}'><span class='ui-icon ui-icon-info'></span></a>"+
                       "<a href='#' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
                       "<div class='slider' id='{{uniqueID}}'></div>"+
