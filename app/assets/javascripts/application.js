@@ -13,10 +13,6 @@
 //= require bootstrap
 //= require j.textarea
 //= require widgets
-//= require viewer
-//= require layerChooser
-//= require widgets/categorySlider
-//= require widgets/filter
 //= require proj4js/proj4js
 //= require placeholder.hack
 //= require mustache

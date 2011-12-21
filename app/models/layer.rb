@@ -1,10 +1,13 @@
 class Layer < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, :use => :slugged
+
   BZH_BOUNDING_BOX = "107541.6939208,6695593.1199368,429188.7088872,6901055.8519306"
   acts_as_taggable
   validates_presence_of :wms_url, :name, :title
   validates_format_of :wms_url, :with => URI::regexp(%w(http https))
 
-  before_validation :set_title_if_empty
+  before_validation :set_title_if_empty, :set_wms_url
   belongs_to :data_source
 
   has_many :assigned_layer_taxons
@@ -92,6 +95,16 @@ class Layer < ActiveRecord::Base
     return credits unless credits.blank?
     return data_source.credits unless data_source.nil?
     return ""
+  end
+
+  def set_wms_url
+    unless wms_url.nil?
+      wms_url.slice!(-1) unless wms_url.match(/\?$/).nil?
+    end
+  end
+
+  def last_date
+    modification_date || publication_date || created_at 
   end
 
 end

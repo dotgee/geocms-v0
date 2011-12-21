@@ -10,7 +10,6 @@ xml.rss :version => "2.0" do
         xml.title layer.title
         xml.description layer.description
         xml.pubDate layer.modification_date
-        xml.link layer_url(layer)
         xml.guid layer_url(layer)
       end
     end

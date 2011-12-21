@@ -2,14 +2,17 @@ $.widget("ui.filter", {
   options: {
     cible_id : "#category_chooser"
   },
+
   _create: function() {
     var self = this;
     self.listing = $(self.options.cible_id);
     self._bindEvents();
   },
+
   _init: function(){
     var self = this; 
   },
+
   _bindEvents: function(){
     var self = this;
     self.element.find('input[type=checkbox]').click(function(e){

@@ -92,8 +92,8 @@ function addSharedControlers() {
 
   // Ajout de la legende et des carte selectionnes
   addLegende(map.layers);
-  addSelected(map.layers);
-
+ // addSelected(map.layers);
+  $("#selected").selected();
   /* GetFeaturesInfo */
 
   // Highlight de la carte
