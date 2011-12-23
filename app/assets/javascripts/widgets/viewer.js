@@ -40,21 +40,14 @@ $.widget("ui.viewer", {
                                                });
 
           map.addLayer(layer);
-          addLegende(layer);
-          addSelected(layer);
+          $("#legende").mustachu("legendeNodes",[layer]);
+          $("#selected").mustachu("selectedNodes",[layer]);
           addSlider($("#selected #"+layer.uniqueID));
 
           div.attr('layer_id', layer.id);
 
           layer.events.register("loadstart", layer, function(){
             $("#progress").show();
-            template_div = $("#template_"+layer.uniqueID);
-            if(template_div.text() == "") {
-              $.get("/layers/"+layer.modelID,
-              function(data) {
-               template_div.text(data.template); 
-              }, "json");
-            }
           });
           layer.events.register("loadend", layer, function(){
             $("#progress").hide();

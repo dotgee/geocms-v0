@@ -6,10 +6,6 @@
 
 = content_for :footer do
   #legende
-    %div.legende_node
-      %p
-      %img(onerror="this.src='#{image_path 'error.png'}'")
-  .breaker
 
 = content_for :javascripts do
   = javascript_include_tag "openLayersEssentials"
@@ -24,9 +20,9 @@
                 map.controls.forEach(function(e) {
                   e.deactivate();
                 });
-                addSharedControlers();
+                $("#legende").mustachu().mustachu("legendeNodes", map.layers);
               } catch(e) {
-                alert(e);
+                console.log(e);
               }
             });
     });

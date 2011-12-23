@@ -7,14 +7,19 @@ class GeoContextsController < ApplicationController
     render :xml => @wmc
   end
 
+  def download
+    @wmc = REDIS.get(params[:key])
+    send_data @wmc, :filename => params[:name] << '.wmc'
+  end
+
+  def load
+    str =  request.body.read
+    id = save_context(str)
+    render :json => {:success => true, :content => id}
+  end
+
   def post
-    if(session[:wmc] == nil)
-      uuid = UUID.new
-      id = uuid.generate
-    else
-      id = session[:wmc]
-    end
-    REDIS.set(id, params[:wmc])
+    id = save_context(params[:wmc])
     render :text => id
   end  
 
@@ -110,5 +115,16 @@ class GeoContextsController < ApplicationController
 
   def set_layout
     #self.class.layout('application') if action_name == "show"
+  end
+
+  def save_context(wmc)
+    if(session[:wmc] == nil)
+      uuid = UUID.new
+      id = uuid.generate
+    else
+      id = session[:wmc]
+    end
+    REDIS.set(id, wmc)
+    return id
   end
 end

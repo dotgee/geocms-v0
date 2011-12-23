@@ -21,7 +21,7 @@
   = f.inputs :name => "Informations couche" do 
     = f.input :title
     = f.input :description, :input_html => { :cols => 10}
-    = f.input :themes, :collection => Taxon.themes_select(f.object.theme_ids)
+    = f.input :theme_ids, :collection => Taxon.themes_select(f.object.theme_ids),  :multiple => "multiple" 
     = f.input :filter, :include_blank => false
     = f.input :tag_list
     = f.input :published, :as => :radio

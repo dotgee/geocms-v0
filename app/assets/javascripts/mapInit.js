@@ -1,6 +1,11 @@
 $(document).ready(function() {
+  
+  var wmc;
 
-  var wmc = $("#wmc").attr("href");
+  wmc = getURLParameter("wmc");
+  if(wmc == "null") {
+    wmc = $("#wmc").attr("href");
+  }
   OpenLayers.loadURL(wmc, null, null, onSuccess, onFailure);
   
   function onSuccess(request){
@@ -8,13 +13,12 @@ $(document).ready(function() {
     map =  format.read(request.responseText, {map: mapOptions});
     var zoom = new OpenLayers.Control.PanZoomBar();
     map.addControls([zoom]);
-    map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
-    map.zoomTo(9);
+    //map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
     $('#container').viewer('resizeChooser');
     $.each(map.layers,function(i,y) {
-      y.uniqueID = y.name.replace(":", "_");
+      y.uniqueID = y.params.LAYERS.replace(":", "_");
     });
-    addSharedControlers();
+    addSharedControlers(map);
   }
 
   function onFailure(request){
@@ -22,3 +26,9 @@ $(document).ready(function() {
   }
 
 });
+
+function getURLParameter(name) {
+  return decodeURI(
+    (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+  );
+}

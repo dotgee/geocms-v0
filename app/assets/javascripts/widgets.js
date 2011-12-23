@@ -6,3 +6,5 @@
 //= require  widgets/filter
 //= require  widgets/sliderLink
 //= require  widgets/sliderPanel
+//= require  widgets/featurable
+//= require  widgets/mustachu

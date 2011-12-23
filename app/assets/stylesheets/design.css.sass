@@ -1,8 +1,12 @@
 @import "active_admin/mixins"
-a
-  outline: 0px
-  &:link, &:visited, &:hover, &:active
+a, div
+  outline: none
+  &:link, &:visited, &:hover, &:active, &:focus
+    outline: none
     outline-style: none
+    outline-color: none
+    outline-width: 0px
+    
 
 a:hover
   text-decoration: none
@@ -144,7 +148,6 @@ a.fg-button
   line-height: 16px
   font-weight: normal
   .ui-icon
-    background-image: image-url("blue_icons.png")
     float: left
   span
     font-size: 12px
@@ -152,8 +155,6 @@ a.fg-button
 .ui-widget-header 
   a.ui-icon-with-text
     margin-left: 5px
-    .ui-icon
-      background-image: image-url("blue_icons.png")
     &.first
       margin-left: 0
     
@@ -229,14 +230,29 @@ table
   &:last-child
     border: none
 
+.node
+  display: inline-block
+  width: 200px
+
 .node-controls
   width: 100% 
   height: 30px
-  padding: 0 10px
+  padding: 0 5px
 
 .node-infos
-  width: 170px
-  padding: 0 10px
+  width: 100%
+  padding: 0 5px
+
+.selected-node
+  padding: 5px 0
+  border-bottom: 1px #DDD solid
+  .grippy
+    display: inline-block
+    background: image-url('grippy.png') repeat-y right
+    height: 48px
+    width: 15px
+    vertical-align: top
+    cursor: image-url("openhand.cur"), pointer 
 
 #selected .ui-icon-with-text
   margin: 3px 3px 0 0
@@ -249,3 +265,48 @@ table
   display: inline-block 
   width: 200px
   font-size: 10px
+#tag_cloud
+  width: 49%
+  text-align: center
+  float: left
+  margin: 15px 1% 1% 0
+  h3
+    font-size: 1.5em
+
+.tg1
+  font-size: 1em
+.tg2
+  font-size: 1.1em
+.tg3
+  font-size: 1.2em
+.tg4
+  font-size: 1.3em
+.tg5
+  font-size: 1.4em
+.tg6
+  font-size: 1.5em
+.tg7
+  font-size: 1.6em
+.tg8
+  font-size: 1.7em
+
+#save_form
+  display: none
+  label
+    width: 50px
+    margin-right: 15px
+#load_form
+  display: none
+  label
+    width: 60px
+    margin-right: 15px
+
+.qq-upload-drop-area
+  display: block
+  border: 1px solid #AED0EA
+  background: #DEEDF7 
+  padding: 5px
+  margin-top: 15px
+
+.qq-upload-list
+  display: none

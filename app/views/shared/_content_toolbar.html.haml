@@ -5,10 +5,10 @@
       %span
         Liste couches
     /position initiale 
-    = link_to  '#', { :class => "ui-icon-with-text selectable",
+    = link_to  '#', { :class => "ui-icon-with-text selectable first_btn",
                       :id => "position_btn",
-                      :"data-original-title" => "Revenir &agrave; la position initiale".html_safe, 
-                      :rel => "popover" } do
+                      :"data-original-title" => "Revenir &agrave; la position initiale".html_safe,
+                    } do
       .ui-icon
     /hand control
     = link_to '#', { :class => "ui-icon-with-text measure_control selectable",
@@ -42,7 +42,7 @@
       |
     /expert mode
     = link_to  '#', { :class => "ui-icon-with-text selectable first",
-                      :"data-original-title" => "Fonctionnalit&eacute;s avanc&eacute;es sur GeoBretagne".html_safe,
+                      :"data-original-title" => "Plus de fonctionnalit&eacute;s sur GeoBretagne".html_safe,
                       :rel => "popover",
                       :id => "mapfishapp_btn"} do
       .ui-icon.square_ruler
@@ -78,3 +78,10 @@
     /%span#coords.infos
     %img(id="progress" src="#{image_path 'loading.gif'}")
     .ui-helper-clearfix
+
+#save_form{:title => "Sauvegarder ma carte"}
+  %p
+  %label Nom* : 
+  %input{ :type => "text", :id => "map_name"}
+#load_form{:title => "Charger ma carte en WMC"}
+  %input{ :type => "hidden", :id => "authenticity_token", :value => "#{form_authenticity_token}"}

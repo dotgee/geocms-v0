@@ -8,13 +8,12 @@ $(document).ready(function() {
       format: 'image/png'
     },
     {
+      isBaseLayer: true,
       singleTile: true,
       transitionEffect: 'resize',
       transparent: true,
       opacity: 0.5,
       displayInLayerSwitcher:false,
-      isBaseLayer: true,
-      originalID: 'region-bretagne_region_2154',
       uniqueID: 'region-bretagne_region_2154'
     }
   );
@@ -36,7 +35,7 @@ $(document).ready(function() {
     map.addLayer(layer);
     $("."+layer.uniqueID).show(300);
 
-    addSharedControlers();
+    addSharedControlers(map);
     map.zoomToExtent(bounds);
 
     //choix des couches

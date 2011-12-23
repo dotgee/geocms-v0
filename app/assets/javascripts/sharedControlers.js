@@ -1,4 +1,4 @@
-function addSharedControlers() {
+function addSharedControlers(map) {
   /* Controles de mesure */
   var control;
   for(var key in measureControls) {
@@ -26,7 +26,35 @@ function addSharedControlers() {
         }
       }
   });
-
+  var nodes, start_pos, end_pos, layer_to_move;
+  $( "#selected" ).sortable({
+    placeholder: "ui-state-highlight",
+    forcePlaceholderSize: true,
+    handle: ".grippy",
+    start: function(event, ui){
+     $(".selected-node .grippy").css("cursor", "url('/assets/closedhand.cur'), pointer");  
+     nodes = ui.item.parent().children().length-2;
+     start_pos = nodes - ui.item.index();
+     ui.item.data('start_pos', start_pos);
+    },
+    stop: function(event, ui){
+     $(".selected-node .grippy").css("cursor", "url('/assets/openhand.cur'), pointer");  
+    },
+    update: function(event, ui){
+      var uniqueId = "";
+      if(event.srcElement){
+        uniqueId = event.srcElement.id
+      }else{
+        uniqueId = event.target.id;
+      }
+      uniqueId = uniqueId.substring(uniqueId.indexOf("_")+1);
+      start_pos = ui.item.data('start_pos');
+      end_pos =  nodes - ui.item.index();
+      layer_to_move = map.getLayersBy("uniqueID", uniqueId)[0];
+      map.raiseLayer(layer_to_move, (end_pos-start_pos)); 
+    }
+  });
+  $( ".selected-node .grippy" ).disableSelection();
 
   /* Retour a la position initiale */
 
@@ -71,6 +99,67 @@ function addSharedControlers() {
     });
   });
 
+   
+   $("#save_btn").click(function(e) {
+    e.preventDefault();
+    $("#save_form").dialog({
+      height: 150,
+      width: 400,
+      modal: true,
+      buttons: {
+        "Sauvegarder": function() {
+          self = $(this);
+          map_name = self.find("#map_name").val();
+          if(map_name) {
+            $.ajax({
+              url: "/geo_contexts/post/",
+              data: {wmc: format.write(map)},
+              type: "POST",
+              success: function(data){
+                window.location = "/gc/"+map_name+"/"+data;
+                self.dialog("close");
+              }
+            });          
+          } else {
+            self.find("p").html("Un nom est requis pour l'enregistrement.");
+          }
+        },
+        "Annuler": function() {
+          $( this ).dialog("close");  
+        }
+      }
+    });
+  });
+
+  var uploader = new qq.FileUploader({
+    element: $("#load_form")[0],
+    action: '/geo_contexts/load',
+    multiple: false,
+    allowedExtensions: ['wmc'],        
+    sizeLimit: 0, // max size   
+    minSizeLimit: 0, // min size
+    // set to true to output server response to console
+    debug: false,
+    params: {
+      authenticity_token: $("#authenticity_token").val()
+    },
+    messages: {
+      typeError: "{file} n'est pas d'une extension valide. Seuls les {extensions} sont autorises.",
+      onLeave: "Le fichier est en train d'etre mis en ligne, si vous quittez maintenant, le chargement sera interrompu."
+    }, 
+    onComplete: function(id, fileName, responseJSON) {
+      window.location = "/?wmc=http://geocms.devel.dotgee.fr/gc/"+responseJSON.content;
+    }
+  });
+  $("#load_btn").click(function(e) {
+    e.preventDefault();
+    $("#load_form").dialog({
+      height: 150,
+      width: 400,
+      modal: true,
+    });
+  });
+  
   /* Affichage des coordonees */
 
   map.events.register("mousemove", map, function(e) {
@@ -91,16 +180,16 @@ function addSharedControlers() {
   });
 
   // Ajout de la legende et des carte selectionnes
-  addLegende(map.layers);
- // addSelected(map.layers);
-  $("#selected").selected();
+  $("#legende").mustachu().mustachu("legendeNodes", map.layers);
+  $("#selected").mustachu().mustachu("selectedNodes", map.layers);
+
   /* GetFeaturesInfo */
 
   // Highlight de la carte
-  
-  select = new OpenLayers.Layer.Vector("Selection", {styleMap: 
-                  new OpenLayers.Style(OpenLayers.Feature.Vector.style["select"])
-          });
+ /* 
+  select = new OpenLayers.Layer.Vector("Selection", {
+    styleMap: new OpenLayers.Style(OpenLayers.Feature.Vector.style["select"])
+  });
   map.addLayer(select);
   getFeatures = new OpenLayers.Control.GetFeature({
                 protocol: OpenLayers.Protocol.WFS.fromWMSLayer(map.layers[0]),
@@ -109,63 +198,48 @@ function addSharedControlers() {
                 multipleKey: "shiftKey",
                 toggleKey: "ctrlKey"
             });  
-  
   getFeatures.events.register("featureselected", this, function(e) {
       select.addFeatures([e.feature]);
   });
   getFeatures.events.register("featureunselected", this, function(e) {
       select.removeFeatures([e.feature]);
   });
-  
+  */
   // Affichage de la popup
   var dialog;
+  
   var featureInfos = new OpenLayers.Control.WMSGetFeatureInfo({
     url: map.layers[0].url, 
+    name: "featureInfos",
     queryVisible: true,
     infoFormat: "application/vnd.ogc.gml",
     eventListeners: {
+      beforegetfeatureinfo: function(event) {
+        if (dialog) {
+           dialog.dialog("open");
+           dialog.text("");
+        } else {
+           dialog = $("<div title='Features Info'></div>").dialog();
+        }
+      },
       getfeatureinfo: function(event) {
-           if (dialog) {
-              dialog.dialog("destroy");
-           }
-           output = "";
-           if (event.features.length > 0) {
-            event.features.forEach(function(feature) {
-              template = $("#template_"+event.object.layer.uniqueID).text();
-              output += Mustache.to_html(template,feature.data);
-            });
-           } 
-           if(output != ""){
-              dialog = $("<div title='Feature Info'>" + output + "</div>").dialog();
-            } else {
-            dialog = $("<div title='Pas de features'>Pas de features &agrave; afficher !</div>").dialog();
+          output = "";
+          if (event.features.length > 0) {
+           $.each(event.features, function(i, feature) {
+             template = $("#template_"+event.object.layers[0].uniqueID).text();
+             output += Mustache.to_html(template,feature.data);
+           });
+          } 
+          if(output != ""){
+           dialog.html(output);
+          } else {
+           dialog.html("Pas de features &agrave; afficher");  
           }
         }
       }
     });
    
-  // Activation des commandes au click bouton
-  map.addControls([featureInfos, getFeatures]);
-
-  $(".btn-features").live("click", function(e){
-    e.preventDefault();
-    if(featureInfos.active) {
-      featureInfos.deactivate();
-      getFeatures.deactivate();
-      $(".olMap").css("cursor", "");
-    } else {
-      layer = map.getLayersBy("uniqueID",$(this).attr("layer_id"))[0]; 
-      if(layer) {
-        featureInfos.url = layer.url;
-        featureInfos.layer = layer;
-        featureInfos.activate();
-        getFeatures.protocol = OpenLayers.Protocol.WFS.fromWMSLayer(layer);
-        getFeatures.activate();
-        $(".olMap").css("cursor", "crosshair");
-      }       
-    }
-  });
-
+  map.addControl(featureInfos);
 
   // Accordeon maison pour les sous categories
   $('.right-menu h3').not('.parent').click(function(e) {
@@ -217,7 +291,7 @@ function addSharedControlers() {
     } else {
       layer.setVisibility(true);
     }
-    self.toggleClass("unchecked");
+    self.toggleClass("checked");
   });
 
   $( "#btn-geoname" ).autocomplete({
@@ -248,7 +322,7 @@ function addSharedControlers() {
       minLength: 2,
       select: function( event, ui ) {
         var lonlat = new OpenLayers.LonLat(ui.item.lng, ui.item.lat);
-        map.setCenter(lonlat.transform(gg, lb), 6);
+        map.setCenter(lonlat.transform(gg, lb), 9);
       },
       open: function() {
         $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
@@ -272,33 +346,4 @@ function addSlider(element) {
       $("."+this.id).slider("value", ui.value);
     }
   });
-}
-// Generation de la legende
-function addLegende(layers) {
-
-  var view = { layers: layers, request: '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=' };
-  var template = "{{#layers}}<div class='legende-node' id='{{uniqueID}}_legende'>"+
-                    "<p>{{name}}</p>"+
-                    "<img onerror='this.src=\"/assets/error.png\"' src='{{url}}{{request}}{{params.LAYERS}}'/>"+
-                 "</div>{{/layers}}";
-  $("#legende").append(Mustache.to_html(template, view));
-
-}
-
-// Generation des couches selectionnees
-function addSelected(layers) {
-  var view = { layers: layers };
-  var template = "{{#layers}}<div class='selected-node' id='{{uniqueID}}_selected'>"+
-                    "<div class='node-infos'>"+
-                      "<p>{{name}}</p>"+
-                      "<span id='template_{{uniqueID}}'></span>"+
-                    "</div>"+
-                    "<div class='node-controls'>"+
-                      "<a href='#' class='ui-icon-with-text btn-check' id='check_{{uniqueID}}'><span class='ui-icon'></span></a>"+
-                      "<a href='#' class='ui-icon-with-text btn-features' layer_id='{{uniqueID}}'><span class='ui-icon ui-icon-info'></span></a>"+
-                      "<a href='#' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
-                      "<div class='slider' id='{{uniqueID}}'></div>"+
-                    "</div>"+
-                 "</div>{{/layers}}";
-  $("#selected").append(Mustache.to_html(template, view));  
 }

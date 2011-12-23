@@ -13,6 +13,7 @@ Geocms::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   match '/gc/:key' => "geo_contexts#permalink", :as => :gc_permalink
+  match '/gc/:name/:key' => "geo_contexts#download", :as => :gc_download
 
   get "rss/layers"
 
@@ -21,7 +22,7 @@ Geocms::Application.routes.draw do
   resources :taxons, :only => :show
 
   #resources :layers do
-  resources :layers, :only => [:show, :index, :search] do
+  resources :layers, :only => [:show, :index, :search, :wfs] do
     collection do
       get 'print'
       match "search"
@@ -30,6 +31,7 @@ Geocms::Application.routes.draw do
       get 'external'
       get 'getfeatures'
       get 'get_javascript'
+      get 'wfs'
     end
   end
 
@@ -42,6 +44,7 @@ Geocms::Application.routes.draw do
     collection do 
       get 'wmc'
       post 'post'
+      post 'load'
     end
   end
 

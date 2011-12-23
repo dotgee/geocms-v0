@@ -37,7 +37,7 @@
 
 #load_btn 
   .ui-icon
-    background-image: image-url("load.png")
+    background-image: image-url("loadup.png")
 
 #print_btn
   .ui-icon
@@ -63,10 +63,10 @@
   .ui-icon
     background-image: image-url("checkbox.png")
     height: 16px
-    background-position: 0 0
-  &.unchecked
+    background-position: 0 -16px
+  &.checked
     .ui-icon
-      background-position: 0 -16px
+      background-position: 0 0
   
 .category_layer_container
   .btn-check
@@ -96,3 +96,6 @@
 
 .olMap
   cursor: image-url("openhand.cur"), move
+
+.ui-slider-horizontal .ui-slider-handle
+  outline: none

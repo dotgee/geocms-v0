@@ -2,6 +2,10 @@ class LayersController < ApplicationController
   before_filter :set_layout
   before_filter :build_query, :only => :search
   
+  def wfs
+    @layer = Layer.find(params[:id])
+  end
+
   def get_javascript
     render :layout => false
   end

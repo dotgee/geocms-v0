@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include ActsAsTaggableOn::TagsHelper
+
   def multiselect_files
     content_for :javascripts do
       javascript_include_tag 'jquery/jquery.multiselect.min.js', 'jquery/multiselectInit'

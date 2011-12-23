@@ -16,9 +16,15 @@
 //= require proj4js/proj4js
 //= require placeholder.hack
 //= require mustache
+//= require fileuploader
 
+/* Includes the csrf token in every ajax request
+$(document).ajaxSend(function(e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});
+*/
 var fullscreen = false;
-
 $(document).ready(function(){
   $('.selected_icon').attr('data-original-title', 'Ajouter/retirer cette couche au visualiseur').twipsy({delayIn: 300});
   $('#legend_container').legend();
@@ -28,6 +34,7 @@ $(document).ready(function(){
   $('a[rel=popover]').twipsy({html: true});
   $('span[rel=popover]').twipsy({delayIn: 200});
   $('.category_layer_container').twipsy({placement: "left"});
+  $('.first_btn').twipsy({placement: "right"});
   $('#wait').spin();
   $('.alert-message .close').live('click', function(e){
     e.preventDefault();

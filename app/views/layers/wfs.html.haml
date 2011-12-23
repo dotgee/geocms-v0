@@ -1,0 +1,30 @@
+= map_js
+= content_for :javascripts do
+  :javascript
+    var layerNames = "#{@layer.name}";
+    var layer_id = "#{@layer.id}";
+    var layerWmsUrl = "#{@layer.wms_url}";
+    var layerTitle = "#{@layer.title}";
+  = javascript_include_tag "wfsLayerInit"
+  = javascript_include_tag "sharedControlers"
+
+#category_chooser
+  = render :partial => "shared/tabs"              
+#map_container
+  = render :partial => 'shared/content_toolbar'
+  #map
+    %span#coords
+    .map-infos
+      .slider-container
+        .info-slider.up
+      .modal-header
+        %h3
+          = @layer.name
+      .modal-body
+        %b.label.success Description :
+        = @layer.description 
+      #features
+        .clear
+  .clear
+
+=# render :partial => "shared/category_chooser_modal"              
