@@ -43,13 +43,6 @@ $(document).ready(function(){
 
   });
   
-  $("#features").click(function(e) {
-    e.preventDefault();
-    $.get("/layers/"+$(this).attr("layer_id")+"/getfeatures.json",
-        function(data) {
-          $('<div>'+data+'</div>').dialog({title: "Liste des features"}); 
-        });
-  });
   $('.modal').click(function(e){
     e.preventDefault();
     if($('#modal_export').length == 0){

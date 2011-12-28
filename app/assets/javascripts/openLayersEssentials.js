@@ -12,6 +12,29 @@ var bounds = new OpenLayers.Bounds(
                   419330.671, 6908799.426
             );
 
+/*var bounds = new OpenLayers.Bounds(
+              -357823.2365, 6037008.6939,
+              1313632.3628, 7230727.3772 
+            );
+*/
+var scales = [ 
+      266.591197934,
+      533.182395867,
+      1066.364791734,
+      2132.729583468,
+      4265.459166936,
+      8530.918333871,
+      17061.836667742,
+      34123.673335484,
+      68247.346670968,
+      136494.693341936,
+      272989.386683873,
+      545978.773367746,
+      1091957.546735491,
+      2183915.093470982,
+      4367830.186941965,
+      8735660.373883929
+];
 // Mesures 
 var sketchSymbolizers = {
     "Point": {
@@ -96,16 +119,12 @@ function fixSize() {
   var offset_map = $("#map").offset().top;
   $("#map").height(window_height - offset_map);
   $('#tabs .content').height( window_height - offset_map - $('#tabs ul').outerHeight()-10);
-  if (window.map && window.map instanceof OpenLayers.Map) {
+  if (window.map && (window.map instanceof OpenLayers.Map)) {
     map.updateSize();
   }
 }
 
 $(document).ready(function() {
-  if(typeof(noresize) =="undefined"){
-    $(window).bind("resize", fixSize);
-    fixSize();
-  }
 
   $('#content').viewer({ map: map, accordionPosition: "right"});
 
@@ -114,15 +133,8 @@ $(document).ready(function() {
     allOverlays: true,
     transitionEffect: "resize",
     projection: "EPSG:2154",
-    maxResolution: 4891.969809375, 
+    scales: scales,
     maxExtent: bounds,
-    minResolution: 2.38865713, 
-    //restrictedExtent: bounds,
-    //resolutions:  [
-    //   156543.0339, 78271.51695, 39135.758475, 19567.8792375, 9783.93961875, 4891.969809375, 2445.9849046875, 1222.99245234375, 611.4962261718748,
-    //    305.7481130859374, 152.87405654296887, 76.43702827148444, 38.21851413574208, 19.10925706787104, 9.55462853393552, 4.77731426696776, 2.38865713348388,
-    //    1.1943285667420798, 0.5971642833710399, 0.29858214168551994
-    //],
     units: "m",
     theme: null,
     controls: [

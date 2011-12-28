@@ -2,8 +2,6 @@ ActiveAdmin.register Layer do
 
   form :partial => "admin/layers/form"
 
-
-  # @todo Faire un client WFS pour recuperer ces infos
   controller do
     def create_layer_from_geoserver(layer_infos, server_url, geo_serveur)
         conditions = { :wms_url => server_url,

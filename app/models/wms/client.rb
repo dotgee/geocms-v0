@@ -52,7 +52,7 @@ module WMS
     def features_list
       f = features_doc.remove_namespaces!
       parsed_features = f.xpath('//sequence/element').inject([]) do |array, l|
-        array << l["name"] 
+        array << [l["name"]]
         array
       end
       parsed_features.delete_at(0)
