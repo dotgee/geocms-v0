@@ -104,3 +104,5 @@ fr:
     array:
       two_words_connector: " et "
   search: "Rechercher"
+  tag: "Mot cl&eacute;"
+  tags: "Mots cl&eacute;s"

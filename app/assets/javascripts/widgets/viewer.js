@@ -148,6 +148,13 @@ $.widget("ui.viewer", {
     }
     return this._mapDiv;
   },
+
+  destroyLayer: function(layer) {
+    var self = this;
+    map.removeLayer(layer);
+    self.layerChooserAccordion.find("#"+layer.uniqueID).removeClass("added_layer");   
+  },
+
   destroy: function() {
     $.Widget.prototype.destroy.apply(this, arguments); // default destroy
   }

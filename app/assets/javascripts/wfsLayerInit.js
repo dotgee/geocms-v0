@@ -17,7 +17,7 @@ $(document).ready(function() {
                                        modelID: layer_id
                                    });
   map.addLayer(fond_carto);
-  //map.addLayer(layer);
+  map.addLayer(layer);
   map.zoomToExtent(bounds);
 
     //choix des couches
@@ -60,7 +60,8 @@ $(document).ready(function() {
                 var contents = new OpenLayers.Layer.Vector("Contents", {
                     uniqueID : layerNames.replace(":", "_")+"_vector",
                     strategies: [ 
-                      new OpenLayers.Strategy.CustomBBOX(),
+                      //new OpenLayers.Strategy.BBOX(),
+                      new OpenLayers.Strategy.Fixed(),
                       new OpenLayers.Strategy.AttributeCluster({attribute:'thematique'})
 
                      ],

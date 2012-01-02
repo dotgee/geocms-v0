@@ -28,6 +28,7 @@ Geocms::Application.routes.draw do
       match "search"
     end
     member do
+      get 'find'
       get 'external'
       get 'getfeatures'
       get 'get_javascript'

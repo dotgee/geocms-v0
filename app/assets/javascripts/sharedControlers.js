@@ -1,4 +1,10 @@
 function addSharedControlers(map) {
+
+  if(typeof(noresize) == "undefined"){
+    $(window).bind("resize", fixSize);
+    fixSize();
+  }
+
   /* Controles de mesure */
   var control;
   for(var key in measureControls) {
@@ -9,7 +15,19 @@ function addSharedControlers(map) {
     });
     map.addControl(control);
   }
-
+  $('#fullscreen-btn').click(function(e){
+    e.preventDefault();
+    var content = $('#content');
+    var btn = $(this);
+    if(content.is('.full_screen')){
+      content.removeClass('full_screen');
+      btn.removeClass('full_screen_btn');
+    }else{
+      content.addClass('full_screen');
+      btn.addClass('full_screen_btn');
+    }
+    fixSize();
+  });
   $('#hand_control, #zoomin, #ruler_measure, #square_measure').click(function(e){
     e.preventDefault();
     var btn = $(this);
@@ -82,11 +100,6 @@ function addSharedControlers(map) {
     });
   });
 
-  $('#realprint_btn').click(function(e){
-    e.preventDefault();
-    print();
-  });
-
   $('#mapfishapp_btn').click(function(e){
     e.preventDefault();
     $.ajax({
@@ -138,7 +151,6 @@ function addSharedControlers(map) {
     allowedExtensions: ['wmc'],        
     sizeLimit: 0, // max size   
     minSizeLimit: 0, // min size
-    // set to true to output server response to console
     debug: false,
     params: {
       authenticity_token: $("#authenticity_token").val()
@@ -219,7 +231,7 @@ function addSharedControlers(map) {
            dialog.dialog("open");
            dialog.text("");
         } else {
-           dialog = $("<div title='Features Info'></div>").dialog();
+           dialog = $("<div title='Features Info'></div>").dialog({width: 'auto'});
         }
       },
       getfeatureinfo: function(event) {
@@ -292,6 +304,33 @@ function addSharedControlers(map) {
       layer.setVisibility(true);
     }
     self.toggleClass("checked");
+  });
+
+  $(".btn-destroy").live("click", function(e) {
+    e.preventDefault();
+    var self = $(this);
+    layer = map.getLayersBy("uniqueID", self.attr("layer_id"))[0];
+    $( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height:140,
+      modal: true,
+      buttons: {
+        "Confirmer": function() {
+          if(layer) {
+            // Removes the layer from the map and uncheck it on the list
+            $("#content").viewer("destroyLayer", layer);
+            // Removes the layer from the selected list
+            $("#selected").mustachu("destroyLayer", layer); 
+            // Removes the layer from the legend
+            $("#legend_container").legend("destroyLayer", layer);      
+          }
+          $( this ).dialog( "close" );
+        },
+        "Annuler": function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
   });
 
   $( "#btn-geoname" ).autocomplete({

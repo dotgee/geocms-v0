@@ -50,6 +50,14 @@ class LayersController < ApplicationController
     end
   end
 
+  def find
+    @layer = Layer.find_by_name(params[:id])
+
+    respond_to do |format|
+      format.json { render json: @layer }
+    end
+  end
+
   def getfeatures
     @layer = Layer.find(params[:id])
     @features = WMS::Client.new(@layer.wms_url,{:layer_name => @layer.name}).features_list

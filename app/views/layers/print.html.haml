@@ -9,18 +9,22 @@
 
 = content_for :javascripts do
   = javascript_include_tag "openLayersEssentials"
-  = javascript_include_tag "sharedControlers"
   :javascript
     $(document).ready(function(){
       $.get("/gc/#{@wmc}",
             function(data){
               try {
                 map = format.read(data, {map: mapOptions});
+                console.log(map);
                 map.removeControl(map.controls[1]);
                 map.controls.forEach(function(e) {
                   e.deactivate();
                 });
                 $("#legende").mustachu().mustachu("legendeNodes", map.layers);
+                $('#realprint_btn').click(function(e){
+                  e.preventDefault();
+                  print();
+                }); 
               } catch(e) {
                 console.log(e);
               }

@@ -44,6 +44,12 @@ $.widget("ui.legend", {
     var self = this;
     return parseInt(self.element.css('left'));
   },
+  
+  destroyLayer: function(layer) {
+    console.log(this.element);
+    this.element.find("#"+layer.uniqueID+"_legende").remove();
+  },
+
   destroy: function() {
     $.Widget.prototype.destroy.apply(this, arguments);
   }

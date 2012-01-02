@@ -26,7 +26,7 @@ $(document).ajaxSend(function(e, xhr, options) {
 */
 var fullscreen = false;
 $(document).ready(function(){
-  $('.selected_icon').attr('data-original-title', 'Ajouter/retirer cette couche au visualiseur').twipsy({delayIn: 300});
+  // $('.selected_icon').attr('data-original-title', 'Ajouter/retirer cette couche au visualiseur').twipsy({delayIn: 300});
   $('#legend_container').legend();
   $('#layer_tab').tabs();
   $('.filters').filter();

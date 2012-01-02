@@ -4,12 +4,7 @@ $.widget("ui.featurable", {
   },
   _create: function() {
     var self = this;
-    if(self.options.layer.modelID) {
-      self._loadTemplate();
-      self._bindEvents();
-    } else {
-      self._default();
-    }
+    self._loadTemplate();
   },
   
   // Binds a click event on the info button
@@ -39,11 +34,22 @@ $.widget("ui.featurable", {
   _loadTemplate: function() {
     var self = this;
     template_div = $("#template_"+self.options.layer.uniqueID);
-    if(!template_div.text()) {
-      $.get("/layers/"+self.options.layer.modelID,
-      function(data) {
-       template_div.text(data.template);
-      }, "json");
+    return true;
+    if(!template_div.text()){
+      $.ajax({
+        url: "/layers/"+self.options.layer.params.LAYERS+"/find.json",
+        type: "GET",
+        success: function(data) {
+           if(data && data.template) {
+             template_div.text(data.template);
+             self._bindEvents();
+           } else {
+             $("#features_"+self.options.layer.uniqueID).remove();
+           }
+        },
+        dataType: "json",
+        async: false
+      });
     }
   },
 

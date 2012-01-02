@@ -6,6 +6,12 @@
         Liste couches
     /position initiale 
     = link_to  '#', { :class => "ui-icon-with-text selectable first_btn",
+                      :id => "fullscreen-btn",
+                      :"data-original-title" => "Plein &eacute;cran".html_safe,
+                    } do
+      .ui-icon.ui-icon-arrow-4-diag
+    /position initiale 
+    = link_to  '#', { :class => "ui-icon-with-text selectable first_btn",
                       :id => "position_btn",
                       :"data-original-title" => "Revenir &agrave; la position initiale".html_safe,
                     } do

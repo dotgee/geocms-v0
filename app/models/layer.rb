@@ -51,7 +51,7 @@ class Layer < ActiveRecord::Base
   end
 
   def uniq_identifier
-    [wms_url.underscore, name.underscore].join('_').gsub(/[^\w]/,"_")
+    name.gsub(":","_")
   end
 
   def geonetwork_identifier
