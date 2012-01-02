@@ -1,12 +1,21 @@
 ActiveAdmin.register Layer do
   controller.authorize_resource
 
+  scope :published, :default => true
+  scope :drafts
+
   form :partial => "admin/layers/form"
 
   controller do
+    before_filter :delete_published, :only => [:create, :update]
+    def delete_published
+      params[:layer].delete(:published) unless current_admin_user.role?('super_admin')
+    end
+
     def current_ability
       @current_ability ||= AdminAbility.new(current_admin_user)
     end
+
     def create_layer_from_geoserver(layer_infos, server_url, geo_serveur)
         conditions = { :wms_url => server_url,
                        :name => layer_infos.name }
@@ -111,5 +120,4 @@ ActiveAdmin.register Layer do
     end
     default_actions
   end
-
 end

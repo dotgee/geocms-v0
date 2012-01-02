@@ -5,6 +5,8 @@ class AdminAbility
     user ||= AdminUser.new
     if user.role?('super_admin')
       can :manage, :all
+    else
+      can :manage, :all
     end
   end
 end

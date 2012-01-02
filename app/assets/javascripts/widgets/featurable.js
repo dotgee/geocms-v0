@@ -41,7 +41,7 @@ $.widget("ui.featurable", {
         success: function(data) {
            // Q&D load of credits
            if(data) {
-             self.options.layer["credits"] = data.credits;
+             self.options.layer["metadata"]["credits"] = data.credits;
              if(data.template) {
                template_div.text(data.template);
                self._bindEvents();

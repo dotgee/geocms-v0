@@ -1,4 +1,5 @@
 ActiveAdmin.register Taxon do
+  menu :parent => "Classements"
   controller.authorize_resource
 
   filter :name

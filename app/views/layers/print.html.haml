@@ -7,6 +7,8 @@
 = content_for :footer do
   #legende
   #credits
+    %h3
+      Crédits
 
 = content_for :javascripts do
   = javascript_include_tag "openLayersEssentials"
@@ -16,10 +18,24 @@
         function(data){
           try {
             map = format.read(data, {map: mapOptions});
-            console.log(map);
             map.removeControl(map.controls[1]);
             map.controls.forEach(function(e) {
               e.deactivate();
+            });
+            // Q&D load of credits
+            $.each(map.layers, function(i, layer) {
+              $.ajax({
+                url: "/layers/"+layer.params.LAYERS+"/find.json",
+                type: "GET",
+                success: function(data) {
+                   if(data) {
+                     if(data.credits) {
+                       $("#credits").append("<div>"+data.credits+"</div>");
+                     }
+                   }
+                },
+                dataType: "json"
+              });
             });
             $("#legende").mustachu().mustachu("legendeNodes", map.layers);
             $('#realprint_btn').click(function(e){

@@ -21,6 +21,7 @@ class Layer < ActiveRecord::Base
   belongs_to :filter
 
   scope :published, :conditions => {:published => true}
+  scope :drafts, :conditions => {:published => false}
   scope :recent, order('coalesce (modification_date, publication_date, created_at) desc')
   scope :recent_published, recent.published
 

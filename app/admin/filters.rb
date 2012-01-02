@@ -1,4 +1,5 @@
 ActiveAdmin.register Filter do
+  menu :parent => "Classements"
   controller.authorize_resource
   controller do
     def current_ability

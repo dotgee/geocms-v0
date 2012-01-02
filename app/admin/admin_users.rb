@@ -1,4 +1,5 @@
 ActiveAdmin.register AdminUser do
+  menu :if => proc { current_admin_user.role?('super_admin')}
   controller.authorize_resource
   controller do
     def current_ability

@@ -11,7 +11,7 @@
                                   :model_id => l.id, 
                                   :layer_title => l.title, 
                                   :class => [l.uniq_identifier, l.filter_name.downcase].join(' '), 
-                                  :layer_class => l.uniq_identifier, A
+                                  :layer_class => l.uniq_identifier,
                                   :id => l.uniq_identifier, 
                                   :"data-original-title" => l.description }
         %a{:href => "#", :class => "ui-icon-with-text selected_icon btn-check"}
