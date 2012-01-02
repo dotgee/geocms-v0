@@ -1,4 +1,4 @@
-ActiveAdmin.register Filter do
+ActiveAdmin.register Role do
   controller.authorize_resource
   controller do
     def current_ability

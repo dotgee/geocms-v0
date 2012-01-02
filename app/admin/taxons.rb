@@ -1,13 +1,18 @@
 ActiveAdmin.register Taxon do
+  controller.authorize_resource
+
   filter :name
   controller do
-    
-  def end_of_association_chain
-    if action_name == "index"
-      return Taxon.order('lft asc ,rgt asc')
+    def current_ability
+      @current_ability ||= AdminAbility.new(current_admin_user)
     end
-    return super
-  end
+    
+    def end_of_association_chain
+      if action_name == "index"
+        return Taxon.order('lft asc ,rgt asc')
+      end
+      return super
+    end
 
   end
 

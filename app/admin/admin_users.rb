@@ -1,12 +1,22 @@
 ActiveAdmin.register AdminUser do
+  controller.authorize_resource
+  controller do
+    def current_ability
+      @current_ability ||= AdminAbility.new(current_admin_user)
+    end
+  end
+
   filter :email
   form do |f|
     f.inputs do 
       f.input :last_name
       f.input :first_name
       f.input :email
-      f.input :password
-      f.input :password_confirmation
+      if f.object.new_record?
+        f.input :password
+        f.input :password_confirmation 
+      end
+      f.input :role
     end
     f.buttons do
       f.submit

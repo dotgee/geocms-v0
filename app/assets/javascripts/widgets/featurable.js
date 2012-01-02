@@ -34,17 +34,21 @@ $.widget("ui.featurable", {
   _loadTemplate: function() {
     var self = this;
     template_div = $("#template_"+self.options.layer.uniqueID);
-    return true;
     if(!template_div.text()){
       $.ajax({
         url: "/layers/"+self.options.layer.params.LAYERS+"/find.json",
         type: "GET",
         success: function(data) {
-           if(data && data.template) {
-             template_div.text(data.template);
-             self._bindEvents();
-           } else {
-             $("#features_"+self.options.layer.uniqueID).remove();
+           // Q&D load of credits
+           if(data) {
+             self.options.layer["credits"] = data.credits;
+             if(data.template) {
+               template_div.text(data.template);
+               self._bindEvents();
+             } else { self._default(); }
+           }
+           else {
+             self._default();
            }
         },
         dataType: "json",
