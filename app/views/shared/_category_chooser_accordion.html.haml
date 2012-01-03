@@ -3,7 +3,7 @@
   - Filter.all.each do |f|
     %span{ :rel => "popover", :"data-original-title" => f.libelle}
       = check_box_tag "filter", f.name.downcase
-      = "#{f.name.slice(0).upcase} (#{f.layers.count})"
+      = "#{f.name.slice(0).upcase} (#{f.layers.published.count})"
   .clear
   %a{ :href => "#", :id => "removeFilters" }
     Supprimer les filtres
