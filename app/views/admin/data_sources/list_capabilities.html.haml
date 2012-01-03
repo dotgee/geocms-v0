@@ -1,0 +1,7 @@
+- content_for :javascripts do
+  = javascript_include_tag "jquery/jquery.tablesorter.min.js"
+  = javascript_include_tag :capabilities
+
+= paginate @results
+= render :partial => "metadatas_list"
+

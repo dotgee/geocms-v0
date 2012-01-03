@@ -7,9 +7,8 @@
     r&eacute;sultats
 
   - @metadatas.sort_by!{|l| l.title}
-  =# simple_form_for(:import, :url => import_admin_capabilities_path, :builder => SimpleBootstrapFormBuilder) do |f|
-  = semantic_form_for :import, :url => import_meta_admin_layers_path do |f|
-    = f.input "server_url", :as => :hidden, :input_html => { :value => params[:server][:url] }
+  = semantic_form_for :import, :url => mass_import_admin_data_source_path(@data_source) do |f|
+    = hidden_field_tag :page, params[:page]
     %table.sortable.index_table
       %thead
         %tr
@@ -31,12 +30,14 @@
               %div
                 = check_box_tag "import[layer_name][]", l.identifier
               %div
-                %span.label{:class => exist ? "success" : "warning"}
+                %span.label_boot{:class => exist ? "success" : "warning"}
                   - if exist
                     Pr&eacute;sente
                   - else
                     Non import&eacute;e
-
+              - if !exist
+                %div
+                  = link_to 'Importer', url_for({:controller => "admin/data_sources", :action => "import", :id => params[:id], :identifier => l.identifier}), :class => "import_layer"
             %td
               .title
                 %b

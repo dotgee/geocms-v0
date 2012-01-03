@@ -47,8 +47,10 @@ module Csw
         :id => id
       }
       uri = [ @csw_url, self.class.build_capabilities_query(params)].join('?')
-      response = open(uri).read
-      return parse_response(response)
+      response = parse_response(open(uri).read)
+      response = response.xpath('//Record').first
+      return Csw::Metadata.from_xml(response)
+
     end
 
     def record_doc
@@ -82,7 +84,7 @@ module Csw
        <csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:ogc="http://www.opengis.net/ogc" xmlns:ows="http://www.opengis.net/ows" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" service="CSW" version="2.0.2" maxRecords="{{max}}" startPosition="{{start}}" outputFormat="application/xml" outputSchema="http://www.opengis.net/cat/csw/2.0.2" resultType="results">
             <csw:Query typeNames="csw:Record">
             <csw:ElementSetName>full</csw:ElementSetName> 
-      ), :max => options[:max] || 1000, :start => options[:start] || 1)
+      ), :max => options[:max] || 1000, :start => options[:start] > 0 ? options[:start] : 1)
       constraint = %q(
             <csw:Constraint version="1.1.0">
             <ogc:Filter xmlns="http://www.opengis.net/ogc"><ogc:PropertyIsLike escape="\" singleChar="_" wildCard="%">
@@ -200,15 +202,21 @@ module Csw
 
   end
 
- class Metadata
+  class Metadata
     attr_accessor :identifier, :description, :title, :tag_list, :type, :rights, :source, :layer
-     def layer_name
-        return layer.name unless layer.nil?
-        return ""
-     end
+    def attributes
+      return  [ :identifier, :description, :title, :tag_list, :rights, :source].inject({}) do |a, v|
+        a[v] = self.send(v)
+        a
+      end.merge( @layer.to_layer).select{|k,v| !v.blank?}
+    end
+
+    def layer_name
+      return layer.name unless layer.nil?
+      return ""
+    end
     class << self
       def new_default(options = {})
-
       end
 
       def from_xml(xml)
@@ -228,6 +236,14 @@ module Csw
 
   class Layer
     attr_accessor :name, :description, :url
+    def to_layer
+      return {
+        :name => @name,
+        :wms_url => @url,
+        :description => @description
+      }
+    end
+
     class << self
       def new_from_xml(xml)
         l = self.new
@@ -238,6 +254,5 @@ module Csw
         l
       end
     end
-    
   end
 end

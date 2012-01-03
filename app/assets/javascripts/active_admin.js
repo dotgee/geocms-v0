@@ -64,4 +64,21 @@ $(document).ready(function(){
     
     });
   });
+
+  $('.import_layer').click(function(e){
+    e.preventDefault();
+    var link = $(this);
+    $.ajax(link.attr('href'),
+        {
+          type: 'post',
+          success: function(data){
+            console.log(data);
+            var tr = link.parents('tr').first()
+            tr.effect('highlight', 500);  
+            tr.find('.label_boot').first().addClass('success').removeClass('warning').html(' Pr&eacute;sente');
+            link.remove();
+          },
+
+    });
+  });
 });
