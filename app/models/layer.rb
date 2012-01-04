@@ -9,7 +9,7 @@ class Layer < ActiveRecord::Base
 
   before_validation :set_title_if_empty, :set_wms_url
   belongs_to :data_source
-
+  before_validation :strip_whitespace
   has_many :assigned_layer_taxons
 
   has_many :themes, 
@@ -104,13 +104,18 @@ class Layer < ActiveRecord::Base
   end
 
   def set_wms_url
-    unless wms_url.nil?
+    unless wms_url.blank?
       wms_url.slice!(-1) unless wms_url.match(/\?$/).nil?
     end
   end
 
   def last_date
     modification_date || publication_date || created_at 
+  end
+
+  private
+  def strip_whitespace
+    [metadata_url, metadata_identifier, wms_url, name].compact.map(&:strip!)
   end
 
 end

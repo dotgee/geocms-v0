@@ -8,8 +8,15 @@
       %span
         = link_to image_tag('gipbe/logotwit.gif', :alt => 'twitter'), 'https://twitter.com/#!/Bzh_Enviro', :title => "Twitter", :target => "_blank"
     %li
-      %span
+      %span#link-share
         = link_to image_tag('gipbe/picto_share.jpg', :alt => 'Partager cette page'), '#', :title => "Partager cette page"
+      #social-networks.fond
+        %p.titre
+          %a.close{:href => "#", :title => "Fermer"} X
+          Partager sur les réseaux sociaux :
+        #social-networks-content
+        %br.breaker/
+
     %li
       %span
         = link_to image_tag('gipbe/picto_link.jpg', :alt => "Faire un lien vers cette page"), '#', :title => "Faire un lien vers cette page"
