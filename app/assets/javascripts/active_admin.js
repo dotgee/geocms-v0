@@ -5,13 +5,13 @@
 //= require pure
 //= require jquery/jquery.multiselect.js
 //= require bootstrap
-//= require j.textarea
+//= require j.autoresize
 //= require admin/layers
 //= require timepicker
 
 $(function(){
   $(".datepicker").datepicker({dateFormat: 'yy-mm-dd'});
-
+  $('textarea').height(100).autoResize({});
     $(".clear_filters_btn").click(function(){
         window.location.search = "";
             return false;
@@ -72,11 +72,18 @@ $(document).ready(function(){
         {
           type: 'post',
           success: function(data){
-            console.log(data);
             var tr = link.parents('tr').first()
             tr.effect('highlight', 500);  
-            tr.find('.label_boot').first().addClass('success').removeClass('warning').html(' Pr&eacute;sente');
-            link.remove();
+            if(data.valid){
+              tr.find('.label_boot').first().addClass('success').removeClass('warning').html(' Pr&eacute;sente');
+              link.remove();
+            }
+            else{
+              var text = $.map(data.errors, function(n,i){
+                return i + " "+data.errors[i]; 
+              });
+              tr.find('.label_boot').first().addClass('important').removeClass('warning').html('Erreur');
+            }
           },
 
     });

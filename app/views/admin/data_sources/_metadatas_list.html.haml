@@ -28,7 +28,7 @@
           %tr{:class => exist ? "exist #{css_class}" : "#{ css_class } not_exist"}
             %td.nowrap
               %div
-                = check_box_tag "import[layer_name][]", l.identifier
+                = check_box_tag "import[layer_name][]", l.metadata_identifier
               %div
                 %span.label_boot{:class => exist ? "success" : "warning"}
                   - if exist
@@ -37,7 +37,7 @@
                     Non import&eacute;e
               - if !exist
                 %div
-                  = link_to 'Importer', url_for({:controller => "admin/data_sources", :action => "import", :id => params[:id], :identifier => l.identifier}), :class => "import_layer"
+                  = link_to 'Importer', url_for({:controller => "admin/data_sources", :action => "import", :id => params[:id], :metadata_identifier => l.metadata_identifier}), :class => "import_layer"
             %td
               .title
                 %b

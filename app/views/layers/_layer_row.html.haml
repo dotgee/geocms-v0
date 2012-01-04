@@ -5,32 +5,31 @@
   .content
     .title
       = link_to layer.title, layer
-    .content_value
-      %b
-        = link_to "Metadonn&eacute;e".html_safe , layer.metadata_url, :target => "_blank"
-
-    .content_value
-      %b
-        Derni&egrave;re modification :
-      = layer.date_modification
+    - unless layer.metadata_link.blank?
+      .content_value
+        %b
+          = link_to "Metadonn&eacute;e".html_safe , layer.metadata_link, :target => "_blank"
 
     .content_value
       %b
         Cat&eacute;gories :
-      =# layer.category_list
       - layer.themes.each do |tax|
         = link_to tax.name, taxon_path(tax)
-
-    .content_value
-      %b
-        Mots cl&eacute;s :
-      - layer.tags.each do |tag|
-        = link_to tag.name, tag_path(tag)
-        =# layer.tag_list
+    - unless layer.tags.empty?
+      .content_value
+        %b
+          Mots cl&eacute;s :
+        - layer.tags.each do |tag|
+          = link_to tag.name, tag_path(tag)
     .content_value
       %b
         Description :
       = layer.description.html_safe
+    - unless layer.credits.blank?
+      .content_value
+        %b
+          Cr&eacute;dits : 
+        = truncate(layer.credits, :length => 150)
 
 
 

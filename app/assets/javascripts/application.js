@@ -31,10 +31,13 @@ $(document).ready(function(){
   $('#layer_tab').tabs();
   $('.filters').filter();
   $('textarea').not('.not_resizable').TextAreaResizer();
+
   $('a[rel=popover]').twipsy({html: true});
   $('span[rel=popover]').twipsy({delayIn: 200});
   $('.category_layer_container').twipsy({placement: "left"});
-  $('.first_btn').twipsy({placement: "right"});
+  $('.right_twipsy').twipsy({placement: "right", html: true});
+  $('.ui-icon-extlink').attr('data-original-title',"Couche externe").twipsy({delayIn : 500});
+
   $('#wait').spin();
   $('.alert-message .close').live('click', function(e){
     e.preventDefault();

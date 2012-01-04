@@ -21,11 +21,13 @@ function addSharedControlers(map) {
     var btn = $(this);
     if(content.is('.full_screen')){
       content.removeClass('full_screen');
-      btn.removeClass('full_screen_btn');
+      btn.removeClass('full_screen_btn').attr('data-original-title','Passer en affichage plein &eacute;cran');
+
     }else{
       content.addClass('full_screen');
-      btn.addClass('full_screen_btn');
+      btn.addClass('full_screen_btn').attr('data-original-title','Revenir &agrave; l\'affichage normal');
     }
+      btn.trigger('mouseout');
     fixSize();
   });
   $('#hand_control, #zoomin, #ruler_measure, #square_measure').click(function(e){
@@ -95,7 +97,7 @@ function addSharedControlers(map) {
       data: "wmc="+format.write(map),
       type: "POST",
       success: function(data){
-            window.location = "/layers/print?wmc="+data;
+            window.open("/layers/print?wmc="+data, "_newtab");
       }
     });
   });
@@ -107,7 +109,8 @@ function addSharedControlers(map) {
       data: "wmc="+format.write(map),
       type: "POST",
       success: function(data){
-            window.location = "http://geobretagne.fr/mapfishapp/?wmc=http://geocms.devel.dotgee.fr/gc/"+data;
+            var url = "http://geobretagne.fr/mapfishapp/?wmc=http://geocms.devel.dotgee.fr/gc/"+data;
+            window.open(url, "_blank");
       }
     });
   });

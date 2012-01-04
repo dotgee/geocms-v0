@@ -40,7 +40,6 @@ module Csw
 
     def getById(id = nil)
       id ||= geo_identifier
-
       params = {
         :request => "GetRecordById",
         :elementSetName => "full",
@@ -137,25 +136,8 @@ module Csw
     end
 
     def for_layer
-      record = record_doc.xpath('//Record').first
-      meta = Csw::Metadata.from_xml(record)
-      attributes = {}
-      unless record.nil?
-        attributes["description"] = record.xpath('./abstract', ).map(&:text).first
-        attributes["title"] = record.xpath('./title').map(&:text).first
-        wms = record.xpath('./URI[starts-with(@protocol,"OGC")]').first
-        attributes["name"] = wms.attr('name') if wms 
-        attributes["wms_url"] = wms.text if wms 
-        attributes["source"] = record.xpath('./source').map{|el| el.text}.first
-        attributes["rights"] = meta.rights
-        begin
-        attributes["tag_list"] = record.xpath('./subject').map(&:text).select{|k| !k.blank?}.join(', ')
-        rescue => e
-          puts e.inspect
-        end
-      end
-      return attributes.select{|k,v| !v.blank?}
-
+      record = record_doc
+      return record.attributes
     end
 
     class << self
@@ -203,9 +185,9 @@ module Csw
   end
 
   class Metadata
-    attr_accessor :identifier, :description, :title, :tag_list, :type, :rights, :source, :layer
+    attr_accessor :metadata_identifier, :description, :title, :tag_list, :type, :rights, :source, :layer
     def attributes
-      return  [ :identifier, :description, :title, :tag_list, :rights, :source].inject({}) do |a, v|
+      return  [ :metadata_identifier, :description, :title, :tag_list, :rights, :source].inject({}) do |a, v|
         a[v] = self.send(v)
         a
       end.merge( @layer.to_layer).select{|k,v| !v.blank?}
@@ -221,7 +203,7 @@ module Csw
 
       def from_xml(xml)
         meta = self.new
-        meta.identifier = xml.xpath('./identifier').map(&:text).first 
+        meta.metadata_identifier = xml.xpath('./identifier').map(&:text).first 
         meta.title = xml.xpath('./title').map(&:text).first 
         meta.description = xml.xpath('./abstract').map(&:text).first 
         meta.tag_list = xml.xpath('./subject').map(&:text).join(', ')

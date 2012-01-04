@@ -63,6 +63,11 @@ class Layer < ActiveRecord::Base
     @geonetwork_identifier =  uuid.first unless uuid.nil?
     @geonetwork_identifier
   end
+  
+  def metadata_link
+    return "" if metadata_url.nil?
+    return [metadata_url, "uuid=#{metadata_identifier}"].join('?')
+  end
 
   def csw_url
     return @csw_url if @csw_url

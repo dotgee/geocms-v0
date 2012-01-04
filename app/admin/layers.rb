@@ -67,8 +67,9 @@ ActiveAdmin.register Layer do
 #  end
 
   collection_action :from_geoserver, :method => :post do
-    url = params[:wms_url]
+    url = params[:wms_url].split('?').first
     name = params[:name]
+    puts url
     layer = WMS::Client.new(url).layers.select{|l| name == l.name}.first
     unless layer.nil?
       render :json =>  layer
@@ -79,7 +80,8 @@ ActiveAdmin.register Layer do
 
   collection_action :from_geonetwork, :method => :post do
     begin
-      client =  Csw::Client.from_geonetwork_url(params[:url])
+      url = [params[:url], "uuid=#{params[:identifier]}"].join('?')
+      client =  Csw::Client.from_geonetwork_url(url)
       rep = client.for_layer
       rep = { "error" => "Aucune information trouv&eacute;"} if rep.empty?
       render :json => rep

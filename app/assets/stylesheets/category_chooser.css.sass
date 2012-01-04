@@ -43,16 +43,23 @@
       width: 40px
 
   .layer_info
-    margin-left: 10px
     font-size: 0.8em
     width: 200px
     overflow: hidden
-
+    line-height: 16px
+    span
+      margin-left: 21px
+      display: block
+    .ui-icon
+      float: left
+      margin: 0px 5px 0px 0px
+      &.empty
+        background-position: 16px 16px
   .ui-accordion .ui-accordion-content
     padding: 7px 10px
 
   .slider
-    width: 80px
+    width: 70px
     margin-top: 9px
     float: left
 
@@ -133,9 +140,13 @@
     width: 200px
     visibility: hidden
     padding: 0
+
 .close_panel
   float: right
   font-size: 10px
   &:hover
     text-decoration: underline
     cursor: pointer
+
+.children
+  display: none

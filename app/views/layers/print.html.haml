@@ -1,14 +1,16 @@
 #map
 
 = content_for :header do
-  = link_to  '#', { :class => "ui-icon-with-text", :id => "realprint_btn"} do
-    .ui-icon.ui-icon-print 
+  = link_to  '#', { :class => "ui-icon-with-text", :id => "realprint_btn", :style => "display:block"} do
+    %span#print_btn.ui-icon{:style => "margin-right: 4px"}
+      .ui-icon.square_ruler
+    Imprimer
 
 = content_for :footer do
   #legende
   #credits
     %h3
-      Crédits
+      = "Cr&eacute;dits".html_safe  
 
 = content_for :javascripts do
   = javascript_include_tag "openLayersEssentials"

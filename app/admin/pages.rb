@@ -1,4 +1,5 @@
 ActiveAdmin.register Page do
+  config.clear_sidebar_sections!
   controller.authorize_resource
   controller do
     def current_ability
@@ -11,9 +12,17 @@ ActiveAdmin.register Page do
     id_column
     column "Titre", :title, :class => "nowrap" 
     column "Contenu" do |p| 
-      truncate(p.content, {:length => 150})
+      div :class => "page_content" do 
+        p.content.html_safe
+      end
     end
     default_actions
    end
+
+  show do
+    h3 "#{page.title } : #{page.slug}"
+    hr
+    div page.content.html_safe
+  end
   
 end

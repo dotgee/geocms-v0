@@ -43,7 +43,9 @@ module WMS
 
     def layers
       parsed_layers = capabilities_doc.xpath('//xmlns:Layer[@queryable="1"]').inject([]) do |array, l|
-        array << Layer.from_xml(l)
+        layer = Layer.from_xml(l)
+        layer.wms_url = @wmsurl
+        array << layer
         array
       end
       parsed_layers
@@ -84,7 +86,7 @@ module WMS
   end
 
   class Layer
-    attr_accessor :title, :name, :wms_url, :metadata_url, :legend, :description, :tag_list
+    attr_accessor :title, :name, :wms_url, :metadata_identifier, :metadata_url, :legend, :description, :tag_list
     class << self
       def new_default(options = {})
       
@@ -100,7 +102,9 @@ module WMS
         layer.tag_list = xml.xpath('./xmlns:KeywordList/xmlns:Keyword').map(&:text).select{|t| !t.blank? }.join(', ')
         layer.title = title
         layer.name = name 
-        layer.metadata_url = metadata_url.nil? ? nil : metadata_url.attr('href')
+        url, identifier = metadata_url.attr('href').split('?') unless metadata_url.nil?
+        layer.metadata_url = url || nil
+        layer.metadata_identifier = identifier.split('=').last unless identifier.nil?
         layer.legend = Legend.from_xml(legend) if legend
         layer.description = description
         layer

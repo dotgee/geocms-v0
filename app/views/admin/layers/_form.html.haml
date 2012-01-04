@@ -11,6 +11,7 @@
         %button#geoserver_check.btn.small
           Rechercher
       = f.input :metadata_url, :as => :string
+      = f.input :metadata_identifier, :as => :string
       %li.searchLi
         %label
           &nbsp;
@@ -24,7 +25,8 @@
     = f.input :theme_ids, :collection => Taxon.themes_select(f.object.theme_ids),  :multiple => "multiple" 
     = f.input :filter, :include_blank => false
     = f.input :tag_list
-    = f.input :published, :as => :radio unless current_admin_user.role('super_admin')
+    = f.input :published, :as => :radio, :collection => [["Oui", true], ["Non", false]] if current_admin_user.role('super_admin')
+    = f.input :external, :as => :radio, :collection => [["Oui", true], ["Non", false]]
     = f.input :publication_date
     = f.input :modification_date
     = f.input :template, :input_html => { :cols => 10}, :as => :ckeditor

@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
     def page
       return params[:page] || 1
     end

@@ -20,9 +20,11 @@ $(document).ready () ->
   $('#geonetwork_check').click((e) ->
     e.preventDefault();
     input = $('#layer_metadata_url');
+    identifier = $('#layer_metadata_identifier');
     $.ajax('/admin/layers/from_geonetwork', {
       data: {
-        url: input.val();
+        url: input.val(),
+        identifier:  identifier.val()
       },
       type: 'post',
       success: (data) ->

@@ -17,7 +17,8 @@ ActiveAdmin.register DataSource do
     def metadata_to_layer(meta)
       attr = meta.attributes
       attr.delete(:source)
-      attr[:metadata_url] = [@data_source.csw_url,["uuid", attr.delete(:identifier)].join('=')].join('?')
+      attr[:metadata_url] = @data_source.csw_url
+      attr[:metadata_identifier] =  attr.delete(:metadata_identifier)
       attr[:imported_at] = time
       attr[:wms_url] = @data_source.wms_url if attr[:wms_url].blank?
       l = Layer.new(attr)
@@ -30,6 +31,7 @@ ActiveAdmin.register DataSource do
       return existing_layer.first || l
     end
   end
+
   member_action :list_capabilities do
     @data_source = DataSource.find(params[:id])
     @search =  Csw::Client.new(@data_source.csw_url)
@@ -43,8 +45,13 @@ ActiveAdmin.register DataSource do
     @@time = nil
     @data_source = DataSource.find(params[:id])
     client = Csw::Client.new(@data_source.csw_url)
-    layer = metadata_to_layer(client.getById(params[:identifier]))
-    render :layout => false, :text => "imported"
+    layer = metadata_to_layer(client.getById(params[:metadata_identifier]))
+    if layer.valid?
+      rep = { :valid => "imported" }
+    else
+      rep = { :errors => layer.errors.messages}
+    end
+    render :layout => false, :json => rep
   end
 
   member_action :mass_import, :method => :post do
@@ -66,7 +73,11 @@ ActiveAdmin.register DataSource do
     column :logo do |d|
       image_tag d.logo_url unless d.logo.nil?
     end
-    column :name
+    column :name do |d|
+      div d.name
+      div link_to "Import", list_capabilities_admin_data_source_path(d)
+    end
+    
     column :urls do |d|
       [:wms_url, :wfs_url, :csw_url, :ogc_url].each do |url|
         div do
@@ -77,6 +88,7 @@ ActiveAdmin.register DataSource do
     end
     default_actions
   end
+
   form do |f|
     f.inputs do 
       f.input :name

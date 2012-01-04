@@ -8,6 +8,20 @@ $.widget("ui.mustachu", {
 
   _bindEvents: function(layer){
   },
+  _addTwipsy: function(){
+    var self = this; 
+    var twipsy_info = {
+      ".btn-destroy": 'Retirer cette couche de la carte',
+      ".btn-check" :"Afficher/masquer cette couche",
+      ".btn-features" : "Obtenir des informations sur la couche",
+      ".btn-save" : "Enregister la couche",
+      ".btn-metadatas" : "Voir la metadonn&eacute;e"
+    }
+    for(var info in twipsy_info){
+      self.element.find(info).attr('data-original-title', twipsy_info[info]);
+    }
+   self.element.find('.btn-destroy, .btn-check, .btn-features, .btn-save, .btn-metadatas').twipsy({delayIn: 300, html : true});
+  },
 
   // Generates the selected layers
   selectedNodes: function(layers) {
@@ -27,6 +41,8 @@ $.widget("ui.mustachu", {
                             "<a href='{{url}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{params.LAYERS}}' target='_blank' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
                             "<a href='#' class='ui-icon-with-text btn-destroy' id='destroy_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-closethick'></span></a>"+
+                            "<a href='#' class='ui-icon-with-text btn-metadatas' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
+                              "<span class='ui-icon ui-icon-note'></span></a>"+
                            "</div>"+
                            "<div class='slider' id='{{uniqueID}}'></div>"+
                           "</div>"+
@@ -38,6 +54,7 @@ $.widget("ui.mustachu", {
       self.element.prepend(node);
       self.element.find("div:first-child .btn-features").featurable({layer: el});
     });
+    self._addTwipsy();
   },
 
   // Generates the legende 
