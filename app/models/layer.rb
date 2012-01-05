@@ -70,7 +70,7 @@ class Layer < ActiveRecord::Base
     uri.fragment = nil
     path = uri.path.split('/')[1] || ""
     uri.path = "/"+path
-    return ["#{url.to_s}/srv/fr/metadata.show.embedded", "uuid=#{metadata_identifier}"].join('?')
+    return ["#{uri.to_s}/srv/fr/metadata.show.embedded", "uuid=#{metadata_identifier}"].join('?')
   end
 
   def csw_url
