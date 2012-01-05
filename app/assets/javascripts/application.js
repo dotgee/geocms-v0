@@ -28,9 +28,19 @@ var fullscreen = false;
 
 $(document).ready(function(){
   // lien métadonnées
+  //init metadialog
+  $('#meta_dialog').dialog({
+    autoOpen: false,
+    title: "Metadonn\351e",
+    width : 600,
+    height: 500,
+    modal: true
+  });
   $('.btn-metadatas,.metadata_link').live('click', function(e){
     e.preventDefault();
-     
+    var dial = $('#meta_dialog');
+    dial.find('.content').first().attr('src',$(this).attr('href'));
+    $('#meta_dialog').dialog('open'); 
   });
   
   //block legende

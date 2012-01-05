@@ -66,7 +66,7 @@ class Layer < ActiveRecord::Base
   
   def metadata_link
     return "" if metadata_url.nil?
-    return [metadata_url, "uuid=#{metadata_identifier}"].join('?')
+    return [metadata_url, "uuid=#{metadata_identifier}"].join('?').gsub('main.home','metadata.show.embedded')
   end
 
   def csw_url
