@@ -19,10 +19,11 @@ $(document).ready(function() {
       y.uniqueID = y.params.LAYERS.replace(":", "_");
     });
     addSharedControlers(map);
+     map.zoomToExtent(bounds);
   }
 
   function onFailure(request){
-    alert(wmc);
+    //alert(wmc);
   }
 
 });
