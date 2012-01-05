@@ -308,7 +308,6 @@ function addSharedControlers(map) {
     }
     self.toggleClass("checked");
   });
-
   $(".btn-destroy").live("click", function(e) {
     e.preventDefault();
     var self = $(this);

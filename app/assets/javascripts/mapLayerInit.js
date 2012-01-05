@@ -29,6 +29,7 @@ $(document).ready(function() {
                                        singleTile: true,
                                        transitionEffect: 'resize',
                                        uniqueID: layerNames.replace(":", "_"),
+                                       metadataLink: layer_metadata_link,
                                        modelID: layer_id 
                                    });
   

@@ -27,6 +27,7 @@ $.widget("ui.viewer", {
           var title = div.attr('layer_title');
           var wms_url = div.attr('wms_url');
           var layer_name = div.attr('layer_name');
+          var meta = div.attr('metadata_link');
           layer = new OpenLayers.Layer.WMS(title,
                                                wms_url,
                                                { layers: layer_name,
@@ -36,6 +37,8 @@ $.widget("ui.viewer", {
                                                  opacity: 0.8,
                                                  singleTile: true,
                                                  uniqueID: layer_name.replace(":", "_"),
+                                                 metadataLink : meta,
+      
                                                  modelID: div.attr("model_id") 
                                                });
 

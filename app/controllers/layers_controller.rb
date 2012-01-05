@@ -51,8 +51,7 @@ class LayersController < ApplicationController
   end
 
   def find
-    @layer = Layer.find_by_name(params[:id])
-
+    @layer = Layer.find_by_name(params[:id], :select => "template, credits")
     respond_to do |format|
       format.json { render json: @layer }
     end

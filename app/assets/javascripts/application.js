@@ -27,27 +27,35 @@ $(document).ajaxSend(function(e, xhr, options) {
 var fullscreen = false;
 
 $(document).ready(function(){
-  // $('.selected_icon').attr('data-original-title', 'Ajouter/retirer cette couche au visualiseur').twipsy({delayIn: 300});
+  // lien métadonnées
+  $('.btn-metadatas,.metadata_link').live('click', function(e){
+    e.preventDefault();
+     
+  });
+  
+  //block legende
   $('#legend_container').legend();
+  //tab couches selectionneur
   $('#layer_tab').tabs();
+  // filter du category chooser
   $('.filters').filter();
-  $('textarea').not('.not_resizable').TextAreaResizer();
 
+  $('textarea').not('.not_resizable').TextAreaResizer();
+  //twipsy des différent liens
   $('a[rel=popover]').twipsy({html: true});
   $('span[rel=popover]').twipsy({delayIn: 200});
   $('.category_layer_container').twipsy({placement: "left"});
   $('.right_twipsy').twipsy({placement: "right", html: true});
   $('.ui-icon-extlink').attr('data-original-title',"Couche externe").twipsy({delayIn : 500});
-
+  //spinner pour ajax
   $('#wait').spin();
+
   $('.alert-message .close').live('click', function(e){
     e.preventDefault();
     var parent = $(this).parent();
     parent.slideUp( function(){ parent.remove(); });
   });
   $('.hidable_label').hide_label();
-
-
 });
 
   $.fn.hide_label = function(){
