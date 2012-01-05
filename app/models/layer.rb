@@ -66,7 +66,11 @@ class Layer < ActiveRecord::Base
   
   def metadata_link
     return "" if metadata_url.blank?
-    return [metadata_url, "uuid=#{metadata_identifier}"].join('?').gsub('main.home','metadata.show.embedded')
+    uri = URI.parse(metadata_url)
+    uri.fragment = nil
+    path = uri.path.split('/')[1] || ""
+    uri.path = "/"+path
+    return ["#{url.to_s}/srv/fr/metadata.show.embedded", "uuid=#{metadata_identifier}"].join('?')
   end
 
   def csw_url
