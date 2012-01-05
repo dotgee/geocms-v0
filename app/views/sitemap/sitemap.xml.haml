@@ -1,0 +1,45 @@
+!!! XML utf-8
+%urlset{:xmlns => 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+  %url
+    %loc<
+      = root_path( :only_path => false)
+  - @tags.each do |ta|
+    %url
+      %loc<
+        = url_for({ :controller => :tag,
+                    :action => :show,
+                    :only_path => false,
+                    :id => ta.id })
+  - @taxons.each do |t|
+    %url
+      %loc<
+        = url_for( { :controller => :taxons,
+                     :action => :show,
+                     :id => t.slug, 
+                     :only_path => false }) 
+      %changefreq<
+        monthly
+  - @layers.each do |l|
+    %url
+      %loc<
+        = url_for( {:controller => :layers,
+                   :id => l.slug,
+                   :action => :show,
+                   :only_path => false })
+      %lastmod<
+        = l.updated_at.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+      %changefreq<
+        monthly
+  - @pages.each do |p|
+    %url
+      %loc<
+        = url_for( { :controller => :pages,
+                     :action => :show,
+                     :id => p.slug,
+                     :only_path => false })
+      %lastmod<
+        = p.updated_at.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+      %changefreq<
+        monthly
+                    
+
