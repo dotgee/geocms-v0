@@ -9,7 +9,6 @@ $(document).ready(function() {
     },
     {
       isBaseLayer: true,
-      singleTile: true,
       transitionEffect: 'resize',
       transparent: true,
       opacity: 0.5,
@@ -26,7 +25,6 @@ $(document).ready(function() {
                                        transparent: true,
                                    }, {
                                        opacity: 0.8,
-                                       singleTile: true,
                                        transitionEffect: 'resize',
                                        uniqueID: layerNames.replace(":", "_"),
                                        metadataLink: layer_metadata_link,
@@ -38,6 +36,7 @@ $(document).ready(function() {
 
     addSharedControlers(map);
     map.zoomToExtent(bounds);
+
 
     //choix des couches
     $.each(map.layers, function(i, layer){

@@ -2,7 +2,8 @@ function addSharedControlers(map) {
 
   if(typeof(noresize) == "undefined"){
     $(window).bind("resize", fixSize);
-    fixSize();
+    fixSize(true);
+    map.zoomToExtent(bounds);
   }
 
   /* Controles de mesure */

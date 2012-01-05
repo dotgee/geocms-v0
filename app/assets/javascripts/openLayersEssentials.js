@@ -1,22 +1,19 @@
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
 //OpenLayers.ImgPath = "http://js.mapbox.com/theme/dark/"; 
 OpenLayers.ImgPath = "/assets/openlayers/";
-OpenLayers.ProxyHost = "http://geocms.devel.dotgee.fr/proxy.php?url=";
+OpenLayers.ProxyHost = "http://geocms.gipbe.dotgee.fr/proxy.php?url=";
 //var bzhBounds = new OpenLayers.Bounds(33534.34825,6584909.31255,503163.44995,6897995.38035);
 var map, layer, measureControls, mapOptions;
 var format = new OpenLayers.Format.WMC();
 var gg = new OpenLayers.Projection("EPSG:4326");
 var lb = new OpenLayers.Projection("EPSG:2154");
 var bounds = new OpenLayers.Bounds(
-                  95607.334, 6700620.908,
-                  419330.671, 6908799.426
+                  //95607.334, 6700620.908,
+                  //419330.671, 6908799.426
+                  98037, 6703422,
+                  402476, 6886148
             );
 
-/*var bounds = new OpenLayers.Bounds(
-              -357823.2365, 6037008.6939,
-              1313632.3628, 7230727.3772 
-            );
-*/
 var scales = [ 
       266.591197934,
       533.182395867,
@@ -114,12 +111,12 @@ function handleMeasurements(event) {
     element.innerHTML = out;
 } 
 
-function fixSize() {
+function fixSize(updateSize) {
   var window_height = $(window).height();
   var offset_map = $("#map").offset().top;
   $("#map").height(window_height - offset_map);
   $('#tabs .content').height( window_height - offset_map - $('#tabs ul').outerHeight()-10);
-  if (window.map && (window.map instanceof OpenLayers.Map)) {
+  if (window.map && (window.map instanceof OpenLayers.Map) && !updateSize) {
     map.updateSize();
   }
 }
@@ -134,6 +131,7 @@ $(document).ready(function() {
     transitionEffect: "resize",
     projection: "EPSG:2154",
     scales: scales,
+    fractionalZoom: true,
     maxExtent: bounds,
     units: "m",
     theme: null,
