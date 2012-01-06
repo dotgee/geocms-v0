@@ -56,3 +56,5 @@ gem "sunspot_rails"
 gem "mustache"
 gem "ckeditor", :path => "vendor/git/ckeditor" #git://github.com/pshoukry/ckeditor.git
 gem "curb"
+
+gem "acts_as_list"
