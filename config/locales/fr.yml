@@ -13,8 +13,10 @@ fr:
         title:
           "Nouvelle couche"
       name: "bob"
-
+  routes:
   activerecord:
+    models:
+      #layer: Couche
     errors:
       messages:
         confirmation: "Vous devez confirmer %{attribute}"
@@ -34,6 +36,8 @@ fr:
         published: "Publi&eacute;"
         filters: Filtres
         tag_list: "Mots cl&eacute;s"
+        external: "Couche externe"
+        theme_ids: "Th&egrave;mes"
       contact:
         last_name: "Pr&eacute;nom"
       admin_user:
@@ -106,3 +110,4 @@ fr:
   search: "Rechercher"
   tag: "Mot cl&eacute;"
   tags: "Mots cl&eacute;s"
+  layer: Couche
