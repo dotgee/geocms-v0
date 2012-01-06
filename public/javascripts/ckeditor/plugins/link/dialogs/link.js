@@ -1242,7 +1242,6 @@ CKEDITOR.dialog.add( 'link', function( editor )
           var protocol = ( data.url && data.url.protocol != undefined ) ? data.url.protocol : 'http://',
             url = ( data.url && CKEDITOR.tools.trim( data.url.url ) ) || '';
           attributes[ 'data-cke-saved-href' ] = ( url.indexOf( '/' ) === 0 ) ? url : protocol + url;
-          console.log(this.getContentElement('gipbe_page', 'page_listing'));
           break;
         case 'anchor':
           var name = ( data.anchor && data.anchor.name ),
