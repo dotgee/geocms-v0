@@ -329,4 +329,26 @@ table
     height: 100%
     width: 100%
     border: none 0px
-
+#header
+  ul.submenu
+    padding: 5px
+    border: 1px solid #CCCCCC
+    border-top: none
+    @include gradient(#FFFFFF,#D9D9D9)
+    top: 32px
+    margin-top: 0
+    z-index: 2000
+    position: absolute
+    &.open
+      display: block
+    li
+      display: block
+      text-align: left
+      background: none
+      padding: 5px 10px
+      &.divider
+        background-color: #CCC
+        border-color: #FFFFFF
+        margin: 0
+        padding: 0
+        height: 1px

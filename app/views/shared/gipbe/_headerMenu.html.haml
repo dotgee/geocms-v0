@@ -10,6 +10,14 @@
     %li
       = link_to 'Catalogues', layers_path
     %li
-      = link_to 'Ressources', '#'
+      = link_to 'Ressources', '#', :id => "resource_link"
+      %ul.submenu.menu-dropdown
+        - pages = Menu.find('resource', :include => :pages).pages.published
+        - pages.each_with_index do |p,i|
+          %li.pages
+            = link_to p.title, p
+          - if i != pages.count - 1
+            %li.divider
+           
 
   %br.breaker

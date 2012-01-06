@@ -1,0 +1,49 @@
+.panel 
+  %h3
+    = @menu.title
+  .panel_contents
+    .attributes_table
+      %table
+        %tr
+          %th
+            Id
+          %td
+            = @menu.id
+        %tr
+          %th
+            Titre
+          %td
+            = @menu.title
+.panel
+  %h3
+    Page Associ&eacute;es (Publi&eacute;es)
+  .panel_attributes
+    .attributes_table
+      %table
+        - @menu.pages.published.each do |p|
+          %tr
+            %th
+              Titre
+            %td
+              = p.title
+            %td
+              %div
+                = link_to "Remonter", move_higher_admin_menu_path(@menu, {:page_id => p.id}) unless !p.higher_item
+              %div
+                = link_to "Descendre", move_lower_admin_menu_path(@menu, {:page_id => p.id}) unless !p.lower_item
+        
+  %h3
+    Page Associ&eacute;es (non Publi&eacute;es)
+  .panel_attributes
+    .attributes_table
+      %table
+        - @menu.pages.not_published.each do |p|
+          %tr
+            %th
+              Titre
+            %td
+              = p.title
+            %td
+              %div
+                = link_to "Ajouter", move_lower_admin_menu_path(@menu, {:page_id => p.id}) unless !p.lower_item
+        

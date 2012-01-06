@@ -29,6 +29,15 @@ var fullscreen = false;
 $(document).ready(function(){
   // lien métadonnées
   //init metadialog
+  $('body').click(function(e){
+    $('ul.submenu').removeClass('open');
+  });
+  $('#resource_link').click(function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var sub = $(this).next('ul');
+    sub.toggleClass('open');
+  });
   $('#meta_dialog').dialog({
     autoOpen: false,
     title: "Metadonn\351e",
