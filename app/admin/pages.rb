@@ -6,6 +6,10 @@ ActiveAdmin.register Page do
       @current_ability ||= AdminAbility.new(current_admin_user)
     end
   end
+   collection_action :list_pages do
+     @pages = Page.all( :select =>  "slug, title")
+     render :json => @pages.to_json
+   end
    form :partial => "admin/pages/form"
 
    index do 
