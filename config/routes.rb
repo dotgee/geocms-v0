@@ -17,7 +17,7 @@ Geocms::Application.routes.draw do
   match '/gc/:key' => "geo_contexts#permalink", :as => :gc_permalink
   match '/gc/:name/:key' => "geo_contexts#download", :as => :gc_download
 
-  get "rss/layers"
+  get "rss/layers", :as => :rss
 
   #resources :taxonomies
 
