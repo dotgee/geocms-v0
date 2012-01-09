@@ -21,7 +21,6 @@ ActiveAdmin.register Taxon do
   index do
     column :id
     column :name do |t|
-      #div "#{'-' * t.level}#{t.name}"
       div :class => "tab#{t.level}" do
         if t.level > 0
           span t.parent.name

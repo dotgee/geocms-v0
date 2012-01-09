@@ -2,24 +2,21 @@ ActiveAdmin.register DataSource do
   controller.authorize_resource
   config.clear_sidebar_sections!
   controller do
-    @@time = nil
     def current_ability
       @current_ability ||= AdminAbility.new(current_admin_user)
     end
 
     def time
-      return @@time if @@time
       seconds = 30.minutes
-      @@time =  Time.at((Time.now.to_f / seconds).round * seconds)
-      @@time 
+      return  Time.at((Time.now.to_f / seconds).round * seconds)
     end
 
-    def metadata_to_layer(meta)
+    def metadata_to_layer(meta, time_import)
       attr = meta.attributes
       attr.delete(:source)
       attr[:metadata_url] = @data_source.csw_url
       attr[:metadata_identifier] =  attr.delete(:metadata_identifier)
-      attr[:imported_at] = time
+      attr[:imported_at] = time_import
       attr[:wms_url] = @data_source.wms_url if attr[:wms_url].blank?
       l = Layer.new(attr)
       existing_layer = Layer.where(:name => l.name)
@@ -42,10 +39,10 @@ ActiveAdmin.register DataSource do
   end
 
   member_action :import, :method => :post do 
-    @@time = nil
+    @time = time
     @data_source = DataSource.find(params[:id])
     client = Csw::Client.new(@data_source.csw_url)
-    layer = metadata_to_layer(client.getById(params[:metadata_identifier]))
+    layer = metadata_to_layer(client.getById(params[:metadata_identifier]), @time)
     if layer.valid?
       rep = { :valid => "imported" }
     else
@@ -55,12 +52,12 @@ ActiveAdmin.register DataSource do
   end
 
   member_action :mass_import, :method => :post do
-    @@time = nil
+    @time = time
     @data_source = DataSource.find(params[:id])
     layers_to_import = params[:import][:layer_name] || []
     client = Csw::Client.new(@data_source.csw_url)
     @imported = layers_to_import.inject([]) do |arr, uuid|
-      arr << metadata_to_layer(client.getById(uuid))
+      arr << metadata_to_layer(client.getById(uuid), @time)
       arr
     end
     flash[:notice] = "#{@imported.length} couches importees"
