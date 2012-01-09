@@ -46,7 +46,7 @@ $.widget("ui.mustachu", {
                             "<a href='#' class='ui-icon-with-text btn-destroy' id='destroy_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-closethick'></span></a>"+
                             //metadata
-                            "<a targe='_blank' href='{{metadataLink}}' class='ui-icon-with-text btn-metadatas' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
+                            "<a target='_blank' href='{{metadataLink}}' class='ui-icon-with-text btn-metadatas' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-note'></span></a>"+
                            "</div>"+
                            "<div class='slider' id='{{uniqueID}}'></div>"+
