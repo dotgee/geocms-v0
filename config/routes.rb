@@ -1,4 +1,6 @@
 Geocms::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   match "sitemap", :controller => :sitemap, :action => :sitemap
 
   get "tag/:id", :as => :tag, :controller => :tag, :action => :show
