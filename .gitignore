@@ -76,3 +76,5 @@ app/assets/javascripts/OpenLayers-2.11/img/
 public/robots.txt
 config/app.yml
 public/javascripts/*
+
+app/assets/javascripts/ckeditor/
