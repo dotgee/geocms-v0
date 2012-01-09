@@ -22,7 +22,7 @@
   = f.inputs :name => "Informations couche" do 
     = f.input :title
     = f.input :description, :input_html => { :cols => 10}
-    = f.input :theme_ids, :collection => Taxon.all_themes_select(f.object.theme_ids),  :multiple => "multiple" 
+    = f.input :theme_ids, :collection => options_for_select(Taxon.themes_select, f.object.theme_ids),  :multiple => "multiple" 
     = f.input :filter, :include_blank => false
     = f.input :tag_list
     = f.input :published, :as => :radio, :collection => [["Oui", true], ["Non", false]] if current_admin_user.role('super_admin')

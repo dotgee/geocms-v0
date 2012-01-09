@@ -17,15 +17,7 @@ ActiveAdmin.register Taxon do
 
   end
 
-  form do |f|
-    f.inputs "Classement" do 
-      f.input :name
-      f.input :libelle
-      f.input :parent, :collection => Taxon.all_themes_select(f.object.parent_id)
-    end
-    f.buttons
-  end
-
+  form :partial => "form"
   index do
     column :id
     column :name do |t|
@@ -54,16 +46,15 @@ ActiveAdmin.register Taxon do
   end
 
   member_action :move_down do
-    @taxon = Taxon.find(params[:id])
-    @taxon.move_right
+    taxon = Taxon.find(params[:id])
+    taxon.move_right
     redirect_to admin_taxons_path
 
   end
   member_action :move_up do
-    @taxon = Taxon.find(params[:id])
-    @taxon.move_left
+    taxon = Taxon.find(params[:id])
+    taxon.move_left
     redirect_to admin_taxons_path
-
   end
 
 

@@ -17,15 +17,13 @@ class Taxon < ActiveRecord::Base
 
   class << self
     include CollectiveIdea::Acts::NestedSet::Helper
-    include ActionView::Helpers::FormOptionsHelper
-    def all_themes_select(selected = nil)
-      
-      options_for_select(Taxon.find('themes').descendants.right_order.map{|t| ["#{'-' *t.level}#{t.name}",t.id]}, selected)
+    def all_themes_select
+      Taxon.find('themes').self_and_descendants.right_order.map{|t| ["#{'-' *t.level}#{t.name}",t.id]}  
       #nested_set_options(themes) {|i| "#{'-' * (i.level - 1)} #{i.name }"}
     end
 
     def themes_select(selected = nil)
-      options_for_select(themes.map{|t| ["#{'-' *t.level}#{t.name}",t.id]}, selected)
+      Taxon.find('themes').descendants.right_order.map{|t| ["#{'-' *(t.level - 1)}#{t.name}",t.id]}  
     end
 
 
