@@ -16,6 +16,6 @@ if Object.const_defined?("Ckeditor")
     # config.attachment_file_types = ["doc", "docx", "xls", "odt", "ods", "pdf", "rar", "zip", "tar", "swf"]
     
     # Ckeditor files destination path (default 'public/javascripts')
-    config.path = 'public/javascripts'
+    #config.path = 'public/javascripts'
   end
 end
