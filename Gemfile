@@ -27,7 +27,6 @@ gem "devise", ">= 1.4.5"
 gem "jammit"
 gem "omniauth", ">= 0.3.0.rc3"
 gem "settingslogic"
-#gem "rails_admin", :path => "vendor/git/rails_admin" # :git => "git://github.com/sferik/rails_admin.git"
 gem 'acts-as-taggable-on', '~>2.2.0'
 gem 'show_for'
 gem 'paperclip', '~> 2.4'
@@ -46,8 +45,8 @@ gem 'slim'
 
 gem 'redis', "~> 2.2.0"
 gem "uuid", "~> 2.3.4"
-gem 'activeadmin', :git => "git://github.com/gregbell/active_admin.git"#">= 0.3.4"
-#:path => 'vendor/git/active_admin',
+gem 'activeadmin', :path => 'vendor/git/active_admin'
+#, :git => "git://github.com/gregbell/active_admin.git"#">= 0.3.4"
 gem "meta_search" #    '>= 1.1.0.pre'
 #recherche solR
 gem "sunspot"
@@ -55,8 +54,8 @@ gem "sunspot_solr"
 gem "sunspot_rails"
 
 gem "mustache"
-gem "ckeditor", :git => "git://github.com/pshoukry/ckeditor.git"
-#:path => "vendor/git/ckeditor", 
+gem "ckeditor", "3.7.0.rc1"#, :path => "vendor/git/ckeditor"
+#, :git => "git://github.com/pshoukry/ckeditor.git"
 gem "curb"
 
 gem "acts_as_list"
