@@ -42,12 +42,12 @@ $.widget("ui.mustachu", {
                               "<span class='ui-icon ui-icon-info'></span></a>"+
                             //shape
                             "<a href='{{url}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{params.LAYERS}}' target='_blank' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
-                            //remove
-                            "<a href='#' class='ui-icon-with-text btn-destroy' id='destroy_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
-                              "<span class='ui-icon ui-icon-closethick'></span></a>"+
                             //metadata
                             "<a target='_blank' href='{{metadataLink}}' class='ui-icon-with-text btn-metadatas' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-note'></span></a>"+
+                            //remove
+                            "<a href='#' class='ui-icon-with-text btn-destroy' id='destroy_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
+                              "<span class='ui-icon ui-icon-closethick'></span></a>"+
                            "</div>"+
                            "<div class='slider' id='{{uniqueID}}'></div>"+
                           "</div>"+
