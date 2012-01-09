@@ -19,7 +19,8 @@ class Taxon < ActiveRecord::Base
     include CollectiveIdea::Acts::NestedSet::Helper
     include ActionView::Helpers::FormOptionsHelper
     def all_themes_select(selected = nil)
-      options_for_select(Taxon.right_order.map{|t| ["#{'-' *t.level}#{t.name}",t.id]})
+      
+      options_for_select(Taxon.find('themes').descendants.right_order.map{|t| ["#{'-' *t.level}#{t.name}",t.id]}, selected)
       #nested_set_options(themes) {|i| "#{'-' * (i.level - 1)} #{i.name }"}
     end
 

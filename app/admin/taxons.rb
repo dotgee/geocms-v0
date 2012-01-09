@@ -21,7 +21,7 @@ ActiveAdmin.register Taxon do
     f.inputs "Classement" do 
       f.input :name
       f.input :libelle
-      f.input :parent, :collection => Taxon.all_themes_select
+      f.input :parent, :collection => Taxon.all_themes_select(f.object.parent_id)
     end
     f.buttons
   end
