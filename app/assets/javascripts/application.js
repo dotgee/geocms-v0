@@ -17,6 +17,7 @@
 //= require placeholder.hack
 //= require mustache
 //= require fileuploader
+//= require j.bookmark.js
 
 /* Includes the csrf token in every ajax request
 $(document).ajaxSend(function(e, xhr, options) {
@@ -75,6 +76,19 @@ $(document).ready(function(){
     parent.slideUp( function(){ parent.remove(); });
   });
   $('.hidable_label').hide_label();
+  $('#link-share a').click(function(e){
+    e.preventDefault();
+    $('#social-networks').toggle();
+  }).one('click', function(){
+     $('#social-networks-content').bookmark({sites:
+         ['blogmarks','wikio','delicious','yahoo','digg','viadeo','facebook','google','twitter','netvibes'],
+             compact: false
+               });
+    });
+  $('#social-networks a.close').click(function(e){
+    e.preventDefault();
+     $('#social-networks').hide();
+  });
 });
 
   $.fn.hide_label = function(){

@@ -111,6 +111,7 @@ li
     display: block
     float: left
     font-size: 2em
+    height: 61px
     margin: 0
     padding: 0.6em 0.6em 0.3em 0.6em
     span
@@ -170,15 +171,19 @@ li
 
   .functions
     position: absolute
+    margin-top: 0px
     top: 0
     right: 115px
-    width: 160px
+    width: 100px
     li
       display: inline
     a
       display: block
       float: left
       margin-right: 3px
+      &.close
+        float: right
+        color: white
 
 .membres
   position: absolute
@@ -193,7 +198,7 @@ div#social-networks, div#make-link
   right: 0
   width: 300px
   display: none
-  z-index: 100
+  z-index: 1000
   p.title
     color: #fff
     font-size: 120%
