@@ -53,6 +53,7 @@ $.widget("ui.mustachu", {
                           "</div>"+
                       "</div>"+
                       "<div class='grippy' id='grip_{{uniqueID}}'></div>"+
+                      "<div class='clear' ></div>"+
                    "</div>";
     $.each(layers, function(i,el){
       node = Mustache.to_html(template, el);
