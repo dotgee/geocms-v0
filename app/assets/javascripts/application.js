@@ -79,14 +79,21 @@ $(document).ready(function(){
   $('#link-share a').click(function(e){
     e.preventDefault();
     $('#social-networks').toggle();
+    $('#make-link').hide();
   }).one('click', function(){
      $('#social-networks-content').bookmark({sites:
          ['blogmarks','wikio','delicious','yahoo','digg','viadeo','facebook','google','twitter','netvibes'],
              compact: false
                });
     });
-  $('#social-networks a.close').click(function(e){
+  $('#header a.close').click(function(e){
     e.preventDefault();
+     $('#make-link, #social-networks').hide();
+  });
+  $('#permalink_maker').click(function(e){
+    e.preventDefault();
+    $('#make-link').toggle();
+    $('#make-link textarea').val(window.location).select();
      $('#social-networks').hide();
   });
 });

@@ -11,7 +11,7 @@
       %span#link-share
         = link_to image_tag('gipbe/picto_share.jpg', :alt => 'Partager cette page'), '#', :title => "Partager cette page"
       #social-networks.fond
-        %p.titre
+        %p.title
           %a.close{:href => "#", :title => "Fermer"} X
           Partager sur les réseaux sociaux :
         #social-networks-content
@@ -19,13 +19,14 @@
 
     %li
       %span
-        = link_to image_tag('gipbe/picto_link.jpg', :alt => "Faire un lien vers cette page"), '#', :title => "Faire un lien vers cette page"
+        = link_to image_tag('gipbe/picto_link.jpg', :alt => "Faire un lien vers cette page"), '#', :title => "Faire un lien vers cette page", :id => "permalink_maker"
 
       #make-link.bg{ :style => "display: none"}
         %p.title
-          = link_to "Faire un lien vers cette page :", "#", :title => "Fermer"
+          %a.close{:href => "#", :title => "Fermer"} X
+          Faire un lien vers cette page :
         #make-link-content
-          = text_area_tag "http://www.bretagne-environnement.sdv.fr/"
+          = text_area_tag "http://www.bretagne-environnement.sdv.fr/", "", :class => "not_resizable"
           %p
             CRTL + C pour copier
   .breaker
