@@ -1,4 +1,4 @@
-ActiveAdmin.register Layer do
+ActiveAdmin.register Layer , :alias => I18n.t(:layer).html_safe do
   controller.authorize_resource
   scope :published, :default => true
   scope :drafts

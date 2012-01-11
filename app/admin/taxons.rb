@@ -1,4 +1,4 @@
-ActiveAdmin.register Taxon do
+ActiveAdmin.register Taxon, :alias => I18n.t(:taxon) do
   menu :parent => "Classements"
   controller.authorize_resource
 

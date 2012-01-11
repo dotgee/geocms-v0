@@ -59,3 +59,5 @@ gem "ckeditor", "3.7.0.rc1"#, :path => "vendor/git/ckeditor"
 gem "curb"
 
 gem "acts_as_list"
+
+gem 'rails-translate-routes'

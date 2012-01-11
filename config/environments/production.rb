@@ -50,6 +50,7 @@ Geocms::Application.configure do
                                   jquery/jquery.multiselect.css
                                   mapLayerInit.js
                                   *.js
+                                  print.css
                                   gipbe.css
                                   layers.css
                                   active_admin.css 

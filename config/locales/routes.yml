@@ -1,0 +1,8 @@
+en:
+  layers: couches
+fr:
+  admin: administration
+  layers: couches
+  filters: filtres
+  geo_contexts: projets
+  data_sources: source_de_donnees

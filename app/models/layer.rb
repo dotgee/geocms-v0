@@ -1,4 +1,5 @@
 class Layer < ActiveRecord::Base
+  
   extend FriendlyId
   friendly_id :title, :use => :slugged
 
@@ -39,6 +40,10 @@ class Layer < ActiveRecord::Base
       filter_name
     end
     boolean :published
+  end
+
+  class << self
+
   end
 
   def set_title_if_empty
@@ -116,6 +121,7 @@ class Layer < ActiveRecord::Base
   def last_date
     modification_date || publication_date || created_at 
   end
+  
 
   private
   def strip_whitespace

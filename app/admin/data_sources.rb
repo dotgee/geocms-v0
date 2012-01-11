@@ -1,4 +1,4 @@
-ActiveAdmin.register DataSource do
+ActiveAdmin.register DataSource, :alias => I18n.t(:data_source)  do
   controller.authorize_resource
   config.clear_sidebar_sections!
   controller do

@@ -1,11 +1,10 @@
 Geocms::Application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
-
   match "sitemap", :controller => :sitemap, :action => :sitemap
 
   get "tag/:id", :as => :tag, :controller => :tag, :action => :show
 
   ActiveAdmin.routes(self)
+  mount Ckeditor::Engine => '/ckeditor'
 
   resources :contact, :path_names => { :index => :contact }, :via => [:get, :post], :only => [:index, :mail_sende] do
     collection do
@@ -19,7 +18,7 @@ Geocms::Application.routes.draw do
   match '/gc/:key' => "geo_contexts#permalink", :as => :gc_permalink
   match '/gc/:name/:key' => "geo_contexts#download", :as => :gc_download
 
-  get "rss/layers", :as => :rss
+  get "rss/layers" => "rss#layers", :as => :rss
 
   #resources :taxonomies
 

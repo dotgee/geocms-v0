@@ -7,16 +7,15 @@ fr:
         message: Message
 
   formtastic:
+    actions: 
+      create: "Ajouter"
+      update: "Modifier"
     labels:
-    layer:
-      new:
-        title:
-          "Nouvelle couche"
-      name: "bob"
-  routes:
+    titles:
+    labels:
+    hints:
   activerecord:
     models:
-      #layer: Couche
     errors:
       messages:
         confirmation: "Vous devez confirmer %{attribute}"
@@ -42,6 +41,12 @@ fr:
         last_name: "Pr&eacute;nom"
       admin_user:
         password: "Mot de passe"
+        remember_me: Se souvenir de moi
+        first_name: Prenom
+        last_name: Nom
+        password_confirmation: Confirmation mot de passe
+        role: R&ocirc;le
+
   time:
     formats:
       long: "%d/%m/%Y %H:%M"
@@ -51,19 +56,22 @@ fr:
       long: "%d/%m/%Y %H:%M"
       short: "%d/%m/%Y %H:%M"
   devise:
+    failure:
+      unauthenticated: Authentification requise
     sessions:
       admin_user:
         signed_in: Bienvenue
       user:
         signed_in: "Connexion r&eacute;ussie."
-  new_layer: "Nouvelle couche" 
-  new_geo_context: "Nouveau projet"
   views:
     pagination:
       previous: "&larr; Pr&eacute;c&eacute;dent"
       next: "Suivant &rarr;"
       truncate: "..."
   active_admin:
+    scopes:
+      published: "En lignes"
+      drafts: En attente
     dashboard: Tableau de bord
     dashboard_welcome:
       welcome: Bienvenue dans l'administration
@@ -110,4 +118,35 @@ fr:
   search: "Rechercher"
   tag: "Mot cl&eacute;"
   tags: "Mots cl&eacute;s"
+
+  #traduction formulaire
+  helpers:
+    submit:
+      update: "Modifier"
+      create: "Ajouter"
+      admin_user:
+        create: Ajouter Administrateur
   layer: Couche
+  layers: Couches
+  data_source: Source de donn&eacute;e
+  taxon: Th&eacute;me
+  admin_user: Administrateur
+  geo_contexts: Projet
+  filter: Filtre
+  attributes:
+    keywords: Mots cles
+    content: Contenu
+    taxon: Theme
+    wmc_name: Nom WMC
+    published: Publie?
+    updated_at: Date modification
+    created_at: Date creation
+    title: Titre
+    name: Nom
+    libelle: Libelle
+  sign_in: Connexion
+  login: Connexion
+  lost_password: Mot de passe perdu?
+  reset_password: Reinitiliser mon mot de passe
+
+

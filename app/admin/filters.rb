@@ -1,4 +1,4 @@
-ActiveAdmin.register Filter do
+ActiveAdmin.register Filter, :alias => I18n.t(:filter) do 
   menu :parent => "Classements"
   controller.authorize_resource
   config.clear_sidebar_sections!

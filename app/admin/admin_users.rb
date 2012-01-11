@@ -1,4 +1,4 @@
-ActiveAdmin.register AdminUser do
+ActiveAdmin.register AdminUser, :alias => I18n.t(:admin_user) do
   menu :if => proc { current_admin_user.role?('super_admin')}
   controller.authorize_resource
   controller do

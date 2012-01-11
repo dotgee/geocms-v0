@@ -1,4 +1,4 @@
-ActiveAdmin.register GeoContext do
+ActiveAdmin.register GeoContext, :alias => I18n.t(:geo_contexts) do
   controller.authorize_resource
   controller do
     def current_ability
