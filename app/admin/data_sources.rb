@@ -32,7 +32,9 @@ ActiveAdmin.register DataSource, :alias => I18n.t(:data_source)  do
   member_action :list_capabilities do
     @data_source = DataSource.find(params[:id])
     @search =  Csw::Client.new(@data_source.csw_url)
-    @search.search(:max => 20, :start => (params[:page].to_i * 20) ) 
+    options = { :max => 20, :start => (params[:page].to_i * 20)}
+    options.merge!( :search_term => @data_source.wms_url) if params[:wms_filter]
+    @search.search(options)
     @metadatas = @search.metadatas
     @results = Kaminari.paginate_array(@metadatas, { :total_count => @search.result[:total] }).page(params[:page] || 1).per(20)
     @existing_layers = Layer.where(:name => @metadatas.map(&:layer_name)).select(:name).map(&:name)

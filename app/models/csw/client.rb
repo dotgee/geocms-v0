@@ -86,11 +86,12 @@ module Csw
       ), :max => options[:max] || 1000, :start => options[:start] > 0 ? options[:start] : 1)
       constraint = %q(
             <csw:Constraint version="1.1.0">
-            <ogc:Filter xmlns="http://www.opengis.net/ogc"><ogc:PropertyIsLike escape="\" singleChar="_" wildCard="%">
-            <ogc:PropertyName>any</ogc:PropertyName>
-            <ogc:Literal>%{{search_term}}%</ogc:Literal>
-            </ogc:PropertyIsLike>
-            </ogc:Filter>
+              <ogc:Filter xmlns="http://www.opengis.net/ogc">
+                <ogc:PropertyIsLike escape="\" singleChar="_" wildCard="%">
+                  <ogc:PropertyName>any</ogc:PropertyName>
+                  <ogc:Literal>%{{search_term}}%</ogc:Literal>
+                </ogc:PropertyIsLike>
+              </ogc:Filter>
             </csw:Constraint>
       )
       sort = %q(
