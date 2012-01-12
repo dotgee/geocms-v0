@@ -1,15 +1,18 @@
 development:
   theme_id: 22
-  filter_id: 23
   home_context_id: 84
   page_help_id: 'aide'
   contact_email: "atanguy@dotgee.fr"
+  resource_id: 1
+  infos_legales_id: 4
+
 
 test:
 
 production:
-  filter_id: 20
   theme_id: "themes"
   home_context_id: 84
   page_help_id: 'aide'
   contact_email: "cartographie@bretagne-environnement.org"
+  resource_id: 1
+  infos_legales_id: 3
