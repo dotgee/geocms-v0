@@ -2,5 +2,5 @@
   = f.inputs "Classement" do
     = f.input :name
     = f.input :libelle
-    = f.input :parent, :collection => options_for_select(Taxon.all_themes_select, f.object.parent_id) 
+    = f.input :parent, :collection => options_for_select(Taxon.all_themes_select, f.object.parent_id) , :include_blank => false
   = f.buttons
