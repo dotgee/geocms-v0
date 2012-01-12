@@ -4,7 +4,8 @@
 
   %ul.footerMenuTop
     %li.first
-      = link_to "Infos L&eacute;gales".html_safe, "#"
+      - page = Page.find_by_id(AppConfig.infos_legales_id)
+      = link_to "Infos L&eacute;gales".html_safe, page_path(page) if page
     %li
       = link_to "Contact", contact_index_path
     %li

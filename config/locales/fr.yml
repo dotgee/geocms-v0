@@ -134,14 +134,19 @@ fr:
   geo_contexts: Projet
   filter: Filtre
   attributes:
+    filter: Filtre
     rights: Droits
     publication_date: Date de publication
     keywords: Mots cles
+    metadata_url: Url serveur metadonnee
+    metadata_identifier: Identifiant metadonnee
+    data_source: Source de donnee
     content: Contenu
     taxon: Theme
     wmc_name: Nom WMC
     published: Publie?
     updated_at: Date de modification
+    modification_date: Date de modification
     created_at: Date de creation
     title: Titre
     name: Nom

@@ -12,7 +12,7 @@
     %li
       = link_to 'Ressources', '#', :id => "resource_link"
       %ul.submenu.menu-dropdown
-        - pages = Menu.find('resource', :include => :pages).pages.published
+        - pages = Menu.find(AppConfig.resource_id, :include => :pages).pages.published
         - pages.each_with_index do |p,i|
           %li.pages
             = link_to p.title, p
