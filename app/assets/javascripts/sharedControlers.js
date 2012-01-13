@@ -57,7 +57,7 @@ function addSharedControlers(map) {
     forcePlaceholderSize: true,
     handle: ".grippy",
     start: function(event, ui){
-     $(".selected-node .grippy").css("cursor", "url('/assets/closedhand.cur'), pointer");  
+     $(ui.item).find(".grippy").css("cursor", "url('/assets/closedhand.cur'), pointer").twipsy('hide');  
      nodes = ui.item.parent().children().length-2;
      start_pos = nodes - ui.item.index();
      ui.item.data('start_pos', start_pos);
