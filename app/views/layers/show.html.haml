@@ -23,10 +23,12 @@
         %h3
           = @layer.title
       .modal-body
-        %b.label.success Description :
-        = @layer.description 
-      #features
-        .clear
+        - unless @layer.credit.blank?
+          %b.label.success< 
+            Cr&eacute;dits :
+          = @layer.credit
   .clear
 
+#features
+  .clear
 =# render :partial => "shared/category_chooser_modal"              
