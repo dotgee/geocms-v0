@@ -51,9 +51,13 @@ class LayersController < ApplicationController
   end
 
   def find
-    @layer = Layer.find_by_name(params[:id], :select => "template, credits")
+    @layer = Layer.find_by_name(params[:id], :select => "metadata_url, metadata_identifier, template, credits")
+    unless @layer.nil?
+      layer = @layer.attributes
+      layer[:metadataLink] = @layer.metadata_link
+    end
     respond_to do |format|
-      format.json { render json: @layer }
+      format.json { render json: layer }
     end
   end
 

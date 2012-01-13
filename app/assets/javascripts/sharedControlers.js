@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  $('#visualisor_link').twipsy({ html: true});
+})
+
 function addSharedControlers(map) {
 
   if(typeof(noresize) == "undefined"){

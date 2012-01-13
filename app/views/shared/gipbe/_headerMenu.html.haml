@@ -1,7 +1,7 @@
 .menu-header
   %ul
     %li.first
-      = link_to 'Visualiseur', root_path
+      = link_to 'Visualiseur', root_path, :id => "visualisor_link", :"data-original-title" => "R&eacute;initialisation"
     -if false
       %li
         = link_to 'Projets', geo_contexts_path

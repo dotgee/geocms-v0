@@ -1,0 +1,9 @@
+%b.label.success< Description :
+= couche.description
+.clear
+%b.label.success< Mots cl&eacute;s :
+= couche.tag_list
+#credits
+  -  unless couche.credits.blank?
+    %b.label.success< Cr&eacute;dits
+    = couche.credits

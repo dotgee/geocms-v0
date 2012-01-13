@@ -14,15 +14,11 @@
         %h3
           = @geo_context.name
       .modal-body
-        %b.label.success Description :
-        = @geo_context.description 
-        .clear
-        %b.label.success WMC :
-        = link_to @geo_context.wmc_name, @geo_context.wmc.url, :only_path => false, :id => "wmc"
-        .clear
-        %b.label.success Mots cl&eacute;s :
-        = @geo_context.keywords
+        = render :partial => "shared/map_infos", :locals => { :couche => @geo_context }
+        = link_to 'wmc', @geo_context.wmc.url, :id => "wmc"
+
   .clear
 =# render :partial => "shared/category_chooser_modal"              
-= javascript_include_tag "mapInit"
-= javascript_include_tag "sharedControlers"
+- content_for :javascripts do 
+  = javascript_include_tag "sharedControlers"
+  = javascript_include_tag "mapInit"

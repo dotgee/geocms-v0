@@ -23,10 +23,7 @@
         %h3
           = @layer.title
       .modal-body
-        - unless @layer.credit.blank?
-          %b.label.success< 
-            Cr&eacute;dits :
-          = @layer.credit
+        = render :partial => "shared/map_infos", :locals => { :couche => @layer }
   .clear
 
 #features

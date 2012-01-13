@@ -18,4 +18,8 @@ class GeoContext < ActiveRecord::Base
   def title 
     name
   end
+
+  def credits
+    ""
+  end
 end

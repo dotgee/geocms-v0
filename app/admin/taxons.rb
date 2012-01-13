@@ -12,7 +12,7 @@ ActiveAdmin.register Taxon, :alias => I18n.t(:taxon) do
       if action_name == "index"
         return Taxon.order('lft asc ,rgt asc')
       end
-      return super
+     super
     end
 
   end

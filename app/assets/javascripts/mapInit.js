@@ -1,7 +1,6 @@
 $(document).ready(function() {
   
-  var wmc;
-
+  var wmc ;
   wmc = getURLParameter("wmc");
   if(wmc == "null") {
     wmc = $("#wmc").attr("href");
