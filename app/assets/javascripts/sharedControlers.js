@@ -151,7 +151,7 @@ function addSharedControlers(map) {
       }
     });
   });
-
+  if($("#load_form").length > 0){
   var uploader = new qq.FileUploader({
     element: $("#load_form")[0],
     action: '/geo_contexts/load',
@@ -171,6 +171,7 @@ function addSharedControlers(map) {
       window.location = "/?wmc=http://geocms.devel.dotgee.fr/gc/"+responseJSON.content;
     }
   });
+  }
   $("#load_btn").click(function(e) {
     e.preventDefault();
     $("#load_form").dialog({

@@ -23,6 +23,9 @@ $.widget("ui.legend", {
       self.element.toggleClass('visible');
     });
   },
+  updateHeight: function(){
+  console.log('update'); 
+  },
   move:function(pixel, animate){
     var self = this;
     var left = self._leftValue() - pixel;

@@ -79,40 +79,49 @@ module Csw
     def search( options = {})
       c = Curl::Easy.new(@server_url)
       c.headers = {'Content-Type' => "text/xml"}
-      base_start = Mustache.render(%q(
-       <csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:ogc="http://www.opengis.net/ogc" xmlns:ows="http://www.opengis.net/ows" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" service="CSW" version="2.0.2" maxRecords="{{max}}" startPosition="{{start}}" outputFormat="application/xml" outputSchema="http://www.opengis.net/cat/csw/2.0.2" resultType="results">
+      base_start = Mustache.render(%q(<csw:GetRecords 
+              xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
+              xmlns:ogc="http://www.opengis.net/ogc"
+              xmlns:ows="http://www.opengis.net/ows"
+              xmlns:gml="http://www.opengis.net/gml"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              service="CSW"
+              version="2.0.2"
+              maxRecords="{{max}}"
+              startPosition="{{start}}" 
+              outputFormat="application/xml"
+              outputSchema="csw:Record"
+              resultType="results">
             <csw:Query typeNames="csw:Record">
-            <csw:ElementSetName>full</csw:ElementSetName> 
-      ), :max => options[:max] || 1000, :start => options[:start] > 0 ? options[:start] : 1)
-      constraint = %q(
-            <csw:Constraint version="1.1.0">
+            <csw:ElementSetName>full</csw:ElementSetName>), :max => options[:max] || 1000, :start => options[:start] > 0 ? options[:start] : 1)
+
+      constraint = %q( <csw:Constraint version="1.1.0">
               <ogc:Filter xmlns="http://www.opengis.net/ogc">
                 <ogc:PropertyIsLike escape="\" singleChar="_" wildCard="%">
                   <ogc:PropertyName>any</ogc:PropertyName>
                   <ogc:Literal>%{{search_term}}%</ogc:Literal>
                 </ogc:PropertyIsLike>
               </ogc:Filter>
-            </csw:Constraint>
-      )
-      sort = %q(
-            <ogc:SortBy>
+            </csw:Constraint>)
+      sort = %q( <ogc:SortBy>
               <ogc:SortProperty>
                 <ogc:PropertyName>{{property}}</ogc:PropertyName>
                 <ogc:SortOrder>{{order}}</ogc:SortOrder>
                 </ogc:SortProperty>
-            </ogc:SortBy>
-            )
-      base_end = %q(
-            </csw:Query>
-            </csw:GetRecords>)
+            </ogc:SortBy>)
+      base_end = %q(</csw:Query></csw:GetRecords>)
+
       data = [base_start]
       data << Mustache.render(constraint, :search_term => options[:search_term]) unless options[:search_term].nil?
       data << Mustache.render(sort, :property => options[:property] || 'title', :order => options[:order] || 'asc')
       data << base_end
+      puts data
 
       c.post_body = data.join('')
       c.perform
+      puts c.body_str
       @search_result = parse_search(c.body_str)
+
       return @search_result
     end
 

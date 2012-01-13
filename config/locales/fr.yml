@@ -58,6 +58,7 @@ fr:
   devise:
     failure:
       unauthenticated: Authentification requise
+      already_authenticated: Deja authentifie
     sessions:
       admin_user:
         signed_in: Bienvenue
