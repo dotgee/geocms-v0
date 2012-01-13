@@ -15,12 +15,14 @@ $.widget("ui.mustachu", {
       ".btn-check" :"Afficher/masquer cette couche",
       ".btn-features" : "Obtenir des informations sur la couche",
       ".btn-save" : "Enregister la couche",
-      ".btn-metadatas" : "Voir la metadonn&eacute;e"
+      ".btn-metadatas" : "Voir la metadonn&eacute;e",
+      ".grippy" : "D&eacute;placer la couche"
     }
     for(var info in twipsy_info){
       self.element.find(info).attr('data-original-title', twipsy_info[info]);
     }
    self.element.find('.btn-destroy, .btn-check, .btn-features, .btn-save, .btn-metadatas').twipsy({delayIn: 300, html : true});
+   self.element.find('.grippy').twipsy({delayIn: 300, html : true, placement: 'left'});
   },
 
   // Generates the selected layers
@@ -43,10 +45,10 @@ $.widget("ui.mustachu", {
                             //shape
                             "<a href='{{url}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{params.LAYERS}}' target='_blank' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
                             //metadata
-                            //"{{#metadataLink}}"+
+                            "{{#metadataLink}}"+
                             "<a target='_blank' href='{{metadataLink}}' class='ui-icon-with-text btn-metadatas' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-note'></span></a>"+
-                            //"{{/metadataLink}}"+
+                            "{{/metadataLink}}"+
                             //remove
                             "<a href='#' class='ui-icon-with-text btn-destroy' id='destroy_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-closethick'></span></a>"+
@@ -54,7 +56,7 @@ $.widget("ui.mustachu", {
                            "<div class='slider' id='{{uniqueID}}'></div>"+
                           "</div>"+
                       "</div>"+
-                      "<div class='grippy' id='grip_{{uniqueID}}'></div>"+
+                      "<div class='grippy' id='grip_{{uniqueID}}' ></div>"+
                       "<div class='clear' ></div>"+
                    "</div>";
     $.each(layers, function(i,el){
