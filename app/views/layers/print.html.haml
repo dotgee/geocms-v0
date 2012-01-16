@@ -39,7 +39,7 @@
                 success: function(data) {
                    if(data) {
                      if(data.credits) {
-                       $("#credits").append("<div>"+data.credits+"</div>");
+                       $("#credits").append("<div>"+layer.name+": "+data.credits+"</div>");
                      }
                    }
                 },

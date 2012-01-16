@@ -1,6 +1,7 @@
 $.widget("ui.legend", {
   options: {
-    width: 200 
+    width: 200, 
+    height: 0
   },
   _create: function() {
     var self = this;
@@ -24,7 +25,7 @@ $.widget("ui.legend", {
       self.element.toggleClass('visible');
     });
   },
-  updateSize: function(width, height){
+  updateSize: function(width){
     var self = this;
 
     // Handles width change
@@ -37,6 +38,11 @@ $.widget("ui.legend", {
       }
     }
     // Handles max height
+    var height = self.element.css("height");
+    if(parseInt(height) > parseInt($(".olMap").css("height"))){
+      self.element.find("#legende").css("overflow-y", "scroll");
+      self.element.find("#legende").css("max-height", $(".olMap").css("height"));
+    }
   },
   move:function(pixel, animate){
     var self = this;

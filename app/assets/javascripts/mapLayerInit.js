@@ -28,7 +28,8 @@ $(document).ready(function() {
                                        transitionEffect: 'resize',
                                        uniqueID: layerNames.replace(":", "_"),
                                        metadataLink: layer_metadata_link,
-                                       modelID: layer_id 
+                                       modelID: layer_id, 
+                                       credits: layerCredits 
                                    });
   
     map.addLayer(layer);

@@ -55,6 +55,7 @@ $.widget("ui.mustachu", {
                            "</div>"+
                            "<div class='slider' id='{{uniqueID}}'></div>"+
                           "</div>"+
+                           "{{#credits}}<p class='credits'>Cr&eacute;dits: {{credits}}</p>{{/credits}}"+
                       "</div>"+
                       "<div class='grippy' id='grip_{{uniqueID}}' ></div>"+
                       "<div class='clear' ></div>"+
