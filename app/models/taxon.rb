@@ -1,7 +1,7 @@
 class Taxon < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
-  acts_as_nested_set :dependent => :destroy
+  acts_as_nested_set 
 
   #belongs_to :taxonomy
   has_many :assigned_layer_taxons

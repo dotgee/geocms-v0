@@ -24,12 +24,19 @@ $.widget("ui.legend", {
       self.element.toggleClass('visible');
     });
   },
-  updateSize: function(width){
+  updateSize: function(width, height){
     var self = this;
-    if(width > self._selfWidth()) {
+
+    // Handles width change
+    var originalWidth = self._selfWidth();
+    if(width > originalWidth) {
       self.options.width = width;
       self.element.css("width", width);
+      if(self.element.hasClass("visible")){
+        self.move(width - originalWidth, true); 
+      }
     }
+    // Handles max height
   },
   move:function(pixel, animate){
     var self = this;

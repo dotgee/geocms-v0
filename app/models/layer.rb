@@ -11,7 +11,7 @@ class Layer < ActiveRecord::Base
   before_validation :set_title_if_empty, :set_wms_url
   belongs_to :data_source
   before_validation :strip_whitespace
-  has_many :assigned_layer_taxons
+  has_many :assigned_layer_taxons, :dependent => :destroy
 
   has_many :themes, 
             :class_name => "Taxon",

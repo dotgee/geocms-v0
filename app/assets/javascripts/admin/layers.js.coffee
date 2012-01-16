@@ -38,7 +38,8 @@ $(document).ready () ->
   update_inputs = (data) ->
     $.each(data, (i,el) ->
       input = $('#layer_'+i);
-      input.val(el) if input
+      console.log(el);
+      input.val(el) if input && el
     )
     success_div("Informations renseign&eacute;es").insertAfter($('.pill-content').first()).fadeIn();
     true
