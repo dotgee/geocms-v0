@@ -27,7 +27,7 @@ $.widget("ui.viewer", {
           var title = div.attr('layer_title');
           var wms_url = div.attr('wms_url');
           var layer_name = div.attr('layer_name');
-          var meta = div.attr('metadata_link');
+          var meta = div.attr('metadata');
           layer = new OpenLayers.Layer.WMS(title,
                                                wms_url,
                                                { layers: layer_name,

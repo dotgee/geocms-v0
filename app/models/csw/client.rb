@@ -115,11 +115,9 @@ module Csw
       data << Mustache.render(constraint, :search_term => options[:search_term]) unless options[:search_term].nil?
       data << Mustache.render(sort, :property => options[:property] || 'title', :order => options[:order] || 'asc')
       data << base_end
-      puts data
 
       c.post_body = data.join('')
       c.perform
-      puts c.body_str
       @search_result = parse_search(c.body_str)
 
       return @search_result

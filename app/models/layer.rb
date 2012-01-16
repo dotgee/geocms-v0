@@ -70,15 +70,11 @@ class Layer < ActiveRecord::Base
   end
   
   def metadata_link
-    puts metadata_url
     return nil if metadata_url.blank?
     uri = URI.parse(metadata_url)
     uri.fragment = nil
     path = uri.path.split('/')[1] || ""
     uri.path = "/"+path
-    puts uri
-    puts
-    puts uri.host
     return ["#{uri.to_s}/srv/fr/metadata.show.embedded", "uuid=#{metadata_identifier}"].join('?')
   end
 

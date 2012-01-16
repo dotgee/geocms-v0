@@ -16,8 +16,15 @@
   = javascript_include_tag "openLayersEssentials"
   :javascript
     $(document).ready(function(){
-      $.get("/gc/#{@wmc}",
-        function(data){
+      var map;
+      var format = new OpenLayers.Format.WMC();
+      //$.get("/gc/#{@wmc}?single_tile=true",
+      $.ajax({
+      
+        url : "/gc/#{@wmc}?single_tile=true",
+        error: function(jqXHR, textStatus, error){
+        },
+        success: function(data, status, jqXHR){
           try {
             map = format.read(data, {map: mapOptions});
             map.removeControl(map.controls[1]);
@@ -45,7 +52,10 @@
               print();
             }); 
           } catch(e) {
+            console.log(e);
           }
+        }
+        
         });
     });
 

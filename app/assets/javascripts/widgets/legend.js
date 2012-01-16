@@ -1,5 +1,6 @@
 $.widget("ui.legend", {
   options: {
+    width: 200 
   },
   _create: function() {
     var self = this;
@@ -23,8 +24,12 @@ $.widget("ui.legend", {
       self.element.toggleClass('visible');
     });
   },
-  updateHeight: function(){
-  console.log('update'); 
+  updateSize: function(width){
+    var self = this;
+    if(width > self._selfWidth()) {
+      self.options.width = width;
+      self.element.css("width", width);
+    }
   },
   move:function(pixel, animate){
     var self = this;
@@ -41,7 +46,7 @@ $.widget("ui.legend", {
   },
   _selfWidth: function(){
     var self = this;
-    return parseInt(self.element.outerWidth()); 
+    return self.options.width; 
   },
   _leftValue: function(){
     var self = this;

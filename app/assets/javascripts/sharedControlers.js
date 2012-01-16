@@ -93,6 +93,7 @@ function addSharedControlers(map) {
   $('#print_btn').click(function(e){
     e.preventDefault();
     try {
+      console.log(map);
       wmc = format.write(map);
     } catch(e) {
       alert("Impossible de creer le WMC");
@@ -102,7 +103,7 @@ function addSharedControlers(map) {
       data: "wmc="+format.write(map),
       type: "POST",
       success: function(data){
-            window.open("/layers/print?wmc="+data, "_newtab");
+            window.open(window.location.origin +"/layers/print?wmc="+data, "_blank");
       }
     });
   });
@@ -240,7 +241,7 @@ function addSharedControlers(map) {
            dialog.dialog("open");
            dialog.text("");
         } else {
-           dialog = $("<div title='Features Info'></div>").dialog({width: 'auto'});
+           dialog = $("<div title='Informations sur la couche'></div>").dialog({width: 'auto'});
         }
       },
       getfeatureinfo: function(event) {

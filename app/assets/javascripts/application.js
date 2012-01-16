@@ -42,8 +42,8 @@ $(document).ready(function(){
   $('#meta_dialog').dialog({
     autoOpen: false,
     title: "Metadonn\351e",
-    width : 600,
-    height: 500,
+    width : "80%", 
+    height: 600,
     modal: true
   });
   $('.btn-metadatas,.metadata_link').live('click', function(e){
