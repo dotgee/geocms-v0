@@ -103,7 +103,7 @@ function addSharedControlers(map) {
       data: "wmc="+format.write(map),
       type: "POST",
       success: function(data){
-            window.open(window.location.origin +"/layers/print?wmc="+data, "_blank");
+            window.open("/layers/print?wmc="+data, "_blank");
       }
     });
   });
