@@ -78,7 +78,7 @@ module Csw
 
     def search( options = {})
       c = Curl::Easy.new(@server_url)
-      c.headers = {'Content-Type' => "text/xml"}
+      c.headers = {'Content-Type' => "application/xml"}
       base_start = Mustache.render(%q(<csw:GetRecords 
               xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
               xmlns:ogc="http://www.opengis.net/ogc"
@@ -115,9 +115,11 @@ module Csw
       data << Mustache.render(constraint, :search_term => options[:search_term]) unless options[:search_term].nil?
       data << Mustache.render(sort, :property => options[:property] || 'title', :order => options[:order] || 'asc')
       data << base_end
-
+        
       c.post_body = data.join('')
+      puts data.join('')
       c.perform
+      puts c.body_str
       @search_result = parse_search(c.body_str)
 
       return @search_result

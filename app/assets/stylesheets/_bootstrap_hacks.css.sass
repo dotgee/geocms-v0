@@ -30,9 +30,15 @@ h2
   li 
     position: relative
     margin-bottom: -1px
-.tabs > li > a
-  line-height: 30px
-  color: #0080CC
+    a
+      line-height: 30px
+      color: #0080CC
+      text-decoration: none
+      background-color: #eee
+      border-color: #eee #eee #ddd
+      &:hover
+        background-color: darken(#eee, 15)
+        color: darken(#0080CC, 15)
 
 .twipsy.fade.in 
   opacity: 1
