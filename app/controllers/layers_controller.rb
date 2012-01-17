@@ -75,6 +75,12 @@ class LayersController < ApplicationController
     render :layout => 'print_layout'
   end
 
+  def pdf
+    @wmc = REDIS.get(params[:key])
+    @wmc = Nokogiri::XML::Document.parse(@wmc)
+
+  end
+
   # GET /layers/new
   # GET /layers/new.json
   def new

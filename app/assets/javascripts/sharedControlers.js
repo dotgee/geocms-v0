@@ -93,7 +93,6 @@ function addSharedControlers(map) {
   $('#print_btn').click(function(e){
     e.preventDefault();
     try {
-      console.log(map);
       wmc = format.write(map);
     } catch(e) {
       alert("Impossible de creer le WMC");
