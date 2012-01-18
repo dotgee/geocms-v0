@@ -49,7 +49,9 @@ $(document).ready(function(){
   $('.btn-metadatas,.metadata_link').live('click', function(e){
     e.preventDefault();
     var dial = $('#meta_dialog');
-    dial.find('.content').first().attr('src',$(this).attr('href'));
+    var url = $(this).attr('href')
+    dial.find('.content').first().attr('src', url);
+    $('#meta_dialog').dialog("option", "title", "Metadonn\351e sur "+url);
     $('#meta_dialog').dialog('open'); 
   });
   
