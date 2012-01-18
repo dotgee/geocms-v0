@@ -51,7 +51,10 @@ $(document).ready(function(){
     var dial = $('#meta_dialog');
     var url = $(this).attr('href')
     dial.find('.content').first().attr('src', url);
-    $('#meta_dialog').dialog("option", "title", "Metadonn\351e sur "+url);
+    var title = $('<span />').text("Metadonn\351e sur ")
+    var link = $('<a />').attr('href', url.replace('.embedded','')).attr('target', '_blank').text(url);
+    title.append(link)
+    $('#meta_dialog').dialog("option", "title", title.html());
     $('#meta_dialog').dialog('open'); 
   });
   
