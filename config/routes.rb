@@ -44,6 +44,7 @@ Geocms::Application.routes.draw do
   resources :geo_contexts, :only => [:show, :index]  do
     member do
       get 'permalink_map'
+      get 'external'
     end
     collection do 
       get 'wmc'
