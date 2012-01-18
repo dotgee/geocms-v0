@@ -1,0 +1,24 @@
+= map_js
+= content_for :javascripts do
+  :javascript
+    var noresize = true;
+  = javascript_include_tag "mapInit"
+  = javascript_include_tag "sharedControlers"
+#map_container{:style => "width:#{params[:width] || 400}px;height:#{params[:height] || 550}; margin:0"}
+  =# render :partial => 'shared/content_toolbar'
+  #map{:style => "width:#{params[:width] || 400}px;height:#{params[:height] || 550}"}
+    - if params[:map_info]
+      .map-infos
+        .slider-container
+          .info-slider.up
+        .modal-header
+          %h3
+            = @layer.name
+        .modal-body
+          %b.label.success Description :
+          = @layer.description 
+        #features
+          .clear                
+
+  .clear
+= link_to 'wmc', @geo_context.wmc.url, :id => "wmc"

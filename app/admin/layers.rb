@@ -33,38 +33,7 @@ ActiveAdmin.register Layer , :alias => I18n.t(:layer).html_safe do
   
   member_action :get_javascript do
     render :layout => false, :template => "layers/get_javascript"
-    
   end
-
-#  collection_action :list_capabilities, :method => :post do 
-#    if params[:server][:type].downcase == "geoserver"
-#      @layers =  WMS::Client.new(params[:server][:url]).layers  
-#      @existing_layers = Layer.where(:name => @layers.map(&:name)).select(:name).map(&:name)
-#    else
-#      @search =  Csw::Client.new(params[:server][:url])
-#      @search.search
-#      @metadatas = @search.metadatas
-       
-#      @existing_layers = Layer.where(:name => @metadatas.map(&:layer_name)).select(:name).map(&:name)
-#    end
-#    render :action => :moissonnage
-#  end
-
-#  collection_action :import_meta, :method => :post do
-#    url = params[:import][:server_url]
-    #layers_to_import = params[:import][:layer_name] || []
-#  end
-
-#  collection_action :import, :method => :post do
-#    url = params[:import][:server_url]
-#    geo_server = GeoServer.find_by_id(params[:import][:server_id])
-#    layers_to_import = params[:import][:layer_name] || []
-#     @layers =  WMS::Client.new(url).layers.select{|l| layers_to_import.include?(l.name)}
-#     @layers.map do  |layer|
-#        create_layer_from_geoserver(layer, url, geo_server)
-#      end 
-#    redirect_to admin_layers_path
-#  end
 
   collection_action :from_geoserver, :method => :post do
     url = params[:wms_url].split('?').first
@@ -117,7 +86,7 @@ ActiveAdmin.register Layer , :alias => I18n.t(:layer).html_safe do
         b "Nom wms"
         l.name
       end
-     div link_to "code", get_javascript_admin_layer_path(l), :class => "modal"
+     div link_to "Code", get_javascript_admin_layer_path(l), :class => "modal"
     end
     default_actions
   end

@@ -25,7 +25,7 @@
        var width = options.width || 400;
        $("#"+divId).append(""+
            "<div id='mapIframe'>"+
-             "<iframe src='http://geocms.devel.dotgee.fr/layers/"+options.layerId+"/external?width="+width+"&height="+height+"' onload=''>Enable iFrames.</iframe>"+
+             "<iframe src='http://geocms.gipbe.dotgee.fr/"+ options.objectType+"/"+options.objectId+"/external?width="+width+"&height="+height+"' onload=''>Enable iFrames.</iframe>"+
            "</div>");
         var style = $(""+
           "<style type='text/css'>"+

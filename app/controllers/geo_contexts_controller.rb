@@ -2,6 +2,13 @@ class GeoContextsController < ApplicationController
   before_filter :set_layout
   load_and_authorize_resource
 
+  def external
+    @geo_context = GeoContext.find(params[:id])
+    #return render :text => "Not available" unless @geo_context.published
+    render :layout => 'external'
+  end
+
+
   def permalink
     @wmc = REDIS.get(params[:key])
     @wmc = Nokogiri::XML::Document.parse(@wmc)

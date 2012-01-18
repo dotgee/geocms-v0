@@ -17,7 +17,9 @@ $(document).ready(function() {
     }
   );
   map.addLayer(fond_carto);
-
+  if(!layerCredits){
+    var layerCredits = "";
+  }
   layer = new OpenLayers.Layer.WMS(layerTitle,
                                    layerWmsUrl,
                                    {
@@ -29,7 +31,7 @@ $(document).ready(function() {
                                        uniqueID: layerNames.replace(":", "_"),
                                        metadataLink: layer_metadata_link,
                                        modelID: layer_id, 
-                                       credits: layerCredits 
+                                       credits: layerCredits
                                    });
   
     map.addLayer(layer);

@@ -1,4 +1,8 @@
 ActiveAdmin.register GeoContext, :alias => I18n.t(:geo_contexts) do
+  member_action :get_javascript do
+    render :layout => false, :template => "geo_contexts/get_javascript"
+  end
+
   controller.authorize_resource
   controller do
     def current_ability
@@ -32,10 +36,7 @@ ActiveAdmin.register GeoContext, :alias => I18n.t(:geo_contexts) do
         b "Liste tags :"
         c.tag_list
       end
-      div do
-      end
-      div do
-      end
+      div link_to "Code", get_javascript_admin_geo_context_path(c), :class => "modal"
     end
     column :description do |g|
       truncate(g.description, :length => 200)
