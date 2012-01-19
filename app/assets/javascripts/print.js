@@ -14,7 +14,6 @@ $(document).ready(function(){
             for(var i in map.controls){
               map.controls[i].deactivate();
             }
-            // Q&D load of credits
             $.each(map.layers, function(i, layer) {
               $.ajax({
                 url: "/layers/"+layer.params.LAYERS+"/find.json",
@@ -32,7 +31,6 @@ $(document).ready(function(){
             $("#legende").mustachu().mustachu("legendeNodes", map.layers);
             $('#realprint_btn').click(function(e){
               e.preventDefault();
-              //LoadImageMap();
               print();
             });
         }
