@@ -61,3 +61,6 @@ gem "curb"
 gem "acts_as_list"
 
 gem 'rails-translate-routes'
+gem 'rmagick'
+
+# gem 'gd2'

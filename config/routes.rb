@@ -50,6 +50,7 @@ Geocms::Application.routes.draw do
       get 'wmc'
       post 'post'
       post 'load'
+      match 'print_img'
     end
   end
 

@@ -2,6 +2,37 @@ class GeoContextsController < ApplicationController
   before_filter :set_layout
   load_and_authorize_resource
 
+
+  def print_img
+    require 'RMagick'
+    require 'open-uri'
+
+    final_img = params[:tiles].inject(nil) do |img, tile|
+      tile_img = image_from_params(tile.last)
+      opacity = ((tile.last[:opacity].to_f - 100 ).abs / 100)
+
+      # tile_img.opacity = opacity #(((tile.last[:opacity].to_f ).abs / 100) * Magick::TransparentOpacity ).to_i #unless !tile_img.opaque?
+      if img.nil?
+        img = tile_img
+      else
+      img = img.composite(tile_img, 0, 0, Magick::OverCompositeOp)
+      #img = img.dissolve( tile_img, opacity, 1.0)
+      end
+      img
+    end
+
+    final_img.crop!(params[:x].to_i.abs, params[:y].to_i.abs, params[:width].to_i, params[:height].to_i)
+    file_name = File.join("wmcs","#{Time.now.to_i}.png")
+    name = File.join(Rails.root, "public", file_name)
+    final_img.write(name)
+    render :text => file_name 
+  end
+
+  def image_from_params(params)
+    img = Magick::Image.from_blob(open(params[:url]).read)
+    img.first
+  end
+
   def external
     @geo_context = GeoContext.find(params[:id])
     #return render :text => "Not available" unless @geo_context.published

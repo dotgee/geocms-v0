@@ -17,50 +17,9 @@
 = content_for :javascripts do
   = javascript_include_tag "openLayersEssentials"
   :javascript
-    $(document).ready(function(){
-      var map;
-      var format = new OpenLayers.Format.WMC();
-      //$.get("/gc/#{@wmc}?single_tile=true",
-      $.ajax({
-      
-        url : "/gc/#{@wmc}?single_tile=true",
-        error: function(jqXHR, textStatus, error){
-        },
-        success: function(data, status, jqXHR){
-          //try {
-            map = format.read(data, {map: mapOptions});
-            map.removeControl(map.controls[1]);
-            for(var i in map.controls){
-              map.controls[i].deactivate();
-            }
-            // Q&D load of credits
-            $.each(map.layers, function(i, layer) {
-              $.ajax({
-                url: "/layers/"+layer.params.LAYERS+"/find.json",
-                type: "GET",
-                success: function(data) {
-                   if(data) {
-                     if(data.credits) {
-                       $("#credits").append("<div>"+layer.name+": "+data.credits+"</div>");
-                     }
-                   }
-                },
-                dataType: "json"
-              });
-            });
-            $("#legende").mustachu().mustachu("legendeNodes", map.layers);
-            $('#realprint_btn').click(function(e){
-              e.preventDefault();
-              print();
-            }); 
-         // } catch(e) {
-         //   alert(e);
-         // }
-        }
-        
-        });
-    });
-
+    var wmc = "#{escape_javascript(@wmc)}";
+    var map;
+  = javascript_include_tag "print"
 = content_for :stylesheets do
   = stylesheet_link_tag "print", :media => "all"
   = stylesheet_link_tag "only_print", :media => "print"
