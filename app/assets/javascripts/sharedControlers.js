@@ -114,7 +114,7 @@ function addSharedControlers(map) {
       data: "wmc="+format.write(map),
       type: "POST",
       success: function(data){
-            var url = "http://geobretagne.fr/mapfishapp/?wmc=http://geocms.devel.dotgee.fr/gc/"+data;
+            var url = "http://geobretagne.fr/mapfishapp/?"+contextExportUrl+data;
             window.open(url, "_blank");
       }
     });
@@ -129,20 +129,20 @@ function addSharedControlers(map) {
       modal: true,
       buttons: {
         "Sauvegarder": function() {
-          self = $(this);
-          map_name = self.find("#map_name").val();
-          if(map_name) {
+          saveDialog = $(this);
+          mapName = saveDialog.find("#map_name").val();
+          if(mapName) {
             $.ajax({
               url: "/geo_contexts/post/",
               data: {wmc: format.write(map)},
               type: "POST",
               success: function(data){
-                window.location = "/gc/"+map_name+"/"+data;
-                self.dialog("close");
+                window.location = "/gc/"+mapName+"/"+data;
+                saveDialog.dialog("close");
               }
             });          
           } else {
-            self.find("p").html("Un nom est requis pour l'enregistrement.");
+            saveDialog.find("p").html("Un nom est requis pour l'enregistrement.");
           }
         },
         "Annuler": function() {
@@ -168,7 +168,7 @@ function addSharedControlers(map) {
       onLeave: "Le fichier est en train d'etre mis en ligne, si vous quittez maintenant, le chargement sera interrompu."
     }, 
     onComplete: function(id, fileName, responseJSON) {
-      window.location = "/?wmc=http://geocms.devel.dotgee.fr/gc/"+responseJSON.content;
+      window.location = "/?wmc="+contextExportUrl+responseJSON.content;
     }
   });
   }
