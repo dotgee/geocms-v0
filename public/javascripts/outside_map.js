@@ -1,7 +1,7 @@
 (function(){
 
   var v = "1.7.1";
-  
+  options.baseUrl = "http://cartographie.gipbe.dotgee.fr/";
   if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
     var done = false;
     var script = document.createElement("script");
@@ -25,7 +25,7 @@
        var width = options.width || 400;
        $("#"+divId).append(""+
            "<div id='mapIframe'>"+
-             "<iframe src='http://geocms.gipbe.dotgee.fr/"+ options.objectType+"/"+options.objectId+"/external?width="+width+"&height="+height+"' onload=''>Enable iFrames.</iframe>"+
+             "<iframe src='"+options.baseUrl + options.objectType+"/"+options.objectId+"/external?width="+width+"&height="+height+"' onload=''>Enable iFrames.</iframe>"+
            "</div>");
         var style = $(""+
           "<style type='text/css'>"+

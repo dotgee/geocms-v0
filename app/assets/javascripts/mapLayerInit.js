@@ -2,9 +2,11 @@ $(document).ready(function() {
 
   map =  new OpenLayers.Map( 'map', mapOptions );
   var fond_carto = new OpenLayers.Layer.WMS(
-    "Fond Cartographique","http://geo.devel.dotgee.fr/geoserver/wms",
+    "Fond Cartographique",
+
+    gipbeCartoGraphy,
     {
-      layers: 'region-bretagne_region_2154',
+      layers: fondCarteName,
       format: 'image/png'
     },
     {

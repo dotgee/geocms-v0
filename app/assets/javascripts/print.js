@@ -39,27 +39,27 @@ $(document).ready(function(){
   var print_wait_win = null;
   function LoadImageMap() {
 
-      var size  = map.getSize();
-      var tiles = [];
-      var x,y,width,height;
-      for (layername in map.layers) {
-          // if the layer isn't visible at this range, or is turned off, skip it
-          var layer = map.layers[layername];
-          if (!layer.getVisibility()) continue;
-          if (!layer.calculateInRange()) continue;
-          // iterate through their grid's tiles, collecting each tile's extent and pixel location at this moment
-          for (tilerow in layer.grid) {
-              for (tilei in layer.grid[tilerow]) {
-                  var tile     = layer.grid[tilerow][tilei]
-                  var url      = layer.getURL(tile.bounds);
-                  var position = tile.position;
-                  var opacity  = layer.opacity ? parseInt(100*layer.opacity) : 100;
-                  tiles[tiles.length] = {url:url, opacity:opacity};
-                  x = position.x;
-                  y = position.y;
-              }
-          }
+    var size  = map.getSize();
+    var tiles = [];
+    var x,y,width,height;
+    for (layername in map.layers) {
+      // if the layer isn't visible at this range, or is turned off, skip it
+      var layer = map.layers[layername];
+      if (!layer.getVisibility()) continue;
+      if (!layer.calculateInRange()) continue;
+      // iterate through their grid's tiles, collecting each tile's extent and pixel location at this moment
+      for (tilerow in layer.grid) {
+        for (tilei in layer.grid[tilerow]) {
+          var tile     = layer.grid[tilerow][tilei]
+          var url      = layer.getURL(tile.bounds);
+          var position = tile.position;
+          var opacity  = layer.opacity ? parseInt(100*layer.opacity) : 100;
+          tiles[tiles.length] = {url:url, opacity:opacity};
+          x = position.x;
+          y = position.y;
+        }
       }
+    }
 
     $.ajax({
       url: "/geo_contexts/print_img",

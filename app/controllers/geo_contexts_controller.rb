@@ -7,19 +7,25 @@ class GeoContextsController < ApplicationController
     require 'RMagick'
     require 'open-uri'
 
-    final_img = params[:tiles].inject(nil) do |img, tile|
-      tile_img = image_from_params(tile.last)
-      opacity = ((tile.last[:opacity].to_f - 100 ).abs / 100)
-
-      # tile_img.opacity = opacity #(((tile.last[:opacity].to_f ).abs / 100) * Magick::TransparentOpacity ).to_i #unless !tile_img.opaque?
-      if img.nil?
-        img = tile_img
-      else
-      img = img.composite(tile_img, 0, 0, Magick::OverCompositeOp)
-      #img = img.dissolve( tile_img, opacity, 1.0)
-      end
-      img
+    #final_img = params[:tiles].inject(nil) do |img, tile|
+    #  tile_img = image_from_params(tile.last)
+    #  opacity = ((tile.last[:opacity].to_f - 100 ).abs / 100)
+    #  #tile_img.opacity = opacity #(((tile.last[:opacity].to_f ).abs / 100) * Magick::TransparentOpacity ).to_i #unless !tile_img.opaque?
+    #  if img.nil?
+    #    img = tile_img
+    #  else
+    #  img = img.composite(tile_img, 0, 0, Magick::OverCompositeOp)
+    #  #img = img.dissolve( tile_img, opacity, 1.0)
+    #  end
+    #  img
+    #end
+    
+    i = Magick::ImageList.new
+    params[:tiles].inject(nil) do |img, tile|
+      tile_img = image_from_params(tile.last) 
+      i << tile_img
     end
+    final_img = i.flatten_images
 
     final_img.crop!(params[:x].to_i.abs, params[:y].to_i.abs, params[:width].to_i, params[:height].to_i)
     file_name = File.join("wmcs","#{Time.now.to_i}.png")
