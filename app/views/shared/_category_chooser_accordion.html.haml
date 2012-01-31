@@ -13,22 +13,24 @@
 .right-menu#layer_listing
   - Taxon.themes.each do |t|
     - parent = t.children.any?
+    - layers = t.layers.published unless parent
     %h3{:class => parent ? "grand_parent" : "parent" }
       = link_to '#' do
         %span
           = t.name
         %span.nb_layers
-          = "(#{parent ? t.children_layers_length : t.layers.length})"
+          = "(#{parent ? t.children_layers_length : layers.length})"
 
     - if parent
       .children
         - t.descendants.includes(:layers).each do |c|
+          - layers = c.layers.published
           %h4.parent
             = link_to '#' do
               %span
                 = c.name
               %span.nb_layers
-                = "(#{c.layers.length})"
-          = render :partial => "shared/layers_list", :locals => { :layers => c.layers, :theme => c }  
+                = "(#{layers.length})"
+          = render :partial => "shared/layers_list", :locals => { :layers => layers, :theme => c }  
     - else
-      = render :partial => "shared/layers_list", :locals => { :layers => t.layers, :theme => t }  
+      = render :partial => "shared/layers_list", :locals => { :layers => layers, :theme => t }  
