@@ -33,8 +33,8 @@ class Taxon < ActiveRecord::Base
   end
 
   def children_layers_length
-    descendants.includes(:layers).inject(0) do |n,child|
-      n += child.layers.length
+    descendants.includes(:layers).inject(0) do |n, child|
+      n += child.layers.published.length
       n
     end
   end

@@ -30,11 +30,11 @@ ActiveAdmin.register GeoContext, :alias => I18n.t(:geo_contexts) do
     column "Information" do |c|
       div do
         b "Nom :"
-        c.name
+        span c.name
       end
       div do
         b "Liste tags :"
-        c.tag_list
+        span c.tag_list
       end
       div link_to "Code", get_javascript_admin_geo_context_path(c), :class => "modal"
     end

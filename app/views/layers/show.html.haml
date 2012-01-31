@@ -17,14 +17,7 @@
   = render :partial => 'shared/content_toolbar'
   #map
     %span#coords
-    .map-infos
-      .slider-container
-        .info-slider.up
-      .modal-header
-        %h3
-          = @layer.title
-      .modal-body
-        = render :partial => "shared/map_infos", :locals => { :couche => @layer }
+    = render :partial => "shared/map_infos", :locals => { :couche => @layer, :title => @laer.title }
   .clear
 
 #features
