@@ -14,7 +14,7 @@ $.widget("ui.mustachu", {
       ".btn-destroy": 'Retirer cette couche de la carte',
       ".btn-check" :"Afficher/masquer cette couche",
       ".btn-features" : "Obtenir des informations sur la couche",
-      ".btn-save" : "Enregister la couche",
+      ".btn-save" : "T&eacute;l&eacute;charger le shp",
       ".btn-metadatas" : "Voir la metadonn&eacute;e",
       ".grippy" : "D&eacute;placer la couche"
     }
