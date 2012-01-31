@@ -78,3 +78,5 @@ config/app.yml
 public/javascripts/*
 
 app/assets/javascripts/ckeditor/
+public/javascripts/outside_map.js
+public/robots.txt
