@@ -7,7 +7,7 @@ class Taxon < ActiveRecord::Base
   has_many :assigned_layer_taxons
   has_many :layers, :through => :assigned_layer_taxons, :uniq => true
 
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true
   
   scope :only_themes, lambda {
         

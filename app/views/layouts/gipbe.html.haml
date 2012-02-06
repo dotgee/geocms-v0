@@ -8,6 +8,7 @@
     = yield :stylesheets
     = javascript_include_tag Rails.env == "production" ? "javascript_configuration" : "javascript_configuration_dev"
     = javascript_include_tag "application"
+    = render :partial => "shared/analytics"
     = yield :javascripts
     = csrf_meta_tags
     = auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})

@@ -71,20 +71,20 @@ ActiveAdmin.register Layer , :alias => I18n.t(:layer).html_safe do
     id_column
     column "Titre", :title
     column "Source", :sortable => :data_source_id do |g|
-      link_to g.data_source.name, admin_data_source_path(g.data_source) if g.data_source
+      div link_to g.data_source.name, admin_data_source_path(g.data_source) if g.data_source
     end
     column "Information" do |l|
      div do
       b "Description :"
-      l.description
+      span l.description
      end
       div do
         b "Wms Url :"
-        l.wms_url
+        span l.wms_url
       end
       div do
         b "Nom wms"
-        l.name
+        span l.name
       end
      div link_to "Code", get_javascript_admin_layer_path(l), :class => "modal"
     end

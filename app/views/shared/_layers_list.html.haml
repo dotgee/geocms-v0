@@ -21,7 +21,7 @@
         /.selected_icon.ui-icon.ui-icon-circle-plus
         .row.layer_selection
           .layer_info
-            %span.ui-icon{:class => l.external ? "ui-icon-extlink" : "empty"}
+            %span.ui-icon{:class => l.external ? "ui-icon-extlink" : "empty", :"data-original-title" => l.external? ? l.data_source_name : "" }
             %span
               = l.title
             .clear
