@@ -64,3 +64,4 @@ gem 'rails-translate-routes'
 gem 'rmagick'
 
 # gem 'gd2'
+gem 'meta-tags', :require => 'meta_tags'

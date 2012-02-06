@@ -43,7 +43,7 @@ class LayersController < ApplicationController
   # GET /layers/1.json
   def show
     @layer = Layer.find(params[:id])
-
+    set_seo(@layer)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @layer }

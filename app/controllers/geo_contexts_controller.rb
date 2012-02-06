@@ -97,7 +97,7 @@ class GeoContextsController < ApplicationController
   # GET /geo_contexts/1.json
   def show
     #@geo_context = GeoContext.find(params[:id])
-    
+    set_seo(@geo_context) 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @geo_context }
