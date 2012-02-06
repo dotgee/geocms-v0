@@ -122,6 +122,10 @@ class Layer < ActiveRecord::Base
     modification_date || publication_date || created_at 
   end
   
+  def data_source_name
+    return data_source.name if data_source
+    "Couche externe"
+  end
 
   private
   def strip_whitespace

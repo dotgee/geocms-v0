@@ -64,3 +64,4 @@ gem 'rmagick'
 
 # gem 'gd2'
 gem "rack", "1.3.6"
+gem 'meta-tags', :require => 'meta_tags'

@@ -1,13 +1,14 @@
 !!!
 %html
   %head
-    %title Geocms
+    = display_meta_tags :site => "Bretagne Environnement" 
     = stylesheet_link_tag    "application"
     = stylesheet_link_tag    "gipbe"
     = stylesheet_link_tag  controller_name
     = yield :stylesheets
     = javascript_include_tag Rails.env == "production" ? "javascript_configuration" : "javascript_configuration_dev"
     = javascript_include_tag "application"
+    = render :partial => "shared/analytics"
     = yield :javascripts
     = csrf_meta_tags
     = auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})

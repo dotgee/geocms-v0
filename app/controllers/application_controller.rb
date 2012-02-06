@@ -3,11 +3,22 @@ class ApplicationController < ActionController::Base
   layout 'gipbe'
   helper_method :correct_user?
   before_filter :set_locale
+  before_filter :set_seo
   #before_filter :set_locale_from_url
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
-
+  protected
+    def set_seo(item = nil)
+      unless item.nil? 
+        if item.is_a? Hash
+        else
+          @page_title = item.respond_to?(:title) ? item.title : item.name
+          @page_keywords = item.respond_to?(:tag_list) ? item.tag_list : ""
+          @page_description = item.respond_to?(:description) ? item.description : ""
+        end
+      end
+    end
   private
     def page
       return params[:page] || 1

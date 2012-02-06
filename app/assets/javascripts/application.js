@@ -71,7 +71,11 @@ $(document).ready(function(){
   $('span[rel=popover]').twipsy({delayIn: 200});
   $('.category_layer_container').twipsy({placement: "left"});
   $('.right_twipsy').twipsy({placement: "right", html: true});
-  $('.ui-icon-extlink').attr('data-original-title',"Couche externe").twipsy({delayIn : 500});
+  $('.ui-icon-extlink').twipsy().
+                        on('hover', function(){
+                          $(this).parents('.category_layer_container').first().twipsy('hide');
+
+                        });
   //spinner pour ajax
   $('#wait').spin();
 

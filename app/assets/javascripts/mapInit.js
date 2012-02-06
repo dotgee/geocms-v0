@@ -10,9 +10,6 @@ $(document).ready(function() {
   function onSuccess(request){
     var format = new OpenLayers.Format.WMC();
     map =  format.read(request.responseText, {map: mapOptions});
-    var zoom = new OpenLayers.Control.PanZoomBar();
-    map.addControls([zoom]);
-    //map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
     $('#container').viewer('resizeChooser');
     $.each(map.layers,function(i,y) {
       y.uniqueID = y.params.LAYERS.replace(":", "_");
