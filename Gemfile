@@ -1,5 +1,5 @@
 require 'rbconfig'
-HOST_OS = Config::CONFIG['host_os']
+HOST_OS = RbConfig::CONFIG['host_os']
 source 'http://rubygems.org'
 gem 'rails', '~>3.1.0'
 gem 'mysql2'
@@ -45,8 +45,7 @@ gem 'slim'
 
 gem 'redis', "~> 2.2.0"
 gem "uuid", "~> 2.3.4"
-gem 'activeadmin', :path => 'vendor/git/active_admin'
-#, :git => "git://github.com/gregbell/active_admin.git"#">= 0.3.4"
+gem 'activeadmin', :path => 'vendor/git/active_admin'# , :git => "git://github.com/gregbell/active_admin.git"#">= 0.3.4"
 gem "meta_search" #    '>= 1.1.0.pre'
 #recherche solR
 gem "sunspot"
@@ -64,4 +63,5 @@ gem 'rails-translate-routes'
 gem 'rmagick'
 
 # gem 'gd2'
+gem "rack", "1.3.6"
 gem 'meta-tags', :require => 'meta_tags'
