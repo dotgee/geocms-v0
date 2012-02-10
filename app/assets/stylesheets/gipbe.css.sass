@@ -383,7 +383,7 @@ div#make-link-content
     margin-bottom: 10px
     color: #fff
     padding: 0 15px
-  h3
+  h3, h4
     -moz-border-radius: 0
     -webkit-border-radius: 0
     -khtml-border-radius: 0
@@ -394,6 +394,7 @@ div#make-link-content
     border: 0 none
     margin: 0 0 6px -11px
     &:hover, &.selected
+      padding-left: 5px
       background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 0 0 #0080cc
       color: #fff
 
@@ -421,13 +422,22 @@ div#make-link-content
         -o-border-radius: 0
         -khtml-border-radius: 0
         border-radius: 0
-        background: none transparent
         border: 0 none
-        line-height: 1.1em
-        height: 15px
+        padding-left: 15px
+        background: #FFF
+        line-height: 18px
+        height: 16px
+        &:hover, &.selected
+          background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 0 -1px #0080cc
+          color: #fff
+        .ui-icon
+          display: block
+          left: 1.5em
         a
           font-size: 0.8em
           padding: 0 0 0 1.8em
+          height: 16px
+          line-height: 16px
           &:hover
             text-decoration: underline
 

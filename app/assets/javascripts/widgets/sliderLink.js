@@ -92,11 +92,11 @@ $.widget("ui.sliderLink", {
     var self = this; 
     self._showArrow();
     self.panel.sliderPanel('show');
-    if (self.element.is('h3')){
+    //if (self.element.is('h3')){
       self.element.addClass('selected');
-    }else{
-      self.element.parent().prev('h3').addClass('selected');
-    }
+    //}else{
+    //  self.element.parent().prev('h3').addClass('selected');
+    //}
     self.visiblePanel = true;
   },
   _hidePanel: function(){

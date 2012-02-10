@@ -263,12 +263,13 @@ function addSharedControlers(map) {
   map.addControl(featureInfos);
 
   // Accordeon maison pour les sous categories
-  $('.right-menu h3').not('.parent').click(function(e) {
-      e.preventDefault();
-      $(".children:visible").not($(this).next()).hide("slow");
-      $(this).next().slideToggle();
-      return false;
-    }).next().hide();
+  //
+  $('.right-menu h3').click(function(e) {
+    e.preventDefault();
+    var t = $(this);
+    $('.right-menu h3.grand_parent').not(t).next(".children").find("h4:visible").not('.selected').slideToggle();
+    $(this).next(".children").find("h4").not(":visible").slideToggle();
+  });
 
   // Tabs bootstrap
   $('#tabs').tabs();
