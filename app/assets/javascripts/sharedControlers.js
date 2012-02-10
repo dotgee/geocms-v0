@@ -266,8 +266,7 @@ function addSharedControlers(map) {
   //
   $('.right-menu h3').click(function(e) {
     e.preventDefault();
-    var t = $(this);
-    $('.right-menu h3.grand_parent').not(t).next(".children").find("h4:visible").not('.selected').slideToggle();
+    $('.right-menu h3.grand_parent').next(".children").find("h4:visible").not('.selected').slideToggle();
     $(this).next(".children").find("h4").not(":visible").slideToggle();
   });
 
