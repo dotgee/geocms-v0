@@ -114,7 +114,7 @@ function addSharedControlers(map) {
       data: "wmc="+format.write(map),
       type: "POST",
       success: function(data){
-            var url = "http://geobretagne.fr/mapfishapp/?"+contextExportUrl+data;
+            var url = "http://geobretagne.fr/mapfishapp/?wmc="+contextExportUrl+data;
             window.open(url, "_blank");
       }
     });

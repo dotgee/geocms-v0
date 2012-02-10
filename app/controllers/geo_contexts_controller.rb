@@ -49,13 +49,16 @@ class GeoContextsController < ApplicationController
   def permalink
     @wmc = REDIS.get(params[:key])
     @wmc = Nokogiri::XML::Document.parse(@wmc)
+    doc = @wmc
     if params[:single_tile]
-      doc = @wmc
       doc.xpath("//xmlns:Extension/ol:singleTile", doc.namespaces.merge('ol' => 'http://openlayers.org/context')).each do |l|
         l.content = true
       end
-      @wmc = doc.to_xml
     end
+      doc.xpath("//xmlns:Layer", doc.namespaces.merge('ol' => 'http://openlayers.org/context')).each do |l|
+        l['queryable'] = "1"
+      end
+    @wmc = doc.to_xml
     render :xml => @wmc
   end
 
