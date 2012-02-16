@@ -41,6 +41,14 @@ $.widget("ui.viewer", {
                                                  credits: div.attr("credits"),
                                                  modelID: div.attr("model_id") 
                                                });
+          layer.events.on({"loadstart": function(){
+            $("#progress").show();
+            }
+          });
+          layer.events.register("loadend", layer, function(){
+            $("#progress").hide();
+          });
+          
 
           map.addLayer(layer);
           $("#legende").mustachu("legendeNodes",[layer]);
@@ -49,12 +57,6 @@ $.widget("ui.viewer", {
 
           div.attr('layer_id', layer.id);
 
-          layer.events.register("loadstart", layer, function(){
-            $("#progress").show();
-          });
-          layer.events.register("loadend", layer, function(){
-            $("#progress").hide();
-          });
 
         }else{
           layer.setVisibility(true);

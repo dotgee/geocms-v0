@@ -43,7 +43,9 @@ $.widget("ui.mustachu", {
                             "<a href='#' class='ui-icon-with-text btn-features' id='features_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-info'></span></a>"+
                             //shape
+                            "{{#false}}"+
                             "<a href='{{url}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{params.LAYERS}}' target='_blank' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
+                            "{{/false}}"+
                             //metadata
                             "{{#metadataLink}}"+
                             "<a target='_blank' href='{{metadataLink}}' class='ui-icon-with-text btn-metadatas' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
