@@ -91,7 +91,8 @@ $.widget("ui.categorySlider", {
     });
     self._updateParents();
     self._updateGrandParents();
-    self.element.find('.parent, .grand_parent').slideDown();
+    var listing = $('#layer_listing');
+    listing.find(' > .parent, > .grand_parent').slideDown();
     
   },
   destroy: function() {
