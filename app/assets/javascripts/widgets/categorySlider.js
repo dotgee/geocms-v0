@@ -93,7 +93,7 @@ $.widget("ui.categorySlider", {
     self._updateGrandParents();
     var listing = $('#layer_listing');
     listing.find(' > .parent, > .grand_parent').slideDown();
-    listing.find('.children .parent:visible').slideUp();
+    listing.find('.children .parent:visible').stop(true,true).slideUp();
     
   },
   destroy: function() {
