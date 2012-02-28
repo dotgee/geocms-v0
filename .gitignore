@@ -78,3 +78,4 @@ config/app.yml
 public/javascripts/*
 
 app/assets/javascripts/ckeditor/
+solr/
