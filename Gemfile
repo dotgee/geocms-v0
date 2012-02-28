@@ -1,5 +1,5 @@
 require 'rbconfig'
-HOST_OS = Config::CONFIG['host_os']
+HOST_OS = RbConfig::CONFIG['host_os']
 
 source 'http://rubygems.org'
 
