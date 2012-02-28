@@ -1,0 +1,11 @@
+development:
+  adapter: mysql2
+  database: geocms
+  login: geocms
+  password: geocms
+
+production:
+  adapter: mysql2
+  database: geocms
+  login: geocms
+  password: geocms
