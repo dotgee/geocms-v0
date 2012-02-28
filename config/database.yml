@@ -3,9 +3,11 @@ development:
   database: geocms
   login: geocms
   password: geocms
+  #socket: /tmp/mysql.sock
 
 production:
   adapter: mysql2
   database: geocms
   login: geocms
   password: geocms
+  #socket: /tmp/mysql.sock
