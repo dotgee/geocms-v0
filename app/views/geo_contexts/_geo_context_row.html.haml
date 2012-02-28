@@ -1,0 +1,15 @@
+.well.masonry{:class => cycle('odd','even')}
+  .content
+    .title
+      = link_to geo.title, geo
+    .content_value
+    - unless geo.tags.empty?
+      .content_value
+        %b
+          Mots cl&eacute;s :
+        - geo.tags.each do |tag|
+          = link_to tag.name, tag_path(tag)
+    .content_value
+      %b
+        Description :
+      = geo.description.html_safe

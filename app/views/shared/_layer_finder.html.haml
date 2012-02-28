@@ -1,0 +1,27 @@
+.accordion#accordion
+  - Taxon.themes.each do |t|
+    .accordion-group
+      .accordion-heading
+        - parent = t.children.any?
+        %h5{:class => parent ? "grand_parent" : "parent" }
+          = link_to "#collapse#{t.id}", :class => "accordion-toggle", :"data-toggle"=>"collapse" ,:"data-parent"=>"#accordion" do
+            %span
+              = t.name
+            %span.nb_layers
+              = "(#{parent ? t.children_layers_length : t.layers.length})"
+      .accordion-body.collapse{:id => "collapse#{t.id}"}
+        .accordion-inner
+          - if parent
+            %ul.nav.nav-tabs
+              - t.descendants.includes(:layers).each do |c|
+                %li
+                  = link_to "#tab#{c.id}", :"data-toggle"=>"tab" do
+                    %span
+                      = c.name
+                    %span.nb_layers
+                      = "(#{c.layers.length})"
+            - t.descendants.includes(:layers).each do |c|
+              .tab-pane.fade{:id => "tab#{c.id}"}
+                = render :partial => "shared/layers_list", :locals => { :layers => c.layers, :theme => c }  
+          - else
+            = render :partial => "shared/layers_list", :locals => { :layers => t.layers, :theme => t }  

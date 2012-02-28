@@ -1,0 +1,346 @@
+@import "active_admin/mixins"
+a, div
+  outline: none
+  &:link, &:visited, &:hover, &:active, &:focus
+    outline: none
+    outline-style: none
+    outline-color: none
+    outline-width: 0px
+    
+
+a:hover
+  text-decoration: none
+
+a:active
+  top: 1px
+  position: relative
+
+.subhead
+  margin: 40px 0px 15px 0px
+  background-color: #767D80
+  .inner
+    background: transparent image-url("grid_18px.png") top center
+    -webkit-box-shadow: inset 0 20px 30px rgba(0,0,0,.3)
+    -moz-box-shadow: inset 0 20px 30px rgba(0,0,0,.3)
+    padding: 26px 0 18px
+    .container, .container-fluid
+      h1
+        font-size: 40px
+        color: white
+        text-shadow: 0 1px 2px rgba(0, 0, 0, .5)
+.center
+  margin: auto
+
+form.signin
+  .remember_me
+    label
+      line-height: 28px
+    input[type=checkbox]
+      float: left
+      margin: 0px 10px 0px 0px
+      height: 28px
+
+
+div.tbar
+  clear: both
+  height: 40px
+  width: 120px
+  ul
+    margin: 0
+    background-color: #bfbfbf
+    li
+      background-color: #bfbfbf
+      height: 32px
+      width: 32px
+      margin: 0
+      padding: 4px
+      display: inline
+      float: left
+      &.first
+        border-radius: 4px 0 0 4px
+      &.last
+        border-radius: 0 4px 4px 0
+      a
+        background: #bfbfbf image-url("sprite-icons-32px.gif") top center
+        display: block
+        height: 32px
+        width: 32px
+        padding: 0 2px 0 0
+        text-indent: -9999px
+        outline: none
+
+        &.zoom
+          background: #bfbfbf image-url("sprite-icons-32px.gif") 0px 416px
+
+.fg-toolbar
+  margin: 0
+  padding: 0
+  overflow: hidden
+
+.ui-icon-with-text
+  padding: 3px
+  color: #1C94C4
+  background: #F6F6F6 image-url("jqueryui/ui-bg_glass_55_fbf9ee_1x400.png") 50% 50% repeat-x
+  border: 1px solid #CCC
+  margin: 0px 
+  display: block
+  float: left
+  line-height: 16px
+  font-weight: normal
+  .ui-icon
+    float: left
+  span
+    font-size: 12px
+    color: #1C94C4
+.ui-widget-header 
+  a.ui-icon-with-text
+    margin-left: 5px
+    &.first
+      margin-left: 0
+    
+
+.grippie 
+  background: #EEEEEE image-url("grippie.png") no-repeat scroll center 2px
+  border-color: #DDDDDD
+  border-style: solid
+  border-width: 0pt 1px 1px
+  cursor: s-resize
+  height: 9px
+  overflow: hidden
+
+.resizable-textarea textarea
+  display: block
+  margin-bottom: 0pt
+  height: 120px
+
+.close
+  opacity: 0.2
+
+.inputs
+  position: relative
+
+#layers_list_btn
+  float: right
+
+.row-actions
+  visibility: hidden
+
+tr
+  &:hover
+    .row-actions
+      visibility: visible
+
+table
+  &.listing
+    margin: 0px 10px
+  
+#progress
+  display: none
+  padding: 3px
+
+#wait
+  display: none
+  position: fixed
+  opacity: 0.5
+  z-index: 500
+.hidden
+  display: none
+.error-message
+
+.alert .ui-dialog-titlebar
+  display: none
+
+#realprint_btn
+  margin: 40px 10px
+  float: right
+
+.template
+  display: none
+
+#legende_container
+  position: relative
+  z-index: 99
+  bottom: 325px
+  left: 15px
+  width: 300px
+  height: 300px
+  margin: 0
+  overflow: auto 
+  display: none
+
+.legende-node
+  margin: 2px
+  border-bottom: 1px solid #E3E3E3
+  padding: 3px
+  &:last-child
+    border: none
+
+#selected
+  float: left
+  width: 20% 
+  overflow-y: auto
+  overflow-x: hidden
+  border-right: 1px solid #EBEBEB
+
+.node
+  display: inline-block
+  vertical-align: top
+  width: 190px
+  margin-left: 5px
+
+.node-controls
+  width: 100% 
+  height: 30px
+
+.node-controls-buttons
+  float: left
+  width: 115px
+  height: 30px
+
+.node-infos
+  width: 100%
+
+.selected-node
+  padding: 5px 0
+  border-bottom: 1px #DDD solid
+  .grippy
+    display: inline-block
+    background: image-url('grippy.png') repeat-y right
+    height: 45px
+    width: 10px
+    vertical-align: top
+    cursor: image-url("openhand.cur"), pointer 
+
+#selected .ui-icon-with-text
+  margin: 3px 3px 0 0
+  display: inline-block 
+  padding: 1px
+
+#selected input
+  display: inline-block 
+
+#selected p
+  display: inline-block 
+  width: 190px
+  font-size: 11px
+  margin: 0
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  &.credits
+    padding: 0 5px
+    font-style: italic
+
+#tag_cloud
+  width: 49%
+  text-align: center
+  float: left
+  margin: 15px 1% 1% 0
+  h3
+    font-size: 1.5em
+
+.tg1
+  font-size: 1em
+.tg2
+  font-size: 1.1em
+.tg3
+  font-size: 1.2em
+.tg4
+  font-size: 1.3em
+.tg5
+  font-size: 1.4em
+.tg6
+  font-size: 1.5em
+.tg7
+  font-size: 1.6em
+.tg8
+  font-size: 1.7em
+
+.qq-upload-drop-area
+  display: block
+  border: 1px solid #AED0EA
+  background: #DEEDF7 
+  padding: 5px
+  margin-top: 15px
+
+.qq-upload-list
+  display: none
+
+#dialog-confirm
+  display: none
+#meta_dialog
+  padding: 0
+  iframe
+    height: 100%
+    width: 100%
+    border: none 0px
+#header
+  ul.submenu
+    padding: 5px
+    border: 1px solid #CCCCCC
+    border-top: none
+    @include gradient(#FFFFFF,#D9D9D9)
+    top: 32px
+    left: 0px
+    margin-top: 0
+    z-index: 2000
+    position: absolute
+    &.open
+      display: block
+    li
+      display: block
+      text-align: left
+      background: none
+      padding: 5px 10px
+      &.divider
+        background-color: #CCC
+        border-color: #FFFFFF
+        margin: 0
+        padding: 0
+        height: 1px
+#wmc
+  display: none
+
+.btn-check
+  .ui-icon
+    background-image: image-url("checkbox_b.png")
+    height: 16px
+    background-position: 0 -15px
+  &.checked
+    .ui-icon
+      background-position: 0 0
+
+.accordion-inner
+  .modal
+    position: static
+    z-index: 100
+    margin: 0
+    width: 300px
+    height: 200px
+    margin: 5px
+    float: left
+    .modal-body
+      clear: right
+      text-align: justify
+    .layer_btn
+      float: right
+      width: 30px
+    .modal-header
+      min-height: 36px
+
+.accordion-heading
+  background-color: rgba(255,255,255,1)
+
+.dropdown-menu
+  li>a:hover
+    color: #ffffff
+    text-decoration: none
+    background: #0088cc
+  .active>a
+    color: #ffffff
+    text-decoration: none
+    background: #0088cc
+    &:hover
+      color: #ffffff
+      text-decoration: none
+      background: #0088cc

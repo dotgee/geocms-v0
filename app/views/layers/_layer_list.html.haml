@@ -1,0 +1,5 @@
+%ul.layer-container.clearfix
+  - layers.each_with_index do |layer, i|
+    = render :partial => "layers/layer_row", :locals => {:layer => layer }
+    - if i%2 !=0
+      .clear

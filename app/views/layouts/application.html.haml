@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Dotgee - Geocms
+    = stylesheet_link_tag    "application"
+    = stylesheet_link_tag    "global"
+    = yield :stylesheets
+    = include_gon
+    = javascript_include_tag Rails.env == "production" ? "javascript_configuration" : "javascript_configuration_dev"
+    = javascript_include_tag "application"
+    = yield :javascripts
+    = csrf_meta_tags
+    = auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})
+  %body
+    #global.project-header
+      #content.chosen_thematic
+        = yield
+    #meta_dialog
+      %iframe.content
+    #dialog-confirm.modal.hide.fade
+      .modal-header
+        %a{:href => "#", :class => "close", :"data-dismiss" =>"modal"} x
+        %h3 Suppression de la carte 
+      .modal-body
+        %p
+          Voulez-vous vraiment supprimer cette couche de la carte ?
+      .modal-footer
+        %a{:class => "btn primary"} Confirmer
+        %a{:class => "btn secondary"} Annuler
+    #modal-feature.modal.hide.fade
+      .modal-header
+        %a{:href => "#", :class => "close", :"data-dismiss" =>"modal"} x
+        %h3 Affichage des informations 
+      .modal-body
+        %p

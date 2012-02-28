@@ -1,0 +1,13 @@
+- content_for :javascripts do
+  = javascript_include_tag "jquery/jquery.tablesorter.min.js"
+  = javascript_include_tag :capabilities
+
+= paginate @results
+.table_tools
+  %ul.scopes.table_tools_segmented_control
+    %li.scope{:class => params[:wms_filter] ? '' : 'selected' }
+      = link_to "Sans filtre", list_capabilities_admin_data_source_path(params[:id]), :class => "table_tools_button "
+    %li.scope{:class => params[:wms_filter] ? 'selected' : '' }
+      = link_to "Filtre WMS url", list_capabilities_admin_data_source_path(params[:id], :wms_filter => true), :class => "table_tools_button "
+= render :partial => "metadatas_list"
+

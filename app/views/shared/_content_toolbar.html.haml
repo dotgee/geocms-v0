@@ -1,0 +1,48 @@
+.fg-toolbar
+  .fg-container
+    %a{:href => "http://www.dotgee.fr", :class => "fg-button"}
+      = image_tag("dotgee.png") 
+    .fg-buttonset
+      .buttons-container
+        %a#controls_btn.buttonset.activable.active.qh{:href => "#", :"data-control" => "control", :"data-original-title" => "Afficher les contrôles", :rel => "tooltip"}
+          %span
+        %a#basket_btn.buttonset.activable{:href => "#", :"data-control" => "catalogue", :"data-original-title" => "Afficher le catalogue", :rel => "tooltip"}
+          %span
+        %a#legende_btn.buttonset.activable{:href => "#", :"data-control" => "legende", :"data-original-title" => "Afficher la légende", :rel => "tooltip"}
+          %span
+        %a#world_btn.buttonset{:href => "#", :"data-control" => "world", :"data-original-title" => "Revenir à la position initiale", :rel => "tooltip"}
+          %span
+        %a#zoom_btn.buttonset.activable.uC{:href => "#", :measure_type => "zoomin", :"data-original-title" => "Zoomer", :rel => "tooltip"}
+          %span
+        %a#square_btn.buttonset.activable.uC{:href => "#", :measure_type => "polygon", :"data-original-title" => "Mesurer une surface", :rel => "tooltip"}
+          %span
+        %a#print_btn.buttonset{:href => "#", :"data-control" => "print", :"data-original-title" => "Imprimer la carte", :rel => "tooltip"}
+          %span
+        %a#save_btn.buttonset{:href => "#", :"data-control" => "save", :"data-original-title" => "Sauvegarder la carte", :rel => "tooltip"}
+          %span
+        %a#upload_btn.buttonset.sh{:href => "#", :"data-control" => "load", :"data-original-title" => "Charger une carte", :rel => "tooltip"}
+          %span
+      .search-form
+        %input{:type => "text", :placeholder => "Se rendre sur ...", :id => "btn-geoname"}
+
+#save_form.modal.hide.fade
+  .modal-header
+    %a{:href => "#", :class => "close", :"data-dismiss" =>"modal"} x
+    %h3 Sauvegarder ma carte
+  .modal-body
+    %p
+    %form
+      .clearfix
+        %label{:for => "map_name"} Nom* : 
+        .input
+          %input.xlarge{ :type => "text", :id => "map_name"}
+  .modal-footer
+    %a{:class => "btn primary"} Sauvegarder
+    %a{:class => "btn secondary"} Annuler
+
+#load_form.modal.hide.fade
+  .modal-header
+    %a{:href => "#", :class => "close", :"data-dismiss" =>"modal"} x
+    %h3 Charger une carte
+  .modal-body
+    %input{ :type => "hidden", :id => "authenticity_token", :value => "#{form_authenticity_token}"}

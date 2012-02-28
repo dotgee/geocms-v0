@@ -1,0 +1,10 @@
+#search_container.breadcrumb
+  .search_form.clearfix
+    / %h3 Rechercher parmi les = Layer.published.count couches
+    = semantic_form_for(:search, :url => search_layers_path) do |f|
+      = f.input :q, :input_html => { :class => "span6"}, :label_html => { :class => "hidable_label"},:label => params[:search].nil? ? "Rechercher parmi les #{Layer.published.count} couches" : params[:search][:q]
+      = f.submit t(:search), :class => ""
+  #tag_cloud
+    - tag_cloud(Layer.published.tag_counts.limit(30).limit(30).order("taggings.tags_count DESC").all.shuffle, %w(tg1 tg2 tg3 tg4 tg5 tg6 tg7 tg8)) do |tag, css_class| 
+      = link_to "#{tag.name}(#{tag.count})", tag_path(tag), :class => css_class 
+  .clear

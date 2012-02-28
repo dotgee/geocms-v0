@@ -1,0 +1,62 @@
+en:
+  activerecord:
+  time:
+    formats:
+      long: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%Y %H:%M"
+  date:
+    formats:
+      long: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%Y %H:%M"
+  devise:
+    sessions:
+      admin_user:
+        signed_in: Bienvenue
+      user:
+        signed_in: "Connexion r&eacute;ussie."
+  new_layer: "Nouvelle couche" 
+  new_geo_context: "Nouveau projet"
+  views:
+    pagination:
+      previous: "&larr; Pr&eacute;c&eacute;dent"
+      next: "Suivant &rarr;"
+      truncate: "..."
+  active_admin:
+    dashboard: Tableau de bord
+    dashboard_welcome:
+      welcome: Bienvenue dans l'administration
+      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+    view: "Voir"
+    edit: "Modifier"
+    delete: "Supprimer"
+    delete_confirmation: Etes vous certain de vouloir supprimer?
+    new_model: "Nouveau %{model}"
+    edit_model: "Modification %{model}"
+    delete_model: "Suppression %{model}"
+    details: "%{model} Details"
+    cancel: "Annuler"
+    empty: "Vide"
+    previous: "Pr&eacute;c&eacute;dent"
+    next: "Suivant"
+    download: "T&eacute;l&eacute;chargement"
+    has_many_new: "Ajouter %{model}"
+    has_many_delete: "Suppresion"
+    filter: "Filtre"
+    clear_filters: "Supprimer filtre"
+    search_field: "Recherche %{field}"
+    equal_to: égal à
+    greater_than: "Plus grand que"
+    less_than: "Plus petit que"
+    main_content: "Please implement %{model}#main_content to display content."
+    logout: Déconnexion
+    sidebars:
+      filters: "Filtres"
+    pagination:
+      empty: "Aucun %{model} trouv&eacute;"
+      one: "Displaying <b>1</b> %{model}"
+      one_page: "Displaying <b>all %{n}</b> %{model}"
+      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+    any: "Tous"
+    blank_slate:
+      content: "Aucun"
+      link: Créer

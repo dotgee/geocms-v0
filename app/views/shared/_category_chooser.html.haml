@@ -1,0 +1,34 @@
+%h2 Filtres
+.filters
+  - Filter.all.each do |f|
+    %span{ :rel => "popover", :"data-original-title" => f.libelle}
+      = check_box_tag "filter", f.name.downcase
+      = "#{f.name.slice(0).upcase} (#{f.layers.published.count})"
+  .clear
+  %a{ :href => "#", :id => "removeFilters" }
+    Supprimer les filtres
+%h2 
+  Th&egrave;mes
+  
+.right-menu#layer_listing
+  - Taxon.all.each do |t|
+    - parent = t.children.any?
+    %h3{:class => parent ? "grand_parent" : "parent" }
+      = link_to '#' do
+        %span
+          = t.name
+        %span.nb_layers
+          = "(#{parent ? t.children_layers_length : t.layers.length})"
+
+    - if parent
+      .children
+        - t.descendants.includes(:layers).each do |c|
+          %h4.parent
+            = link_to '#' do
+              %span
+                = c.name
+              %span.nb_layers
+                = "(#{c.layers.length})"
+          = render :partial => "shared/layers_list", :locals => { :layers => c.layers, :theme => c }  
+    - else
+      = render :partial => "shared/layers_list", :locals => { :layers => t.layers, :theme => t }  

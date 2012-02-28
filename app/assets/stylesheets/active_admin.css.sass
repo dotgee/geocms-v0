@@ -1,0 +1,96 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins"
+@import "active_admin/base"
+// To customize the Active Admin interfaces, add your
+// styles here:
+//@import "bootstrap"
+//@import "_bootstrap_hacks"
+@import "active_admin_boot"
+@import "jqueryui"
+@import "jquery/jquery.multiselect"
+
+.grippie
+  background: #EEEEEE image-url("grippie.png") no-repeat scroll center 2px
+  border-color: #DDDDDD
+  border-style: solid
+  border-width: 0pt 1px 1px
+  cursor: s-resize
+  height: 9px
+  overflow: hidden
+
+.resizable-textarea textarea
+  display: block
+  margin-bottom: 0pt
+  height: 120px
+
+ul
+  list-style: none
+.pagination
+  ul
+    list-style: none
+    li
+      float: left
+.cke_1
+  float: left
+
+form fieldset > ol > li
+  clear: both
+.searchLi
+  padding: 0
+
+.nowrap
+  white-space: nowrap
+  text-align: center
+
+a.btn
+  text-decoration: none
+form fieldset.buttons li 
+  float: none
+  display: inline
+legend
+  &.label
+    background-color: inherit
+
+.center
+  text-align: center
+
+li.hidden
+  display: none
+\#timepicker
+.ui-timepicker-div .ui-widget-header  
+  margin-bottom: 8px
+.ui-timepicker-div dl
+  text-align: left
+.ui-timepicker-div dl dt 
+  height: 25px
+  margin-bottom: -25px
+.ui-timepicker-div dl dd 
+  margin: 0 10px 10px 65px
+.ui-timepicker-div td 
+  font-size: 90%
+.ui-tpicker-grid-label 
+  background: none
+  border: none
+  margin: 0
+  padding: 0
+.tab0
+  font-size: 14px
+  font-weight: bold
+.tab1
+  margin-left: 10px
+  font-size: 13px
+.tab2
+  margin-left: 20px
+  font-size: 12px
+.tab3
+  margin-left: 30px
+  font-size: 11px
+
+#modal_export
+  pre
+    padding: 10px
+    font-size: 10px
+    background: white
+.page_content
+  height: 150px
+  overflow-y: scroll

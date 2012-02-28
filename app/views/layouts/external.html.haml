@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag    "application"
+    = stylesheet_link_tag    "gipbe"
+    = stylesheet_link_tag     "external"
+    =# yield :stylesheets
+    = javascript_include_tag Rails.env == "production" ? "javascript_configuration" : "javascript_configuration_dev"
+    = javascript_include_tag "application"
+    = yield :javascripts
+    = csrf_meta_tags
+    =# auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})
+  %body
+    #content.chosen_thematic
+      = yield
+    

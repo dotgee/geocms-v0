@@ -1,0 +1,15 @@
+= render :partial => 'shared/content_toolbar'
+#page-list
+  .tile-page#map_wrapper
+    #selected
+    #map_container
+      #map
+      #legende_container.modal
+        #legende.modal-body
+  .tile-page#layer-finder
+    #finder_container
+      = render :partial => 'shared/layer_finder'
+= link_to 'wmc', @geo_context.wmc.url, :id => "wmc"
+- content_for :javascripts do 
+  = javascript_include_tag "mapInit"
+  = javascript_include_tag "sharedControlers"

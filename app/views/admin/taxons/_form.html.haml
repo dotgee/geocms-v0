@@ -1,0 +1,6 @@
+= semantic_form_for [:admin, @taxon] do |f|
+  = f.inputs "Classement" do
+    = f.input :name
+    = f.input :libelle
+    = f.input :parent, :collection => options_for_select(Taxon.all_themes_select) , :include_blank => false
+  = f.buttons

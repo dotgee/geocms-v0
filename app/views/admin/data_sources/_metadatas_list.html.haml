@@ -1,0 +1,62 @@
+- if @metadatas.empty?
+  .alert-message.info
+    %p Aucune couche disponible
+- else
+  %h3
+    = @search.result[:total]
+    r&eacute;sultats
+
+  - @metadatas.sort_by!{|l| l.title}
+  = semantic_form_for :import, :url => mass_import_admin_data_source_path(@data_source) do |f|
+    = hidden_field_tag :page, params[:page]
+    %table.sortable.index_table
+      %thead
+        %tr
+          %th.nowrap
+            %div
+              Importer ?
+            %div.center
+              = check_box_tag 'check_all'
+          %th Informations
+          %th Description
+
+      %tbody
+        - @metadatas.each do |l|
+          - exist =  l.layer.nil? ? false : @existing_layers.include?( l.layer.name)
+          - css_class = cycle('odd', 'even')
+
+          %tr{:class => exist ? "exist #{css_class}" : "#{ css_class } not_exist"}
+            %td.nowrap
+              %div
+                = check_box_tag "import[layer_name][]", l.metadata_identifier
+              %div
+                %span.label_boot{:class => exist ? "success" : "warning"}
+                  - if exist
+                    Pr&eacute;sente
+                  - else
+                    Non import&eacute;e
+              - if !exist
+                %div
+                  = link_to 'Importer', url_for({:controller => "admin/data_sources", :action => "import", :id => params[:id], :metadata_identifier => l.metadata_identifier}), :class => "import_layer"
+            %td
+              .title
+                %b
+                  Titre :
+                = l.title
+              .tags
+                %b
+                  Mots cl&eacute;s :
+                = l.tag_list
+            %td
+              .desc
+                %b Description
+                = l.description
+              .rights
+                %b Droits
+                = l.rights
+              .source
+                %b
+                  Source
+                = l.source
+    .input
+      = f.submit 'importer', :class => 'btn primary'

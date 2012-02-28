@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %title Geocms
+    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag    "gipbe", :media => "all" 
+    = yield :stylesheets
+    = javascript_include_tag Rails.env == "production" ? "javascript_configuration" : "javascript_configuration_dev"
+    = javascript_include_tag "application"
+    = yield :javascripts
+    = csrf_meta_tags
+  %body
+    #global.project-header
+      #header
+        %h1
+          %span
+            = title
+          %a{ :href => root_path, :title => "Accueil"}
+            = image_tag "gipbe/logo-bretagne-environnement.jpg"
+        = yield :header
+      .breaker
+      -# if current_user
+      =# render :partial => "shared/admin_menu"
+      #wait
+      #content.chosen_thematic
+        = yield
+      #footer
+        #footerContent
+          = yield :footer

@@ -1,0 +1,8 @@
+- layers.each_with_index do |l, i|
+  .modal
+    = content_tag "div", :class => "modal-header #{l.name.gsub(":","_")}" , :data => {:layer => l} do
+      %a.layer_btn.buttonset.activable.qh.sh{:href => "#"}
+        %span
+      %h6=l.title
+    .modal-body
+      %p=l.description

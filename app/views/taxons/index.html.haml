@@ -1,0 +1,28 @@
+%h1 Liste Cat&eacute;gories
+
+%table
+  %tr
+    %th Nom
+    %th Parent
+    %th Left
+    %th Right
+
+  - @taxons.each do |taxon|
+    %tr
+      %td
+        .name
+          = taxon.name
+        .row-actions
+          = link_to 'Voir', taxon
+          \|
+          = link_to 'Modifier', edit_taxon_path(taxon)
+          \|
+          = link_to 'Supprimer', taxon, :confirm => 'Etes vous certain?', :method => :delete
+      %td
+        = taxon.parent.name unless taxon.parent.nil?
+      %td= taxon.left
+      %td= taxon.right
+
+%br
+.actions
+  = link_to 'Nouvelle Cat&eacute;gorie'.html_safe, new_taxon_path, :class => "btn primary"

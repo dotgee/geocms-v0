@@ -1,0 +1,8 @@
+.no_visualisor
+  .cms
+    = render :partial => "search_form"
+    = paginate @results
+    %h4
+      %span.count= pluralize(@results.total, 'r&eacute;sultat').html_safe
+      %span.pages Page #{@results.hits.current_page} de #{@results.hits.total_pages} 
+    = render :partial => "layer_list", :locals => {:layers => @results.results}

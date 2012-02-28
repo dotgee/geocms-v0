@@ -1,0 +1,12 @@
+.no_visualisor.cms
+  = render :partial => "layers/search_form"
+  .clear
+  %h2 
+    Th&egrave;me 
+    = @taxon.name
+  .clear
+  = paginate @layers
+  .clear
+  = render :partial => "layers/layer_list", :locals => { :layers => @layers }
+  .clear
+  = paginate @layers

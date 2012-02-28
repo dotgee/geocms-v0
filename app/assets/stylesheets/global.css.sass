@@ -1,0 +1,386 @@
+// Style global
+.clear
+  clear: both
+  line-height: 0
+  margin: 0
+  padding: 0
+// CLEARFIX
+
+.clearfix
+  &:after
+    content: "."
+    display: block
+    clear: both
+    visibility: hidden
+    line-height: 0
+    height: 0
+  display: inline-block
+
+html[xmlns] .clearfix
+  display: block
+
+* html .clearfix
+  height: 1%
+
+// END CLEARFIX
+
+
+#global
+  width: 100% 
+  margin: 0 
+  -moz-box-shadow: 0 0 10px #888
+  -webkit-box-shadow: 0 0 10px #888
+  box-shadow: 0 0 10px #888
+  background: #FFFFFF
+
+.breaker
+  clear: both
+  line-height: 1px
+
+a
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+// Style du contenu
+
+#content
+  background: #fff
+
+#page-list
+  margin: 0
+  padding: 0
+  width: 100%
+  height: 100%
+  position: relative
+  overflow: hidden
+
+.tile-page
+  position: absolute
+  overflow: auto
+  height: 100%
+  width: 100%
+  margin-top: 40px
+
+#map_wrapper
+  
+
+#map_container
+  margin-left: 20% 
+
+#finder_container
+  padding: 10px
+
+#layer-finder
+  left: 100%
+  width: 80%
+#map
+  position: relative
+  overflow: hidden
+  margin-bottom: 0
+
+#footer
+  z-index: 1005
+  background-image: linear-gradient(top, rgb(242,242,242) 26%, rgb(222,222,222) 82%)
+  background-image: -o-linear-gradient(top, rgb(242,242,242) 26%, rgb(222,222,222) 82%)
+  background-image: -moz-linear-gradient(top, rgb(242,242,242) 26%, rgb(222,222,222) 82%)
+  background-image: -webkit-linear-gradient(top, rgb(242,242,242) 26%, rgb(222,222,222) 82%)
+  background-image: -ms-linear-gradient(top, rgb(242,242,242) 26%, rgb(222,222,222) 82%)
+
+  bottom: 0
+  position: fixed
+  width: 100%
+  height: 40px
+
+#footer-border
+  background: -webkit-linear-gradient(left, rgba(150, 150, 150, 0.2), rgba(150, 150, 150, 0.3) 20%, rgba(150, 150, 150, 0.3) 80%, rgba(150, 150, 150, 0.2))
+  height: 1px
+
+ul#dot-list
+  margin: 0 auto
+  width: 250px
+  list-style: none
+  li
+    float: left
+
+.dot
+  box-sizing: border-box
+  cursor: pointer
+  max-width: 90px
+  outline: none
+  text-align: left
+  -webkit-box-flex: 1
+  -webkit-margin-end: 10px
+  -webkit-padding-start: 2px
+  -webkit-transition: max-width 0.25s, -webkit-margin-end 0.25s
+  .selection-bar
+    border-bottom: 5px solid
+    border-color: rgba(0, 0, 0, 0.1)
+    height: 10px
+    -webkit-transition: border-color 0.2s
+  &.activated .selection-bar
+    border-color: #7F7F7F
+  input
+    background-color: transparent
+    text-align: center
+    padding: 0
+    cursor: inherit
+    font-size: 8pt
+    font-weight: bold
+    width: 90%
+    -webkit-appearance: caret
+    -moz-appearance: caret
+    -webkit-transition: color 0.2s
+    -moz-transition: color 0.2s
+
+
+// HEADER STYLE 
+
+.fg-toolbar
+  position: fixed
+  top: 0
+  width: 100% 
+  height: 40px
+  z-index: 1010
+  background: #F1F1F1
+  clear: both
+  border-top: 1px solid #D2D2D2
+  border-bottom: 1px solid #D2D2D2
+  .fg-container
+    height: 40px
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+    background: transparent
+    margin: 0 auto
+    position: relative
+    width: 960px
+    .fg-button
+      float: left
+      width: 200px 
+      height: 40px
+      font-size: 12px
+      margin: 0
+      padding: 7px 0
+      line-height: 2em
+      text-align: center
+      border-right: 1px solid #D2D2D2
+      color: #333
+      &:hover
+        background: #D2D2D2
+        color: #333
+        text-decoration: none
+        border-right: 1px solid darken(#D2D2D2, 10%)
+    .fg-buttonset
+      height: 40px
+      float: left
+      .buttons-container
+        display: inline-block
+        position: relative
+        margin: 5px 0 0 40px
+.buttonset
+  width: 44px
+  background-color: #F3F3F3
+  background-image: -webkit-linear-gradient(top,#f5f5f5,#f3f3f3)
+  background-image: -moz-linear-gradient(top,#f5f5f5,#f3f3f3)
+  background-image: -ms-linear-gradient(top,#f5f5f5,#f3f3f3)
+  background-image: -o-linear-gradient(top,#f5f5f5,#f3f3f3)
+  background-image: linear-gradient(top,#f5f5f5,#f3f3f3)
+  border: 1px solid #D9D9D9
+  height: 27px
+  margin-right: -4px
+  text-align: center
+  position: relative
+  display: inline-block
+  vertical-align: middle
+  outline: none
+  text-decoration: none
+  cursor: pointer
+  &.active
+    -webkit-box-shadow: inset 0 1px 5px #ccc
+    -moz-box-shadow: inset 0 1px 5px #ccc
+    box-shadow: inset 0 1px 5px #ccc
+    background-color: #E0E0E0
+    background-image: -webkit-linear-gradient(top,#eee,#e0e0e0)
+    background-image: -moz-linear-gradient(top,#eee,#e0e0e0)
+    background-image: -ms-linear-gradient(top,#eee,#e0e0e0)
+    background-image: -o-linear-gradient(top,#eee,#e0e0e0)
+    background-image: linear-gradient(top,#eee,#e0e0e0)
+    border-color: #BBB
+    span
+      background-position: 0 -18px !important
+  &.qh
+    border-radius: 2px 0 0 2px
+    -moz-border-radius: 2px 0 0 2px
+    -webkit-border-radius: 2px 0 0 2px
+  &.sh
+    border-radius: 0 2px 2px 0
+    -moz-border-radius: 0 2px 2px 0
+    -webkit-border-radius: 0 2px 2px 0
+  span
+    height: 18px
+    cursor: pointer
+    margin-top: 5px
+    width: 18px
+    display: inline-block
+  &#save_btn
+    span
+      background: url("diskette.png") no-repeat top
+  &#legende_btn
+    span
+      background: url("dropper.png") no-repeat top
+  &#basket_btn
+    span
+      background: url("basket.png") no-repeat top
+  &#print_btn
+    span
+      background: url("print2.png") no-repeat top
+  &#zoom_btn
+    span
+      background: url("zoom.png") no-repeat top
+  &#world_btn
+    span
+      background: url("world.png") no-repeat top
+  &#controls_btn
+    span
+      background: url("gear.png") no-repeat top
+  &#upload_btn
+    span
+      background: url("upload2.png") no-repeat top
+  &#square_btn
+    span
+      background: url("ruler_square2.png") no-repeat top
+  &.layer_btn
+    span
+      background: url("add.png") no-repeat top
+  &:hover
+    border-color: #BBB
+    span
+      background-position: 0 -18px !important 
+        
+#search_container
+  margin-top: -2px
+
+.search-form
+  display: inline-block
+  vertical-align: top
+  margin-left: 15px
+  margin-top: 5px
+  input
+    height: 19px
+    color: #333
+
+.layer-container, .geo-container
+  border-bottom: 1px solid #ccc
+  margin: 0 0 15px
+  padding: 0 0 15px
+  width: 100%
+  .left-part, .right-part
+    float: left
+    width: 48%
+    margin: 0 2% 0 0
+  li
+    margin: 0
+    width: 47%
+    float: left
+  .well
+    padding: 1%
+    margin-bottom: 7px
+    &.even
+      float: right
+  .content
+    margin: 0 0 0 170px
+  .image
+    width: 150px
+    height: 100px
+    background: #ccc
+    border: 1px solid #666
+    float: left
+    margin: 0 10px 10px
+  .title
+    a
+      color: #39F
+      text-transform: uppercase
+      font-weight: bold
+    
+.geo-container
+  .content
+    margin-left: 0
+  .well.even
+    float: left
+  .masonry
+    width: 30%
+    padding: 10px
+    float: left
+    margin: 10px
+.no_visualisor
+  padding: 0 1%
+
+.btn
+  padding: 2px 14px 4px
+
+// STYLE POUR LES PAGES CMS
+
+.cms
+  margin: 0 auto
+  padding: 0 20px
+  h1
+    color: #39f
+    font-size: 180%
+    font-weight: normal
+    margin: 2% 0
+  
+  h2
+    color: #000
+    font-size: 160%
+    font-weight: bold
+
+  h5
+    color: #000
+    font-size: 1.1em
+    font-weight: bold
+
+  p
+    font-size: 110%
+    line-height: 16px
+
+  a
+    color: #39f
+
+  ul, ol
+    li
+      color: #000
+
+#removeFilters
+  display: none
+
+.paginate-container
+  width: 100%
+
+#contact_form
+  h2
+    color: #39F
+    font-size: 24px
+
+  input, textarea
+    line-height: 24px
+    font-size: 18px
+    height: 24px
+    padding: 5px
+  label
+    font-size: 14px
+    line-height: 24px
+  textarea
+    height: 200px
+  abbr
+    float: right
+
+#dotgee
+  height: 26px
+  width: 90px
+  background: url("dotgee.jpg") no-repeat
+  position: absolute
+  bottom: 5px
+  left: 5px
+#meta_dialog
+  display: none

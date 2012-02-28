@@ -1,0 +1,6 @@
+javascripts:
+  app:
+    - public/javascripts/*.js
+stylesheets:
+  app:
+    - public/stylesheets/*.css

@@ -1,0 +1,14 @@
+- content_for :javascripts do
+  = javascript_include_tag :mansory
+  :javascript
+    $(document).ready(function(){
+      $('.geo-container').masonry({
+        itemSelector: ".well"
+      });
+    });
+
+
+          
+.geo-container.clearfix
+  - @geo_contexts.each_with_index do |geo, i|
+    = render :partial => "geo_contexts/geo_context_row", :locals => {:geo => geo }

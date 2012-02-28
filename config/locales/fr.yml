@@ -1,0 +1,160 @@
+fr:
+  simple_form:
+    labels:
+      contact:
+        last_name: Nom
+        first_name: Pr&eacute;nom
+        message: Message
+
+  formtastic:
+    actions: 
+      create: "Ajouter"
+      update: "Modifier"
+    labels:
+    titles:
+    labels:
+    hints:
+  activerecord:
+    models:
+    errors:
+      messages:
+        confirmation: "Vous devez confirmer %{attribute}"
+        blank: "Ne peut pas &ecirc;tre vide"
+        too_short: "Trop court" 
+      models:
+        admin_user:
+          attributes:
+            email:
+              taken: "Email d&eacute;j&agrave; utilis&eacute;"
+            password:
+    attributes:
+      layer:
+        wms_url: Url WMS
+        name: Nom
+        title: Titre
+        published: "Publi&eacute;"
+        filters: Filtres
+        tag_list: "Mots cl&eacute;s"
+        external: "Couche externe"
+        theme_ids: "Th&egrave;mes"
+      contact:
+        last_name: "Pr&eacute;nom"
+      admin_user:
+        password: "Mot de passe"
+        remember_me: Se souvenir de moi
+        first_name: Prenom
+        last_name: Nom
+        password_confirmation: Confirmation mot de passe
+        role: R&ocirc;le
+
+  time:
+    formats:
+      long: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%Y %H:%M"
+  date:
+    formats:
+      long: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%Y %H:%M"
+  devise:
+    failure:
+      unauthenticated: Authentification requise
+      already_authenticated: Deja authentifie
+    sessions:
+      admin_user:
+        signed_in: Bienvenue
+      user:
+        signed_in: "Connexion r&eacute;ussie."
+  views:
+    pagination:
+      previous: "&larr; Pr&eacute;c&eacute;dent"
+      next: "Suivant &rarr;"
+      truncate: "..."
+  active_admin:
+    scopes:
+      published: "En lignes"
+      drafts: En attente
+    dashboard: Tableau de bord
+    dashboard_welcome:
+      welcome: Bienvenue dans l'administration
+      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+    view: "Voir"
+    edit: "Modifier"
+    delete: "Supprimer"
+    delete_confirmation: Etes vous certain de vouloir supprimer?
+    new_model: "Ajouter %{model}"
+    edit_model: "Modification %{model}"
+    delete_model: "Suppression %{model}"
+    update_model: "Modifier %{model}"
+    details: "%{model} Details"
+    cancel: "Annuler"
+    empty: "Vide"
+    previous: "Pr&eacute;c&eacute;dent"
+    next: "Suivant"
+    download: "T&eacute;l&eacute;chargement"
+    has_many_new: "Ajouter %{model}"
+    has_many_delete: "Suppresion"
+    filter: "Filtre"
+    clear_filters: "Supprimer filtre"
+    search_field: "Recherche %{field}"
+    equal_to: égal à
+    greater_than: "Plus grand que"
+    less_than: "Plus petit que"
+    main_content: "Please implement %{model}#main_content to display content."
+    logout: Déconnexion
+    sidebars:
+      filters: "Filtres"
+    pagination:
+      empty: "Aucun %{model} trouv&eacute;"
+      one: "Displaying <b>1</b> %{model}"
+      one_page: "Displaying <b>all %{n}</b> %{model}"
+      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+    any: "Tous"
+    blank_slate:
+      content: "Aucun"
+      link: Créer
+  send_message: "Envoyer le message"
+  support:
+    array:
+      two_words_connector: " et "
+  search: "Rechercher"
+  tag: "Mot cl&eacute;"
+  tags: "Mots cl&eacute;s"
+
+  #traduction formulaire
+  helpers:
+    submit:
+      update: "Modifier"
+      create: "Ajouter"
+      admin_user:
+        create: Ajouter Administrateur
+  layer: Couche
+  layers: Couches
+  data_source: Source de donn&eacute;e
+  taxon: Th&eacute;me
+  admin_user: Administrateur
+  geo_contexts: Projet
+  filter: Filtre
+  attributes:
+    filter: Filtre
+    rights: Droits
+    publication_date: Date de publication
+    keywords: Mots cles
+    metadata_url: Url serveur metadonnee
+    metadata_identifier: Identifiant metadonnee
+    data_source: Source de donnee
+    content: Contenu
+    taxon: Theme
+    wmc_name: Nom WMC
+    published: Publie?
+    updated_at: Date de modification
+    modification_date: Date de modification
+    created_at: Date de creation
+    title: Titre
+    name: Nom
+    libelle: Libelle
+  sign_in: Connexion
+  login: Connexion
+  lost_password: Mot de passe perdu?
+  reset_password: Reinitiliser mon mot de passe
+
+
