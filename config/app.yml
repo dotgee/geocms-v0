@@ -1,0 +1,5 @@
+development:
+  sunspot_on: false #turn to true when sunspot and tomcat are configured
+
+production:
+  sunspot_on: false
