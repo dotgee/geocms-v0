@@ -2,7 +2,7 @@ h1. Geocms
 
 h2. Dependencies
 
-* rvm (https://rvm.beginrescueend.com/)
+* rvm ([https://rvm.beginrescueend.com/])
 
 
 h2. Installing the Application
