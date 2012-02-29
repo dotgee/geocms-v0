@@ -9,8 +9,8 @@ gem 'mysql2'
 group :assets do
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
-  gem 'compass_twitter_bootstrap'
-  gem "compass", "~> 0.12.alpha.0", :group => :development
+  #gem 'compass_twitter_bootstrap'
+  #gem "compass", "~> 0.12.alpha.0", :group => :development
 end
 
 group :test do
@@ -50,7 +50,7 @@ gem "meta_search"
 #gem "sunspot_rails"
 
 gem "mustache"
-gem "ckeditor", "3.7.0.rc1"
+gem "ckeditor", "3.7.0.rc3"
 gem "curb"
 
 gem "acts_as_list"

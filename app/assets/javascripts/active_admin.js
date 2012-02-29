@@ -5,7 +5,6 @@
 //= require jquery/jquery.multiselect.js
 //= require bootstrap.min
 //= require j.autoresize
-//= require admin/layers
 //= require timepicker
 
 $(function(){

@@ -1,4 +1,3 @@
-var openLayersProxy = "http://cartographie.gipbe.dotgee.fr//proxy.php?url=";
-var contextExportUrl = "http://cartographie.gipbe.dotgee.fr/gc/"; 
-var gipbeCartoGraphy = "http://cartographie.gipbe.dotgee.fr/geoserver/wms";
-var fondCarteName = 'region-bretagne_region_2154';
+var openLayersProxy = "http://geocms.devel.dotgee.fr/proxy.php?url=";
+var contextExportUrl = "http://geocms.devel.dotgee.fr/gc/"; 
+var gipbeCartoGraphy = "http://geocms.devel.dotgee.fr/geoserver/wms";

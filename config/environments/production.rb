@@ -45,16 +45,6 @@ Geocms::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
    config.assets.precompile += %w( 
-                                  jquery/jquery.multiselect.min.js 
-                                  jquery/multiselectInit.js 
-                                  jquery/jquery.multiselect.css
-                                  mapLayerInit.js
-                                  *.js
-                                  print.css
-                                  gipbe.css
-                                  layers.css
-                                  active_admin.css 
-                                  active_admin.js
                                   )
 
   # Disable delivery errors, bad email addresses will be ignored
