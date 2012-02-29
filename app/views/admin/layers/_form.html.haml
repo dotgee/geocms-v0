@@ -24,7 +24,7 @@
     = f.input :description, :input_html => { :cols => 10}
     = f.input :theme_ids, :collection => options_for_select(Taxon.themes_select, f.object.theme_ids),  :multiple => "multiple" 
     = f.input :tag_list
-    = f.input :published, :as => :radio, :collection => [["Oui", true], ["Non", false]] if current_admin_user.role('super_admin')
+    = f.input :published, :as => :radio, :collection => [["Oui", true], ["Non", false]]
     = f.input :external, :as => :radio, :collection => [["Oui", true], ["Non", false]]
     = f.input :publication_date
     = f.input :modification_date
