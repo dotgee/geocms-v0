@@ -7,8 +7,8 @@ h2. Dependencies
 
 h2. Installing the Application
 
-* git clone git@github.com:DotgeeCompany/Geocms.git
-* cd Geocms
+* git clone git@github.com:dotgee/geocms.git
+* cd geocms
 //trust rvmrc
 * gem install budler // if needed
 * bundle install
