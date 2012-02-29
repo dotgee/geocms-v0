@@ -6,7 +6,7 @@
     = @search.result[:total]
     r&eacute;sultats
 
-  - @metadatas.sort_by!{|l| l.title}
+  - @metadatas.sort_by!{|l| l.title || "" }
   = semantic_form_for :import, :url => mass_import_admin_data_source_path(@data_source) do |f|
     = hidden_field_tag :page, params[:page]
     %table.sortable.index_table
