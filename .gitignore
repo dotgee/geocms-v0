@@ -79,3 +79,4 @@ public/javascripts/*
 
 app/assets/javascripts/ckeditor/
 solr/
+config/database.yml

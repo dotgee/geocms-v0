@@ -1,13 +1,13 @@
 development:
   adapter: mysql2
-  database: geocms_dotgee_dev
-  login: root
-  password: jefedroi
-  socket: /var/run/mysqld/mysqld.sock
+  database: geocms
+  login: geocms
+  password: geocms
+  #socket: /tmp/mysql.sock
 
 production:
   adapter: mysql2
-  database: geocms_dotgee
-  login: root
-  password: jefedroi
-  socket: /var/run/mysqld/mysqld.sock
+  database: geocms
+  login: geocms
+  password: geocms
+  #socket: /tmp/mysql.sock
