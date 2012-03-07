@@ -1,8 +1,12 @@
 h1. Geocms
 
+h2. Online Demo
+
+"http://geocms.devel.dotgee.fr/":http://geocms.devel.dotgee.fr/
+
 h2. Dependencies
 
-* rvm ([https://rvm.beginrescueend.com/])
+* rvm https://rvm.beginrescueend.com":https://rvm.beginrescueend.com
 
 
 h2. Installing the Application
