@@ -6,7 +6,7 @@ h2. Online Demo
 
 h2. Dependencies
 
-* rvm https://rvm.beginrescueend.com":https://rvm.beginrescueend.com
+* rvm "https://rvm.beginrescueend.com":https://rvm.beginrescueend.com
 
 
 h2. Installing the Application
