@@ -8,7 +8,7 @@ SimpleForm.setup do |config|
   # config.hint_tag = :span
 
   # CSS class to add to all hint tags.
-  config.hint_class = :"help-block input"
+  #config.hint_class = :"help-block input"
 
   # CSS class used on errors.
   # config.error_class = :error
@@ -29,10 +29,8 @@ SimpleForm.setup do |config|
   # config.error_notification_id = nil
 
   # You can wrap all inputs in a pre-defined tag.
-  config.wrapper_tag = :div
 
   # CSS class to add to all wrapper tags.
-  config.wrapper_class = :clearfix
 
   # CSS class to add to the wrapper if the field has errors.
   # config.wrapper_error_class = :field_with_errors
@@ -41,7 +39,10 @@ SimpleForm.setup do |config|
   # config.collection_wrapper_tag = nil
 
   # You can wrap each item in a collection of radio/check boxes with a tag, defaulting to span.
-  config.item_wrapper_tag = :div
+  #config.item_wrapper_tag = :div
+  config.wrappers :tag => :div, :class => :clearfix do |b|
+    b.use :hint,  :wrap_with => { :tag => :span, :class => :"help-block input" } 
+  end
 
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]

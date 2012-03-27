@@ -42,6 +42,7 @@ class LayersController < ApplicationController
   # GET /layers/1
   # GET /layers/1.json
   def show
+    @geo_context = GeoContext.first
     @layer = Layer.find(params[:id])
     set_seo(@layer)
     respond_to do |format|

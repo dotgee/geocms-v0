@@ -1,14 +1,14 @@
 require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 source 'http://rubygems.org'
-gem 'rails', '~>3.1.0'
+gem 'rails'
 gem 'mysql2'
 group :assets do
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'coffee-rails'
   gem 'uglifier'
+end
   gem 'compass_twitter_bootstrap'
   gem "compass", "~> 0.12.alpha.0", :group => :development
-end
 group :test do
   
   gem 'turn', :require => false
@@ -17,15 +17,15 @@ if HOST_OS =~ /linux/i
   gem 'therubyracer', '>= 0.8.2'
 end
 
-gem "haml", ">= 3.1.2"
-gem "haml-rails", ">= 0.3.4", :group => :development
+gem "haml"
+gem "haml-rails"
 gem "sass"
-gem 'sass-rails', "  ~> 3.1.0"
+gem 'sass-rails'
 gem "nokogiri"
-gem "devise", ">= 1.4.5"
+gem "devise"
 #gem "rails-footnotes", ">= 3.7.5", :group => :development
 gem "jammit"
-gem "omniauth", ">= 0.3.0.rc3"
+#gem "omniauth", ">= 0.3.0.rc3"
 gem "settingslogic"
 gem 'acts-as-taggable-on', '~>2.2.0'
 gem 'show_for'
@@ -63,5 +63,6 @@ gem 'rails-translate-routes'
 gem 'rmagick'
 
 # gem 'gd2'
-gem "rack", "1.3.6"
+gem "rack"
 gem 'meta-tags', :require => 'meta_tags'
+gem "formtastic"
