@@ -40,7 +40,6 @@ $.widget("ui.legend", {
     // Handles max height
     var height = self.element.css("height");
     if(parseInt(height) > parseInt($(".olMap").css("height"))){
-      self.element.find("#legende").css("overflow-y", "scroll");
       self.element.find("#legende").css("max-height", $(".olMap").css("height"));
     }
   },
