@@ -3,18 +3,12 @@
     .breadcrumb
       %h2 Contacter Bretagne Environnement
       %br
-      = simple_form_for(:contact ,  :builder => SimpleBootstrapFormBuilder,  :url => post_mail_contact_index_path) do |f|
-        .inputs
-          .input
-            = f.input :last_name, :input_html => { :class => "xlarge span6" }
-          .input
-            = f.input :first_name, :input_html => { :class => "xlarge span6" }
-          .input
-            = f.input :email, :input_html => { :class => "xlarge span6" }
-          .input
-            = f.input :message, :as => :text, :cols => 25, :rows => 15, :input_html => { :class => "xlarge not_resizable span8" }
-          .actions
-            .input 
-              =# f.submit t(:send_message).html_safe, :class => "btn primary"
-              %button.btn.primary{:type => "submit"}
-                = t(:send_message).html_safe
+      = simple_form_for(:contact ,  :url => post_mail_contact_index_path, :html =>  { :class => "form-horizontal" }) do |f|
+        = f.input :last_name, :input_html => { :class => "xlarge span6" }
+        = f.input :first_name, :input_html => { :class => "xlarge span6" }
+        = f.input :email, :input_html => { :class => "xlarge span6" }
+        = f.input :message, :as => :text, :cols => 25, :rows => 15, :input_html => { :class => "xlarge not_resizable span8" }
+        %br
+        .form-actions
+          %button.btn.primary{:type => "submit"}
+            = t(:send_message).html_safe
