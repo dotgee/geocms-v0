@@ -1,24 +1,19 @@
 $(document).ready(function() {
+  var wmc ;
+  wmc = getURLParameter("wmc");
+  if(wmc == "null") {
+    wmc = $("#wmc").attr("href");
+  }
+  OpenLayers.loadURL(wmc, null, null, onSuccess, onFailure);
 
-  map =  new OpenLayers.Map( 'map', mapOptions );
-  var fond_carto = new OpenLayers.Layer.WMS(
-    "Fond Cartographique",
+  function onSuccess(request){
+    var format = new OpenLayers.Format.WMC();
+    map =  format.read(request.responseText, {map: mapOptions});
+    $('#container').viewer('resizeChooser');
+    $.each(map.layers,function(i,y) {
+      y.uniqueID = y.params.LAYERS.replace(":", "_");
+    });
 
-    gipbeCartoGraphy,
-    {
-      layers: fondCarteName,
-      format: 'image/png'
-    },
-    {
-      isBaseLayer: true,
-      transitionEffect: 'resize',
-      transparent: true,
-      opacity: 0.5,
-      displayInLayerSwitcher:false,
-      uniqueID: 'region-bretagne_region_2154'
-    }
-  );
-  map.addLayer(fond_carto);
   if(!layerCredits){
     var layerCredits = "";
   }
@@ -42,7 +37,6 @@ $(document).ready(function() {
     addSharedControlers(map);
     map.zoomToExtent(bounds);
 
-
     //choix des couches
     $.each(map.layers, function(i, layer){
       var class_name = '.'+layer.uniqueID;
@@ -52,5 +46,8 @@ $(document).ready(function() {
         });
     });
     $('#container').viewer('resizeChooser');
+  }
+
+  function onFailure(request){ }
 
 });
