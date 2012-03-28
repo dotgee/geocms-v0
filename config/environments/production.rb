@@ -70,4 +70,5 @@ Geocms::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   # config.asset_host = "assets%d.gipbe.dotgee.fr"
+  config.action_mailer.smtp_settings = {:address =>  "mailrelay"}
 end
