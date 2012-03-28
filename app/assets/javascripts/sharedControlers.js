@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#visualisor_link').twipsy({ html: true});
+  $('#visualisor_link').tooltip({ html: true});
 })
 
 function addSharedControlers(map) {
@@ -57,7 +57,7 @@ function addSharedControlers(map) {
     forcePlaceholderSize: true,
     handle: ".grippy",
     start: function(event, ui){
-     $(ui.item).find(".grippy").css("cursor", "url('/assets/closedhand.cur'), pointer").twipsy('hide');  
+     $(ui.item).find(".grippy").css("cursor", "url('/assets/closedhand.cur'), pointer").tooltip('hide');  
      nodes = ui.item.parent().children().length-2;
      start_pos = nodes - ui.item.index();
      ui.item.data('start_pos', start_pos);
@@ -271,7 +271,7 @@ function addSharedControlers(map) {
   });
 
   // Tabs bootstrap
-  $('#tabs').tabs();
+  $('#tabs').tab();
   $('#tabs').bind('change', function(e){
     //pour la légende
     if(e.target.hash && e.relatedTarget.hash){ //nÃ©cessaire sinon bind les checkboxs

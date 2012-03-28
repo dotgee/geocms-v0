@@ -10,7 +10,7 @@ $.widget("ui.mustachu", {
   },
   _addTwipsy: function(){
     var self = this; 
-    var twipsy_info = {
+    var tooltip_info = {
       ".btn-destroy": 'Retirer cette couche de la carte',
       ".btn-check" :"Afficher/masquer cette couche",
       ".btn-features" : "Obtenir des informations sur la couche",
@@ -18,11 +18,11 @@ $.widget("ui.mustachu", {
       ".btn-metadatas" : "Voir la metadonn&eacute;e",
       ".grippy" : "D&eacute;placer la couche"
     }
-    for(var info in twipsy_info){
-      self.element.find(info).attr('data-original-title', twipsy_info[info]);
+    for(var info in tooltip_info){
+      self.element.find(info).attr('data-original-title', tooltip_info[info]);
     }
-   self.element.find('.btn-destroy, .btn-check, .btn-features, .btn-save, .btn-metadatas').twipsy({delayIn: 300, html : true});
-   self.element.find('.grippy').twipsy({delayIn: 300, html : true, placement: 'left'});
+   self.element.find('.btn-destroy, .btn-check, .btn-features, .btn-save, .btn-metadatas').tooltip({delayIn: 300, html : true});
+   self.element.find('.grippy').tooltip({delayIn: 300, html : true, placement: 'left'});
   },
 
   // Generates the selected layers
