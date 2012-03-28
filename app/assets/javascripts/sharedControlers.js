@@ -269,11 +269,10 @@ function addSharedControlers(map) {
     $('.right-menu h3.grand_parent').next(".children").find("h4:visible").not('.selected').slideToggle();
     $(this).next(".children").find("h4").not(":visible").slideToggle();
   });
-
-  // Tabs bootstrap
+   // Tabs bootstrap
   $('#tabs').tab();
   $('#tabs').bind('change', function(e){
-    //pour la légende
+    //pour la l?gende
     if(e.target.hash && e.relatedTarget.hash){ //nÃ©cessaire sinon bind les checkboxs
       var visible = $('#available .category_description.visible');
       if(visible.length > 0){
@@ -288,7 +287,8 @@ function addSharedControlers(map) {
       }
     }
   });
-  
+
+
   // Affichage des sliders
 
   $(".slider").slider({

@@ -1,9 +1,9 @@
-#tabs
+#tabs.tabbable
   %ul.tabs.nav.nav-tabs
     %li.active
-      %a{ :href => "#available" } Disponibles
+      %a{ :"data-toggle" =>"tab", :href => "#available" } Disponibles
     %li
-      %a{ :href => "#selected" } S&eacute;l&eacute;ctionn&eacute;es
+      %a{ :"data-toggle" =>"tab", :href => "#selected" } S&eacute;l&eacute;ctionn&eacute;es
 
   .tab-content.nano
     #available.tab-pane.active.content
