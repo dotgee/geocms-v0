@@ -271,7 +271,7 @@ function addSharedControlers(map) {
   });
    // Tabs bootstrap
   $('#tabs').tab();
-  $('#tabs').bind('change', function(e){
+  $('#tabs').bind('show', function(e){
     //pour la l?gende
     if(e.target.hash && e.relatedTarget.hash){ //nÃ©cessaire sinon bind les checkboxs
       var visible = $('#available .category_description.visible');

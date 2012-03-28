@@ -59,6 +59,7 @@ $.widget("ui.legend", {
   },
   _selfWidth: function(){
     var self = this;
+    return self.element.outerWidth();
     return self.options.width; 
   },
   _leftValue: function(){
