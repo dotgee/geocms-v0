@@ -1,5 +1,5 @@
 $(document).ready () ->
-  $('.tabs').tabs();
+  $('.tabs').tab();
   $('#geoserver_check').click((e) ->
     e.preventDefault();
     datas = {
