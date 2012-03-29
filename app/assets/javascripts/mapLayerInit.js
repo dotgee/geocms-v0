@@ -14,9 +14,6 @@ $(document).ready(function() {
       y.uniqueID = y.params.LAYERS.replace(":", "_");
     });
 
-  if(!layerCredits){
-    var layerCredits = "";
-  }
   layer = new OpenLayers.Layer.WMS(layerTitle,
                                    layerWmsUrl,
                                    {
