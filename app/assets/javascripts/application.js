@@ -67,10 +67,10 @@ $(document).ready(function(){
 
   $('textarea').not('.not_resizable').TextAreaResizer();
   //tooltip des différent liens
-  $('a[rel=popover]').tooltip({html: true});
+  //$('.fg-buttonset a').tooltip({html: true});
   $('span[rel=popover]').tooltip({delayIn: 200});
   $('.category_layer_container').tooltip({placement: "left"});
-  $('.right_tooltip').tooltip({placement: "right", html: true});
+  $('.right_twipsy').tooltip({placement: "right", html: true});
   $('.ui-icon-extlink').tooltip().
                         on('hover', function(){
                           $(this).parents('.category_layer_container').first().tooltip('hide');
