@@ -109,7 +109,7 @@ $(document).ready(function(){
 
   $.fn.hide_label = function(){
     var self = $(this);
-    var input = self.next('.input').find('input').first();
+    var input = self.next('.controls').find('input').first();
     if ($.trim(input.val()) == '') { 
       self.css('visibility','');
       self.show();
