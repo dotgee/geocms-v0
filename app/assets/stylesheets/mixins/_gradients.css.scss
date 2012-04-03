@@ -8,7 +8,6 @@ $secondary-gradient-stop: #dfe1e2;
   // IE 6 & 7
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
   // IE 8
-  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
 }
 
 @mixin primary-gradient { 

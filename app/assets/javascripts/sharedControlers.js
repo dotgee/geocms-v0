@@ -177,7 +177,7 @@ function addSharedControlers(map) {
     $("#load_form").dialog({
       height: 150,
       width: 400,
-      modal: true,
+      modal: true
     });
   });
   
