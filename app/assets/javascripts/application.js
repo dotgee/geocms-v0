@@ -69,8 +69,10 @@ $(document).ready(function(){
   //tooltip des différent liens
   //$('.fg-buttonset a').tooltip({html: true});
   $('span[rel=popover]').tooltip({delayIn: 200});
+  $('.pop').tooltip({delayIn: 200, placement:"left"});
   $('.category_layer_container').tooltip({placement: "left"});
-  $('.right_twipsy').tooltip({placement: "right", html: true});
+  $('.right_twipsy').tooltip({placement: "bottom", html: true});
+  $('.left_twipsy').tooltip({placement: "right", html: true});
   $('.ui-icon-extlink').tooltip().
                         on('hover', function(){
                           $(this).parents('.category_layer_container').first().tooltip('hide');

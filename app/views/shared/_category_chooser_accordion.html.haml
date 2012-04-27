@@ -1,7 +1,7 @@
 %h2 Filtres
 .filters
   - Filter.all.each do |f|
-    %div{ :rel => "popover", :"data-original-title" => f.libelle}
+    %div.pop{ :rel => "popover", :"data-original-title" => f.libelle}
       = check_box_tag "filter", f.name.downcase
       = "#{f.name} (#{f.layers.published.count})"
   .clear
