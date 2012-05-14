@@ -12,6 +12,7 @@
     = yield :javascripts
     = csrf_meta_tags
     = auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})
+    = auto_discovery_link_tag( :atom, {:action => :index, :controller => :layers, :format => :atom})
   %body
     #wait
     #topLinks
