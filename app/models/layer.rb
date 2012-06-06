@@ -57,7 +57,7 @@ class Layer < ActiveRecord::Base
   end
 
   def uniq_identifier
-    name.gsub(":","_")
+    name.gsub(":","_") + "#{id}"
   end
 
   def geonetwork_identifier
