@@ -11,6 +11,7 @@ class LayersController < ApplicationController
   end
 
   def external
+    @geo_context = GeoContext.first
     @layer = Layer.find(params[:id])
     return render :text => "Not available" unless @layer.published
     render :layout => 'external' 
