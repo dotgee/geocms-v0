@@ -11,6 +11,7 @@
     = render :partial => "shared/analytics"
     = yield :javascripts
     = csrf_meta_tags
+    = auto_discovery_link_tag( :xml, {:action => :index, :controller => :layers, :format => :xml})
     = auto_discovery_link_tag( :rss, {:action => :index, :controller => :layers, :format => :rss})
     = auto_discovery_link_tag( :atom, {:action => :index, :controller => :layers, :format => :atom})
   %body
