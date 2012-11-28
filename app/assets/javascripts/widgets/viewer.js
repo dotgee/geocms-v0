@@ -35,7 +35,7 @@ $.widget("ui.viewer", {
                                                },
                                                {
                                                  opacity: 0.8,
-                                                 singleTile: true,
+                                                 singleTile: false,
                                                  uniqueID: layer_name.replace(":", "_") +div.attr('model_id'),
                                                  metadataLink : meta,
                                                  credits: div.attr("credits"),
