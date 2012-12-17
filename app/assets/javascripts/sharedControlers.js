@@ -246,12 +246,13 @@ function addSharedControlers(map) {
       getfeatureinfo: function(event) {
           output = "";
           if (event.features.length > 0) {
+          console.log(event.features)
            $.each(event.features, function(i, feature) {
              template = $("#template_"+event.object.layers[0].uniqueID).text();
-             output += Mustache.to_html(template,feature.data);
+             output += Mustache.render(template,feature.data);
            });
           } 
-          if(output != ""){
+          if($.trim(output)){
            dialog.html(output);
           } else {
            dialog.html("Pas de features &agrave; afficher");  

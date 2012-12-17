@@ -63,7 +63,7 @@ $.widget("ui.mustachu", {
                       "<div class='clear' ></div>"+
                    "</div>";
     $.each(layers, function(i,el){
-      node = Mustache.to_html(template, el);
+      node = Mustache.render(template, el);
       self.element.prepend(node);
       self.element.find("div:first-child .btn-features").featurable({layer: el});
     });
@@ -78,7 +78,8 @@ $.widget("ui.mustachu", {
                       "<img onload=\"$('#legend_container').legend('updateSize',this.width)\" onerror='this.src=\"/assets/error.png\"' src='{{url}}?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER={{params.LAYERS}}' />"+
                    "</div>";
     $.each(layers, function(i,el){
-      self.element.prepend(Mustache.to_html(template, el));
+      
+      self.element.prepend(Mustache.render(template, el));
     });
   },
 
