@@ -34,6 +34,7 @@ $.widget("ui.viewer", {
                                                  transparent: true
                                                },
                                                {
+                                                gutter: 45,
                                                  opacity: 0.8,
                                                  singleTile: false,
                                                  uniqueID: layer_name.replace(":", "_") +div.attr('model_id'),
