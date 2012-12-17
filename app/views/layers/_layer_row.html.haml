@@ -12,6 +12,10 @@
 
     .content_value
       %b
+        Mis &agrave; jour le :
+      = layer.last_date.strftime('%d/%m/%Y')
+    .content_value
+      %b
         Cat&eacute;gorie :
       - layer.themes.each do |tax|
         = link_to tax.name, taxon_path(tax)
