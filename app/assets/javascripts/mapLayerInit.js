@@ -20,6 +20,7 @@ $(document).ready(function() {
                                        layers: layerNames,
                                        transparent: true,
                                    }, {
+                                      gutter: 45,
                                        opacity: 0.8,
                                        transitionEffect: 'resize',
                                        uniqueID: layerNames.replace(":", "_"),
