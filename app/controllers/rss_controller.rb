@@ -1,6 +1,6 @@
 class RssController < ApplicationController
   def layers
-    @layers = Layer.limit(25).order('created_at desc')
+    @layers = Layer.recent_published.limit(25)
     respond_to do |format|
       format.xml { render :layout => false } 
       format.rss { render :layout => false } 
