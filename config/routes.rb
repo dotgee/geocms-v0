@@ -1,11 +1,14 @@
 Geocms::Application.routes.draw do
+  get "group_projects/show"
+
   match "sitemap", :controller => :sitemap, :action => :sitemap
 
   get "tag/:id", :as => :tag, :controller => :tag, :action => :show
 
   ActiveAdmin.routes(self)
   mount Ckeditor::Engine => '/ckeditor'
-
+  
+  resources :group_projects, :path => "groupe_de_projets", :only => :show
   resources :contact, :path_names => { :index => :contact }, :via => [:get, :post], :only => [:index, :mail_sende] do
     collection do
       match "mail_sended"

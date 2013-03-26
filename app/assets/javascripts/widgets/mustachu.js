@@ -29,6 +29,7 @@ $.widget("ui.mustachu", {
   selectedNodes: function(layers) {
     var self = this;
     var node;
+
     var template = "<div class='selected-node' id='{{uniqueID}}_selected'>"+
                       "<div class='node'>"+
                         "<div class='node-infos'>"+
@@ -43,14 +44,8 @@ $.widget("ui.mustachu", {
                             "<a href='#' class='ui-icon-with-text btn-features' id='features_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-info'></span></a>"+
                             //shape
-                            //"{{#false}}"+
                             "<a href='{{url}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{params.LAYERS}}' target='_blank' class='ui-icon-with-text btn-save' id='save_{{uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>"+
-                            //"{{/false}}"+
-                            //metadata
-                            "{{#metadataLink}}"+
-                            "<a target='_blank' href='{{metadataLink}}' class='ui-icon-with-text btn-metadatas' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
-                              "<span class='ui-icon ui-icon-note'></span></a>"+
-                            "{{/metadataLink}}"+
+                            "<span class='meta_link_placeholder hide'></span>"+
                             //remove
                             "<a href='#' class='ui-icon-with-text btn-destroy' id='destroy_{{uniqueID}}' layer_id='{{uniqueID}}'>"+
                               "<span class='ui-icon ui-icon-closethick'></span></a>"+
@@ -67,6 +62,7 @@ $.widget("ui.mustachu", {
       self.element.prepend(node);
       self.element.find("div:first-child .btn-features").featurable({layer: el});
     });
+
     self._addTwipsy();
   },
 

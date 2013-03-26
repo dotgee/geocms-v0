@@ -4,6 +4,8 @@
     $(document).ready(function(){
       $('.geo-container').masonry({
         itemSelector: ".well"
+      }).find('img').load(function(){
+        $('.geo-container').masonry('reload');
       });
     });
 

@@ -4,10 +4,14 @@ class GeoContext < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
   has_attached_file :wmc
+  has_attached_file :visuel, :styles => { :thumb => "150x100>" }
+
 
   belongs_to :taxon, :foreign_key => :category_id
 
   validates_presence_of :name
+
+  belongs_to :group, :class_name => "GroupProject"
 
   def wmc_content
     return nil if wmc.nil?

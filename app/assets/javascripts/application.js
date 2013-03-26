@@ -33,12 +33,14 @@ $(document).ready(function(){
   $('body').click(function(e){
     $('ul.submenu').removeClass('open');
   });
-  $('#resource_link').click(function(e){
+  $('.toggleMenus').on('click', function(e){
+    $('ul.submenu.open').removeClass('open');
     e.preventDefault();
     e.stopPropagation();
     var sub = $(this).next('ul');
     sub.toggleClass('open');
   });
+
   $('#meta_dialog').dialog({
     autoOpen: false,
     title: "Metadonn\351e",

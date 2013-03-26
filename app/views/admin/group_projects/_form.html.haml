@@ -1,0 +1,10 @@
+
+= semantic_form_for [:admin, @group_project] do |f|
+  .pill-content
+    = f.inputs do
+      = f.input :name
+      = f.input :description
+      = f.input :position
+
+  = f.buttons do
+    = f.submit 

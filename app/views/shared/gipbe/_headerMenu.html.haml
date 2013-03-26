@@ -2,15 +2,24 @@
   %ul
     %li.first
       = link_to 'Visualiseur', root_path, :id => "visualisor_link", :"data-original-title" => "R&eacute;initialisation"
-    -if false
-      %li
-        = link_to 'Projets', geo_contexts_path
+    %li
+      = link_to 'Projets', "#", :class => "toggleMenus" #geo_contexts_path
+      %ul.submenu.dropdown-menu
+        - groups = GroupProject.all.select{|g| g.geo_contexts.any?}
+        - groups.each_with_index do |p,i|
+          %li.pages
+            = link_to p.name, p
+            %li.divider
+        %li.pages
+          = link_to "Tous les projets", geo_contexts_path
+
+    - if false
       %li
         = link_to 'Aide', page_path(AppConfig.page_help_id)
     %li
       = link_to 'Catalogue', layers_path
     %li
-      = link_to 'Ressources', '#', :id => "resource_link"
+      = link_to 'Ressources', '#', :class => "toggleMenus", :id => "resource_link"
       %ul.submenu.dropdown-menu
         - pages = Menu.find(AppConfig.resource_id, :include => :pages).pages.published
         - pages.each_with_index do |p,i|

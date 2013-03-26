@@ -15,6 +15,8 @@ ActiveAdmin.register GeoContext, :alias => I18n.t(:geo_contexts) do
   form do |f|
     f.inputs do 
       f.input :name
+      f.input :group
+      f.input :visuel
       f.input :taxon
       f.input :wmc
       f.input :description

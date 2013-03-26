@@ -2,6 +2,11 @@ class LayersController < ApplicationController
   before_filter :set_layout
   before_filter :build_query, :only => :search
   
+  def meta_links
+    res = []
+    render :json => res
+  end
+
   def wfs
     @layer = Layer.find(params[:id])
   end

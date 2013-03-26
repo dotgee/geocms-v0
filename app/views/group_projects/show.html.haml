@@ -1,0 +1,7 @@
+- title do
+  %h1 Groupement de contexts #{@group.name}
+.no_visualisor
+ 
+  = paginate @geo_contexts
+  = render :partial => "geo_contexts/geo_context_list"
+  = paginate @geo_contexts
