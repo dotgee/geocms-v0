@@ -1,6 +1,9 @@
-- title do
+- title = "Groupement de contexts #{@group.name}"
+
+.no_visualisor.cms
   %h1 Groupement de contexts #{@group.name}
-.no_visualisor
+
+  = @group.description.html_safe
  
   = paginate @geo_contexts
   = render :partial => "geo_contexts/geo_context_list"

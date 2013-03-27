@@ -51,7 +51,7 @@ $.widget("ui.featurable", {
              if(data.metadataLink){
                var $layer_node = $("#"+ self.options.layer.uniqueID + "_selected");
                var meta_link =  Mustache.render(metaTpl, {uniqueID: self.options.layer.uniqueID, metadataLink: data.metadataLink})
-               //$layer_node.find('.meta_link_placeholder').html(meta_link).show();
+               $layer_node.find('.meta_link_placeholder').html(meta_link).show();
              }
            }
            else {

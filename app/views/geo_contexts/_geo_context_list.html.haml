@@ -7,6 +7,9 @@
       }).find('img').load(function(){
         $('.geo-container').masonry('reload');
       });
+      $(window).resize(function(){
+          $('.geo-container').masonry('reload');
+      });
     });
 
 
