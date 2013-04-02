@@ -21,7 +21,7 @@ ActiveAdmin.register GeoContext, :alias => I18n.t(:geo_contexts) do
       f.input :wmc
       f.input :description
       f.input :wmc_name
-      f.input :keywords
+      f.input :tag_list
     end
     f.buttons do 
       f.submit
