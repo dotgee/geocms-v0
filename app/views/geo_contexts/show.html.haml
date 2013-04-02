@@ -15,3 +15,8 @@
 - content_for :javascripts do 
   = javascript_include_tag "sharedControlers"
   = javascript_include_tag "mapInit"
+  - if controller_name != "home"
+    :javascript
+      $(document).ready(function(){
+      $('#tabs').find('li').not('.active').find('a').trigger('click.tab.data-api')
+      });
