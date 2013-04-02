@@ -9,7 +9,9 @@
         - groups.each_with_index do |p,i|
           %li.pages
             = link_to p.name, p
+          - unless i == groups.length - 1
             %li.divider
+      - if false
         %li.pages
           = link_to "Tous les projets", geo_contexts_path
 
