@@ -2,15 +2,16 @@
   %ul
     %li.first
       = link_to 'Visualiseur', root_path, :id => "visualisor_link", :"data-original-title" => "R&eacute;initialisation"
-    %li
-      = link_to 'Projets', "#", :class => "toggleMenus" #geo_contexts_path
-      %ul.submenu.dropdown-menu
-        - groups = GroupProject.all.select{|g| g.geo_contexts.any?}
-        - groups.each_with_index do |p,i|
-          %li.pages
-            = link_to p.name, p
-          - unless i == groups.length - 1
-            %li.divider
+    - groups = GroupProject.all.select{|g| g.geo_contexts.any?}
+    - if groups.any?
+      %li
+        = link_to 'Projets', "#", :class => "toggleMenus" #geo_contexts_path
+        %ul.submenu.dropdown-menu
+          - groups.each_with_index do |p,i|
+            %li.pages
+              = link_to p.name, p
+            - unless i == groups.length - 1
+              %li.divider
       - if false
         %li.pages
           = link_to "Tous les projets", geo_contexts_path
