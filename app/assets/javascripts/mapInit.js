@@ -21,5 +21,4 @@ $(document).ready(function() {
   function onFailure(request){
     //alert(wmc);
   }
-  $('#tabs').find('li').not('.active').find('a').trigger('click.tab.data-api')  
 });

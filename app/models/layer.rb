@@ -4,6 +4,8 @@ class Layer < ActiveRecord::Base
   friendly_id :title, :use => :slugged
 
   BZH_BOUNDING_BOX = "107541.6939208,6695593.1199368,429188.7088872,6901055.8519306"
+  has_attached_file :visuel, :styles => { :thumb => "150x100>" }
+
   acts_as_taggable
   validates_presence_of :wms_url, :name, :title
   validates_format_of :wms_url, :with => URI::regexp(%w(http https))
@@ -131,9 +133,24 @@ class Layer < ActiveRecord::Base
     "Couche externe"
   end
 
+  def thumb
+    visuel? ? visuel.url(:thumb) : thumbnail_url({"WIDTH" => "150", "HEIGHT" => "100" })
+  end
+
   private
   def strip_whitespace
     [metadata_url, metadata_identifier, wms_url, name].compact.map(&:strip!)
+  end
+
+  def generate_visuel(save_me = false)
+        t_url = thumbnail_url({"WIDTH" => "150", "HEIGHT" => "100" })
+        data = `curl "#{t_url}" 2>/dev/null`.chomp
+        t = Tempfile.new(["layer_thumb_temp", ".png"])
+        t.binmode
+        t.write(data)
+        t.rewind
+        self.visuel = t
+        save if save_me
   end
 
 end

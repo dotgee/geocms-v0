@@ -1,7 +1,7 @@
 %li.well{:class => cycle('odd','even')}
   .image
     = link_to layer do
-      %img{ :src => layer.thumbnail_url({"WIDTH" => "150", "HEIGHT" => "100" })}
+      %img{ :src => layer.thumb }
   .content
     .title
       = link_to layer.title, layer

@@ -20,6 +20,13 @@
       = f.input :data_source
 
   = f.inputs :name => "Informations couche" do 
+    %li
+      %label Image actuelle
+      - if @layer.visuel?
+        = image_tag @layer.visuel.url(:thumb)
+      - else
+        Aucune
+    = f.input :visuel
     = f.input :title
     = f.input :description, :input_html => { :cols => 10}
     = f.input :theme_ids, :collection => options_for_select(Taxon.themes_select, f.object.theme_ids),  :multiple => "multiple" 

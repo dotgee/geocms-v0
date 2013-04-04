@@ -69,6 +69,9 @@ ActiveAdmin.register Layer , :alias => I18n.t(:layer).html_safe do
 
   index do
     id_column
+    column "Visuel" do |l|
+      image_tag l.visuel.url(:thumb) if l.visuel?
+    end
     column "Titre", :title
     column "Source", :sortable => :data_source_id do |g|
       div link_to g.data_source.name, admin_data_source_path(g.data_source) if g.data_source

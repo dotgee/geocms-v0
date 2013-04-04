@@ -2,7 +2,8 @@
   .content
     - if geo.visuel?
       .geo-image
-        = image_tag geo.visuel.url(:thumb) 
+        = link_to geo do
+          = image_tag geo.visuel.url(:thumb) 
     .title
       = link_to geo.title, geo
     .content_value
