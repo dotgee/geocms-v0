@@ -13,6 +13,8 @@ class Layer < ActiveRecord::Base
   before_validation :set_title_if_empty, :set_wms_url
   belongs_to :data_source
   before_validation :strip_whitespace
+  before_save :ensure_thumb
+
   has_many :assigned_layer_taxons, :dependent => :destroy
 
   has_many :themes, 
@@ -140,6 +142,12 @@ class Layer < ActiveRecord::Base
   private
   def strip_whitespace
     [metadata_url, metadata_identifier, wms_url, name].compact.map(&:strip!)
+  end
+  
+  def ensure_thumb
+    if !visuel?
+      generate_visuel
+    end
   end
 
   def generate_visuel(save_me = false)
