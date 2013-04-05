@@ -151,6 +151,7 @@ class Layer < ActiveRecord::Base
   end
 
   def generate_visuel(save_me = false)
+    begin
         t_url = thumbnail_url({"WIDTH" => "150", "HEIGHT" => "100" })
         data = `curl "#{t_url}" 2>/dev/null`.chomp
         t = Tempfile.new(["layer_thumb_temp", ".png"])
@@ -159,6 +160,9 @@ class Layer < ActiveRecord::Base
         t.rewind
         self.visuel = t
         save if save_me
+    rescue
+
+    end
   end
 
 end
