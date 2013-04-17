@@ -66,3 +66,5 @@ gem 'rmagick'
 gem "rack"
 gem 'meta-tags', :require => 'meta_tags'
 gem "formtastic"
+
+gem "breadcrumbs_on_rails"

@@ -12,21 +12,8 @@ ActiveAdmin.register GeoContext, :alias => I18n.t(:geo_contexts) do
   filter :name, :label => "Nom context"
   filter :description
   filter :taxon, :label => "Classement"
-  form do |f|
-    f.inputs do 
-      f.input :name
-      f.input :group
-      f.input :visuel
-      f.input :taxon
-      f.input :wmc
-      f.input :description
-      f.input :wmc_name
-      f.input :tag_list
-    end
-    f.buttons do 
-      f.submit
-    end
-  end
+  form :partial => "admin/geo_contexts/form"
+
   index do
     column('ID', :sortable => :id){|resource| link_to resource.id, resource_path(resource), :class => "resource_id_link"}
     column "Information" do |c|

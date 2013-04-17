@@ -279,7 +279,7 @@ div#make-link-content
 // Style du contenu
 
 #content
-  overflow: hidden
+  position: relative
   background: #fff
 
 //table
@@ -362,20 +362,21 @@ div#make-link-content
 .fg-toolbar
   height: 30px
 #map_container
-  margin-right: 220px
+  margin-right: 200px
 #tabs
   background: white
 
 #category_chooser 
   z-index: 300
+  padding: 0px
   
   .tab-content
-    //overflow-y: scroll
-    overflow-x: hidden
-
     padding: 5px 0
-  padding: 0px
 
+  #available, #selected
+    overflow-y: scroll
+    overflow-x: hidden
+    width: 220px
   #available
     padding: 0 10px
   h2
@@ -645,3 +646,10 @@ div#make-link-content
   display: none
   &.show_meta
     display: inline-block
+
+.breadcrumb-gipbe
+  padding-left: 20px
+  position: absolute
+  top: -30px
+  span
+    margin-right: 5px

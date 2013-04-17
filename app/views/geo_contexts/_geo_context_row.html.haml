@@ -13,6 +13,10 @@
           Mots cl&eacute;s :
         - geo.tags.each do |tag|
           = link_to tag.name, tag_path(tag)
+    - unless geo.diffusion_date.nil?
+      .content_value
+        %b Date de diffusion :
+        = geo.diffusion_date.strftime('%d/%m/%Y')
     .content_value
       %b
         Description :

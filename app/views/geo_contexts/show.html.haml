@@ -1,3 +1,4 @@
+= display_breadcrumb
 = map_js
 =# render :partial => "shared/category_chooser_modal"              
 #category_chooser
@@ -5,7 +6,20 @@
   = render :partial => "shared/tabs"
 #map_container
   = render :partial => 'shared/content_toolbar'
-  #map
+  - if @geo_context.group
+    #geo-group
+      %h3
+        = @geo_context.group.name
+      - @geo_context.group.geo_contexts.each do |p|
+        %div.geo-context{:class => p == @geo_context ? "active" : ""}
+          .geo-img
+            = link_to p do 
+              = image_tag @geo_context.visuel.url(:thumb) 
+          .geo-name
+            .text
+              = p.title
+
+  #map{:class => @geo_context.group ? "with_group" : ""}
     %span#coords
     = render :partial => "shared/map_infos", :locals => { :couche => @geo_context , :title => @geo_context.name }
     = link_to 'wmc', @geo_context.wmc.url, :id => "wmc"

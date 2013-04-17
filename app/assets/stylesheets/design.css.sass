@@ -361,5 +361,45 @@ table
 .active
   background: #FFFFFF
 #map
+  &.with_group
+    margin-left: 180px !important
   img
     max-width: none
+#geo-group
+  overflow: hidden
+  width: 190px
+  padding: 5px
+  min-height: 1px
+  position: absolute
+  top: 32px
+  bottom: 0px
+  overflow-x: hidden
+  overflow-y: auto
+  ::-webkit-scrollbar 
+    width: 20px
+  h3
+    text-align: center
+  .geo-img
+    height: 100px
+    width: 160px
+    overflow: hidden
+    img
+      width: 100%
+  .geo-context
+    position: relative
+    width: 160px
+    margin-left: 0
+    border: 5px solid transparent
+      display: none
+    &.active, &:hover
+      border-color: #EBB113
+
+    .geo-name
+      position: absolute
+      text-align: center
+      color: white
+      background-color: rgba(3,2,0, 0.7)
+      width: 100%
+      bottom: 0
+      .text
+        padding: 2px 5px

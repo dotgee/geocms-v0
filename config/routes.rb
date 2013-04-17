@@ -27,8 +27,7 @@ Geocms::Application.routes.draw do
 
   resources :taxons, :only => :show
 
-  #resources :layers do
-  resources :layers, :only => [:show, :index, :search, :wfs] do
+  resources :layers, :only => [:show, :index, :search, :wfs]  do
     collection do
       get 'print'
       match "search"
@@ -41,8 +40,6 @@ Geocms::Application.routes.draw do
       get 'wfs'
     end
   end
-
-  #resources :categories
 
   resources :geo_contexts, :only => [:show, :index]  do
     member do
