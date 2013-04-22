@@ -32,6 +32,8 @@
     = f.input :theme_ids, :collection => options_for_select(Taxon.themes_select, f.object.theme_ids),  :multiple => "multiple" 
     = f.input :filter, :include_blank => false
     = f.input :tag_list
+    = f.input :show_download,:as => :radio, :collection => [["Oui", true], ["Non", false]]
+    = f.input :show_metadata,:as => :radio, :collection => [["Oui", true], ["Non", false]]
     = f.input :published, :as => :radio, :collection => [["Oui", true], ["Non", false]] if current_admin_user.role('super_admin')
     = f.input :external, :as => :radio, :collection => [["Oui", true], ["Non", false]]
     = f.input :publication_date

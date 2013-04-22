@@ -14,7 +14,7 @@
         %div.geo-context{:class => p == @geo_context ? "active" : ""}
           .geo-img
             = link_to p do 
-              = image_tag @geo_context.visuel.url(:thumb) 
+              = image_tag p.visuel.url(:thumb) 
           .geo-name
             .text
               = p.title
