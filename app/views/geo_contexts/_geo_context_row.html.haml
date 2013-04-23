@@ -7,6 +7,11 @@
     .title
       = link_to geo.title, geo
     .content_value
+    - unless geo.themes.empty?
+      .content_value
+        %b Thèmes : 
+        - geo.themes.each do |theme|
+          = link_to theme.name, [:geo_contexts, theme]
     - unless geo.diffusion_date.nil?
       .content_value
         %b Date de diffusion :

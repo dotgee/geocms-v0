@@ -6,8 +6,14 @@ class GeoContext < ActiveRecord::Base
   has_attached_file :wmc
   has_attached_file :visuel, :styles => { :thumb => "150x100>" }
 
-
   belongs_to :taxon, :foreign_key => :category_id
+  has_many :assigned_context_taxons, :dependent => :destroy
+
+  has_many :themes,
+            :class_name => "Taxon",
+            :source => :taxon,
+            :through => :assigned_context_taxons,
+            :uniq => true
 
   validates_presence_of :name
 

@@ -6,7 +6,7 @@
     = f.input :diffusion_date
     = f.input :group
     = f.input :visuel
-    = f.input :taxon
+    = f.input :theme_ids, :collection => options_for_select(Taxon.themes_select, f.object.theme_ids),  :multiple => "multiple"
     = f.input :wmc
     = f.input :description
     = f.input :wmc_name

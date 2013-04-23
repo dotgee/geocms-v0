@@ -1,6 +1,19 @@
 class TaxonsController < ApplicationController
   # GET /taxons
   # GET /taxons.json
+  #
+  def layers
+    @taxon = Taxon.find(params[:id])
+    @layers = @taxon.layers.page(page).per(25)
+    render :action => :show
+  end
+
+  def geo_contexts
+    @taxon = Taxon.find(params[:id])
+    @geo_contexts = @taxon.geo_contexts.page(page).per(20)
+
+  end
+
   def index
     @taxons = Taxon.all
 
