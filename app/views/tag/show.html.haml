@@ -1,17 +1,20 @@
 .no_visualisor.cms
   = render :partial => "layers/search_form"
-  %h2
+  %h1
     = t(:tag).html_safe
     = @tag.name
   %hr
+
   - if @layers.any?
     %h2 Couches associées
     = paginate @layers
     = render :partial => "layers/layer_list", :locals => { :layers => @layers }
     = paginate @layers
+
   - if @geo_contexts.any?
     %h2 Projets associés
     .no_visualisor
       = paginate @geo_contexts
       = render :partial => "geo_contexts/geo_context_list"
       = paginate @geo_contexts
+  

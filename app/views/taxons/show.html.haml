@@ -1,12 +1,18 @@
 .no_visualisor.cms
   = render :partial => "layers/search_form"
-  .clear
-  %h2 
-    Couche(s) du thème
+  %h1
+    Catégorie 
     = @taxon.name
-  .clear
-  = paginate @layers
-  .clear
-  = render :partial => "layers/layer_list", :locals => { :layers => @layers }
-  .clear
-  = paginate @layers
+  %hr
+  - if @layers.any?
+    %h2 Couches associées
+    = paginate @layers
+    = render :partial => "layers/layer_list", :locals => { :layers => @layers }
+    = paginate @layers
+
+  - if @geo_contexts.any?
+    %h2 Projets associés
+    .no_visualisor
+      = paginate @geo_contexts
+      = render :partial => "geo_contexts/geo_context_list"
+      = paginate @geo_contexts 

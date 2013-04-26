@@ -2,6 +2,11 @@ class TaxonsController < ApplicationController
   # GET /taxons
   # GET /taxons.json
   #
+  def old_taxon
+    @taxon = Taxon.find(params[:id])
+    redirect_to taxon_path(@taxon), :status => :moved_permanently 
+  end
+
   def layers
     @taxon = Taxon.find(params[:id])
     @layers = @taxon.layers.page(page).per(25)
@@ -28,6 +33,7 @@ class TaxonsController < ApplicationController
   def show
     @taxon = Taxon.find(params[:id])
     @layers = @taxon.layers.page(page).per(25)
+    @geo_contexts = @taxon.geo_contexts.page(page).per(25)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @taxon }
