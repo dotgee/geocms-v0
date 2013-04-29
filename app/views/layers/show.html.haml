@@ -6,7 +6,7 @@
     var layerWmsUrl = "#{@layer.wms_url}";
     var layerTitle = "#{escape_javascript(@layer.title)}";
     var layer_metadata_link = "#{@layer.metadata_link}";
-    var layerCredits = "#{@layer.credits}";
+    var layerCredits = "#{escape_javascript(@layer.credits)}";
   = javascript_include_tag "mapLayerInit"
   = javascript_include_tag "sharedControlers"
 
