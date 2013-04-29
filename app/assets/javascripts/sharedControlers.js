@@ -246,7 +246,6 @@ function addSharedControlers(map) {
       getfeatureinfo: function(event) {
           output = "";
           if (event.features.length > 0) {
-          console.log(event.features)
            $.each(event.features, function(i, feature) {
              template = $("#template_"+event.object.layers[0].uniqueID).text();
              output += Mustache.render(template,feature.data);
