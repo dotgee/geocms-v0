@@ -27,7 +27,7 @@ Geocms::Application.routes.draw do
   #resources :taxonomies
   get '/taxons/:id(/*path)', :action => :old_taxon, :controller => :taxons
 
-  resources :taxons, :only => [:layers, :show], :path => "categorie" do 
+  resources :taxons, :only => [:layers, :show], :path => "theme" do 
     member do
       get '/projets', :action => :geo_contexts, :as => :geo_contexts
       get '/couches', :action => :layers, :as => :layers
