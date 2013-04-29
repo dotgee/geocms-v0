@@ -34,6 +34,7 @@ $.widget("ui.featurable", {
   _loadTemplate: function() {
     var self = this;
     var metaTpl = "<a target='_blank' href='{{metadataLink}}' class='ui-icon-with-text btn-metadatas show_meta' id='metadatas_{{uniqueID}}' layer_id='{{uniqueID}}'><span class='ui-icon ui-icon-note'></span></a>";
+    var dl_link = "<a href='{{layer.url}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{layer.params.LAYERS}}' target='_blank' class='ui-icon-with-text btn-save' id='save_{{layer.uniqueID}}'><span class='ui-icon ui-icon-disk'></span></a>";
 
     template_div = $("#template_"+self.options.layer.uniqueID);
     if(!template_div.text()){
@@ -48,10 +49,14 @@ $.widget("ui.featurable", {
                template_div.text(data.template);
                self._bindEvents();
              } else { self._default(); }
+             var $layer_node = $("#"+ self.options.layer.uniqueID + "_selected");
              if(data.metadataLink){
-               var $layer_node = $("#"+ self.options.layer.uniqueID + "_selected");
                var meta_link =  Mustache.render(metaTpl, {uniqueID: self.options.layer.uniqueID, metadataLink: data.metadataLink})
                $layer_node.find('.meta_link_placeholder').html(meta_link).show();
+             }
+             if(data.show_download){
+              var link = Mustache.render(dl_link, {layer: layer})
+               $layer_node.find('.download_link_placeholder').html(link).show();
              }
            }
            else {

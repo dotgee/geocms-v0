@@ -28,6 +28,7 @@ fr:
               taken: "Email d&eacute;j&agrave; utilis&eacute;"
             password:
     attributes:
+      theme_ids: Thèmes
       layer:
         wms_url: Url WMS
         name: Nom
@@ -35,6 +36,8 @@ fr:
         published: "Publi&eacute;"
         filters: Filtres
         tag_list: "Mots cl&eacute;s"
+        show_download: "Afficher le bouton de téléchargement" 
+        show_metadata: "Afficher le bouton métadonnée"
         external: "Couche externe"
         theme_ids: "Th&egrave;mes"
       contact:
@@ -135,6 +138,9 @@ fr:
   geo_contexts: Projet
   filter: Filtre
   attributes:
+    diffusion_date: Date de diffusion
+    group: Groupe
+    theme_ids: Thèmes
     filter: Filtre
     rights: Droits
     publication_date: Date de publication

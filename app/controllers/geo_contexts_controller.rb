@@ -1,7 +1,9 @@
 class GeoContextsController < ApplicationController
   before_filter :set_layout
+  skip_before_filter :set_bc
   load_and_authorize_resource
-
+  before_filter :set_bc
+  
 
   def print_img
     require 'RMagick'
@@ -99,7 +101,6 @@ class GeoContextsController < ApplicationController
   # GET /geo_contexts/1
   # GET /geo_contexts/1.json
   def show
-    #@geo_context = GeoContext.find(params[:id])
     set_seo(@geo_context) 
     respond_to do |format|
       format.html # show.html.erb
@@ -122,5 +123,10 @@ class GeoContextsController < ApplicationController
     end
     REDIS.set(id, wmc)
     return id
+  end
+
+  def set_bc
+    add_breadcrumb "Projets", nil
+    add_breadcrumb @geo_context.group.try(:name), @geo_context.group if @geo_context.try(:group)
   end
 end

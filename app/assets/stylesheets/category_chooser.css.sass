@@ -10,13 +10,16 @@
 #category_chooser
   display: none
   margin: 0
+  position: absolute
+  top: 23px
+  bottom: 0
+  width: 200px
+  z-index: 1000
+  background: white
   &.right_positioning
-    float: right
+    right: 0
   &.left_positioning
-    float: left
-    margin-left: 0px
-
-  position: relative
+    left: 0
   .ui-resizable-handle.ui-resizable-w
     left: -15px
     width: 16px
@@ -25,9 +28,6 @@
     top: 50%
     height: 16px
 
-  width: 220px
-  z-index: 1000
-  background: white
   h3
     font-size: 11px
     line-height: 1em

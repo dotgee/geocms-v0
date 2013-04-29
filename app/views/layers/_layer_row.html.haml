@@ -12,13 +12,13 @@
 
     .content_value
       %b
-        Date de diffusion :
-      = layer.last_date.strftime('%d/%m/%Y')
-    .content_value
-      %b
-        Cat&eacute;gorie :
+        Thèmes : 
       - layer.themes.each do |tax|
         = link_to tax.name, taxon_path(tax)
+    .content_value
+      %b
+        Date de diffusion :
+      = layer.last_date.strftime('%d/%m/%Y')
     - unless layer.tags.empty?
       .content_value
         %b

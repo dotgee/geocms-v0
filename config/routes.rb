@@ -1,14 +1,15 @@
 Geocms::Application.routes.draw do
-  get "group_projects/show"
-
   match "sitemap", :controller => :sitemap, :action => :sitemap
 
-  get "tag/:id", :as => :tag, :controller => :tag, :action => :show
 
   ActiveAdmin.routes(self)
   mount Ckeditor::Engine => '/ckeditor'
   
   resources :group_projects, :path => "groupe_de_projets", :only => :show
+
+  get "mot-cle/:id", :as => :tag, :controller => :tag, :action => :show
+  get "tag/:id", :as => :old_tag, :controller => :tag, :action => :old_tag
+
   resources :contact, :path_names => { :index => :contact }, :via => [:get, :post], :only => [:index, :mail_sende] do
     collection do
       match "mail_sended"
@@ -24,11 +25,16 @@ Geocms::Application.routes.draw do
   get "rss/layers" => "rss#layers", :as => :rss
 
   #resources :taxonomies
+  get '/taxons/:id(/*path)', :action => :old_taxon, :controller => :taxons
 
-  resources :taxons, :only => :show
+  resources :taxons, :only => [:layers, :show], :path => "theme" do 
+    member do
+      get '/projets', :action => :geo_contexts, :as => :geo_contexts
+      get '/couches', :action => :layers, :as => :layers
+    end
+  end
 
-  #resources :layers do
-  resources :layers, :only => [:show, :index, :search, :wfs] do
+  resources :layers, :only => [:show, :index, :search, :wfs]  do
     collection do
       get 'print'
       match "search"
@@ -41,8 +47,6 @@ Geocms::Application.routes.draw do
       get 'wfs'
     end
   end
-
-  #resources :categories
 
   resources :geo_contexts, :only => [:show, :index]  do
     member do
@@ -75,4 +79,5 @@ Geocms::Application.routes.draw do
 
   root :to => "home#index"
   match "/:id(.:format)", :controller => "pages", :action => :show, :as => :page
+  mount_sextant if Rails.env.development?
 end

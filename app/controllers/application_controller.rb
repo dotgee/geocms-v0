@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :correct_user?
   before_filter :set_locale
   before_filter :set_seo
+  before_filter :set_bc
   #before_filter :set_locale_from_url
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
@@ -38,5 +39,8 @@ class ApplicationController < ActionController::Base
 
     def set_locale
       I18n.locale = "fr" || params[:locale] || ((lang = request.env['HTTP_ACCEPT_LANGUAGE']) && lang[/^[a-z]{2}/])
+    end
+
+    def set_bc
     end
 end

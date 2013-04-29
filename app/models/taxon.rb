@@ -7,6 +7,9 @@ class Taxon < ActiveRecord::Base
   has_many :assigned_layer_taxons
   has_many :layers, :through => :assigned_layer_taxons, :uniq => true
 
+  has_many :assigned_context_taxons
+  has_many :geo_contexts, :through => :assigned_context_taxons, :uniq => true
+
   validates :name, :presence => true
   
   scope :only_themes, lambda {

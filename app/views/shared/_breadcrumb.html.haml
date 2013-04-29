@@ -1,0 +1,8 @@
+- unless request.path == root_path
+  .breadcrumb-gipbe
+    %span.here
+      Vous êtes ici : 
+      = link_to "cartographie.bretagne-environnement.org", root_path 
+      = ">"
+    = render_breadcrumbs :separator => ' > '
+  .clear
