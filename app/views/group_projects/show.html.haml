@@ -1,7 +1,7 @@
-- title = "Groupement de contexts #{@group.name}"
+- title = "Groupement de projets : #{@group.name}"
 
 .no_visualisor.cms
-  %h1 Groupement de contexts #{@group.name}
+  %h1= @group.name
 
   = @group.description.html_safe
  
