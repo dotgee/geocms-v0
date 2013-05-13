@@ -4,9 +4,12 @@ $.widget("ui.mapinfos", {
    },
    _create: function() {
     var self = this;
+    self.element.find('.content_value b').addClass('label label-info');
     self._setGoodSize();
     self._bindEvents();
-    self._slideDown(0);
+      setTimeout(function(){
+        self._slideDown(0);
+      }, 3000);
    },
    redraw: function(){
     var self = this; 
@@ -31,12 +34,14 @@ $.widget("ui.mapinfos", {
         }
       });
       self.element.mouseenter(function(){
-            self.element.css({"background-color" :'rgba(0, 0, 0, 0.8)'});  
-            self._btnSlider().parent().css({"background-color" :'rgba(0, 0, 0, 0.8)'});  
+            var color = 'rgba(44, 62, 80, 1)'
+            self.element.css({"background-color" : color});  
+            self._btnSlider().parent().css({"background-color" : color});  
           }).
           mouseleave(function(){
-            self.element.css({"background-color" :'rgba(0, 0, 0, 0.5)'});  
-            self._btnSlider().parent().css({"background-color" :'rgba(0, 0, 0, 0.5)'});  
+            var color = 'rgba(52, 73, 94, 0.5)'
+            self.element.css({"background-color" : color});  
+            self._btnSlider().parent().css({"background-color" : color});  
 
           });
    },
