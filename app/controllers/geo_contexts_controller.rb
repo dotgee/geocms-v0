@@ -101,6 +101,7 @@ class GeoContextsController < ApplicationController
   # GET /geo_contexts/1
   # GET /geo_contexts/1.json
   def show
+    @show_infos = true
     set_seo(@geo_context) 
     respond_to do |format|
       format.html # show.html.erb

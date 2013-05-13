@@ -22,17 +22,33 @@
   background: rgba(0, 0, 0, 0.5)
 
 .map-infos
-  z-index: 2000
   h2,h3,h4
     color: white
   color: white
   text-shadow: 0 1px 0 rgba(64, 64, 64, 1)
   display: none
   position: absolute
-  z-index: 1000
+  z-index: 9999
   border: #C6EDF9
   bottom: 0
   .container
     div
       line-height: 15px
+  font-size: 13px
+  font-family: "Lato"
 
+  .label
+    background: #16A085
+    margin-right: 10px
+    font-size: 12px
+  a 
+    color: #FFFFFF
+    &:hover
+      color: #FFFFFF
+      text-decoration: underline
+  .content_value
+    margin-bottom: 8px
+    &:hover
+      .label
+        background: #1ABC9C
+        
