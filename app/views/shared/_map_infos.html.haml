@@ -1,7 +1,11 @@
--if false
-  .map-infos
-    .slider-container
-      .info-slider.up
+.map-infos
+  .slider-container
+    .info-slider.up
+  - if item.is_a?(Layer)
+    = render "layers/map_infos", layer: item
+  - if item.is_a?(GeoContext)
+    = render "geo_contexts/map_infos", geo: item
+  - if false #old_version
     .modal-header
       %h3
         = title
