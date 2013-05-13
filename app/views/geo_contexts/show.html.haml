@@ -21,7 +21,8 @@
 
   #map{:class => @geo_context.group ? "with_group" : ""}
     %span#coords
-    = render :partial => "shared/map_infos", :locals => { :couche => @geo_context , :title => @geo_context.name }
+    - if @show_infos
+      = render "shared/map_infos", item: @geo_context
     = link_to 'wmc', @geo_context.wmc.url, :id => "wmc"
 
   .clear
