@@ -1,0 +1,9 @@
+.modal-header
+  %h3
+    = geo.title
+.modal-body
+  = render "geo_contexts/properties", geo: geo
+  -  unless geo.credits.blank?
+    %div
+      %b.label.success< Cr&eacute;dits
+      = geo.credits

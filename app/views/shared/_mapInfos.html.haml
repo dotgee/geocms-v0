@@ -1,0 +1,15 @@
+.map-infos
+  .slider-container
+    .info-slider.up
+  .modal-header
+    %h3
+      = iterm.name
+  .modal-body
+    %b.label.success Description :
+    = item.description
+    - if  item.themes.any?
+      %b.label.success Thèmes
+    - if item.tags.any?
+
+  #features
+    .clear
