@@ -1,21 +1,22 @@
-.map-infos
-  .slider-container
-    .info-slider.up
-  - if item.is_a?(Layer)
-    = render "layers/map_infos", layer: item
-  - if item.is_a?(GeoContext)
-    = render "geo_contexts/map_infos", geo: item
-  - if false #old_version
-    .modal-header
-      %h3
-        = title
-    .modal-body
-      %b.label.success< Description :
-      = couche.description
-      .clear
-      %b.label.success< Mots cl&eacute;s :
-      = couche.tag_list
-      #credits
-        -  unless couche.credits.blank?
-          %b.label.success< Cr&eacute;dits
-          = couche.credits
+- if false #a decommenter lorsque les infos seront valides
+  .map-infos
+    .slider-container
+      .info-slider.up
+    - if item.is_a?(Layer)
+      = render "layers/map_infos", layer: item
+    - if item.is_a?(GeoContext)
+      = render "geo_contexts/map_infos", geo: item
+    - if false #old_version
+      .modal-header
+        %h3
+          = title
+      .modal-body
+        %b.label.success< Description :
+        = couche.description
+        .clear
+        %b.label.success< Mots cl&eacute;s :
+        = couche.tag_list
+        #credits
+          -  unless couche.credits.blank?
+            %b.label.success< Cr&eacute;dits
+            = couche.credits
