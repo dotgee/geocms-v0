@@ -110,6 +110,8 @@ class LayersController < ApplicationController
   end
 
   def set_bc
+    super
     add_breadcrumb "Catalogue", layers_path
+    add_breadcrumb "Recherche", search_layers_path if action_name.to_sym == :search
   end
 end

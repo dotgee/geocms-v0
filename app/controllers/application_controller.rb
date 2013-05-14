@@ -42,5 +42,6 @@ class ApplicationController < ActionController::Base
     end
 
     def set_bc
+      add_breadcrumb "Accueil", root_path
     end
 end

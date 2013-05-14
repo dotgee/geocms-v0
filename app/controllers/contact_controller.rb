@@ -16,4 +16,9 @@ class ContactController < ApplicationController
   def mail_sended
 
   end
+
+  def set_bc
+    super
+    add_breadcrumb "Contact", contact_path
+  end
 end

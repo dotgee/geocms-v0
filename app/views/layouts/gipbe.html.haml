@@ -26,6 +26,7 @@
       -# if current_user
       =# render :partial => "shared/admin_menu"
       #content.chosen_thematic
+        = display_breadcrumb
         = yield
       #footer
         = render :partial => "shared/gipbe/footer"
