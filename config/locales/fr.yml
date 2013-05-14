@@ -139,6 +139,7 @@ fr:
   filter: Filtre
   attributes:
     diffusion_date: Date de diffusion
+    long_name: Nom (long)
     group: Groupe
     theme_ids: Thèmes
     filter: Filtre

@@ -1,8 +1,8 @@
 - title = "Groupement de projets : #{@group.name}"
 
 .no_visualisor.cms
-  %h1= @group.name
-
+  %h1
+    = @group.long_name || @group.name
   = @group.description.html_safe
  
   = paginate @geo_contexts
