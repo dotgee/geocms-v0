@@ -48,8 +48,6 @@ class LayersController < ApplicationController
   # GET /layers/1.json
   def show
     @geo_context = GeoContext.first
-    add_breadcrumb @layer.title
-
     set_seo(@layer)
     respond_to do |format|
       format.html # show.html.erb
@@ -112,6 +110,7 @@ class LayersController < ApplicationController
   def set_bc
     super
     add_breadcrumb "Catalogue", layers_path
+    add_breadcrumb "Couches cartographiques", nil if action_name.to_sym == :show
     add_breadcrumb "Recherche", search_layers_path if action_name.to_sym == :search
   end
 end

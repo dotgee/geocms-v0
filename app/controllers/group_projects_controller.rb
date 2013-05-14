@@ -5,7 +5,7 @@ class GroupProjectsController < ApplicationController
 
   def set_bc
     super
-    add_breadcrumb "Groupe de projets", nil
+    add_breadcrumb "Projets", nil
     add_breadcrumb @group.name, @group if entity
   end
 

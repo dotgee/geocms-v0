@@ -1,5 +1,6 @@
-.breadcrumb-gipbe
-  %span.here
-    Vous êtes ici : 
-  = render_breadcrumbs :separator => ' > '
-.clear
+- unless request.path == root_path
+  .breadcrumb-gipbe
+    %span.here
+      Vous êtes ici : 
+    = render_breadcrumbs :separator => ' > ', :builder => BreadcrumbsOnRails::Breadcrumbs::RichBreadcrumb, :tag => :span
+  .clear

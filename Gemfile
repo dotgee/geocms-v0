@@ -68,3 +68,6 @@ gem 'meta-tags', :require => 'meta_tags'
 gem "formtastic"
 
 gem "breadcrumbs_on_rails"
+group :development do
+  gem 'sextant'
+end

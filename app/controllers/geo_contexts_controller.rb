@@ -127,6 +127,7 @@ class GeoContextsController < ApplicationController
   end
 
   def set_bc
+    super
     add_breadcrumb "Projets", nil
     add_breadcrumb @geo_context.group.try(:name), @geo_context.group if @geo_context.try(:group)
   end
