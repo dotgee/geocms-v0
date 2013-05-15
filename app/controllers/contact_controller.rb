@@ -19,6 +19,6 @@ class ContactController < ApplicationController
 
   def set_bc
     super
-    add_breadcrumb "Contact", contact_path
+    add_breadcrumb "Contact", nil
   end
 end
