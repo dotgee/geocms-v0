@@ -11,7 +11,10 @@ class PagesController < ApplicationController
 
   def set_bc
     super
-    add_breadcrumb @page.title, page_path(@page) if entity
+    if entity
+      add_breadcrumb "Resources", nil
+      add_breadcrumb @page.title, page_path(@page) 
+    end
   end
 
   def entity
