@@ -194,7 +194,7 @@ function addSharedControlers(map) {
 
   $("#help_btn").click(function(e){
     e.preventDefault();
-    $.get("/aide",
+    $.get("/aide-en-ligne",
           function(data) {
             $("<div>"+data.content+"</div>").dialog({width: 500, height: 300, title: "Aide"});
           }, "json");
