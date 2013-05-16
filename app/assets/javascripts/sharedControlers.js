@@ -22,7 +22,7 @@ function addSharedControlers(map) {
   }
   $('#fullscreen-btn').click(function(e){
     e.preventDefault();
-    var content = $('#content');
+    var content = $('#map_container');
     var btn = $(this);
     if(content.is('.full_screen')){
       content.removeClass('full_screen');
