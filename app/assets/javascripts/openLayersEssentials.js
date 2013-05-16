@@ -24,8 +24,8 @@ var scales = [
       599999.9999999943,
 ];
 var w_width = $(window).width()
-if(w_width > 1280){
-      scales.push(800000.0000001004)
+if(w_width >= 1280){
+      scales.push(880000.0000001004)
 }else{
   scales.push(1000000.0000001004)
   if(w_width <= 1024) {
