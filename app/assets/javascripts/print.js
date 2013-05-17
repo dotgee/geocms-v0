@@ -1,38 +1,39 @@
 $(document).ready(function(){
- var map;
  var format = new OpenLayers.Format.WMC();
+ mapOptions.scales.push(1009999.9999967753);
+ mapOptions.scales.push(1309999.9999967753);
  $.ajax({
         url : "/gc/"+wmc+"?single_tile=true",
         error: function(jqXHR, textStatus, error){
         },
         success: function(data, status, jqXHR){
             map = format.read(data, {map: mapOptions});
-           $('#map').html('<h2> Veuillez Patienter pendant le chargement de l\'image...<div id="spinner"></div></h2>');
-           $('#spinner').spin();
-           LoadImageMap();
-            map.removeControl(map.controls[1]);
-            for(var i in map.controls){
-              map.controls[i].deactivate();
-            }
-            $.each(map.layers, function(i, layer) {
-              $.ajax({
-                url: "/layers/"+layer.params.LAYERS+"/find.json",
-                type: "GET",
-                success: function(data) {
-                   if(data) {
-                     if(data.credits) {
-                       $("#credits").append("<div>"+layer.name+": "+data.credits+"</div>");
-                     }
+           //$('#map').html('<h2> Veuillez Patienter pendant le chargement de l\'image...<div id="spinner"></div></h2>');
+           //$('#spinner').spin();
+           //LoadImageMap();
+           map.removeControl(map.controls[1]);
+           for(var i in map.controls){
+             map.controls[i].deactivate();
+           }
+           $.each(map.layers, function(i, layer) {
+             $.ajax({
+               url: "/layers/"+layer.params.LAYERS+"/find.json",
+               type: "GET",
+               success: function(data) {
+                 if(data) {
+                   if(data.credits) {
+                     $("#credits").append("<div>"+layer.name+": "+data.credits+"</div>");
                    }
-                },
-                dataType: "json"
-              });
-            });
-            $("#legende").mustachu().mustachu("legendeNodes", map.layers);
-            $('#realprint_btn').click(function(e){
-              e.preventDefault();
-              print();
-            });
+                 }
+               },
+               dataType: "json"
+             });
+           });
+           $("#legende").mustachu().mustachu("legendeNodes", map.layers);
+           $('#realprint_btn').click(function(e){
+             e.preventDefault();
+             print();
+           });
         }
   });
 
