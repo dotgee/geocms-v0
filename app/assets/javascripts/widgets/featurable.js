@@ -55,6 +55,7 @@ $.widget("ui.featurable", {
                $layer_node.find('.meta_link_placeholder').html(meta_link).show();
              }
              if(data.show_download){
+              var layer = self.options.layer;
               var link = Mustache.render(dl_link, {layer: layer})
                $layer_node.find('.download_link_placeholder').html(link).show();
              }

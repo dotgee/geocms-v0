@@ -1,13 +1,14 @@
+require 'RMagick'
+require 'open-uri'
 class GeoContextsController < ApplicationController
   before_filter :set_layout
   skip_before_filter :set_bc
   load_and_authorize_resource
   before_filter :set_bc
+  include Magick
   
 
   def print_img
-    require 'RMagick'
-    require 'open-uri'
 
     #final_img = params[:tiles].inject(nil) do |img, tile|
     #  tile_img = image_from_params(tile.last)
@@ -22,7 +23,7 @@ class GeoContextsController < ApplicationController
     #  img
     #end
     
-    i = Magick::ImageList.new
+    i = ::Magick::ImageList.new
     params[:tiles].inject(nil) do |img, tile|
       tile_img = image_from_params(tile.last) 
       i << tile_img
@@ -37,7 +38,7 @@ class GeoContextsController < ApplicationController
   end
 
   def image_from_params(params)
-    img = Magick::Image.from_blob(open(params[:url]).read)
+    img = ::Magick::Image.from_blob(open(params[:url]).read)
     img.first
   end
 

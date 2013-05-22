@@ -19,8 +19,8 @@
   = javascript_include_tag "openLayersEssentials"
   :javascript
     var wmc = "#{escape_javascript(@wmc)}";
-    var map;
   = javascript_include_tag "print"
+
 = content_for :stylesheets do
   = stylesheet_link_tag "print", :media => "all"
   = stylesheet_link_tag "only_print", :media => "print"
