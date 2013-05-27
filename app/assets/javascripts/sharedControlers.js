@@ -9,6 +9,7 @@ function addSharedControlers(map) {
     fixSize(true);
     map.zoomToExtent(bounds);
   }
+  $('#map').removeClass('olMap');
 
   /* Controles de mesure */
   var control;

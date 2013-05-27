@@ -14,6 +14,13 @@ $.widget("ui.mapinfos", {
    redraw: function(){
     var self = this; 
     self._setGoodSize();
+    if (!self._isUp()){
+      self._slideDown(1)
+    }
+   },
+   _isUp: function(){
+    var self = this;
+     return self._btnSlider().is('.up');
    },
    _setGoodSize: function(){
       var self = this; 

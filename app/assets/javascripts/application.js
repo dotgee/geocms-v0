@@ -111,11 +111,14 @@ $(document).ready(function(){
   });
   $('#group-slider a').click(function(e){
     e.preventDefault();
+    $('#map').removeClass('olMap');
     var $link = $(this);
     var $group = $([]).add($('#map')).add($('#group-slider'));
     var left = $link.is('.right') ? 0 : "180px";
     $link.toggleClass('right');
-    $group.animate({ left: left })
+    $group.animate({ 'marginLeft': left }, function(){
+      $('.map-infos').mapinfos('redraw');
+    })
   });
 });
 
