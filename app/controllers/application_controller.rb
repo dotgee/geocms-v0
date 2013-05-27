@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
+
+  def last_layers
+    @last ||= Layer.recent_published.page(1).per(10)
+  end
+  helper_method :last_layers
+
   protected
     def set_seo(item = nil)
       unless item.nil? 

@@ -17,7 +17,25 @@
 
 #map_container
   = render :partial => 'shared/content_toolbar'
-  #map
+  #geo-group
+    #group-slider.slider-container.vertical-right
+      %a.info-slider.left.right{:href => "#"} &nbsp;
+
+    %h3 Deniers ajouts
+
+    - last_layers.each do |layer|
+      .geo-context{ :class => layer == @layer ? "active" : "" }
+        .geo-img
+          - if layer == @layer 
+            = image_tag layer.thumb, alt: layer.title
+          - else
+            = link_to layer do 
+              = image_tag layer.thumb, alt: layer.title
+        .geo-name
+          .text
+            = layer.title
+
+  #map.with_group
     %span#coords
     = render "shared/map_infos", item: @layer
   .clear

@@ -109,6 +109,14 @@ $(document).ready(function(){
     $('#make-link textarea').val(window.location).select();
      $('#social-networks').hide();
   });
+  $('#group-slider a').click(function(e){
+    e.preventDefault();
+    var $link = $(this);
+    var $group = $([]).add($('#map')).add($('#group-slider'));
+    var left = $link.is('.right') ? 0 : "180px";
+    $link.toggleClass('right');
+    $group.animate({ left: left })
+  });
 });
 
   $.fn.hide_label = function(){

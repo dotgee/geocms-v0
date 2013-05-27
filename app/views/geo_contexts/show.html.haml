@@ -3,6 +3,7 @@
 #category_chooser
   =# render :partial => "shared/category_chooser_accordion"              
   = render :partial => "shared/tabs"
+
 #map_container
   = render :partial => 'shared/content_toolbar'
   - if @geo_context.group
@@ -10,7 +11,7 @@
       %h3
         = @geo_context.group.name
       - @geo_context.group.geo_contexts.each do |p|
-        %div.geo-context{:class => p == @geo_context ? "active" : ""}
+        .geo-context{:class => p == @geo_context ? "active" : ""}
           .geo-img
             = link_to p do 
               = image_tag p.visuel.url(:thumb) 
