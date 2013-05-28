@@ -364,7 +364,7 @@ table
   margin: 0
   cursor: default
   &.with_group
-    margin-left: 180px 
+    margin-left: 195px
     border-left: 2px solid #E9E9E9
   img
     max-width: none
@@ -374,26 +374,34 @@ table
   padding: 5px
   min-height: 1px
   position: absolute
-  top: 50px
+  top: 30px
+  left: 0px
   bottom: 0px
-  overflow-x: hidden
-  overflow-y: auto
-  ::-webkit-scrollbar 
-    width: 20px
+  overflow: hidden
   h3
+    margin: auto
     text-align: center
+
   .geo-img
     height: 100px
-    width: 160px
     overflow: hidden
     img
       width: 100%
+
+  .geo-contexts
+    overflow-y: scroll
+    position: absolute
+    top: 30px
+    bottom: 0
+    width: 190px
+
   .geo-context
     position: relative
     width: 160px
-    margin-left: 0
+    margin: auto
     border: 5px solid transparent
       display: none
+
     &.active, &:hover
       border-color: #EBB113
 
@@ -405,9 +413,13 @@ table
       width: 100%
       bottom: 0
       .text
+        overflow: hidden
         padding: 2px 5px
+      .geo-date
+        font-size: 10px
+
 #group-slider        
   top: 50%
   left: 0
-  margin-left: 180px
+  margin-left: 195px
   z-index: 999

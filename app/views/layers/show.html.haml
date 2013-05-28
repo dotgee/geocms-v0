@@ -21,19 +21,21 @@
     #group-slider.slider-container.vertical-right
       %a.info-slider.left.right{:href => "#"} &nbsp;
 
-    %h3 Deniers ajouts
-
-    - last_layers.each do |layer|
-      .geo-context{ :class => layer == @layer ? "active" : "" }
-        .geo-img
-          - if layer == @layer 
-            = image_tag layer.thumb, alt: layer.title
-          - else
-            = link_to layer do 
+    %h3 Dernières mises à jour
+    .geo-contexts
+      - last_layers.each do |layer|
+        .geo-context{ :class => layer == @layer ? "active" : "" }
+          .geo-img
+            - if layer == @layer 
               = image_tag layer.thumb, alt: layer.title
-        .geo-name
-          .text
-            = layer.title
+            - else
+              = link_to layer do 
+                = image_tag layer.thumb, alt: layer.title
+          .geo-name
+            .text
+              = layer.title
+            .geo-date
+              = layer.last_date.strftime('%d-%m-%Y')
 
   #map.with_group
     %span#coords

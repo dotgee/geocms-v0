@@ -77,5 +77,20 @@ $(document).ready(function(){
       }
     });
   }
+  
+  var $print_lbl = $('#print-title label'),
+      $print_input =  $('#print-title input');
+  
+  $print_lbl.click(function(e){
+    e.preventDefault();
+    $print_input.focus();
+  })
 
+  $print_input.focus(function(){
+    $print_lbl.hide();
+  }).blur(function(){
+    if(!$.trim($print_input.val())){
+      $print_lbl.show();
+    }
+  });
 });

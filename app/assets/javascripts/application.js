@@ -114,7 +114,7 @@ $(document).ready(function(){
     $('#map').removeClass('olMap');
     var $link = $(this);
     var $group = $([]).add($('#map')).add($('#group-slider'));
-    var left = $link.is('.right') ? 0 : "180px";
+    var left = $link.is('.right') ? 0 : "195px";
     $link.toggleClass('right');
     $group.animate({ 'marginLeft': left }, function(){
       $('.map-infos').mapinfos('redraw');
