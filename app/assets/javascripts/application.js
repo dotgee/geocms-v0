@@ -126,7 +126,7 @@ $(document).ready(function(){
   if($active_geo.length){
     setTimeout(function(){
       $active_geo.closest('.geo-contexts').animate({
-        scrollTop: $active_geo.position().top -10
+        scrollTop: $active_geo.position().top -50
       }, 1000) 
       }, 1500);
   }
