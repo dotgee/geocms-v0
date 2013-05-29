@@ -8,16 +8,16 @@
   = render :partial => 'shared/content_toolbar'
   - if @geo_context.group
     #geo-group
-      %h3
-        = @geo_context.group.name
-      - @geo_context.group.geo_contexts.each do |p|
-        .geo-context{:class => p == @geo_context ? "active" : ""}
-          .geo-img
-            = link_to p do 
-              = image_tag p.visuel.url(:thumb) 
-          .geo-name
-            .text
-              = p.title
+      .geo-contexts
+        %h3= @geo_context.group.name
+        - @geo_context.group.geo_contexts.each do |p|
+          .geo-context{:class => p == @geo_context ? "active" : ""}
+            .geo-img
+              = link_to p do 
+                = image_tag p.visuel.url(:thumb) 
+            .geo-name
+              .text
+                = p.title
 
   #map{:class => @geo_context.group ? "with_group" : ""}
     %span#coords

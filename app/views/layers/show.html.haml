@@ -20,9 +20,8 @@
   #geo-group
     #group-slider.slider-container.vertical-right
       %a.info-slider.left.right{:href => "#"} &nbsp;
-
-    %h3 Dernières mises à jour
     .geo-contexts
+      %h3 Dernières mises à jour
       - last_layers.each do |layer|
         .geo-context{ :class => layer == @layer ? "active" : "" }
           .geo-img
@@ -35,7 +34,7 @@
             .text
               = layer.title
             .geo-date
-              = layer.last_date.strftime('%d-%m-%Y')
+              = layer.last_date.strftime('%d/%m/%Y')
 
   #map.with_group
     %span#coords
