@@ -120,6 +120,16 @@ $(document).ready(function(){
       $('.map-infos').mapinfos('redraw');
     })
   });
+  
+  // scroll to active geo-context
+  var $active_geo = $('.geo-context.active');
+  if($active_geo.length){
+    setTimeout(function(){
+      $active_geo.closest('.geo-contexts').animate({
+        scrollTop: $active_geo.position().top -10
+      }, 1000) 
+      }, 1500);
+  }
 });
 
   $.fn.hide_label = function(){
