@@ -78,19 +78,21 @@ $(document).ready(function(){
     });
   }
   
-  var $print_lbl = $('#print-title label'),
-      $print_input =  $('#print-title input');
+  $('#print-title input').each(function(i, el){
+    var $print_input =  $(el);
+    var $print_lbl = $print_input.next('label');
   
-  $print_lbl.click(function(e){
-    e.preventDefault();
-    $print_input.focus();
-  })
+    $print_lbl.click(function(e){
+      e.preventDefault();
+      $print_input.focus();
+    })
 
-  $print_input.focus(function(){
-    $print_lbl.hide();
-  }).blur(function(){
-    if(!$.trim($print_input.val())){
-      $print_lbl.show();
-    }
+    $print_input.focus(function(){
+      $print_lbl.hide();
+    }).blur(function(){
+      if(!$.trim($print_input.val())){
+        $print_lbl.show();
+      }
+    });
   });
 });
