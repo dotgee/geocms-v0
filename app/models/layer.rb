@@ -4,7 +4,7 @@ class Layer < ActiveRecord::Base
   friendly_id :title, :use => :slugged
 
   BZH_BOUNDING_BOX = "107541.6939208,6695593.1199368,429188.7088872,6901055.8519306"
-  has_attached_file :visuel, :styles => { :thumb => "150x100>" }
+  has_attached_file :visuel, :styles => { :thumb => "150x100>" }, :url => "/system/:class/:attachment/:id/:style/:filename"
 
   acts_as_taggable
   validates_presence_of :wms_url, :name, :title
@@ -160,8 +160,8 @@ class Layer < ActiveRecord::Base
         t.rewind
         self.visuel = t
         save if save_me
-    rescue
-
+    rescue => e
+      logger.info (e.message)
     end
   end
 
