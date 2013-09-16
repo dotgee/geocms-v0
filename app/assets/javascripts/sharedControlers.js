@@ -53,6 +53,7 @@ function addSharedControlers(map) {
       }
   });
   var nodes, start_pos, end_pos, layer_to_move;
+  ///*
   $( "#selected" ).sortable({
     placeholder: "ui-state-highlight",
     forcePlaceholderSize: true,
@@ -81,7 +82,7 @@ function addSharedControlers(map) {
     }
   });
   $( ".selected-node .grippy" ).disableSelection();
-
+  //*/
   /* Retour a la position initiale */
 
   $('#position_btn').click(function(e){
@@ -276,15 +277,9 @@ function addSharedControlers(map) {
     //pour la l?gende
     if(e.target.hash && e.relatedTarget.hash){ //nÃ©cessaire sinon bind les checkboxs
       var visible = $('#available .category_description.visible');
-      if(visible.length > 0){
-        var new_left;
-        var legend = $('#legend_container');
-        if(e.target.hash == "#selected"){
-          new_left =  -(visible.first().outerWidth());
-        }else{
-          new_left =  visible.first().width();
-        }
-        legend.legend('move', new_left);
+      var new_left = 0;
+      if(e.target.hash != "#selected2" && visible.length){
+        new_left = -250;
       }
     }
   });
@@ -331,7 +326,7 @@ function addSharedControlers(map) {
             // Removes the layer from the selected list
             $("#selected").mustachu("destroyLayer", layer); 
             // Removes the layer from the legend
-            $("#legend_container").legend("destroyLayer", layer);      
+            $("#legend_wrapper").legend("destroyLayer", layer);      
           }
           $( this ).dialog( "close" );
         },

@@ -5,37 +5,42 @@ $.widget("ui.legend", {
   },
   _create: function() {
     var self = this;
+    self.images = self.element.find('> div');
     self._bindEvents();
+
   },
   _bindEvents: function(){
     var self = this;
     self.element.find('h2 a').first().click(function(e){
       e.preventDefault();
-      var new_left = self._leftValue()  
       if(self.element.is('.visible')){
-        new_left += self._selfWidth();
-        new_left = new_left > 0 ? 0 : new_left;
-        self.element.animate({left:new_left  }, function(){
-          $("#legende").css('visibility', 'hidden');
-        });
+        self.hideImages();
       }else{
-        $('#legende').css('visibility', 'visible');
-        self.element.animate({left: new_left - self._selfWidth() });
+        self.showImages();
       }
       self.element.toggleClass('visible');
     });
   },
+  showImages: function(){
+    var self = this;
+    $('#legende').show();
+    self.images.animate({ width: self.options.width });
+  },
+  hideImages: function(){
+    var self = this;
+    self.images.animate({ width: 0}, function(){
+      $('#legende').hide();
+    })
+  },   
   updateSize: function(width){
     var self = this;
 
+
     // Handles width change
-    var originalWidth = self._selfWidth();
+    var originalWidth = self.options.width;
     if(width > originalWidth) {
       self.options.width = width;
-      self.element.css("width", width);
-      if(self.element.hasClass("visible")){
-        self.move(width - originalWidth, true); 
-      }
+      self.images.css("width", width);
     }
     // Handles max height
     var height = self.element.css("height");
@@ -46,6 +51,7 @@ $.widget("ui.legend", {
   move:function(pixel, animate){
     var self = this;
     var left = self._leftValue() - pixel;
+    left = left < 0 ? 0 : left;
     if(animate){
       self.element.animate({left:left});
     }else{

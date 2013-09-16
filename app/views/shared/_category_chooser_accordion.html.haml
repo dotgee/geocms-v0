@@ -14,7 +14,7 @@
   - Taxon.themes.each do |t|
     - parent = t.children.any?
     - layers = t.layers.published unless parent
-    %h3{:class => parent ? "grand_parent" : "parent" }
+    %h3{:class => parent ? "grand_parent" : "parent", "data-panel-id" => "layer_list_#{t.id}" }
       = link_to '#' do
         %span
           = t.name
@@ -25,12 +25,14 @@
       .children
         - t.descendants.includes(:layers).each do |c|
           - layers = c.layers.published
-          %h4.parent
+          %h4.parent{ "data-panel-id" => "layer_list_#{c.id}"}
             = link_to '#' do
               %span
                 = c.name
               %span.nb_layers
                 = "(#{layers.length})"
-          = render :partial => "shared/layers_list", :locals => { :layers => layers, :theme => c }  
+          - content_for :layers_availables do
+            = render :partial => "shared/layers_list", :locals => { :layers => layers, :theme => c }  
     - else
-      = render :partial => "shared/layers_list", :locals => { :layers => layers, :theme => t }  
+      - content_for :layers_availables do
+        = render :partial => "shared/layers_list", :locals => { :layers => layers, :theme => t }  

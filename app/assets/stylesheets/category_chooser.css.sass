@@ -13,7 +13,7 @@
   position: absolute
   top: 23px
   bottom: 0
-  width: 200px
+  width: 210px
   z-index: 1000
   background: white
   &.right_positioning
@@ -33,36 +33,36 @@
     line-height: 1em
     border: none
     margin: 0
-  .layer_selection
-    margin: 5px
-    border: none
+.layer_selection
+  margin: 5px
+  border: none
 
-  .layer_img
-    float: left
-    img.mini_thumbnail
-      width: 40px
+.layer_img
+  float: left
+  img.mini_thumbnail
+    width: 40px
 
-  .layer_info
-    font-size: 0.8em
-    width: 195px
-    overflow: hidden
-    line-height: 16px
+.layer_info
+  font-size: 0.8em
+  width: 195px
+  overflow: hidden
+  line-height: 16px
+  float: left
+  span
+    margin-left: 21px
+    display: block
+  .ui-icon
     float: left
-    span
-      margin-left: 21px
-      display: block
-    .ui-icon
-      float: left
-      margin: 0px 5px 0px 0px
-      &.empty
-        background-position: 16px 16px
-  .ui-accordion .ui-accordion-content
-    padding: 7px 10px
+    margin: 0px 5px 0px 0px
+    &.empty
+      background-position: 16px 16px
+.ui-accordion .ui-accordion-content
+  padding: 7px 10px
 
-  .slider
-    width: 60px
-    margin-top: 9px
-    float: left
+.slider
+  width: 60px
+  margin-top: 9px
+  float: left
 
 .twipsy
   z-index: 2000
@@ -114,16 +114,12 @@
   position: absolute
   top: 32px
   z-index: -1
-  left: 0
-  border: 2px #0080CC solid
-  border-right: none
-  padding: 5px 10px
+  right: -100%
   background: white
-  min-height: 150px
-  width: 200px
+#legend_wrapper
   h2.vertical
     position: absolute
-    top: 25px
+    top: 57px
     left: -27px
     line-height: 15px
     cursor: pointer
@@ -139,8 +135,13 @@
       padding: 5px 
       text-align: center
       text-transform: uppercase
+  img
+    max-width: none
   #legende
-    visibility: hidden
+    display: none
+    border: 2px #0080CC solid
+    border-right: none
+    padding: 5px 10px
     padding: 0
     overflow-y: scroll
 

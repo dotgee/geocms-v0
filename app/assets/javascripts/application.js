@@ -18,6 +18,9 @@
 //= require mustache
 //= require fileuploader
 //= require j.bookmark.js
+//= require jquery/jquery.mousewheel.js
+//= require jquery/mwheelIntent.js
+//= require jquery/jquery.jscrollpane.min.js
 
 /* Includes the csrf token in every ajax request
 $(document).ajaxSend(function(e, xhr, options) {
@@ -61,7 +64,7 @@ $(document).ready(function(){
   });
   
   //block legende
-  $('#legend_container').legend();
+  $('#legend_wrapper').legend();
   //tab couches selectionneur
   $('#layer_tab').tab();
   // filter du category chooser
@@ -130,6 +133,7 @@ $(document).ready(function(){
       }, 1000) 
       }, 1500);
   }
+  scrollbarize();
 });
 
   $.fn.hide_label = function(){
@@ -178,4 +182,9 @@ $.fn.spin = function(opts) {
 };
 function getURLParameter(name) {
   return decodeURI( (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+}
+
+function scrollbarize(){
+  $('#geo-group .geo-contexts').jScrollPane({autoReinitialise: true});
+  $('#tabs .tab-pane').jScrollPane({autoReinitialise: true});
 }

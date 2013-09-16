@@ -1,6 +1,8 @@
 //= require gipbe/reset
 
 // Style global
+
+$chooser_width : 210px
 body
   font-family: 'Arial', 'Helvetica', sans-serif
   margin: 0
@@ -366,24 +368,43 @@ div#make-link-content
   position: relative
   #map
     background-color: #C7E3F7
-  margin-right: 200px
+  margin-right: $chooser_width
 
 #tabs
   background: white
+  position: absolute
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
 
 #category_chooser 
   z-index: 300
   padding: 0px
   
   .tab-content
+    position: absolute
+    width: $chooser_width
+    top: 32px
+    bottom: 0px
+    left: 0px
+    > .tab-pane
+      position: absolute
+      top: 0px
+      bottom: 0px
     padding: 5px 0
 
   #available, #selected
-    overflow-y: scroll
-    overflow-x: hidden
-    width: 220px
-  #available
-    padding: 0 10px
+    overflow-x: visible
+    width: $chooser_width
+    padding-left: 0px 
+    height: 100%
+
+  #selected2
+    width: $chooser_width
+  #legend_wrapper
+    position: absolute
+    top: 0
   h2
     background: none #0080cc
     line-height: 20px
@@ -399,11 +420,13 @@ div#make-link-content
     background: none 
     color: #000
     border: 0 none
-    margin: 0 0 6px -11px
+    margin: 0 0 6px 0px
     &:hover, &.selected
-      padding-left: 5px
-      background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 0 0 #0080cc
+      //background: url(gipbe/arrow-right-menu.jpg) no-repeat scroll 2px 0
       color: #fff
+      a
+        background-color: #0080cc
+        color: #fff
 
     .border-container
       height: 23px
@@ -412,9 +435,9 @@ div#make-link-content
       display: block
       height: 18px
       line-height: 18px
-      padding: 0 0 0 18px
+      padding: 0 0 0 5px
+      //margin-left: 18px
       &:hover 
-        background: transparent
         text-decoration: none
         color: #fff
     .selected
@@ -448,16 +471,12 @@ div#make-link-content
           &:hover
             text-decoration: underline
 
-  .category_description
-    -moz-border-radius: 0
-    -webkit-border-radius: 0
-    -khtml-border-radius: 0
-    -moz-border-radius: 0
-    border-radius: 0
-    border: 1px solid #999
-    background: none #fff
-    overflow: auto
-
+  .pills
+    margin-bottom: 13px
+    a
+      padding: 0 5px
+      line-height: 18px
+      font-size: 11px
   .ui-widget-header
     border: 0 none
     background: none #0080cc
@@ -471,15 +490,31 @@ div#make-link-content
       padding: 5px
       color: #fff
 
-  .ui-icon-circle-close, .ui-icon-triangle-1-e,
-  .ui-icon-triangle-1-w
-    display: none
-  .pills
-    margin-bottom: 13px
-    a
-      padding: 0 5px
-      line-height: 18px
-      font-size: 11px
+.category_description
+  -moz-border-radius: 0
+  -webkit-border-radius: 0
+  -khtml-border-radius: 0
+  -moz-border-radius: 0
+  border-radius: 0
+  border: 1px solid #999
+  background: none #fff
+  overflow: auto
+
+.category-header
+  background: none #0080cc
+  position: relative
+  .ui-icon
+    cursor: pointer
+    position: absolute
+    top: 5px
+    right: 10px
+  .title-header
+    padding: 5px
+    color: #fff
+
+.ui-icon-circle-close, .ui-icon-triangle-1-e,
+.ui-icon-triangle-1-w
+  display: none
 
 #search_container
   margin-top: -2px
@@ -643,6 +678,7 @@ div#make-link-content
     float: right
 .filters
   margin-bottom: 8px
+  padding-left: 5px
 
 .nav-tabs > li > a
   padding: 0px 12px
@@ -656,3 +692,14 @@ div#make-link-content
   padding-left: 20px
   top: -30px
   margin-bottom: 5px
+
+#layers_availables
+  position: absolute
+  top: 32px
+  left: -0px
+  z-index: -1
+  .category_layers
+    width: 250px
+  .category_description
+    &:nth-child(n+2)
+      display: none

@@ -1,6 +1,6 @@
-.category_description
-  .header
-    %span.title-header
+.category_description{:id => "layer_list_#{theme.id}"}
+  .header.category-header
+    %div.title-header
       = theme.name 
       %span.nbLayers
         = "(#{ layers.length})"
@@ -20,8 +20,7 @@
                                   :"data-original-title" => l.description }
         %a{:href => "#", :class => "ui-icon-with-text selected_icon btn-check"}
           %span.ui-icon
-        /.selected_icon.ui-icon.ui-icon-circle-plus
-        .row.layer_selection
+        .layer_selection
           .layer_info
             %span.ui-icon{:class => l.external ? "ui-icon-extlink" : "empty", :"data-original-title" => l.external? ? l.data_source_name : "" }
             %span

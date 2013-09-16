@@ -7,7 +7,7 @@ $.widget("ui.sliderPanel", {
   _create: function() {
     var self = this;
     self.element.hide().addClass('sliders ui-helper-reset ui-widget-content ui-corner-all');
-    self.element.css({height: self.options.height, left : self._leftPositioning()});
+    self.element.css({height: self.options.height, left : 0});
     self._addHeader();
     self._bindEvents();
   },
@@ -58,15 +58,21 @@ $.widget("ui.sliderPanel", {
     var self = this; 
     if(self.element.is(':visible')){
       $('#legend_container').stop(false, true).legend('move', - self.element.outerWidth(), true);
-      self.element.effect('slide', {direction : self._slideDirection(), mode:'hide'})
       self.element.removeClass('visible');
+      self.element.effect('slide', {direction : self._slideDirection(), mode:'hide'}, function(){
+        if($('#layers_availables .category_description.visible').length < 1){
+          $('#layers_availables').animate({left: 0});
+        }
+      });
+
+      //$('#layers_availables').css('left', 0)
     }
   
   },
   _bindEvents: function(){
     var self = this;
     self.element.find('.close_panel').click(function(e){
-      $(self.element.prev('.parent')).sliderLink('closePanel');
+      $(this).closest('.category_description').sliderPanel('hide');
     });
   },
   destroy: function() {

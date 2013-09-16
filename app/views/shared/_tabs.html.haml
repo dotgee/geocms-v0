@@ -3,14 +3,18 @@
     %li.active
       %a{ :"data-toggle" =>"tab", :href => "#available" } Disponibles
     %li
-      %a{ :"data-toggle" =>"tab", :href => "#selected" } S&eacute;lectionn&eacute;es
+      %a{ :"data-toggle" =>"tab", :href => "#selected2" } S&eacute;lectionn&eacute;es
 
   .tab-content.nano
     #available.tab-pane.active.content
       = render :partial => "shared/category_chooser_accordion"
       .clear
 
-    #selected.tab-pane.content
+    #selected2.tab-pane.content
+      #selected
       =# render :partial => "shared/selected_layers"
       .clear
-  = render :partial => "shared/legend"
+  #layers_availables
+    = yield :layers_availables
+    #legend_wrapper
+      = render :partial => "shared/legend"

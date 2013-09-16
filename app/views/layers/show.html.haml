@@ -17,9 +17,9 @@
 
 #map_container
   = render :partial => 'shared/content_toolbar'
+  #group-slider.slider-container.vertical-right
+    %a.info-slider.left.right{:href => "#"} &nbsp;
   #geo-group
-    #group-slider.slider-container.vertical-right
-      %a.info-slider.left.right{:href => "#"} &nbsp;
     .geo-contexts
       %h3 Dernières mises à jour
       - last_layers.each do |layer|

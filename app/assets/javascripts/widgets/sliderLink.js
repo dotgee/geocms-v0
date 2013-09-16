@@ -10,7 +10,7 @@ $.widget("ui.sliderLink", {
     self.category_slider = self.options.parent;
     self.visiblePanel = self.options.visiblePanel;
     self.element.addClass('ui-sliderLink');
-    self.panel = self.element.next('.category_description').sliderPanel({
+    self.panel = $('#'+self.element.data('panelId')).sliderPanel({
                                                                 height: self.options.panelHeight,
                                                                 position: self.options.position,
                                                                 title: self.element.html()
@@ -92,6 +92,9 @@ $.widget("ui.sliderLink", {
     var self = this; 
     self._showArrow();
     self.panel.sliderPanel('show');
+    if(parseInt($('#layers_availables').css('left')) > -249){
+      $('#layers_availables').animate({'left': -250})
+    }
     //if (self.element.is('h3')){
       self.element.addClass('selected');
     //}else{
