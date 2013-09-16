@@ -40,7 +40,7 @@ $.widget("ui.legend", {
     var originalWidth = self.options.width;
     if(width > originalWidth) {
       self.options.width = width;
-      self.images.css("width", width);
+      $('#legende').css("width", width);
     }
     // Handles max height
     var height = self.element.css("height");
