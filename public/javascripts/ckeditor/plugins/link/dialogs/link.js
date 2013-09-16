@@ -1425,7 +1425,7 @@ CKEDITOR.dialog.add( 'link', function( editor )
       //atanguy
       //if ( !editor.config.linkShowTargetTab )
         this.hidePage( 'target' );    //Hide Target tab.
-        this.hidePage( 'upload' );    //Hide Target tab.
+        //this.hidePage( 'upload' );    //Hide Target tab.
         this.selectPage( 'gipbe_page' ); 
 
     },
