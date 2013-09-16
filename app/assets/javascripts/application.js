@@ -134,6 +134,9 @@ $(document).ready(function(){
       }, 1500);
   }
   scrollbarize();
+  $("a[_cke_saved_href]").each(function(i,el){
+    $(el).attr('href', $(el).attr("_cke_saved_href"))
+  });
 });
 
   $.fn.hide_label = function(){
@@ -185,6 +188,6 @@ function getURLParameter(name) {
 }
 
 function scrollbarize(){
-  $('#geo-group .geo-contexts').jScrollPane({autoReinitialise: true});
-  $('#tabs .tab-pane').jScrollPane({autoReinitialise: true});
+  $('#geo-group .geo-contexts').jScrollPane({autoReinitialise: true, showArrows: true});
+  $('#tabs .tab-pane').jScrollPane({autoReinitialise: true, showArrows: true});
 }
