@@ -137,6 +137,21 @@ $(document).ready(function(){
   $("a[_cke_saved_href]").each(function(i,el){
     $(el).attr('href', $(el).attr("_cke_saved_href"))
   });
+  
+  $('#legende').on('needUpdateSize', function(e){
+    var $map = $('#map_container'),
+        $mapHeight = $map.height(),
+        $legend = $(this),
+        $legendHeight = $legend.height(),
+        marge = 80;
+    setTimeout(function(){
+      if(($legendHeight + marge) > $mapHeight){
+        console.log('ok');
+        $legend.height($mapHeight - marge);
+      } 
+    },100)
+    
+  })
 });
 
   $.fn.hide_label = function(){

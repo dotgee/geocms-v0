@@ -47,6 +47,7 @@ $.widget("ui.legend", {
     if(parseInt(height) > parseInt($(".olMap").css("height"))){
       self.element.find("#legende").css("max-height", $(".olMap").css("height"));
     }
+    $('#legende').trigger('needUpdateSize')
   },
   move:function(pixel, animate){
     var self = this;
