@@ -190,4 +190,5 @@ function getURLParameter(name) {
 function scrollbarize(){
   $('#geo-group .geo-contexts').jScrollPane({autoReinitialise: true, showArrows: true});
   $('#tabs .tab-pane').jScrollPane({autoReinitialise: true, showArrows: true});
+  $('.category_layers').jScrollPane({autoReinitialise: true, showArrows: true});
 }
