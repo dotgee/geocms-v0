@@ -146,9 +146,10 @@ $(document).ready(function(){
         marge = 80;
     setTimeout(function(){
       if(($legendHeight + marge) > $mapHeight){
-        console.log('ok');
         $legend.height($mapHeight - marge);
-      } 
+      } else{
+        $legend.height('auto');
+      }
     },100)
     
   })

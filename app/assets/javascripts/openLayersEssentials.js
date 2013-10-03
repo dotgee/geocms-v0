@@ -120,6 +120,7 @@ function fixSize(updateSize) {
   if (window.map && (window.map instanceof OpenLayers.Map) && !updateSize) {
     map.updateSize();
   }
+  $('#legende').trigger('needUpdateSize');
 }
 
 $(document).ready(function() {
