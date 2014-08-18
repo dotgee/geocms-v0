@@ -348,7 +348,8 @@ function addSharedControlers(map) {
             maxRows: 10,
             country: "FR",
             adminCode1: "A2",
-            name_startsWith: request.term
+            name_startsWith: request.term,
+            username: "jchapron@dotgee.fr"
           },
           success: function( data ) {
             response( $.map( data.geonames, function( item ) {
