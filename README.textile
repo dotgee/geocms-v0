@@ -1,43 +1,41 @@
 h1. Geocms
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-h2. More Information
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-h2. Required Gems
-
-This application requires this gem:
-
-* "rails":http://rubygems.org/gems/rails
+GeoCMS is an application to visualize WMS layers from a Geoserver.
+"Online demo":http://dotgeocms.devel.dotgee.fr
 
 h2. Dependencies
 
 To use this application, you will need:
 
-* The Ruby language (version 1.8.7 or 1.9.2)
-* Rails (version 3.0.4 or newer)
+* The Ruby language (version 1.9.2 or newer)
+* RVM
+* Rails (version 3.2.2 or newer)
+* Redis
 
-h2. Installing the Application
+h2. Installation
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+h3. Install Redis
 
-h2. Getting Started
+Components of GeoCMS depend on "Redis":http://redis.io .
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+To install Redis 2.2+, You can "download it here":"http://redis.io/download
+or you can use `brew install redis`.
 
-h2. Documentation and Support
+h3. Setup the project
 
-This is the only documentation.
+* Clone the project
+  git clone git://github.com/dotgee/geocms.git
+* Install the gems
+  bundle install
+* Configure your config/database.yml
+* Create the database, load the migrations and default datas
+  rake db:create
+  rake db:migrate
+  rake db:seed
+* Launch the server
+  rails server
+* You can connect to the backend at /backend using the logins admin@example.com/password
 
-h4. Issues
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-h2. Similar Projects
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 h2. Contributing
 
@@ -50,10 +48,6 @@ If you make improvements to this application, please share with others.
 
 If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
 
-h2. Credits
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
 h2. License
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+GeoCMS est sous licence CeCILL-B. Pour plus d'informations sur la licence lisez "cecill.txt":./geocms/blob/master/cecill.txt
