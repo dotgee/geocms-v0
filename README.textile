@@ -50,4 +50,4 @@ If you add functionality to this application, create an alternative implementati
 
 h2. License
 
-GeoCMS est sous licence CeCILL-B. Pour plus d'informations sur la licence lisez "cecill.txt":./geocms/blob/master/cecill.txt
+GeoCMS est sous licence CeCILL-B. Pour plus d'informations sur la licence lisez "cecill.txt":http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html
