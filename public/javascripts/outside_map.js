@@ -1,7 +1,7 @@
 (function(){
 
   var v = "1.7.1";
-  options.baseUrl = "http://cartographie.gipbe.dotgee.fr/";
+  options.baseUrl = "http://cartographie.bretagne-environnement.org/";
   if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
     var done = false;
     var script = document.createElement("script");

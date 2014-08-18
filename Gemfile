@@ -10,7 +10,7 @@ end
   gem 'compass_twitter_bootstrap'
   gem "compass", "~> 0.12.alpha.0", :group => :development
 group :test do
-  
+  gem 'turbo-sprockets-rails3'  
   gem 'turn', :require => false
 end
 if HOST_OS =~ /linux/i

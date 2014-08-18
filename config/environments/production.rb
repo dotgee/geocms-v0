@@ -55,6 +55,7 @@ Geocms::Application.configure do
                                   layers.css
                                   active_admin.css 
                                   active_admin.js
+                                  only_print.css
                                   )
 
   # Disable delivery errors, bad email addresses will be ignored

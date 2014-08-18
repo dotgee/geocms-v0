@@ -82,6 +82,7 @@ $(document).ready(function(){
               var text = $.map(data.errors, function(n,i){
                 return i + " "+data.errors[i]; 
               });
+              alert(text);
               tr.find('.label_boot').first().addClass('important').removeClass('warning').html('Erreur');
             }
           },
